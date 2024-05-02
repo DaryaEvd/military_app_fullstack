@@ -42,8 +42,8 @@ public class SubdivisionServiceImpl implements SubdivisionService {
     @Override
     public SubdivisionDto updateSubdivision(Long subdivisionId, SubdivisionDto updatedSubdivision) {
 
-        Subdivision subdivision = subdivisionRepository.findById(subdivisionId).orElseThrow(
-                () -> new ResourceNotFoundException("Subdivision doesn't exist with given id: " + subdivisionId)
+        Subdivision subdivision = subdivisionRepository.findById(subdivisionId)
+                .orElseThrow(() -> new ResourceNotFoundException("Subdivision doesn't exist with given id: " + subdivisionId)
         );
 
         subdivision.setNameOfSubdivision(updatedSubdivision.getNameOfSubdivision());
@@ -52,17 +52,16 @@ public class SubdivisionServiceImpl implements SubdivisionService {
         subdivision.setCommander(updatedSubdivision.getCommander());
         subdivision.setTypeOfSubdivision(updatedSubdivision.getTypeOfSubdivision());
 
-        Subdivision updatedSubdivisionObj =  subdivisionRepository.save(subdivision);
+        Subdivision updatedSubdivisionObj = subdivisionRepository.save(subdivision);
 
         return SubdivisionMapper.mapToSubdivisionDto(updatedSubdivisionObj);
     }
 
     @Override
     public void deleteSubdivision(Long subdivisionId) {
-        Subdivision subdivision = subdivisionRepository.findById(subdivisionId).orElseThrow(
-                () -> new ResourceNotFoundException("Subdivision doesn't exist with given id: " + subdivisionId)
+        Subdivision subdivision = subdivisionRepository.findById(subdivisionId)
+                .orElseThrow(() -> new ResourceNotFoundException("Subdivision doesn't exist with given id: " + subdivisionId)
         );
-
         subdivisionRepository.deleteById(subdivisionId);
     }
 }
