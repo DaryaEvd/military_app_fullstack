@@ -11,8 +11,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/api/military-buildings")
-public class MilitaryBuildingController {
+ public class MilitaryBuildingController {
     private MilitaryBuildingService militaryBuildingService;
 
     // add military building
@@ -50,6 +49,4 @@ public class MilitaryBuildingController {
         militaryBuildingService.deleteMilitaryBuilding(subdivisionId);
         return ResponseEntity.ok("Subdivision deleted successfully");
     }
-
-
 }

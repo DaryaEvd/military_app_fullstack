@@ -1,11 +1,9 @@
 package ccfit.nsu.ru.daryaevd.military_unit.service.implementation;
 
 import ccfit.nsu.ru.daryaevd.military_unit.dto.SoldierTypeDto;
-import ccfit.nsu.ru.daryaevd.military_unit.entity.MilitaryBuilding;
-import ccfit.nsu.ru.daryaevd.military_unit.entity.SoldierType;
+ import ccfit.nsu.ru.daryaevd.military_unit.entity.SoldierType;
 import ccfit.nsu.ru.daryaevd.military_unit.exception.ResourceNotFoundException;
-import ccfit.nsu.ru.daryaevd.military_unit.mapper.MilitaryBuildingMapper;
-import ccfit.nsu.ru.daryaevd.military_unit.mapper.SoldierTypeMapper;
+ import ccfit.nsu.ru.daryaevd.military_unit.mapper.SoldierTypeMapper;
 import ccfit.nsu.ru.daryaevd.military_unit.repository.SoldierTypeRepository;
 import ccfit.nsu.ru.daryaevd.military_unit.service.SoldierTypeService;
 import lombok.AllArgsConstructor;
@@ -48,7 +46,7 @@ public class SoldierTypeServiceImpl implements SoldierTypeService {
         soldierType.setTypeRank(updatedSoldierType.getTypeRank());
 
         SoldierType updatedSoldierTypeObj = soldierTypeRepository.save(soldierType);
-        return  SoldierTypeMapper.mapToSoldierTypeDto(updatedSoldierTypeObj);
+        return SoldierTypeMapper.mapToSoldierTypeDto(updatedSoldierTypeObj);
     }
 
     @Override

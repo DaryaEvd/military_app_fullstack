@@ -9,10 +9,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class MilitaryBuildingDto {
+public class CommanderDto {
     private Long id;
-    private Boolean canUseForDislocation;
-    private Integer typeOfBuilding;
-    private Boolean areaOfBuilding;
-    private Integer amountOfRooms;
+    private String idOfficer;
+    private Integer idSubdivision;
 }
