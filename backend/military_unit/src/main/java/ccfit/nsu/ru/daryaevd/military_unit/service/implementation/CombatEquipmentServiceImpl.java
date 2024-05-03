@@ -7,13 +7,12 @@ import ccfit.nsu.ru.daryaevd.military_unit.mapper.CombatEquipmentMapper;
 import ccfit.nsu.ru.daryaevd.military_unit.repository.CombatEquipmentRepository;
 import ccfit.nsu.ru.daryaevd.military_unit.service.CombatEquipmentService;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 
 @Service
-@Transactional
+//@Transactional todo: think
 @AllArgsConstructor
 public class CombatEquipmentServiceImpl implements CombatEquipmentService {
 
