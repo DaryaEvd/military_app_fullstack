@@ -11,6 +11,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
+@RequestMapping("/api/military-building")
  public class MilitaryBuildingController {
     private MilitaryBuildingService militaryBuildingService;
 
