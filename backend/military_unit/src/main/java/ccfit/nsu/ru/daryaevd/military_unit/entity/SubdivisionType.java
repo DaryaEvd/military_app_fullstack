@@ -11,8 +11,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "soldier_type")
-public class SoldierType {
+@Table(name = "subdivision_type")
+public class SubdivisionType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -20,6 +20,6 @@ public class SoldierType {
     @Column(name = "name_of_type", nullable = false)
     private String nameOfType;
 
-    @Column(name = "type_rank", nullable = false)
-    private Integer typeRank;
+    @Column(name = "rank_subdiv", nullable = false)
+    private Integer subdivisionRank;
 }

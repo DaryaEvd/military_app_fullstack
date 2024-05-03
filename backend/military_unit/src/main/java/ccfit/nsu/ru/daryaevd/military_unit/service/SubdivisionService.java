@@ -10,5 +10,4 @@ public interface SubdivisionService {
     List<SubdivisionDto> getAllSubdivisions();
     SubdivisionDto updateSubdivision(Long subdivisionId, SubdivisionDto updatedEmployee);
     void deleteSubdivision(Long subdivisionId);
-
 }

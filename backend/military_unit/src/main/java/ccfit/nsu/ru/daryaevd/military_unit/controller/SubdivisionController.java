@@ -3,7 +3,6 @@ package ccfit.nsu.ru.daryaevd.military_unit.controller;
 import ccfit.nsu.ru.daryaevd.military_unit.dto.SubdivisionDto;
 import ccfit.nsu.ru.daryaevd.military_unit.service.SubdivisionService;
 import lombok.AllArgsConstructor;
-import org.springframework.data.web.ReactiveOffsetScrollPositionHandlerMethodArgumentResolver;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -11,16 +11,9 @@ import lombok.Setter;
 @AllArgsConstructor
 public class SubdivisionDto {
     private Long id;
-
     private String nameOfSubdivision;
-
     private Integer numberOfSubdivision;
-
     private Boolean isDislocated;
-
     private Integer commander; // TODO: think about reference?
-
     private Integer typeOfSubdivision; // TODO: think about reference?
-
-
 }
