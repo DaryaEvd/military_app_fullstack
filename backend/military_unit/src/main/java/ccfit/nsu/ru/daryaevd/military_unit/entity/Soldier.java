@@ -38,6 +38,7 @@ public class Soldier {
     @Column(name = "military_card", nullable = false)
     private String militaryCard;
 
+    // todo: this doesn't allow normal data like 01.01.1991. fix it
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
     @Column(name = "date_of_issue_of_military_card", nullable = false)
