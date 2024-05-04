@@ -5,24 +5,26 @@ import ccfit.nsu.ru.daryaevd.military_unit.entity.Subdivision;
 
 public class SubdivisionMapper {
     public static SubdivisionDto mapToSubdivisionDto(Subdivision subdivision) {
-        return new SubdivisionDto(
-                subdivision.getId(),
-                subdivision.getNameOfSubdivision(),
-                subdivision.getNumberOfSubdivision(),
-                subdivision.getIsDislocated(),
-                subdivision.getCommander(),
-                subdivision.getTypeOfSubdivision()
-        );
+        SubdivisionDto subdivisionDto = new SubdivisionDto();
+        subdivisionDto.setId(subdivision.getId());
+        subdivisionDto.setNameOfSubdivision(subdivision.getNameOfSubdivision());
+        subdivisionDto.setNumberOfSubdivision(subdivision.getNumberOfSubdivision());
+        subdivisionDto.setIsDislocated(subdivision.getIsDislocated());
+        subdivisionDto.setCommander(subdivision.getCommander());
+        subdivisionDto.setTypeOfSubdivision(subdivision.getTypeOfSubdivision());
+
+        return subdivisionDto;
     }
 
     public static Subdivision mapToSubdivision(SubdivisionDto subdivisionDto) {
-        return new Subdivision(
-                subdivisionDto.getId(),
-                subdivisionDto.getNameOfSubdivision(),
-                subdivisionDto.getNumberOfSubdivision(),
-                subdivisionDto.getIsDislocated(),
-                subdivisionDto.getCommander(),
-                subdivisionDto.getTypeOfSubdivision()
-        );
+        Subdivision subdivision = new Subdivision();
+        subdivision.setId(subdivisionDto.getId());
+        subdivision.setNameOfSubdivision(subdivisionDto.getNameOfSubdivision());
+        subdivision.setNumberOfSubdivision(subdivisionDto.getNumberOfSubdivision());
+        subdivision.setIsDislocated(subdivisionDto.getIsDislocated());
+        subdivision.setCommander(subdivisionDto.getCommander());
+        subdivisionDto.setTypeOfSubdivision(subdivisionDto.getTypeOfSubdivision());
+
+        return subdivision;
     }
 }

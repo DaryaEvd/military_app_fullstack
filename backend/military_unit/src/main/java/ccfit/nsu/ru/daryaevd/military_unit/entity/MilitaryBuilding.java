@@ -29,6 +29,11 @@ public class MilitaryBuilding {
     @Column(name = "amount_of_rooms", nullable = false)
     private Integer amountOfRooms;
 
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "subdivision_id", referencedColumnName = "id")
+    private Subdivision subdivision;
+
     /*
     TODO: think about this
     military_building INT NOT NULL,

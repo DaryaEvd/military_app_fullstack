@@ -33,6 +33,5 @@ public class SoldierMapper {
         mas.setId(soldierDto.getMasId());
         soldier.setMas(mas);
         return soldier;
-
     }
 }

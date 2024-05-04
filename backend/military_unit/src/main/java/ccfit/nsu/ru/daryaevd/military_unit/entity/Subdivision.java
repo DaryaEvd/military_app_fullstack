@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -31,4 +33,8 @@ public class Subdivision {
 
     @Column(name = "type_of_subdivision", nullable = false)
     private Integer typeOfSubdivision; // TODO: think about reference?
+
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "subdivision")
+    private List<MilitaryBuilding> militaryBuildings;
 }

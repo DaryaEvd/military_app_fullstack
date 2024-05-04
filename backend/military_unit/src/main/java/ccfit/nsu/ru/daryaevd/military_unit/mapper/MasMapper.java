@@ -4,7 +4,6 @@ import ccfit.nsu.ru.daryaevd.military_unit.dto.MasDto;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.Mas;
 
 
-
 public class MasMapper {
 
 //    @Autowired

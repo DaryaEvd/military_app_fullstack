@@ -55,6 +55,7 @@ public class Soldier {
     @JoinColumn(name = "product_id", referencedColumnName = "productId")
     private Product product;
      */
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mas_id", referencedColumnName = "id")
     private Mas mas;
