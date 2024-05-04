@@ -37,4 +37,7 @@ public class Subdivision {
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "subdivision")
     private List<MilitaryBuilding> militaryBuildings;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "subdivision")
+    private List<CombatEquipment> combatEquipments;
 }

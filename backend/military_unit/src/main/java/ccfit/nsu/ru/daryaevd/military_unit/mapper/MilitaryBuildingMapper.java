@@ -6,16 +6,17 @@ import ccfit.nsu.ru.daryaevd.military_unit.entity.Subdivision;
 
 public class MilitaryBuildingMapper {
     public static MilitaryBuildingDto mapToMilitaryBuildingDto(MilitaryBuilding militaryBuilding) {
-        return new MilitaryBuildingDto(
-                militaryBuilding.getId(),
-                militaryBuilding.getCanUseForDislocation(),
-                militaryBuilding.getTypeOfBuilding(),
-                militaryBuilding.getAreaOfBuilding(),
-                militaryBuilding.getAmountOfRooms(),
+        MilitaryBuildingDto militaryBuildingDto = new MilitaryBuildingDto();
+        militaryBuildingDto.setId(militaryBuilding.getId());
+        militaryBuildingDto.setCanUseForDislocation(militaryBuilding.getCanUseForDislocation());
+        militaryBuildingDto.setTypeOfBuilding(militaryBuilding.getTypeOfBuilding());
+        militaryBuildingDto.setAreaOfBuilding(militaryBuilding.getAreaOfBuilding());
+        militaryBuildingDto.setAmountOfRooms(militaryBuilding.getAmountOfRooms());
 
-                militaryBuilding.getSubdivision().getId()
-
-        );
+//         if (militaryBuilding.getSubdivision() != null) {
+        militaryBuildingDto.setSubdivisionId(militaryBuilding.getSubdivision().getId());
+//        }
+        return militaryBuildingDto;
     }
 
     public static MilitaryBuilding mapToMilitaryBuilding(MilitaryBuildingDto militaryBuildingDto) {
@@ -25,7 +26,6 @@ public class MilitaryBuildingMapper {
         militaryBuilding.setTypeOfBuilding(militaryBuildingDto.getTypeOfBuilding());
         militaryBuilding.setAreaOfBuilding(militaryBuildingDto.getAreaOfBuilding());
         militaryBuilding.setAmountOfRooms(militaryBuildingDto.getAmountOfRooms());
-
 
         Subdivision subdivision = new Subdivision();
         subdivision.setId(militaryBuildingDto.getSubdivisionId());

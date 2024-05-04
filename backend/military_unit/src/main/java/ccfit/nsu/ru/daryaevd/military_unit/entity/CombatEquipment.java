@@ -13,12 +13,6 @@ import lombok.Setter;
 @Entity
 @Table(name = "combat_equipment_table")
 public class CombatEquipment {
-    /*
-TODO: think
-	combat INT NOT NULL,
-    FOREIGN KEY (combat) REFERENCES subdivision_table (id),
-     */
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -37,4 +31,8 @@ TODO: think
 
     @Column(name = "name_of_vehicle", nullable = false)
     private String nameOfVehicle;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "subdivision_id", referencedColumnName = "id")
+    private Subdivision subdivision;
 }

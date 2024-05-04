@@ -6,16 +6,20 @@ import ccfit.nsu.ru.daryaevd.military_unit.entity.Soldier;
 
 public class SoldierMapper {
     public static SoldierDto mapToSoldierDto(Soldier soldier) {
-        return new SoldierDto(
-                soldier.getId(),
-                soldier.getFirstName(),
-                soldier.getLastName(),
-                soldier.getDateOfBirth(),
-                soldier.getMilitaryCard(),
-                soldier.getDateOfIssueMilitaryCard(),
+        SoldierDto soldierDto = new SoldierDto();
+        soldierDto.setId(soldier.getId());
+        soldierDto.setFirstName(soldier.getFirstName());
+        soldierDto.setLastName(soldier.getLastName());
+        soldierDto.setDateOfBirth(soldier.getDateOfBirth());
+        soldierDto.setMilitaryCard(soldier.getMilitaryCard());
+        soldierDto.setDateOfIssueMilitaryCard(soldier.getDateOfIssueMilitaryCard());
 
-                soldier.getMas().getId() // get id связанного mas
-        );
+//        // Set the masId if needed
+//        if (soldier.getMas() != null) {
+            soldierDto.setMasId(soldier.getMas().getId());
+//        }
+
+        return soldierDto;
     }
 
 

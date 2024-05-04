@@ -16,4 +16,6 @@ public class CombatEquipmentDto {
     private String conditionOfVehicle;
     private Integer numberOfSeats;
     private String nameOfVehicle;
+
+    private Long subdivisionId;
 }
