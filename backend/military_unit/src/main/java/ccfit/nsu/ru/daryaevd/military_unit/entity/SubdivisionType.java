@@ -20,6 +20,8 @@ public class SubdivisionType {
     @Column(name = "name_of_type", nullable = false)
     private String nameOfType;
 
-    @Column(name = "rank_subdiv", nullable = false)
+//    @Column(name = "rank_subdiv", nullable = false)
+    @Column(name = "type_rank", nullable = false
+            /*, columnDefinition = "INT CHECK (rank_subdiv > 0 AND rank_subdiv < 5)"*/)
     private Integer subdivisionRank;
 }

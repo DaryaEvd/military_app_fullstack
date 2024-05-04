@@ -18,4 +18,6 @@ public class SoldierDto {
      private Date dateOfBirth;
      private String militaryCard;
      private Date dateOfIssueMilitaryCard;
+
+     private Long masId;
 }
