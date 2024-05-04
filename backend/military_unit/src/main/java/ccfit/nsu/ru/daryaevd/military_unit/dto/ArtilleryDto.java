@@ -18,4 +18,6 @@ public class ArtilleryDto {
     private String typeOfAmmunition;
     private String conditionOfWeapon;
     private Integer experienceOfUsing;
+
+    private Long subdivisionId;
 }

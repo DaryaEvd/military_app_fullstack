@@ -7,7 +7,6 @@ import ccfit.nsu.ru.daryaevd.military_unit.entity.Subdivision;
 
 //@Component // todo: вспомнить для чего тут компонент
 public class CombatEquipmentMapper {
-
     public static CombatEquipmentDto mapToCombatEquipmentDto(CombatEquipment combatEquipment) {
         CombatEquipmentDto combatEquipmentDto = new CombatEquipmentDto();
         combatEquipmentDto.setId(combatEquipment.getId());

@@ -33,11 +33,4 @@ public class MilitaryBuilding {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "subdivision_id", referencedColumnName = "id")
     private Subdivision subdivision;
-
-    /*
-    TODO: think about this
-    military_building INT NOT NULL,
-    FOREIGN KEY (military_building) REFERENCES subdivision_table (id)
-    */
-
 }
