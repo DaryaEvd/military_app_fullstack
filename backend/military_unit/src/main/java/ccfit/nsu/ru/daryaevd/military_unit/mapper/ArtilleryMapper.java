@@ -16,7 +16,7 @@ public class ArtilleryMapper {
         artilleryDto.setConditionOfWeapon(artillery.getConditionOfWeapon());
         artilleryDto.setExperienceOfUsing(artillery.getExperienceOfUsing());
 
-        artilleryDto.setSubdivisionId(artillery.getSubdivision().getId());
+//        artilleryDto.setSubdivisionId(artillery.getSubdivision().getId());
 
         return artilleryDto;
     }
@@ -32,9 +32,9 @@ public class ArtilleryMapper {
         artillery.setConditionOfWeapon(artilleryDto.getConditionOfWeapon());
         artillery.setExperienceOfUsing(artilleryDto.getExperienceOfUsing());
 
-        Subdivision subdivision = new Subdivision();
-        subdivision.setId(artilleryDto.getSubdivisionId());
-        artillery.setSubdivision(subdivision);
+//        Subdivision subdivision = new Subdivision();
+//        subdivision.setId(artilleryDto.getSubdivisionId());
+//        artillery.setSubdivision(subdivision);
 
         return artillery;
     }

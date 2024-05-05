@@ -19,5 +19,5 @@ public class ArtilleryDto {
     private String conditionOfWeapon;
     private Integer experienceOfUsing;
 
-    private Long subdivisionId;
+//    private Long subdivisionId;
 }

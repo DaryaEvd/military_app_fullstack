@@ -34,4 +34,6 @@ public class Gun {
 
     @Column(name = "magazine_capacity", nullable = false)
     private Integer magazineCapacity;
+
+
 }
