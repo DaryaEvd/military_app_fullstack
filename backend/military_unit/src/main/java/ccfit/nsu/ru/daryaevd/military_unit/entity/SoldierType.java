@@ -23,4 +23,8 @@ public class SoldierType {
 //    @Column(name = "type_rank", nullable = false)
     @Column(name = "type_rank", nullable = false /*, columnDefinition = "INT CHECK (type_rank >= 0 AND type_rank < 11)"*/)
     private Integer typeRank;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "soldier_id", referencedColumnName = "id")
+    private Soldier soldier;
 }
