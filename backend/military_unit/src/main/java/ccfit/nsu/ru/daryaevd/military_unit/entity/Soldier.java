@@ -60,6 +60,13 @@ public class Soldier {
     @JoinColumn(name = "mas_id", referencedColumnName = "id")
     private Mas mas;
 
+    @Column(name = "soldier_id")
+    Long soldierId;
+
+    @Column(name = "subdivision_id")
+    Long subdivisionId;
+
+
     /* TODO: think about it later
     soldier_type_id INT NOT NULL,
 	FOREIGN KEY (soldier_type_id) REFERENCES soldier_type (id),
