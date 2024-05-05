@@ -34,7 +34,8 @@ TODO: think about it
 
     @Column(name = "condition_of_weapon", nullable = false)
     private String conditionOfWeapon;
-
     @Column(name = "experience_of_using", nullable = false)
     private Integer experienceOfUsing;
+
+    
 }

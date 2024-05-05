@@ -2,7 +2,7 @@ package ccfit.nsu.ru.daryaevd.military_unit.mapper;
 
 import ccfit.nsu.ru.daryaevd.military_unit.dto.ArtilleryDto;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.Artillery;
-import ccfit.nsu.ru.daryaevd.military_unit.entity.Subdivision;
+import ccfit.nsu.ru.daryaevd.military_unit.entity.WeaponType;
 
 public class ArtilleryMapper {
     public static ArtilleryDto mapToArtilleryDto(Artillery artillery) {
@@ -16,8 +16,7 @@ public class ArtilleryMapper {
         artilleryDto.setConditionOfWeapon(artillery.getConditionOfWeapon());
         artilleryDto.setExperienceOfUsing(artillery.getExperienceOfUsing());
 
-//        artilleryDto.setSubdivisionId(artillery.getSubdivision().getId());
-
+        artilleryDto.setWeaponTypeId(artillery.getWeaponType().getId());
         return artilleryDto;
     }
 
@@ -32,9 +31,9 @@ public class ArtilleryMapper {
         artillery.setConditionOfWeapon(artilleryDto.getConditionOfWeapon());
         artillery.setExperienceOfUsing(artilleryDto.getExperienceOfUsing());
 
-//        Subdivision subdivision = new Subdivision();
-//        subdivision.setId(artilleryDto.getSubdivisionId());
-//        artillery.setSubdivision(subdivision);
+        WeaponType weaponType = new WeaponType();
+        weaponType.setId(artilleryDto.getWeaponTypeId());
+        artillery.setWeaponType(weaponType);
 
         return artillery;
     }

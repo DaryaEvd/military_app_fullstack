@@ -45,7 +45,7 @@ public class Artillery {
     @Column(name = "experience_of_using", nullable = false)
     private Integer experienceOfUsing;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "subdivision_id", referencedColumnName = "id")
-//    private Subdivision subdivision;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "weapon_id", referencedColumnName = "id")
+    private WeaponType weaponType;
 }
