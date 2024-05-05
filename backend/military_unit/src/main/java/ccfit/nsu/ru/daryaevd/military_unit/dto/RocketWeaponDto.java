@@ -16,4 +16,6 @@ public class RocketWeaponDto {
     private String typeOfAmmunition;
     private String conditionOfWeapon;
     private Integer experienceOfUsing;
+
+    private Long weaponTypeId;
 }
