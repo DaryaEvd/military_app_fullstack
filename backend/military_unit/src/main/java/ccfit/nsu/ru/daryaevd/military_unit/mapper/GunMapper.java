@@ -2,6 +2,7 @@ package ccfit.nsu.ru.daryaevd.military_unit.mapper;
 
 import ccfit.nsu.ru.daryaevd.military_unit.dto.GunDto;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.Gun;
+import ccfit.nsu.ru.daryaevd.military_unit.entity.WeaponType;
 
 public class GunMapper {
     public static GunDto mapToGunDto(Gun gun) {
@@ -12,7 +13,7 @@ public class GunMapper {
         gunDto.setCaliber(gun.getCaliber());
         gunDto.setMagazineCapacity(gun.getMagazineCapacity());
 
-//        gunDto.setSubdivisionId(gun.getSubdivision().getId());
+        gunDto.setWeaponTypeId(gun.getWeaponType().getId());
         return gunDto;
     }
 
@@ -24,10 +25,9 @@ public class GunMapper {
         gun.setCaliber(gunDto.getCaliber());
         gun.setMagazineCapacity(gunDto.getMagazineCapacity());
 
-
-//        Subdivision subdivision = new Subdivision();
-//        subdivision.setId(GunDto.getSubdivisionId());
-//        gun.setSubdivision(subdivision);
+        WeaponType weaponType = new WeaponType();
+        weaponType.setId(gunDto.getWeaponTypeId());
+        gun.setWeaponType(weaponType);
 
         return gun;
     }
