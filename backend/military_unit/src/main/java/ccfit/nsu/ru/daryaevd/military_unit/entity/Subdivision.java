@@ -22,6 +22,27 @@ public class Subdivision {
     @Column(name = "name_of_subdivision", nullable = false)
     private String nameOfSubdivision;
 
+    /// todo: think
+//    @OneToMany(mappedBy = "subdivision")
+//    private List<Commander> commanders;
+    ///
+
+
+    @ManyToMany
+    @JoinTable(
+//            name = "subdivision_soldier",
+            name = "commander_table",
+            joinColumns = @JoinColumn(name = "subdivision_id"),
+            inverseJoinColumns = @JoinColumn(name = "soldier_id")
+    )
+    private List<Soldier> soldiers;
+
+
+//
+//    @ManyToMany(mappedBy = "soldiers")
+//    private List<Subdivision> subdivisions;
+
+
     @Column(name = "number_of_subdivision", nullable = false)
     private Integer numberOfSubdivision;
 
@@ -43,4 +64,7 @@ public class Subdivision {
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "subdivision")
     private List<WeaponType> weaponTypes;
+//
+//    @ManyToMany(mappedBy = "subdivisions")
+//    private List<Soldier> soldiers;
 }

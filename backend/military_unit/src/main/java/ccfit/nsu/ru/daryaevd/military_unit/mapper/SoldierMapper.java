@@ -3,6 +3,10 @@ package ccfit.nsu.ru.daryaevd.military_unit.mapper;
 import ccfit.nsu.ru.daryaevd.military_unit.dto.SoldierDto;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.Mas;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.Soldier;
+import ccfit.nsu.ru.daryaevd.military_unit.entity.Subdivision;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class SoldierMapper {
     public static SoldierDto mapToSoldierDto(Soldier soldier) {
@@ -18,6 +22,12 @@ public class SoldierMapper {
 //        if (soldier.getMas() != null) {
             soldierDto.setMasId(soldier.getMas().getId());
 //        }
+
+        // Set the list of subdivision IDs
+        List<Long> subdivisionIds = soldier.getSubdivisions().stream()
+                .map(Subdivision::getId)
+                .collect(Collectors.toList());
+        soldierDto.setSubdivisionIds(subdivisionIds);
 
         return soldierDto;
     }
@@ -36,6 +46,17 @@ public class SoldierMapper {
         Mas mas = new Mas();
         mas.setId(soldierDto.getMasId());
         soldier.setMas(mas);
+
+        // Set the list of subdivisions
+        List<Subdivision> subdivisions = soldierDto.getSubdivisionIds().stream()
+                .map(id -> {
+                    Subdivision subdivision = new Subdivision();
+                    subdivision.setId(id);
+                    return subdivision;
+                })
+                .collect(Collectors.toList());
+        soldier.setSubdivisions(subdivisions);
+
         return soldier;
     }
 }

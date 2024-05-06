@@ -4,19 +4,17 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
-
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
-
-import java.time.LocalDate;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Data // todo: maybe delete?
+@Data
+@ToString(exclude = "soldiers") // todo: think
+@EqualsAndHashCode
 @Entity
 @Table(name = "soldier_table")
 public class Soldier {
@@ -29,6 +27,17 @@ public class Soldier {
 
     @Column(name = "last_name", nullable = false)
     private String lastName;
+
+    /// todo: think
+//    @OneToMany(mappedBy = "subdivision")
+//    private List<Commander> commanders;
+    ///
+
+
+    @ManyToMany(mappedBy = "soldiers")
+    private List<Subdivision> subdivisions;
+
+
 
     //    @JsonDeserialize(using = LocalDateDeserializer.class)
 //    @JsonSerialize(using = LocalDateSerializer.class)
@@ -66,6 +75,11 @@ public class Soldier {
     @Column(name = "subdivision_id")
     Long subdivisionId;
 
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "subdivision_soldier",
+              joinColumns = @JoinColumn(name = "subdivision_id"),
+    inverseJoinColumns = @JoinColumn(name = "soldier_id"))
+    private Set<Soldier> soldiers = new LinkedHashSet<>();
 
     /* TODO: think about it later
     soldier_type_id INT NOT NULL,

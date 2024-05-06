@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -16,4 +18,6 @@ public class SubdivisionDto {
     private Boolean isDislocated;
     private Integer commander; // TODO: think about reference?
     private Integer typeOfSubdivision; // TODO: think about reference?
+
+    private List<Long> soldierIds; // List of IDs of associated soldiers
 }
