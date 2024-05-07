@@ -31,4 +31,8 @@ public class WeaponType {
 
     @Column(name = "condition_of_vehicle", nullable = false)
     private String conditionOfVehicle;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "subdivision_id", referencedColumnName = "id")
+    private Subdivision subdivision;
 }

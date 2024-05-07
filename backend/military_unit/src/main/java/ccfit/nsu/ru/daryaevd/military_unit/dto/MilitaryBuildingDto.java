@@ -15,4 +15,6 @@ public class MilitaryBuildingDto {
     private Integer typeOfBuilding;
     private Boolean areaOfBuilding;
     private Integer amountOfRooms;
+
+    private Long subdivisionId;
 }

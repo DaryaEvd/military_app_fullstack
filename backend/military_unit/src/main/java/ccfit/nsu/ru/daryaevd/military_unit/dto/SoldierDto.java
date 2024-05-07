@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -18,4 +19,8 @@ public class SoldierDto {
      private Date dateOfBirth;
      private String militaryCard;
      private Date dateOfIssueMilitaryCard;
+
+     private Long masId;
+
+     private List<Long> subdivisionIds;
 }

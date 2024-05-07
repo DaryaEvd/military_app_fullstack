@@ -2,11 +2,11 @@ package ccfit.nsu.ru.daryaevd.military_unit.mapper;
 
 import ccfit.nsu.ru.daryaevd.military_unit.dto.CombatEquipmentDto;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.CombatEquipment;
-import org.springframework.stereotype.Component;
+import ccfit.nsu.ru.daryaevd.military_unit.entity.Subdivision;
+//import org.springframework.stereotype.Component;
 
-@Component
+//@Component // todo: вспомнить для чего тут компонент
 public class CombatEquipmentMapper {
-
     public static CombatEquipmentDto mapToCombatEquipmentDto(CombatEquipment combatEquipment) {
         CombatEquipmentDto combatEquipmentDto = new CombatEquipmentDto();
         combatEquipmentDto.setId(combatEquipment.getId());
@@ -15,6 +15,9 @@ public class CombatEquipmentMapper {
         combatEquipmentDto.setConditionOfVehicle(combatEquipment.getConditionOfVehicle());
         combatEquipmentDto.setNumberOfSeats(combatEquipment.getNumberOfSeats());
         combatEquipmentDto.setNameOfVehicle(combatEquipment.getNameOfVehicle());
+
+        combatEquipmentDto.setSubdivisionId(combatEquipment.getSubdivision().getId());
+
         return combatEquipmentDto;
     }
 
@@ -26,6 +29,11 @@ public class CombatEquipmentMapper {
         combatEquipment.setConditionOfVehicle(combatEquipmentDto.getConditionOfVehicle());
         combatEquipment.setNumberOfSeats(combatEquipmentDto.getNumberOfSeats());
         combatEquipment.setNameOfVehicle(combatEquipmentDto.getNameOfVehicle());
+
+        Subdivision subdivision = new Subdivision();
+        subdivision.setId(combatEquipmentDto.getSubdivisionId());
+        combatEquipment.setSubdivision(subdivision);
+
         return combatEquipment;
     }
 }

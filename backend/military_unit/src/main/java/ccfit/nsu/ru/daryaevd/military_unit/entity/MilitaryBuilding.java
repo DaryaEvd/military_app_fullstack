@@ -29,10 +29,8 @@ public class MilitaryBuilding {
     @Column(name = "amount_of_rooms", nullable = false)
     private Integer amountOfRooms;
 
-    /*
-    TODO: think about this
-    military_building INT NOT NULL,
-    FOREIGN KEY (military_building) REFERENCES subdivision_table (id)
-    */
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "subdivision_id", referencedColumnName = "id")
+    private Subdivision subdivision;
 }

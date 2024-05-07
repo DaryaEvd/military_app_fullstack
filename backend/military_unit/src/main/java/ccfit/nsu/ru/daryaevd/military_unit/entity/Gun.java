@@ -34,4 +34,8 @@ public class Gun {
 
     @Column(name = "magazine_capacity", nullable = false)
     private Integer magazineCapacity;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "weapon_id", referencedColumnName = "id")
+    private WeaponType weaponType;
 }

@@ -15,4 +15,6 @@ public class GunDto {
     private Integer shootingSpeed;
     private Integer caliber;
     private Integer magazineCapacity;
+
+    private Long weaponTypeId;
 }

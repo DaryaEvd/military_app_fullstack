@@ -7,6 +7,7 @@ import ccfit.nsu.ru.daryaevd.military_unit.mapper.MasMapper;
 import ccfit.nsu.ru.daryaevd.military_unit.repository.MasRepository;
 import ccfit.nsu.ru.daryaevd.military_unit.service.MasService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +16,8 @@ import java.util.stream.Collectors;
 @Service
 @AllArgsConstructor
 public class MasServiceImpl implements MasService {
+
+    @Autowired
     private final MasRepository masRepository;
 
     @Override

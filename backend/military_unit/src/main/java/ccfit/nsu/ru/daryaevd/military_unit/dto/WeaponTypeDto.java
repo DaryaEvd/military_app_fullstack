@@ -14,4 +14,6 @@ public class WeaponTypeDto {
     private String nameOfType;
     private Integer experienceOfUsing;
     private String conditionOfVehicle;
+
+    private Long subdivisionId;
 }
