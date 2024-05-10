@@ -1,33 +1,30 @@
 package ccfit.nsu.ru.daryaevd.military_unit.mapper;
 
 import ccfit.nsu.ru.daryaevd.military_unit.dto.SubdivisionDto;
-import ccfit.nsu.ru.daryaevd.military_unit.entity.Subdivision;
-import ccfit.nsu.ru.daryaevd.military_unit.entity.Soldier;
-import ccfit.nsu.ru.daryaevd.military_unit.entity.SubdivisionType;
+import ccfit.nsu.ru.daryaevd.military_unit.entity.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class SubdivisionMapper {
     public static SubdivisionDto mapToSubdivisionDto(Subdivision subdivision) {
-            SubdivisionDto subdivisionDto = new SubdivisionDto();
-            subdivisionDto.setId(subdivision.getId());
-            subdivisionDto.setNameOfSubdivision(subdivision.getNameOfSubdivision());
-            subdivisionDto.setNumberOfSubdivision(subdivision.getNumberOfSubdivision());
-            subdivisionDto.setIsDislocated(subdivision.getIsDislocated());
+        SubdivisionDto subdivisionDto = new SubdivisionDto();
 
-            // Map typeOfSubdivision to its ID
-            subdivisionDto.setTypeOfSubdivision(subdivision.getTypeOfSubdivision().getId());
+        subdivisionDto.setId(subdivision.getId());
+        subdivisionDto.setNameOfSubdivision(subdivision.getNameOfSubdivision());
+        subdivisionDto.setNumberOfSubdivision(subdivision.getNumberOfSubdivision());
+        subdivisionDto.setIsDislocated(subdivision.getIsDislocated());
+        subdivisionDto.setTypeOfSubdivision(subdivision.getTypeOfSubdivision().getId());
+        subdivisionDto.setMilitaryBuildingId(subdivision.getMilitaryBuilding().getId());
+        subdivisionDto.setCombatEquipmentId(subdivision.getCombatEquipment().getId());
+        subdivisionDto.setWeaponTypeId(subdivision.getWeaponType().getId());
 
-            // Set the list of soldier IDs
-            List<Long> soldierIds = subdivision.getSoldiers().stream()
-                    .map(Soldier::getId)
-                    .collect(Collectors.toList());
-            subdivisionDto.setSoldierIds(soldierIds);
-
-            return subdivisionDto;
-        }
-
+        List<Long> soldierIds = subdivision.getSoldiers().stream()
+                .map(Soldier::getId)
+                .collect(Collectors.toList());
+        subdivisionDto.setSoldierIds(soldierIds);
+        return subdivisionDto;
+    }
 
     public static Subdivision mapToSubdivision(SubdivisionDto subdivisionDto) {
         Subdivision subdivision = new Subdivision();
@@ -36,12 +33,22 @@ public class SubdivisionMapper {
         subdivision.setNumberOfSubdivision(subdivisionDto.getNumberOfSubdivision());
         subdivision.setIsDislocated(subdivisionDto.getIsDislocated());
 
-        // You need to set the typeOfSubdivision using the provided ID
         SubdivisionType subdivisionType = new SubdivisionType();
         subdivisionType.setId(subdivisionDto.getTypeOfSubdivision());
         subdivision.setTypeOfSubdivision(subdivisionType);
 
-        // Set the list of soldiers
+        MilitaryBuilding militaryBuilding = new MilitaryBuilding();
+        militaryBuilding.setId(subdivisionDto.getMilitaryBuildingId());
+        subdivision.setMilitaryBuilding(militaryBuilding);
+
+        CombatEquipment combatEquipment = new CombatEquipment();
+        combatEquipment.setId(subdivisionDto.getCombatEquipmentId());
+        subdivision.setCombatEquipment(combatEquipment);
+
+        WeaponType weaponType = new WeaponType();
+        weaponType.setId(subdivisionDto.getWeaponTypeId());
+        subdivision.setWeaponType(weaponType);
+
         List<Soldier> soldiers = subdivisionDto.getSoldierIds().stream()
                 .map(id -> {
                     Soldier soldier = new Soldier();

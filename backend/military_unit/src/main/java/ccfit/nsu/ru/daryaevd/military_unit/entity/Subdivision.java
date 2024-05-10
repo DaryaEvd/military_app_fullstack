@@ -22,26 +22,13 @@ public class Subdivision {
     @Column(name = "name_of_subdivision", nullable = false)
     private String nameOfSubdivision;
 
-    /// todo: think
-//    @OneToMany(mappedBy = "subdivision")
-//    private List<Commander> commanders;
-    ///
-
-
     @ManyToMany
     @JoinTable(
-//            name = "subdivision_soldier",
             name = "commander_table",
             joinColumns = @JoinColumn(name = "subdivision_id"),
             inverseJoinColumns = @JoinColumn(name = "soldier_id")
     )
     private List<Soldier> soldiers;
-
-
-//
-//    @ManyToMany(mappedBy = "soldiers")
-//    private List<Subdivision> subdivisions;
-
 
     @Column(name = "number_of_subdivision", nullable = false)
     private Integer numberOfSubdivision;
@@ -52,22 +39,19 @@ public class Subdivision {
     @Column(name = "commander", nullable = false)
     private Integer commander; // TODO: think about reference?
 
-//    @Column(name = "type_of_subdivision", nullable = false)
-//    private Integer typeOfSubdivision; // TODO: think about reference?
-
     @ManyToOne
     @JoinColumn(name = "type_of_subdivision", referencedColumnName = "id", nullable = false)
     private SubdivisionType typeOfSubdivision;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "subdivision")
-    private List<MilitaryBuilding> militaryBuildings;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "military_building", /*referencedColumnName = "id",*/ nullable = false)
+    private MilitaryBuilding militaryBuilding;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "subdivision")
-    private List<CombatEquipment> combatEquipments;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "combat_equipment", /*referencedColumnName = "id",*/ nullable = false)
+    private CombatEquipment combatEquipment;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "subdivision")
-    private List<WeaponType> weaponTypes;
-//
-//    @ManyToMany(mappedBy = "subdivisions")
-//    private List<Soldier> soldiers;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "weapon_type", /*referencedColumnName = "id",*/ nullable = false)
+    private WeaponType weaponType;
 }

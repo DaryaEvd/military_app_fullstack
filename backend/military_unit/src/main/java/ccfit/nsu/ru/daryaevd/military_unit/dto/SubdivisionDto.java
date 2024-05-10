@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 import java.util.List;
 
 @Getter
@@ -16,13 +17,13 @@ public class SubdivisionDto {
     private Integer numberOfSubdivision;
     private Boolean isDislocated;
 
-    private Long  typeOfSubdivision; // TODO: think about reference?
+    private Long typeOfSubdivision;
 
+    private Long militaryBuildingId;
+    private Long combatEquipmentId;
+    private Long weaponTypeId;
 
     private Integer commander; // TODO: think about reference?
-    private List<Long> soldierIds; // List of IDs of associated soldiers
 
-
-//    private Long unitCount; //todo: think
-
+    private List<Long> soldierIds;
 }

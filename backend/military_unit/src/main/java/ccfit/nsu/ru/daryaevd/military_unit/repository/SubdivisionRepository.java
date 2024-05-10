@@ -11,10 +11,12 @@ import java.util.Optional;
 
 @Repository // todo: think
 public interface SubdivisionRepository extends JpaRepository<Subdivision, Long> {
-    @Query("SELECT s.typeOfSubdivision.nameOfType AS subdivisionType, COUNT(s) AS unitCount " +
-            "FROM Subdivision s " +
-            "GROUP BY s.typeOfSubdivision.nameOfType " +
-            "ORDER BY COUNT(s) DESC")
+    @Query(""" 
+            SELECT s.typeOfSubdivision.nameOfType AS subdivisionType, COUNT(s) AS unitCount  
+            FROM Subdivision s  
+            GROUP BY s.typeOfSubdivision.nameOfType  
+            ORDER BY COUNT(s) DESC
+            """)
     List<Object[]> findSubdivisionsWithMostMilitaryUnits();
 
 

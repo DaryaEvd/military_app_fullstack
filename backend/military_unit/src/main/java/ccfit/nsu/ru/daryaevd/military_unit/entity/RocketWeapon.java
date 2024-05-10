@@ -13,12 +13,6 @@ import lombok.Setter;
 @Entity
 @Table(name = "rocket_weapon_table")
 public class RocketWeapon {
-/*
-TODO: think about it
-	name_rocket_weapon TEXT NOT NULL,
-	FOREIGN KEY(name_rocket_weapon) REFERENCES weapon_type_table(id)
- */
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

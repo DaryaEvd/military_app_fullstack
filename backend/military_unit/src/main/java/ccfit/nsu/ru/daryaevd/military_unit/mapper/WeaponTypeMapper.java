@@ -1,7 +1,6 @@
 package ccfit.nsu.ru.daryaevd.military_unit.mapper;
 
 import ccfit.nsu.ru.daryaevd.military_unit.dto.WeaponTypeDto;
-import ccfit.nsu.ru.daryaevd.military_unit.entity.Subdivision;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.WeaponType;
 
 public class WeaponTypeMapper {
@@ -23,9 +22,10 @@ public class WeaponTypeMapper {
         weaponType.setExperienceOfUsing(weaponTypeDto.getExperienceOfUsing());
         weaponType.setConditionOfVehicle(weaponTypeDto.getConditionOfVehicle());
 
-        Subdivision subdivision = new Subdivision();
-        subdivision.setId(weaponTypeDto.getId());
-        weaponType.setSubdivision(subdivision);
+//        Subdivision subdivision = new Subdivision();
+//        subdivision.setId(weaponTypeDto.getId());
+//        weaponType.setSubdivision(subdivision);
+
         return weaponType;
     }
 }
