@@ -3,9 +3,7 @@ package ccfit.nsu.ru.daryaevd.military_unit.mapper;
 import ccfit.nsu.ru.daryaevd.military_unit.dto.CombatEquipmentDto;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.CombatEquipment;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.Subdivision;
-//import org.springframework.stereotype.Component;
 
-//@Component // todo: вспомнить для чего тут компонент
 public class CombatEquipmentMapper {
     public static CombatEquipmentDto mapToCombatEquipmentDto(CombatEquipment combatEquipment) {
         CombatEquipmentDto combatEquipmentDto = new CombatEquipmentDto();

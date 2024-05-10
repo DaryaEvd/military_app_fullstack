@@ -43,6 +43,9 @@ public class Subdivision {
     @JoinColumn(name = "type_of_subdivision", referencedColumnName = "id", nullable = false)
     private SubdivisionType typeOfSubdivision;
 
+    @Column(name = "high_type", nullable = false)
+    private Integer highType;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "military_building", /*referencedColumnName = "id",*/ nullable = false)
     private MilitaryBuilding militaryBuilding;

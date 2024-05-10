@@ -12,7 +12,6 @@ import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 
 @Service
-//@Transactional todo: think
 @AllArgsConstructor
 public class CombatEquipmentServiceImpl implements CombatEquipmentService {
 

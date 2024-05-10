@@ -14,5 +14,5 @@ public class SoldierTypeDto {
     private String nameOfType;
     private Integer typeRank;
 
-    private Long soldierType;
+//    private Long soldierType;
 }

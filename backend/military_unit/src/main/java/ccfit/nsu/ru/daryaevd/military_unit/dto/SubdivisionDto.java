@@ -23,7 +23,7 @@ public class SubdivisionDto {
     private Long combatEquipmentId;
     private Long weaponTypeId;
 
-    private Integer commander; // TODO: think about reference?
+//    private Integer commander; // TODO: think about reference?
 
     private List<Long> soldierIds;
 }

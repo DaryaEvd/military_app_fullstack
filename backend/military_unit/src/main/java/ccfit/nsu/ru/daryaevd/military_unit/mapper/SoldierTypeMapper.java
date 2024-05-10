@@ -10,7 +10,7 @@ public class SoldierTypeMapper {
         soldierTypeDto.setNameOfType(soldierType.getNameOfType());
         soldierTypeDto.setTypeRank(soldierType.getTypeRank());
 
-        soldierTypeDto.setSoldierType(soldierType.getId());
+//        soldierTypeDto.setSoldierType(soldierType.getId());
 
         return soldierTypeDto;
     }
