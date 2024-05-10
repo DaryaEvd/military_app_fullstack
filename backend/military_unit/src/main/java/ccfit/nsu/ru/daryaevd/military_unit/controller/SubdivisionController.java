@@ -52,4 +52,22 @@ public class SubdivisionController {
         return ResponseEntity.ok("Subdivision deleted successfully");
     }
 
+    @GetMapping("/most-military-units")
+    public ResponseEntity<List<Object[]>> getSubdivisionsWithMostMilitaryUnits() {
+        List<Object[]> result = subdivisionService.findSubdivisionsWithMostMilitaryUnits();
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
+//    @GetMapping("/most-units")
+//    public ResponseEntity<List<SubdivisionDto>> getSubdivisionWithMostUnits() {
+//        List<SubdivisionDto> subdivisions = subdivisionService.findSubdivisionWithMostUnits();
+//        return ResponseEntity.ok(subdivisions);
+//    }
+//
+//    @GetMapping("/fewest-units")
+//    public ResponseEntity<List<SubdivisionDto>> getSubdivisionWithFewestUnits() {
+//        List<SubdivisionDto> subdivisions = subdivisionService.findSubdivisionWithFewestUnits();
+//        return ResponseEntity.ok(subdivisions);
+//    }
+
 }

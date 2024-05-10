@@ -52,9 +52,12 @@ public class Subdivision {
     @Column(name = "commander", nullable = false)
     private Integer commander; // TODO: think about reference?
 
-    @Column(name = "type_of_subdivision", nullable = false)
-    private Integer typeOfSubdivision; // TODO: think about reference?
+//    @Column(name = "type_of_subdivision", nullable = false)
+//    private Integer typeOfSubdivision; // TODO: think about reference?
 
+    @ManyToOne
+    @JoinColumn(name = "type_of_subdivision", referencedColumnName = "id", nullable = false)
+    private SubdivisionType typeOfSubdivision;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "subdivision")
     private List<MilitaryBuilding> militaryBuildings;

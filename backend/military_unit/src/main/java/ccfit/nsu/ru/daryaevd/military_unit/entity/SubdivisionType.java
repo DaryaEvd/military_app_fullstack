@@ -25,7 +25,7 @@ public class SubdivisionType {
             /*, columnDefinition = "INT CHECK (rank_subdiv > 0 AND rank_subdiv < 5)"*/)
     private Integer subdivisionRank;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "subdivision_id", referencedColumnName = "id")
-    private Subdivision subdivision;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "subdivision_id", referencedColumnName = "id")
+//    private Subdivision subdivision;
 }

@@ -10,7 +10,7 @@ public class SubdivisionTypeMapper {
         subdivisionTypeDto.setId(subdivisionType.getId());
         subdivisionTypeDto.setNameOfType(subdivisionType.getNameOfType());
         subdivisionTypeDto.setSubdivisionRank(subdivisionType.getSubdivisionRank());
-        subdivisionTypeDto.setSubdivisionId(subdivisionType.getSubdivision().getId());
+//        subdivisionTypeDto.setSubdivisionId(subdivisionType.getSubdivision().getId());
         return subdivisionTypeDto;
     }
 
@@ -20,9 +20,9 @@ public class SubdivisionTypeMapper {
         subdivisionType.setNameOfType(subdivisionTypeDto.getNameOfType());
         subdivisionType.setSubdivisionRank(subdivisionTypeDto.getSubdivisionRank());
 
-        Subdivision subdivision = new Subdivision();
-        subdivision.setId(subdivisionTypeDto.getSubdivisionId());
-        subdivisionType.setSubdivision(subdivision);
+//        Subdivision subdivision = new Subdivision();
+//        subdivision.setId(subdivisionTypeDto.getSubdivisionId());
+//        subdivisionType.setSubdivision(subdivision);
 
         return subdivisionType;
     }
