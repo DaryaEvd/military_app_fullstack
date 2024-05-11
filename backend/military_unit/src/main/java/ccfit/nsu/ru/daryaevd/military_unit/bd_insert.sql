@@ -83,3 +83,22 @@ INSERT INTO mas_type (code_of_mas, name_of_mas) VALUES
     ('121400', 'Use of units and military units with low-channel radio relay and tropospheric communication means'),
     ('121702', 'Use of units and military units for operating long-distance communication means and cross devices'),
     ('122144', 'Commander of BMP platoon');
+
+-- Inserting data into military_building_table
+INSERT INTO military_building_table (can_use_for_dislocation, type_of_building, area_of_building, amount_of_rooms) VALUES
+    (false, 'Administrative Facilities', 500, 20),
+    (true, 'Ammunition Storage Facilities', 1000, 50),
+    (true, 'Commissary Facilities', 300, 15),
+    (true, 'Correctional Facilities', 200, 10),
+    (true, 'Fortifications', 800, 30),
+    (true, 'Hospitals', 1500, 100),
+    (true, 'Housing', 1200, 60),
+    (true, 'Containers,crates', 400, 10),
+    (true, 'Military Intelligence Facilities', 600, 25),
+    (true, 'POL (Petroleum, Oils, & Lubricants) Storage and Handling Facilities', 1000, 40),
+    (true, 'Recreation Facilities', 900, 35),
+    (true, 'Research Facilities', 700, 25),
+    (false, 'Training Facilities', 800, 30),
+    (true, 'Utility Structures', 500, 20),
+    (true, 'Vehicle Repair, Maintenance, & Storage Facilities', 1000, 50),
+    (true, 'Weapons and Ammunition Production Facilities', 1200, 60);

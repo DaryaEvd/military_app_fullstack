@@ -12,8 +12,8 @@ import lombok.Setter;
 public class MilitaryBuildingDto {
     private Long id;
     private Boolean canUseForDislocation;
-    private Integer typeOfBuilding;
-    private Boolean areaOfBuilding;
+    private String typeOfBuilding;
+    private Integer areaOfBuilding;
     private Integer amountOfRooms;
 
     private Long subdivisionId;

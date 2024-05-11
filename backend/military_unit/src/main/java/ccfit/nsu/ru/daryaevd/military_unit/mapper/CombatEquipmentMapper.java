@@ -9,7 +9,7 @@ public class CombatEquipmentMapper {
         CombatEquipmentDto combatEquipmentDto = new CombatEquipmentDto();
         combatEquipmentDto.setId(combatEquipment.getId());
         combatEquipmentDto.setNameOfEquipment(combatEquipment.getNameOfEquipment());
-        combatEquipmentDto.setTypeOfBuilding(combatEquipment.getTypeOfBuilding());
+        combatEquipmentDto.setExperienceOfUsing(combatEquipment.getExperienceOfUsing());
         combatEquipmentDto.setConditionOfVehicle(combatEquipment.getConditionOfVehicle());
         combatEquipmentDto.setNumberOfSeats(combatEquipment.getNumberOfSeats());
         combatEquipmentDto.setNameOfVehicle(combatEquipment.getNameOfVehicle());
@@ -23,7 +23,7 @@ public class CombatEquipmentMapper {
         CombatEquipment combatEquipment = new CombatEquipment();
         combatEquipment.setId(combatEquipmentDto.getId());
         combatEquipment.setNameOfEquipment(combatEquipmentDto.getNameOfEquipment());
-        combatEquipment.setTypeOfBuilding(combatEquipmentDto.getTypeOfBuilding());
+        combatEquipment.setExperienceOfUsing(combatEquipmentDto.getExperienceOfUsing());
         combatEquipment.setConditionOfVehicle(combatEquipmentDto.getConditionOfVehicle());
         combatEquipment.setNumberOfSeats(combatEquipmentDto.getNumberOfSeats());
         combatEquipment.setNameOfVehicle(combatEquipmentDto.getNameOfVehicle());

@@ -7,8 +7,10 @@ import ccfit.nsu.ru.daryaevd.military_unit.mapper.CombatEquipmentMapper;
 import ccfit.nsu.ru.daryaevd.military_unit.repository.CombatEquipmentRepository;
 import ccfit.nsu.ru.daryaevd.military_unit.service.CombatEquipmentService;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.stream.Collectors;
+
 import lombok.AllArgsConstructor;
 
 @Service
@@ -46,7 +48,6 @@ public class CombatEquipmentServiceImpl implements CombatEquipmentService {
 
         // Update fields
         combatEquipment.setNameOfEquipment(updatedCombatEquipment.getNameOfEquipment());
-        combatEquipment.setTypeOfBuilding(updatedCombatEquipment.getTypeOfBuilding());
         combatEquipment.setConditionOfVehicle(updatedCombatEquipment.getConditionOfVehicle());
         combatEquipment.setNumberOfSeats(updatedCombatEquipment.getNumberOfSeats());
         combatEquipment.setNameOfVehicle(updatedCombatEquipment.getNameOfVehicle());

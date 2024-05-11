@@ -23,10 +23,10 @@ public class MilitaryBuilding {
     private Boolean canUseForDislocation;
 
     @Column(name = "type_of_building", nullable = false)
-    private Integer typeOfBuilding;
+    private String typeOfBuilding;
 
     @Column(name = "area_of_building", nullable = false)
-    private Boolean areaOfBuilding;
+    private Integer areaOfBuilding;
 
     @Column(name = "amount_of_rooms", nullable = false)
     private Integer amountOfRooms;
