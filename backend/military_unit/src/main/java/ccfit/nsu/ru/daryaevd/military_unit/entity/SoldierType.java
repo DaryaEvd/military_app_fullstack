@@ -19,13 +19,12 @@ public class SoldierType {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name_of_type", nullable = false)
+    @Column(name = "name_of_type", unique = true, nullable = false)
     private String nameOfType;
 
-    @Column(name = "type_rank", nullable = false /*, columnDefinition = "INT CHECK (type_rank >= 0 AND type_rank < 11)"*/)
+    @Column(name = "type_rank", unique = true, nullable = false /*, columnDefinition = "INT CHECK (type_rank >= 0 AND type_rank < 11)"*/)
     private Integer typeRank;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "soldierType", cascade = CascadeType.ALL)
     private List<Soldier> soldierList;
-
 }

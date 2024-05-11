@@ -14,6 +14,7 @@ public interface SubdivisionService {
     SubdivisionDto updateSubdivision(Long subdivisionId, SubdivisionDto updatedEmployee);
 
     void deleteSubdivision(Long subdivisionId);
+
     List<Object[]> findSubdivisionsWithMostMilitaryUnits();
 
 //    List<SubdivisionDto> findSubdivisionWithMostUnits();

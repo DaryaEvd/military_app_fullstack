@@ -50,7 +50,8 @@ public class SubdivisionServiceImpl implements SubdivisionService {
         subdivision.setNameOfSubdivision(updatedSubdivision.getNameOfSubdivision());
         subdivision.setNumberOfSubdivision(updatedSubdivision.getNumberOfSubdivision());
         subdivision.setIsDislocated(updatedSubdivision.getIsDislocated());
-        subdivision.setCommander(updatedSubdivision.getCommander());
+
+//        subdivision.setCommander(updatedSubdivision.getCommander());
 
         // Create a new SubdivisionType object and set its ID
         SubdivisionType subdivisionType = new SubdivisionType();

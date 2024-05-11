@@ -16,10 +16,10 @@ public class Mas {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name_of_mas", nullable = false)
+    @Column(name = "name_of_mas", unique = true, nullable = false)
     private String nameOfMas;
 
-    @Column(name = "code_of_mas", nullable = false)
+    @Column(name = "code_of_mas", unique = true, nullable = false)
     private String codeOfMas;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "mas")
