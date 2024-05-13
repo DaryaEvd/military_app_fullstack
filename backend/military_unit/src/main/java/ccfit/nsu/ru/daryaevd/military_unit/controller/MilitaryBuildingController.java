@@ -12,12 +12,12 @@ import java.util.List;
 @AllArgsConstructor
 @RestController
 @RequestMapping("/api/military-building")
- public class MilitaryBuildingController {
+public class MilitaryBuildingController {
     private MilitaryBuildingService militaryBuildingService;
 
     // add military building
     @PostMapping
-    public ResponseEntity<MilitaryBuildingDto> createMilitaryBuilding(@RequestBody MilitaryBuildingDto militaryBuildingDto){
+    public ResponseEntity<MilitaryBuildingDto> createMilitaryBuilding(@RequestBody MilitaryBuildingDto militaryBuildingDto) {
         MilitaryBuildingDto savedMilitaryBuilding = militaryBuildingService.createMilitaryBuilding(militaryBuildingDto);
         return new ResponseEntity<>(savedMilitaryBuilding, HttpStatus.CREATED);
     }
@@ -39,7 +39,7 @@ import java.util.List;
     //update military building info
     @PutMapping("{id}")
     public ResponseEntity<MilitaryBuildingDto> updateSubdivision(@PathVariable("id") Long militaryBuildingId,
-                                                            @RequestBody MilitaryBuildingDto updatedMilitaryBuilding) {
+                                                                 @RequestBody MilitaryBuildingDto updatedMilitaryBuilding) {
         MilitaryBuildingDto militaryBuildingDto = militaryBuildingService.updateMilitaryBuilding(militaryBuildingId, updatedMilitaryBuilding);
         return ResponseEntity.ok(militaryBuildingDto);
     }

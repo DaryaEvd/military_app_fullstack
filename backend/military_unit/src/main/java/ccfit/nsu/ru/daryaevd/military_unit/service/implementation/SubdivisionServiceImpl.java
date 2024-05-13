@@ -77,4 +77,12 @@ public class SubdivisionServiceImpl implements SubdivisionService {
         return subdivisionRepository.findSubdivisionsWithMostMilitaryUnits();
     }
 
+    public List<Object[]> findCommanderBySubdivisionName(String subdivisionName) {
+        return subdivisionRepository.findCommanderBySubdivisionName(subdivisionName);
+    }
+
+    public List<Object[]> findOfficersByRank(Integer rank) {
+        return subdivisionRepository.findOfficersByRank(rank);
+    }
+
 }

@@ -17,6 +17,11 @@ public interface SubdivisionService {
 
     List<Object[]> findSubdivisionsWithMostMilitaryUnits();
 
+    List<Object[]> findCommanderBySubdivisionName(String subdivisionName);
+
+    List<Object[]> findOfficersByRank(Integer rank);
+
+
 //    List<SubdivisionDto> findSubdivisionWithMostUnits();
 //    List<SubdivisionDto> findSubdivisionWithFewestUnits();
 
