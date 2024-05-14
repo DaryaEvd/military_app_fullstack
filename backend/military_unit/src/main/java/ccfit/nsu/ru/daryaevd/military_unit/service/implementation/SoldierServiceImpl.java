@@ -60,4 +60,10 @@ public class SoldierServiceImpl implements SoldierService {
         }
         soldierRepository.deleteById(soldierId);
     }
+
+    @Override
+    public List<Soldier> getOfficers() {
+        // Use the custom query method from the repository to fetch officers
+        return soldierRepository.findBySoldierTypeTypeRankBetween(5, 10);
+    }
 }

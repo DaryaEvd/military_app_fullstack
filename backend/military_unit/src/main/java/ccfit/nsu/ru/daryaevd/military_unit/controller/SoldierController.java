@@ -1,6 +1,7 @@
 package ccfit.nsu.ru.daryaevd.military_unit.controller;
 
 import ccfit.nsu.ru.daryaevd.military_unit.dto.SoldierDto;
+import ccfit.nsu.ru.daryaevd.military_unit.entity.Soldier;
 import ccfit.nsu.ru.daryaevd.military_unit.service.SoldierService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -43,5 +44,12 @@ public class SoldierController {
     public ResponseEntity<String> deleteSoldier(@PathVariable("id") Long soldierId) {
         soldierService.deleteSoldier(soldierId);
         return ResponseEntity.ok("Soldier deleted successfully");
+    }
+
+
+    @GetMapping("/all-officcers")
+    public List<Soldier> getAllOfficers() {
+        // Call the method from the service to fetch officers and return the result
+        return soldierService.getOfficers();
     }
 }

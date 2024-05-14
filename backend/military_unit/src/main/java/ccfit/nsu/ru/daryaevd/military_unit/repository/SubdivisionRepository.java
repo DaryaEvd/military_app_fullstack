@@ -1,6 +1,5 @@
 package ccfit.nsu.ru.daryaevd.military_unit.repository;
 
-import ccfit.nsu.ru.daryaevd.military_unit.dto.SubdivisionDto;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.Subdivision;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -8,7 +7,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository // todo: think
 public interface SubdivisionRepository extends JpaRepository<Subdivision, Long> {
@@ -19,9 +17,9 @@ public interface SubdivisionRepository extends JpaRepository<Subdivision, Long> 
      */
 
     @Query(""" 
-            SELECT s.typeOfSubdivision.nameOfType AS subdivisionType, COUNT(s) AS unitCount  
-            FROM Subdivision s  
-            GROUP BY s.typeOfSubdivision.nameOfType  
+            SELECT s.typeOfSubdivision.nameOfType AS subdivisionType, COUNT(s) AS unitCount
+            FROM Subdivision s
+            GROUP BY s.typeOfSubdivision.nameOfType
             ORDER BY COUNT(s) DESC
             """)
     List<Object[]> findSubdivisionsWithMostMilitaryUnits();
@@ -33,29 +31,32 @@ public interface SubdivisionRepository extends JpaRepository<Subdivision, Long> 
     Receive a list of all units of the military district, the specified army,
         division, corps and their commanders.
      */
-    @Query("SELECT sld.firstName AS commanderFirstName, sld.lastName AS commanderLastName " +
-            "FROM Subdivision s " +
-            "JOIN s.soldiers sld " +
-            "WHERE s.nameOfSubdivision = :subdivisionName")
+    @Query("""
+            SELECT sld.firstName AS commanderFirstName, sld.lastName AS commanderLastName
+            FROM Subdivision s
+            JOIN s.soldiers sld
+            WHERE s.nameOfSubdivision = :subdivisionName
+            """)
     List<Object[]> findCommanderBySubdivisionName(@Param("subdivisionName") String subdivisionName);
 
 
-    /*
 
-     */
-    @Query("SELECT s.nameOfSubdivision AS subdivisionName, st.nameOfType AS subdivisionType, " +
-            "sld.firstName AS officerFirstName, sld.lastName AS officerLastName " +
-            "FROM Subdivision s " +
-            "JOIN s.soldiers sld " +
-            "JOIN s.typeOfSubdivision st " +
-            "WHERE st.subdivisionRank = :rank OR :rank IS NULL " +
-            "ORDER BY st.subdivisionRank ASC")
-    List<Object[]> findOfficersByRank(@Param("rank") Integer rank);
+
+
+//    @Query("SELECT s.nameOfSubdivision AS subdivisionName, st.nameOfType AS subdivisionType, " +
+//            "sld.firstName AS officerFirstName, sld.lastName AS officerLastName " +
+//            "FROM Subdivision s " +
+//            "JOIN s.soldiers sld " +
+//            "JOIN s.typeOfSubdivision st " +
+//            "WHERE st.subdivisionRank = :rank OR :rank IS NULL " +
+//            "ORDER BY st.subdivisionRank ASC")
+//    List<Object[]> findOfficersByRank(@Param("rank") Integer rank);
+
+
 
 
 
 //    Optional<Subdivision> findWithMostMilitaryUnits(String nameOfMilitaryUnit);
-
 
 
 //    @Query(value = "SELECT s.type_of_subdivision AS typeOfSubdivision, " +

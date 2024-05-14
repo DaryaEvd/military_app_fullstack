@@ -67,14 +67,16 @@ public class SubdivisionController {
         return ResponseEntity.ok(result.get(0)); // Assuming there is only one commander per subdivision
     }
 
-    @GetMapping("/officers")
-    public ResponseEntity<List<Object[]>> getOfficersByRank(@RequestParam(value = "rank", required = false) Integer rank) {
-        List<Object[]> officers = subdivisionService.findOfficersByRank(rank);
-        if (officers.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(officers);
-    }
+
+
+//    @GetMapping("/officers")
+//    public ResponseEntity<List<Object[]>> getOfficersByRank(@RequestParam(value = "rank", required = false) Integer rank) {
+//        List<Object[]> officers = subdivisionService.findOfficersByRank(rank);
+//        if (officers.isEmpty()) {
+//            return ResponseEntity.notFound().build();
+//        }
+//        return ResponseEntity.ok(officers);
+//    }
 
 
 //    @GetMapping("/most-units")

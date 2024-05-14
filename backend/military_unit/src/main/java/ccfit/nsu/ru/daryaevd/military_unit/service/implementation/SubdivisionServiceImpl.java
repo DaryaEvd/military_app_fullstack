@@ -81,8 +81,9 @@ public class SubdivisionServiceImpl implements SubdivisionService {
         return subdivisionRepository.findCommanderBySubdivisionName(subdivisionName);
     }
 
-    public List<Object[]> findOfficersByRank(Integer rank) {
-        return subdivisionRepository.findOfficersByRank(rank);
-    }
+
+//    public List<Object[]> findOfficersByRank(Integer rank) {
+//        return subdivisionRepository.findOfficersByRank(rank);
+//    }
 
 }
