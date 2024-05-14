@@ -52,4 +52,13 @@ public class SoldierController {
         // Call the method from the service to fetch officers and return the result
         return soldierService.getOfficers();
     }
+
+    @GetMapping("/{minRank}/{maxRank}/{subdivisionTypeRank}")
+    public ResponseEntity<List<Soldier>> getOfficersByTypeAndSubdivisionTypeRank(@PathVariable Integer minRank,
+                                                                                 @PathVariable Integer maxRank,
+                                                                                 @PathVariable Integer subdivisionTypeRank) {
+        List<Soldier> officers = soldierService.getOfficersByTypeAndSubdivisionTypeRank(minRank, maxRank, subdivisionTypeRank);
+        return ResponseEntity.ok(officers);
+    }
+
 }

@@ -66,4 +66,10 @@ public class SoldierServiceImpl implements SoldierService {
         // Use the custom query method from the repository to fetch officers
         return soldierRepository.findBySoldierTypeTypeRankBetween(5, 10);
     }
+
+    @Override
+    public List<Soldier> getOfficersByTypeAndSubdivisionTypeRank(Integer minRank, Integer maxRank, Integer subdivisionTypeRank) {
+        return soldierRepository.findOfficersByTypeAndSubdivisionTypeRank(minRank, maxRank, subdivisionTypeRank);
+    }
+
 }

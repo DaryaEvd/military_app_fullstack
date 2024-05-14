@@ -2,6 +2,8 @@ package ccfit.nsu.ru.daryaevd.military_unit.repository;
 
 import ccfit.nsu.ru.daryaevd.military_unit.entity.Soldier;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -18,5 +20,21 @@ public interface SoldierRepository extends JpaRepository<Soldier, Long> {
     Get data on the officer corps as a whole
      */
     List<Soldier> findBySoldierTypeTypeRankBetween(Integer minRank, Integer maxRank);
+
+    /* query 2.2
+    Получить данные по офицерскому составу указанного звания всех частей военного округа,
+    отдельной армии, дивизии, корпуса, военной части.
+
+    Obtain data on the officers of the specified rank of all units of a military
+    district, separate army, division, corps, military unit.
+     */
+    @Query("SELECT s FROM Soldier s " +
+            "JOIN s.subdivisions sub " +
+            "JOIN sub.typeOfSubdivision st " +
+            "WHERE s.soldierType.typeRank BETWEEN :minRank AND :maxRank " +
+            "AND st.subdivisionRank = :subdivisionTypeRank")
+    List<Soldier> findOfficersByTypeAndSubdivisionTypeRank(@Param("minRank") Integer minRank,
+                                                           @Param("maxRank") Integer maxRank,
+                                                           @Param("subdivisionTypeRank") Integer subdivisionTypeRank);
 
 }

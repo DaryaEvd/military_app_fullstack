@@ -13,4 +13,6 @@ public interface SoldierService {
     void deleteSoldier(Long soldierId);
 
     List<Soldier> getOfficers();
+
+    List<Soldier> getOfficersByTypeAndSubdivisionTypeRank(Integer minRank, Integer maxRank, Integer subdivisionTypeRank);
 }
