@@ -1,5 +1,6 @@
 package ccfit.nsu.ru.daryaevd.military_unit.repository;
 
+import ccfit.nsu.ru.daryaevd.military_unit.entity.MilitaryBuilding;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.Subdivision;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -48,6 +49,13 @@ public interface SubdivisionRepository extends JpaRepository<Subdivision, Long> 
             "LEFT JOIN s.combatEquipment ce " +
             "WHERE ce.id IS NULL OR ce.numberOfSeats > 5")
     List<Subdivision> findSubdivisionsWithSpecifiedCombatEquipment();
+
+
+    /* my_query 5
+    Receive a list of military buildings for dislocation of all military subdivisions.
+     */
+    @Query(value = "SELECT DISTINCT mb FROM MilitaryBuilding mb JOIN Subdivision st ON mb.id = st.militaryBuilding.id WHERE st.isDislocated = true")
+    List<MilitaryBuilding> findMilitaryBuildingsForDislocation();
 
 
 //    @Query("SELECT s.nameOfSubdivision AS subdivisionName, st.nameOfType AS subdivisionType, " +

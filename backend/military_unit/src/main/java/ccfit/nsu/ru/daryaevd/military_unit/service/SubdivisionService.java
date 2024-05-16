@@ -1,6 +1,7 @@
 package ccfit.nsu.ru.daryaevd.military_unit.service;
 
 import ccfit.nsu.ru.daryaevd.military_unit.dto.SubdivisionDto;
+import ccfit.nsu.ru.daryaevd.military_unit.entity.MilitaryBuilding;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.Subdivision;
 
 import java.util.List;
@@ -22,6 +23,7 @@ public interface SubdivisionService {
 
     List<Subdivision> findSubdivisionsWithSpecifiedCombatEquipment();
 
+    List<MilitaryBuilding> getMilitaryBuildingsForDislocation();
 
 
 //    List<Object[]> findOfficersByRank(Integer rank);

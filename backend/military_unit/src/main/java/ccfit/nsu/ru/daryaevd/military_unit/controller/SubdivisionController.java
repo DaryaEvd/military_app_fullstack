@@ -1,6 +1,7 @@
 package ccfit.nsu.ru.daryaevd.military_unit.controller;
 
 import ccfit.nsu.ru.daryaevd.military_unit.dto.SubdivisionDto;
+import ccfit.nsu.ru.daryaevd.military_unit.entity.MilitaryBuilding;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.Subdivision;
 import ccfit.nsu.ru.daryaevd.military_unit.service.SubdivisionService;
 import lombok.AllArgsConstructor;
@@ -71,6 +72,11 @@ public class SubdivisionController {
     @GetMapping("/combat-equipment")
     public List<Subdivision> findSubdivisionsWithSpecifiedCombatEquipment() {
         return subdivisionService.findSubdivisionsWithSpecifiedCombatEquipment();
+    }
+
+    @GetMapping("/military-buildings/dislocation")
+    public List<MilitaryBuilding> getMilitaryBuildingsForDislocation() {
+        return subdivisionService.getMilitaryBuildingsForDislocation();
     }
 
 

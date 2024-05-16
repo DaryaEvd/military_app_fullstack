@@ -1,6 +1,7 @@
 package ccfit.nsu.ru.daryaevd.military_unit.service.implementation;
 
 import ccfit.nsu.ru.daryaevd.military_unit.dto.SubdivisionDto;
+import ccfit.nsu.ru.daryaevd.military_unit.entity.MilitaryBuilding;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.Subdivision;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.SubdivisionType;
 import ccfit.nsu.ru.daryaevd.military_unit.exception.ResourceNotFoundException;
@@ -86,6 +87,12 @@ public class SubdivisionServiceImpl implements SubdivisionService {
     public List<Subdivision> findSubdivisionsWithSpecifiedCombatEquipment() {
         return subdivisionRepository.findSubdivisionsWithSpecifiedCombatEquipment();
     }
+
+    @Override
+    public List<MilitaryBuilding> getMilitaryBuildingsForDislocation() {
+        return subdivisionRepository.findMilitaryBuildingsForDislocation();
+    }
+
 
 
 //    public List<Object[]> findOfficersByRank(Integer rank) {
