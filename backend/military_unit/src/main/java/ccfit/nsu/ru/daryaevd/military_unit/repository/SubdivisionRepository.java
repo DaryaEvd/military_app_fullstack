@@ -10,7 +10,7 @@ import java.util.List;
 
 @Repository // todo: think
 public interface SubdivisionRepository extends JpaRepository<Subdivision, Long> {
-    /* query 13
+    /* my_query 13
     Получить данные об армии, дивизии, корпусе, в которые входит больше всего
     (меньше всего) военных частей.
     Get data about the army, division, corps, which includes the most (least) military units.
@@ -24,7 +24,7 @@ public interface SubdivisionRepository extends JpaRepository<Subdivision, Long> 
             """)
     List<Object[]> findSubdivisionsWithMostMilitaryUnits();
 
-    /* query 1
+    /* my_query 1
     Получить перечень всех частей военного округа, указанной армии, дивизии,
             корпуса и их командиров.
 

@@ -63,4 +63,14 @@ public class CombatEquipmentServiceImpl implements CombatEquipmentService {
         }
         combatEquipmentRepository.deleteById(combatEquipmentId);
     }
+
+    @Override
+    public List<Object[]> getAvailabilityOfEquipment() {
+        return combatEquipmentRepository.getAvailabilityOfEquipment();
+    }
+
+    @Override
+    public List<Object[]> getAvailabilityBySubdivisionType(String subdivisionType) {
+        return combatEquipmentRepository.getAvailabilityBySubdivisionType(subdivisionType);
+    }
 }

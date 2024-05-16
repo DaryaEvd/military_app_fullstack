@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface SoldierRepository extends JpaRepository<Soldier, Long> {
-    /* query 2
+    /* my_query 2
     Получить данные по офицерскому составу в целом и по офицерскому составу указанного звания
     всех частей военного округа, отдельной армии, дивизии, корпуса, военной части.
 
@@ -16,12 +16,12 @@ public interface SoldierRepository extends JpaRepository<Soldier, Long> {
     of all units of the military district, separate army, division, corps, military unit.
      */
 
-    /* query 2.1
+    /* my_query 2.1
     Get data on the officer corps as a whole
      */
     List<Soldier> findBySoldierTypeTypeRankBetween(Integer minRank, Integer maxRank);
 
-    /* query 2.2
+    /* my_query 2.2
     Получить данные по офицерскому составу указанного звания всех частей военного округа,
     отдельной армии, дивизии, корпуса, военной части.
 
@@ -37,9 +37,15 @@ public interface SoldierRepository extends JpaRepository<Soldier, Long> {
                                                            @Param("maxRank") Integer maxRank,
                                                            @Param("subdivisionTypeRank") Integer subdivisionTypeRank);
 
-
+    /* my_query 3.1
+    Получить данные по рядовому и сержантскому составу в целом
+     */
     List<Soldier> findBySoldierType_TypeRankBetween(Integer lowerRank, Integer upperRank);
 
+    /* my_query 3.2
+    Получить данные по рядовому и сержантскому составу с учетом указанного звания всех частей
+    военного округа, отдельной армии, дивизии, корпуса, военной части.
+    */
     List<Soldier> findBySoldierType_TypeRankBetweenAndSubdivisions_TypeOfSubdivision_SubdivisionRank(
             Integer lowerRank, Integer upperRank, Integer subdivisionRank);
 
