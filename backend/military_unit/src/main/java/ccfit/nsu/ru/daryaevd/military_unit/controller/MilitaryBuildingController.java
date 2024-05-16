@@ -1,6 +1,7 @@
 package ccfit.nsu.ru.daryaevd.military_unit.controller;
 
 import ccfit.nsu.ru.daryaevd.military_unit.dto.MilitaryBuildingDto;
+import ccfit.nsu.ru.daryaevd.military_unit.entity.MilitaryBuilding;
 import ccfit.nsu.ru.daryaevd.military_unit.service.MilitaryBuildingService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -49,5 +50,15 @@ public class MilitaryBuildingController {
     public ResponseEntity<String> deleteSubdivision(@PathVariable("id") Long subdivisionId) {
         militaryBuildingService.deleteMilitaryBuilding(subdivisionId);
         return ResponseEntity.ok("Subdivision deleted successfully");
+    }
+
+    @GetMapping("/subdivision/{subdivisionType}")
+    public List<MilitaryBuilding> findBySubdivisionType(@PathVariable String subdivisionType) {
+        return militaryBuildingService.findBySubdivisionType(subdivisionType);
+    }
+
+    @GetMapping("/multiple-dislocated")
+    public List<MilitaryBuilding> findMilitaryBuildingsWithMultipleDislocatedSubdivisions() {
+        return militaryBuildingService.findMilitaryBuildingsWithMultipleDislocatedSubdivisions();
     }
 }

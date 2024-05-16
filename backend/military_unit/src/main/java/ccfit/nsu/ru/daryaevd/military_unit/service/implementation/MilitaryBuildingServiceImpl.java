@@ -58,4 +58,14 @@ public class MilitaryBuildingServiceImpl implements MilitaryBuildingService {
                 .orElseThrow(() -> new ResourceNotFoundException("Military building doesn't exist with given id: " + militaryBuildingId));
         militaryBuildingRepository.deleteById(militaryBuildingId);
     }
+
+    @Override
+    public List<MilitaryBuilding> findBySubdivisionType(String subdivisionType) {
+        return militaryBuildingRepository.findBySubdivisionType(subdivisionType);
+    }
+
+    @Override
+    public List<MilitaryBuilding> findMilitaryBuildingsWithMultipleDislocatedSubdivisions() {
+        return militaryBuildingRepository.findMilitaryBuildingsWithMultipleDislocatedSubdivisions();
+    }
 }
