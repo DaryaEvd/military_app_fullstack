@@ -40,7 +40,14 @@ public interface SubdivisionRepository extends JpaRepository<Subdivision, Long> 
     List<Object[]> findCommanderBySubdivisionName(@Param("subdivisionName") String subdivisionName);
 
 
-
+    /* my_query 8
+    Receive a list of military subdivisions in which the number of the specified type
+    of combat equipment is more than 5 (or there is no specified military equipment).
+     */
+    @Query("SELECT s FROM Subdivision s " +
+            "LEFT JOIN s.combatEquipment ce " +
+            "WHERE ce.id IS NULL OR ce.numberOfSeats > 5")
+    List<Subdivision> findSubdivisionsWithSpecifiedCombatEquipment();
 
 
 //    @Query("SELECT s.nameOfSubdivision AS subdivisionName, st.nameOfType AS subdivisionType, " +

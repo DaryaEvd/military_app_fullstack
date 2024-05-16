@@ -1,6 +1,7 @@
 package ccfit.nsu.ru.daryaevd.military_unit.service;
 
 import ccfit.nsu.ru.daryaevd.military_unit.dto.SubdivisionDto;
+import ccfit.nsu.ru.daryaevd.military_unit.entity.Subdivision;
 
 import java.util.List;
 
@@ -18,6 +19,10 @@ public interface SubdivisionService {
     List<Object[]> findSubdivisionsWithMostMilitaryUnits();
 
     List<Object[]> findCommanderBySubdivisionName(String subdivisionName);
+
+    List<Subdivision> findSubdivisionsWithSpecifiedCombatEquipment();
+
+
 
 //    List<Object[]> findOfficersByRank(Integer rank);
 

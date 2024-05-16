@@ -1,6 +1,7 @@
 package ccfit.nsu.ru.daryaevd.military_unit.controller;
 
 import ccfit.nsu.ru.daryaevd.military_unit.dto.SubdivisionDto;
+import ccfit.nsu.ru.daryaevd.military_unit.entity.Subdivision;
 import ccfit.nsu.ru.daryaevd.military_unit.service.SubdivisionService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -67,6 +68,10 @@ public class SubdivisionController {
         return ResponseEntity.ok(result.get(0)); // Assuming there is only one commander per subdivision
     }
 
+    @GetMapping("/combat-equipment")
+    public List<Subdivision> findSubdivisionsWithSpecifiedCombatEquipment() {
+        return subdivisionService.findSubdivisionsWithSpecifiedCombatEquipment();
+    }
 
 
 //    @GetMapping("/officers")
