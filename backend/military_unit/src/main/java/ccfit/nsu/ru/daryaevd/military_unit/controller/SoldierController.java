@@ -72,4 +72,10 @@ public class SoldierController {
         return soldierService.findSergeantsByRankAndSubdivisionType(lowerRank, upperRank, subdivisionRank);
     }
 
+    @GetMapping("/mas/{masId}/subdivision/{subdivisionName}")
+    public List<Soldier> findSoldiersByMasIdAndSubdivisionName(
+            @PathVariable Long masId,
+            @PathVariable String subdivisionName) {
+        return soldierService.findSoldiersByMasIdAndSubdivisionName(masId, subdivisionName);
+    }
 }

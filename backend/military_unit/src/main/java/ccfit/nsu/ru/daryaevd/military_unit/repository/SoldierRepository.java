@@ -49,4 +49,10 @@ public interface SoldierRepository extends JpaRepository<Soldier, Long> {
     List<Soldier> findBySoldierType_TypeRankBetweenAndSubdivisions_TypeOfSubdivision_SubdivisionRank(
             Integer lowerRank, Integer upperRank, Integer subdivisionRank);
 
+
+    /* my_query 11
+    Receive a list of soldiers of the specified mas in the specified military subdivision
+     */
+    List<Soldier> findByMasIdAndSubdivisions_NameOfSubdivision(Long masId, String subdivisionName);
+
 }

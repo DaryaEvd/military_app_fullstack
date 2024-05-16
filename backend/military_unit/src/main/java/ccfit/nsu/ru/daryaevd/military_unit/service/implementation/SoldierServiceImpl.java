@@ -85,4 +85,9 @@ public class SoldierServiceImpl implements SoldierService {
                 lowerRank, upperRank, subdivisionRank);
     }
 
+    @Override
+    public List<Soldier> findSoldiersByMasIdAndSubdivisionName(Long masId, String subdivisionName) {
+        return soldierRepository.findByMasIdAndSubdivisions_NameOfSubdivision(masId, subdivisionName);
+    }
+
 }

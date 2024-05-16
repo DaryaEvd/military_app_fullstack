@@ -24,4 +24,5 @@ public interface SoldierService {
 
     List<Soldier> findSergeantsByRankAndSubdivisionType(Integer lowerRank, Integer upperRank, Integer subdivisionRank);
 
+    List<Soldier> findSoldiersByMasIdAndSubdivisionName(Long masId, String subdivisionName);
 }
