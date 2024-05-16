@@ -61,4 +61,15 @@ public class SoldierController {
         return ResponseEntity.ok(officers);
     }
 
+    @GetMapping("/all-sergeants")
+    public List<Soldier> getAllSergeants() {
+        return soldierService.findSergeants();
+    }
+
+    @GetMapping("/{lowerRank}/{upperRank}/{subdivisionRank}")
+    public List<Soldier> getSergeantsByRankAndSubdivisionType(
+            @PathVariable Integer lowerRank, @PathVariable Integer upperRank, @PathVariable Integer subdivisionRank) {
+        return soldierService.findSergeantsByRankAndSubdivisionType(lowerRank, upperRank, subdivisionRank);
+    }
+
 }

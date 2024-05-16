@@ -72,4 +72,17 @@ public class SoldierServiceImpl implements SoldierService {
         return soldierRepository.findOfficersByTypeAndSubdivisionTypeRank(minRank, maxRank, subdivisionTypeRank);
     }
 
+    @Override
+    public List<Soldier> findSergeants() {
+        Integer lowerRank = 0;
+        Integer upperRank = 4;
+        return soldierRepository.findBySoldierType_TypeRankBetween(lowerRank, upperRank);
+    }
+
+    @Override
+    public List<Soldier> findSergeantsByRankAndSubdivisionType(Integer lowerRank, Integer upperRank, Integer subdivisionRank) {
+        return soldierRepository.findBySoldierType_TypeRankBetweenAndSubdivisions_TypeOfSubdivision_SubdivisionRank(
+                lowerRank, upperRank, subdivisionRank);
+    }
+
 }

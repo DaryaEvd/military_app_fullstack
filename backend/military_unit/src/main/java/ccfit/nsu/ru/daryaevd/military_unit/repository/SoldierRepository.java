@@ -37,4 +37,10 @@ public interface SoldierRepository extends JpaRepository<Soldier, Long> {
                                                            @Param("maxRank") Integer maxRank,
                                                            @Param("subdivisionTypeRank") Integer subdivisionTypeRank);
 
+
+    List<Soldier> findBySoldierType_TypeRankBetween(Integer lowerRank, Integer upperRank);
+
+    List<Soldier> findBySoldierType_TypeRankBetweenAndSubdivisions_TypeOfSubdivision_SubdivisionRank(
+            Integer lowerRank, Integer upperRank, Integer subdivisionRank);
+
 }
