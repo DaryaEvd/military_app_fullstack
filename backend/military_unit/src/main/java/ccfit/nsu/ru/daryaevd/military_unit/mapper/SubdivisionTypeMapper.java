@@ -1,7 +1,6 @@
 package ccfit.nsu.ru.daryaevd.military_unit.mapper;
 
 import ccfit.nsu.ru.daryaevd.military_unit.dto.SubdivisionTypeDto;
-import ccfit.nsu.ru.daryaevd.military_unit.entity.Subdivision;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.SubdivisionType;
 
 public class SubdivisionTypeMapper {
@@ -10,7 +9,8 @@ public class SubdivisionTypeMapper {
         subdivisionTypeDto.setId(subdivisionType.getId());
         subdivisionTypeDto.setNameOfType(subdivisionType.getNameOfType());
         subdivisionTypeDto.setSubdivisionRank(subdivisionType.getSubdivisionRank());
-        subdivisionTypeDto.setSubdivisionId(subdivisionType.getSubdivision().getId());
+
+        subdivisionTypeDto.setSubdivisionType(subdivisionType.getId());
         return subdivisionTypeDto;
     }
 
@@ -20,9 +20,9 @@ public class SubdivisionTypeMapper {
         subdivisionType.setNameOfType(subdivisionTypeDto.getNameOfType());
         subdivisionType.setSubdivisionRank(subdivisionTypeDto.getSubdivisionRank());
 
-        Subdivision subdivision = new Subdivision();
-        subdivision.setId(subdivisionTypeDto.getSubdivisionId());
-        subdivisionType.setSubdivision(subdivision);
+//        Subdivision subdivision = new Subdivision();
+//        subdivision.setId(subdivisionTypeDto.getSubdivisionId());
+//        subdivisionType.setSubdivision(subdivision);
 
         return subdivisionType;
     }

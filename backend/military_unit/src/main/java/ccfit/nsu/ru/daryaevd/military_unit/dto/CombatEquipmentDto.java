@@ -12,7 +12,7 @@ import lombok.Setter;
 public class CombatEquipmentDto {
     private Long id;
     private String nameOfEquipment;
-    private Integer typeOfBuilding;
+    private Integer experienceOfUsing;
     private String conditionOfVehicle;
     private Integer numberOfSeats;
     private String nameOfVehicle;

@@ -14,5 +14,5 @@ public class SubdivisionTypeDto {
     private String nameOfType;
     private Integer subdivisionRank;
 
-    private Long subdivisionId;
+    private Long subdivisionType;
 }

@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -17,11 +19,11 @@ public class CombatEquipment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "experience_of_using", nullable = false)
+    @Column(name = "name_of_equipment", nullable = false)
     private String nameOfEquipment;
 
-    @Column(name = "name_of_equipment", nullable = false)
-    private Integer typeOfBuilding;
+    @Column(name = "experience_of_using", nullable = false)
+    private Integer experienceOfUsing;
 
     @Column(name = "condition_of_vehicle", nullable = false)
     private String conditionOfVehicle;
@@ -32,7 +34,6 @@ public class CombatEquipment {
     @Column(name = "name_of_vehicle", nullable = false)
     private String nameOfVehicle;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "subdivision_id", referencedColumnName = "id")
-    private Subdivision subdivision;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "combatEquipment", cascade = CascadeType.ALL)
+    private List<Subdivision> subdivisionList;
 }

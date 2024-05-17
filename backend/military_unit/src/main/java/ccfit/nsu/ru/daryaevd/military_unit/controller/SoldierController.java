@@ -1,6 +1,7 @@
 package ccfit.nsu.ru.daryaevd.military_unit.controller;
 
 import ccfit.nsu.ru.daryaevd.military_unit.dto.SoldierDto;
+import ccfit.nsu.ru.daryaevd.military_unit.entity.Soldier;
 import ccfit.nsu.ru.daryaevd.military_unit.service.SoldierService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -43,5 +44,38 @@ public class SoldierController {
     public ResponseEntity<String> deleteSoldier(@PathVariable("id") Long soldierId) {
         soldierService.deleteSoldier(soldierId);
         return ResponseEntity.ok("Soldier deleted successfully");
+    }
+
+
+    @GetMapping("/all-officcers")
+    public List<Soldier> getAllOfficers() {
+        // Call the method from the service to fetch officers and return the result
+        return soldierService.getOfficers();
+    }
+
+    @GetMapping("/{minRank}/{maxRank}/{subdivisionTypeRank}")
+    public ResponseEntity<List<Soldier>> getOfficersByTypeAndSubdivisionTypeRank(@PathVariable Integer minRank,
+                                                                                 @PathVariable Integer maxRank,
+                                                                                 @PathVariable Integer subdivisionTypeRank) {
+        List<Soldier> officers = soldierService.getOfficersByTypeAndSubdivisionTypeRank(minRank, maxRank, subdivisionTypeRank);
+        return ResponseEntity.ok(officers);
+    }
+
+    @GetMapping("/all-sergeants")
+    public List<Soldier> getAllSergeants() {
+        return soldierService.findSergeants();
+    }
+
+    @GetMapping("/{lowerRank}/{upperRank}/{subdivisionRank}")
+    public List<Soldier> getSergeantsByRankAndSubdivisionType(
+            @PathVariable Integer lowerRank, @PathVariable Integer upperRank, @PathVariable Integer subdivisionRank) {
+        return soldierService.findSergeantsByRankAndSubdivisionType(lowerRank, upperRank, subdivisionRank);
+    }
+
+    @GetMapping("/mas/{masId}/subdivision/{subdivisionName}")
+    public List<Soldier> findSoldiersByMasIdAndSubdivisionName(
+            @PathVariable Long masId,
+            @PathVariable String subdivisionName) {
+        return soldierService.findSoldiersByMasIdAndSubdivisionName(masId, subdivisionName);
     }
 }

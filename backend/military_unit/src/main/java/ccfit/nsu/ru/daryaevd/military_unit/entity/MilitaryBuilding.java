@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -21,16 +23,14 @@ public class MilitaryBuilding {
     private Boolean canUseForDislocation;
 
     @Column(name = "type_of_building", nullable = false)
-    private Integer typeOfBuilding;
+    private String typeOfBuilding;
 
     @Column(name = "area_of_building", nullable = false)
-    private Boolean areaOfBuilding;
+    private Integer areaOfBuilding;
 
     @Column(name = "amount_of_rooms", nullable = false)
     private Integer amountOfRooms;
 
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "subdivision_id", referencedColumnName = "id")
-    private Subdivision subdivision;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "militaryBuilding", cascade = CascadeType.ALL)
+    private List<Subdivision> subdivisionList;
 }

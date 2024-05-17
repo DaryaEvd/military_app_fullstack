@@ -21,6 +21,7 @@ public class SoldierDto {
      private Date dateOfIssueMilitaryCard;
 
      private Long masId;
+     private Long typeOfSoldier;
 
      private List<Long> subdivisionIds;
 }

@@ -5,16 +5,11 @@ import ccfit.nsu.ru.daryaevd.military_unit.entity.Mas;
 
 
 public class MasMapper {
-
-//    @Autowired
-//    private ModelMapper modelMapper;
-
     public static MasDto mapToMasDto(Mas mas) {
         MasDto masDto = new MasDto();
         masDto.setId(mas.getId());
         masDto.setNameOfMas(mas.getNameOfMas());
         masDto.setCodeOfMas(mas.getCodeOfMas());
-
         return masDto;
     }
 

@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -17,15 +19,14 @@ public class SubdivisionType {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name_of_type", nullable = false)
+    @Column(name = "name_of_type", unique = true, nullable = false)
     private String nameOfType;
 
-//    @Column(name = "rank_subdiv", nullable = false)
-    @Column(name = "type_rank", nullable = false
+    @Column(name = "type_rank", /*unique = true,*/
+nullable = false
             /*, columnDefinition = "INT CHECK (rank_subdiv > 0 AND rank_subdiv < 5)"*/)
     private Integer subdivisionRank;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "subdivision_id", referencedColumnName = "id")
-    private Subdivision subdivision;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "typeOfSubdivision", cascade = CascadeType.ALL)
+    private List<Subdivision> subdivisionList;
 }

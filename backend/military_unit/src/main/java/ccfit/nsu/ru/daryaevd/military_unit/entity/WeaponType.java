@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -13,12 +15,6 @@ import lombok.Setter;
 @Entity
 @Table(name = "weapon_type_table")
 public class WeaponType {
-    /*
-     todo: think about it
-	weapon_type INT NOT NULL,
-    FOREIGN KEY (weapon_type) REFERENCES subdivision_table (id)
-     */
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -32,7 +28,6 @@ public class WeaponType {
     @Column(name = "condition_of_vehicle", nullable = false)
     private String conditionOfVehicle;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "subdivision_id", referencedColumnName = "id")
-    private Subdivision subdivision;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "weaponType", cascade = CascadeType.ALL)
+    private List<Subdivision> subdivisionList;
 }

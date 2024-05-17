@@ -60,4 +60,34 @@ public class SoldierServiceImpl implements SoldierService {
         }
         soldierRepository.deleteById(soldierId);
     }
+
+    @Override
+    public List<Soldier> getOfficers() {
+        // Use the custom query method from the repository to fetch officers
+        return soldierRepository.findBySoldierTypeTypeRankBetween(5, 10);
+    }
+
+    @Override
+    public List<Soldier> getOfficersByTypeAndSubdivisionTypeRank(Integer minRank, Integer maxRank, Integer subdivisionTypeRank) {
+        return soldierRepository.findOfficersByTypeAndSubdivisionTypeRank(minRank, maxRank, subdivisionTypeRank);
+    }
+
+    @Override
+    public List<Soldier> findSergeants() {
+        Integer lowerRank = 0;
+        Integer upperRank = 4;
+        return soldierRepository.findBySoldierType_TypeRankBetween(lowerRank, upperRank);
+    }
+
+    @Override
+    public List<Soldier> findSergeantsByRankAndSubdivisionType(Integer lowerRank, Integer upperRank, Integer subdivisionRank) {
+        return soldierRepository.findBySoldierType_TypeRankBetweenAndSubdivisions_TypeOfSubdivision_SubdivisionRank(
+                lowerRank, upperRank, subdivisionRank);
+    }
+
+    @Override
+    public List<Soldier> findSoldiersByMasIdAndSubdivisionName(Long masId, String subdivisionName) {
+        return soldierRepository.findByMasIdAndSubdivisions_NameOfSubdivision(masId, subdivisionName);
+    }
+
 }

@@ -16,8 +16,14 @@ public class SubdivisionDto {
     private String nameOfSubdivision;
     private Integer numberOfSubdivision;
     private Boolean isDislocated;
-    private Integer commander; // TODO: think about reference?
-    private Integer typeOfSubdivision; // TODO: think about reference?
 
-    private List<Long> soldierIds; // List of IDs of associated soldiers
+    private Long typeOfSubdivision;
+
+    private Long militaryBuildingId;
+    private Long combatEquipmentId;
+    private Long weaponTypeId;
+
+//    private Integer commander; // TODO: think about reference?
+
+    private List<Long> soldierIds;
 }

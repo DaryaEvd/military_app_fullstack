@@ -3,6 +3,7 @@ package ccfit.nsu.ru.daryaevd.military_unit.mapper;
 import ccfit.nsu.ru.daryaevd.military_unit.dto.MilitaryBuildingDto;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.MilitaryBuilding;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.Subdivision;
+import ccfit.nsu.ru.daryaevd.military_unit.entity.WeaponType;
 
 public class MilitaryBuildingMapper {
     public static MilitaryBuildingDto mapToMilitaryBuildingDto(MilitaryBuilding militaryBuilding) {
@@ -14,8 +15,10 @@ public class MilitaryBuildingMapper {
         militaryBuildingDto.setAmountOfRooms(militaryBuilding.getAmountOfRooms());
 
 //         if (militaryBuilding.getSubdivision() != null) {
-        militaryBuildingDto.setSubdivisionId(militaryBuilding.getSubdivision().getId());
+//        militaryBuildingDto.setSubdivisionId(militaryBuilding.getSubdivisionList().stream().toList());
 //        }
+        militaryBuildingDto.setSubdivisionId(militaryBuilding.getId());
+
         return militaryBuildingDto;
     }
 
@@ -27,9 +30,10 @@ public class MilitaryBuildingMapper {
         militaryBuilding.setAreaOfBuilding(militaryBuildingDto.getAreaOfBuilding());
         militaryBuilding.setAmountOfRooms(militaryBuildingDto.getAmountOfRooms());
 
-        Subdivision subdivision = new Subdivision();
-        subdivision.setId(militaryBuildingDto.getSubdivisionId());
-        militaryBuilding.setSubdivision(subdivision);
+//        Subdivision subdivision = new Subdivision();
+//        subdivision.setId(militaryBuildingDto.getSubdivisionId());
+//        militaryBuilding.setSubdivision(subdivision);
+
         return militaryBuilding;
     }
 }

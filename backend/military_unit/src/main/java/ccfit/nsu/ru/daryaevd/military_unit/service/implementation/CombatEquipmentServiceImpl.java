@@ -7,12 +7,13 @@ import ccfit.nsu.ru.daryaevd.military_unit.mapper.CombatEquipmentMapper;
 import ccfit.nsu.ru.daryaevd.military_unit.repository.CombatEquipmentRepository;
 import ccfit.nsu.ru.daryaevd.military_unit.service.CombatEquipmentService;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.stream.Collectors;
+
 import lombok.AllArgsConstructor;
 
 @Service
-//@Transactional todo: think
 @AllArgsConstructor
 public class CombatEquipmentServiceImpl implements CombatEquipmentService {
 
@@ -47,7 +48,6 @@ public class CombatEquipmentServiceImpl implements CombatEquipmentService {
 
         // Update fields
         combatEquipment.setNameOfEquipment(updatedCombatEquipment.getNameOfEquipment());
-        combatEquipment.setTypeOfBuilding(updatedCombatEquipment.getTypeOfBuilding());
         combatEquipment.setConditionOfVehicle(updatedCombatEquipment.getConditionOfVehicle());
         combatEquipment.setNumberOfSeats(updatedCombatEquipment.getNumberOfSeats());
         combatEquipment.setNameOfVehicle(updatedCombatEquipment.getNameOfVehicle());
@@ -62,5 +62,15 @@ public class CombatEquipmentServiceImpl implements CombatEquipmentService {
             throw new ResourceNotFoundException("Combat equipment not found with id: " + combatEquipmentId);
         }
         combatEquipmentRepository.deleteById(combatEquipmentId);
+    }
+
+    @Override
+    public List<Object[]> getAvailabilityOfEquipment() {
+        return combatEquipmentRepository.getAvailabilityOfEquipment();
+    }
+
+    @Override
+    public List<Object[]> getAvailabilityBySubdivisionType(String subdivisionType) {
+        return combatEquipmentRepository.getAvailabilityBySubdivisionType(subdivisionType);
     }
 }
