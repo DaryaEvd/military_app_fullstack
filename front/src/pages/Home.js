@@ -26,6 +26,7 @@ export default function Home() {
                             <th scope="col">Condition of vehicle</th>
                             <th scope="col">Number of seats</th>
                             <th scope="col">Name of vehicle</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
 
@@ -41,6 +42,12 @@ export default function Home() {
                                     <td>{combatEquipment.conditionOfVehicle}</td>
                                     <td>{combatEquipment.numberOfSeats}</td>
                                     <td>{combatEquipment.nameOfVehicle}</td>
+
+                                    <td>
+                                        <button className="btn btn-primary mx-2">View</button>
+                                        <button className="btn btn-outline-primary mx-2">Edit</button>
+                                        <button className="btn btn-danger mx-2">Delete</button>
+                                    </td>
                                 </tr>
                             ))
                         }
