@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 @AllArgsConstructor
 @RestController
-@RequestMapping("/api/combat-equipment")
+@RequestMapping("/api/combat_equipment")
+@CrossOrigin("http://localhost:3000")
 public class CombatEquipmentController {
     private CombatEquipmentService combatEquipmentService;
 
