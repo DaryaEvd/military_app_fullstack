@@ -1,6 +1,27 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 export default function AddCombatEquipment() {
+
+    const [combatEquipments, setCombatEquipments] = useState(
+        {
+            nameOfEquipment: "",
+            experienceOfUsing: "",
+            conditionOfVehicle: "",
+            numberOfSeats: "",
+            nameOfVehicle: ""
+        }
+    );
+
+    const { nameOfEquipment,
+        experienceOfUsing,
+        conditionOfVehicle,
+        numberOfSeats,
+        nameOfVehicle } = combatEquipments;
+
+    const onInputChange=(e)=>{
+        setCombatEquipments({...combatEquipments, [e.target.name]:e.target.value})
+    }
+
     return (
         <div className='container'>
             <div className='row'>
@@ -14,19 +35,9 @@ export default function AddCombatEquipment() {
                             type={"text"}
                             className='form-control'
                             placeholder='Enter name of combat equipment'
-                            name="name"
-                        />
-                    </div>
-
-                    <div className='mb-3'>
-                        <label htmlFor='Name' className='form-label'>
-                            Name
-                        </label>
-                        <input
-                            type={"text"}
-                            className='form-control'
-                            placeholder='Enter name of combat equipment'
-                            name="name"
+                            name="nameOfEquipment"
+                            value={nameOfEquipment}
+                            onChange={(e)=>onInputChange(e)}
                         />
                     </div>
 
@@ -38,7 +49,10 @@ export default function AddCombatEquipment() {
                             type={"text"}
                             className='form-control'
                             placeholder='Enter experience of using of combat equipment'
-                            name="name"
+                            name="experienceOfUsing"
+                            value={experienceOfUsing}
+                            onChange={(e)=>onInputChange(e)}
+    
                         />
                     </div>
 
@@ -50,7 +64,10 @@ export default function AddCombatEquipment() {
                             type={"text"}
                             className='form-control'
                             placeholder='Enter condition of vehicle'
-                            name="name"
+                            name="conditionOfVehicle"
+                            value={conditionOfVehicle}
+                            onChange={(e)=>onInputChange(e)}
+
                         />
                     </div>
 
@@ -62,7 +79,10 @@ export default function AddCombatEquipment() {
                             type={"text"}
                             className='form-control'
                             placeholder='Enter number of seats'
-                            name="name"
+                            name="numberOfSeats"
+                            value={numberOfSeats}
+                            onChange={(e)=>onInputChange(e)}
+
                         />
                     </div>
 
@@ -74,7 +94,10 @@ export default function AddCombatEquipment() {
                             type={"text"}
                             className='form-control'
                             placeholder='Enter name of vehicle'
-                            name="name"
+                            name="nameOfVehicle"
+                            value={nameOfVehicle}
+                            onChange={(e)=>onInputChange(e)}
+
                         />
                     </div>
 
