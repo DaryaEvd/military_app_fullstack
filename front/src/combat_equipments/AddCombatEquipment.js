@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 export default function AddCombatEquipment() {
 
@@ -117,9 +117,9 @@ export default function AddCombatEquipment() {
                             Submit
                         </button>
 
-                        <button type="submit" className="btn btn-outline-danger mx-2">
+                        <Link className="btn btn-outline-danger mx-2" to="/">
                             Cancel
-                        </button>
+                        </Link>
 
                     </form>
                 </div>
