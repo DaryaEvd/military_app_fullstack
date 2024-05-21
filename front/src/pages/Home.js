@@ -46,9 +46,13 @@ export default function Home() {
                                 <td>{combatEquipment.numberOfSeats}</td>
                                 <td>{combatEquipment.nameOfVehicle}</td>
                                 <td>
-                                    <button className="btn btn-primary mx-2">View</button>
+                                    <Link className="btn btn-primary mx-2"
+                                        to={`/vieweditcombatequipment/${combatEquipment.id}`}>
+                                        View
+                                    </Link>
 
-                                    <Link className="btn btn-outline-primary mx-2" to={`/editcombatequipment/${combatEquipment.id}`}>
+                                    <Link className="btn btn-outline-primary mx-2"
+                                        to={`/editcombatequipment/${combatEquipment.id}`}>
                                         Edit
                                     </Link>
 
