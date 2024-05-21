@@ -1,6 +1,10 @@
-import React, {useState} from 'react'
+import axios from 'axios';
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 export default function AddCombatEquipment() {
+
+    let navigate = useNavigate()
 
     const [combatEquipments, setCombatEquipments] = useState(
         {
@@ -18,97 +22,106 @@ export default function AddCombatEquipment() {
         numberOfSeats,
         nameOfVehicle } = combatEquipments;
 
-    const onInputChange=(e)=>{
-        setCombatEquipments({...combatEquipments, [e.target.name]:e.target.value})
+    const onInputChange = (e) => {
+        setCombatEquipments({ ...combatEquipments, [e.target.name]: e.target.value })
     }
+
+    const onSubmit = async (e) => {
+        e.preventDefault();
+        await axios.post("http://localhost:8080/api/combat_equipment", combatEquipments)
+        navigate("/")
+    };
 
     return (
         <div className='container'>
             <div className='row'>
                 <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
                     <h2 className='text-center m-4'>Register Combat Equipment</h2>
-                    <div className='mb-3'>
-                        <label htmlFor='Name' className='form-label'>
-                            Name
-                        </label>
-                        <input
-                            type={"text"}
-                            className='form-control'
-                            placeholder='Enter name of combat equipment'
-                            name="nameOfEquipment"
-                            value={nameOfEquipment}
-                            onChange={(e)=>onInputChange(e)}
-                        />
-                    </div>
 
-                    <div className='mb-3'>
-                        <label htmlFor='Name' className='form-label'>
-                            Experience of using
-                        </label>
-                        <input
-                            type={"text"}
-                            className='form-control'
-                            placeholder='Enter experience of using of combat equipment'
-                            name="experienceOfUsing"
-                            value={experienceOfUsing}
-                            onChange={(e)=>onInputChange(e)}
-    
-                        />
-                    </div>
+                    <form onSubmit={(e) => onSubmit(e)}>
+                        <div className='mb-3'>
+                            <label htmlFor='Name' className='form-label'>
+                                Name
+                            </label>
+                            <input
+                                type={"text"}
+                                className='form-control'
+                                placeholder='Enter name of combat equipment'
+                                name="nameOfEquipment"
+                                value={nameOfEquipment}
+                                onChange={(e) => onInputChange(e)}
+                            />
+                        </div>
 
-                    <div className='mb-3'>
-                        <label htmlFor='Name' className='form-label'>
-                            Condition of vehicle
-                        </label>
-                        <input
-                            type={"text"}
-                            className='form-control'
-                            placeholder='Enter condition of vehicle'
-                            name="conditionOfVehicle"
-                            value={conditionOfVehicle}
-                            onChange={(e)=>onInputChange(e)}
+                        <div className='mb-3'>
+                            <label htmlFor='Name' className='form-label'>
+                                Experience of using
+                            </label>
+                            <input
+                                type={"text"}
+                                className='form-control'
+                                placeholder='Enter experience of using of combat equipment'
+                                name="experienceOfUsing"
+                                value={experienceOfUsing}
+                                onChange={(e) => onInputChange(e)}
 
-                        />
-                    </div>
+                            />
+                        </div>
 
-                    <div className='mb-3'>
-                        <label htmlFor='Name' className='form-label'>
-                            Number of seats
-                        </label>
-                        <input
-                            type={"text"}
-                            className='form-control'
-                            placeholder='Enter number of seats'
-                            name="numberOfSeats"
-                            value={numberOfSeats}
-                            onChange={(e)=>onInputChange(e)}
+                        <div className='mb-3'>
+                            <label htmlFor='Name' className='form-label'>
+                                Condition of vehicle
+                            </label>
+                            <input
+                                type={"text"}
+                                className='form-control'
+                                placeholder='Enter condition of vehicle'
+                                name="conditionOfVehicle"
+                                value={conditionOfVehicle}
+                                onChange={(e) => onInputChange(e)}
 
-                        />
-                    </div>
+                            />
+                        </div>
 
-                    <div className='mb-3'>
-                        <label htmlFor='Name' className='form-label'>
-                            Name of vehicle
-                        </label>
-                        <input
-                            type={"text"}
-                            className='form-control'
-                            placeholder='Enter name of vehicle'
-                            name="nameOfVehicle"
-                            value={nameOfVehicle}
-                            onChange={(e)=>onInputChange(e)}
+                        <div className='mb-3'>
+                            <label htmlFor='Name' className='form-label'>
+                                Number of seats
+                            </label>
+                            <input
+                                type={"text"}
+                                className='form-control'
+                                placeholder='Enter number of seats'
+                                name="numberOfSeats"
+                                value={numberOfSeats}
+                                onChange={(e) => onInputChange(e)}
 
-                        />
-                    </div>
+                            />
+                        </div>
 
-                    <button type="submit" className="btn btn-outline-primary">
-                        Submit
-                    </button>
+                        <div className='mb-3'>
+                            <label htmlFor='Name' className='form-label'>
+                                Name of vehicle
+                            </label>
+                            <input
+                                type={"text"}
+                                className='form-control'
+                                placeholder='Enter name of vehicle'
+                                name="nameOfVehicle"
+                                value={nameOfVehicle}
+                                onChange={(e) => onInputChange(e)}
 
-                    <button type="submit" className="btn btn-outline-danger mx-2">
-                        Cancel
-                    </button>
+                            />
+                        </div>
 
+                        <button type="submit" className="btn btn-outline-primary">
+                            Submit
+                        </button>
+
+                        <button type="submit" className="btn btn-outline-danger mx-2">
+                            Cancel
+                        </button>
+
+                    </form>
                 </div>
             </div>
         </div>
