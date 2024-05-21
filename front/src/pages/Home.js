@@ -14,6 +14,11 @@ export default function Home() {
         setCombatEquipments(result.data);
     };
 
+    const deleteCombatEquipments = async (id) => {
+        await axios.delete(`http://localhost:8080/api/combat_equipment/${id}`);
+        loadCombatEquipments();
+    }
+
     return (
         <div className='container'>
             <div className='py-4'>
@@ -31,9 +36,10 @@ export default function Home() {
                     </thead>
                     <tbody>
                         {combatEquipments.map((combatEquipment, index) => (
-                            // <tr key={combatEquipment.id}>
-                            <tr key={index}>
-                                <th scope="row">{index + 1}</th>
+                            <tr key={combatEquipment.id}>
+                                <th scope="row">
+                                    {index + 1}
+                                </th>
                                 <td>{combatEquipment.nameOfEquipment}</td>
                                 <td>{combatEquipment.experienceOfUsing}</td>
                                 <td>{combatEquipment.conditionOfVehicle}</td>
@@ -41,11 +47,15 @@ export default function Home() {
                                 <td>{combatEquipment.nameOfVehicle}</td>
                                 <td>
                                     <button className="btn btn-primary mx-2">View</button>
-                                    <Link className="btn btn-outline-primary mx-2" 
-                                    to={`/editcombatequipment/${combatEquipment.id}`}>
+
+                                    <Link className="btn btn-outline-primary mx-2" to={`/editcombatequipment/${combatEquipment.id}`}>
                                         Edit
                                     </Link>
-                                    <button className="btn btn-danger mx-2">Delete</button>
+
+                                    <button className="btn btn-danger mx-2"
+                                        onClick={() => deleteCombatEquipments(combatEquipment.id)}>
+                                        Delete
+                                    </button>
                                 </td>
                             </tr>
                         ))}
