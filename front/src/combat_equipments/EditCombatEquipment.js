@@ -1,32 +1,25 @@
 import axios from 'axios';
-import React, { useState, useEffect} from 'react'
-import { useNavigate, Link, useParams } from 'react-router-dom';
+import React, { useState, useEffect } from 'react'
+import { useNavigate, Link, useParams, useLocation } from 'react-router-dom';
 
 export default function EditCombatEquipment() {
-
-    let navigate = useNavigate()
-
+    let navigate = useNavigate();
+    let location = useLocation();
     const { id } = useParams();
 
-    const [combatEquipments, setCombatEquipments] = useState(
-        {
-            nameOfEquipment: "",
-            experienceOfUsing: "",
-            conditionOfVehicle: "",
-            numberOfSeats: "",
-            nameOfVehicle: ""
-        }
-    );
+    const [combatEquipments, setCombatEquipments] = useState({
+        nameOfEquipment: "",
+        experienceOfUsing: "",
+        conditionOfVehicle: "",
+        numberOfSeats: "",
+        nameOfVehicle: ""
+    });
 
-    const { nameOfEquipment,
-        experienceOfUsing,
-        conditionOfVehicle,
-        numberOfSeats,
-        nameOfVehicle } = combatEquipments;
+    const { nameOfEquipment, experienceOfUsing, conditionOfVehicle, numberOfSeats, nameOfVehicle } = combatEquipments;
 
     const onInputChange = (e) => {
-        setCombatEquipments({ ...combatEquipments, [e.target.name]: e.target.value })
-    }
+        setCombatEquipments({ ...combatEquipments, [e.target.name]: e.target.value });
+    };
 
     useEffect(() => {
         loadCombatEquipments();
@@ -34,14 +27,16 @@ export default function EditCombatEquipment() {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        await axios.put(`http://localhost:8080/api/combat_equipment/${id}`, combatEquipments);
+        const result = await axios.put(`http://localhost:8080/api/combat_equipment/${id}`, combatEquipments);
+        const updatedEquipment = result.data;
+        location.state.updateCombatEquipment(updatedEquipment);
         navigate("/");
     };
 
     const loadCombatEquipments = async () => {
         const result = await axios.get(`http://localhost:8080/api/combat_equipment/${id}`);
         setCombatEquipments(result.data);
-    }
+    };
 
     return (
         <div className='container'>
@@ -51,90 +46,65 @@ export default function EditCombatEquipment() {
 
                     <form onSubmit={(e) => onSubmit(e)}>
                         <div className='mb-3'>
-                            <label htmlFor='Name' className='form-label'>
-                                Name
-                            </label>
+                            <label htmlFor='Name' className='form-label'>Name</label>
                             <input
-                                type={"text"}
+                                type="text"
                                 className='form-control'
                                 placeholder='Enter name of combat equipment'
                                 name="nameOfEquipment"
                                 value={nameOfEquipment}
-                                onChange={(e) => onInputChange(e)}
+                                onChange={onInputChange}
                             />
                         </div>
-
                         <div className='mb-3'>
-                            <label htmlFor='Name' className='form-label'>
-                                Experience of using
-                            </label>
+                            <label htmlFor='ExperienceOfUsing' className='form-label'>Experience of using</label>
                             <input
-                                type={"text"}
+                                type="text"
                                 className='form-control'
                                 placeholder='Enter experience of using of combat equipment'
                                 name="experienceOfUsing"
                                 value={experienceOfUsing}
-                                onChange={(e) => onInputChange(e)}
-
+                                onChange={onInputChange}
                             />
                         </div>
-
                         <div className='mb-3'>
-                            <label htmlFor='Name' className='form-label'>
-                                Condition of vehicle
-                            </label>
+                            <label htmlFor='ConditionOfVehicle' className='form-label'>Condition of vehicle</label>
                             <input
-                                type={"text"}
+                                type="text"
                                 className='form-control'
                                 placeholder='Enter condition of vehicle'
                                 name="conditionOfVehicle"
                                 value={conditionOfVehicle}
-                                onChange={(e) => onInputChange(e)}
-
+                                onChange={onInputChange}
                             />
                         </div>
-
                         <div className='mb-3'>
-                            <label htmlFor='Name' className='form-label'>
-                                Number of seats
-                            </label>
+                            <label htmlFor='NumberOfSeats' className='form-label'>Number of seats</label>
                             <input
-                                type={"text"}
+                                type="text"
                                 className='form-control'
                                 placeholder='Enter number of seats'
                                 name="numberOfSeats"
                                 value={numberOfSeats}
-                                onChange={(e) => onInputChange(e)}
-
+                                onChange={onInputChange}
                             />
                         </div>
-
                         <div className='mb-3'>
-                            <label htmlFor='Name' className='form-label'>
-                                Name of vehicle
-                            </label>
+                            <label htmlFor='NameOfVehicle' className='form-label'>Name of vehicle</label>
                             <input
-                                type={"text"}
+                                type="text"
                                 className='form-control'
                                 placeholder='Enter name of vehicle'
                                 name="nameOfVehicle"
                                 value={nameOfVehicle}
-                                onChange={(e) => onInputChange(e)}
-
+                                onChange={onInputChange}
                             />
                         </div>
-
-                        <button type="submit" className="btn btn-outline-primary">
-                            Submit
-                        </button>
-
-                        <Link className="btn btn-outline-danger mx-2" to="/">
-                            Cancel
-                        </Link>
-
+                        <button type="submit" className="btn btn-outline-primary">Submit</button>
+                        <Link className="btn btn-outline-danger mx-2" to="/">Cancel</Link>
                     </form>
                 </div>
             </div>
         </div>
-    )
+    );
 }

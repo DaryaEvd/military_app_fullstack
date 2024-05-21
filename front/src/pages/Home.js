@@ -14,10 +14,18 @@ export default function Home() {
         setCombatEquipments(result.data);
     };
 
+    const updateCombatEquipment = async (updatedEquipment) => {
+        setCombatEquipments(combatEquipments.map(equipment =>
+            equipment.id === updatedEquipment.id ? updatedEquipment : equipment
+        ));
+    };
+
     const deleteCombatEquipments = async (id) => {
-        await axios.delete(`http://localhost:8080/api/combat_equipment/${id}`);
-        loadCombatEquipments();
-    }
+        if (window.confirm("Are you sure you want to delete this item?")) {
+            await axios.delete(`http://localhost:8080/api/combat_equipment/${id}`);
+            loadCombatEquipments();
+        }
+    };
 
     return (
         <div className='container'>
@@ -47,15 +55,14 @@ export default function Home() {
                                 <td>{combatEquipment.nameOfVehicle}</td>
                                 <td>
                                     <Link className="btn btn-primary mx-2"
-                                        to={`/vieweditcombatequipment/${combatEquipment.id}`}>
+                                        to={`/viewcombatequipment/${combatEquipment.id}`}>
                                         View
                                     </Link>
-
                                     <Link className="btn btn-outline-primary mx-2"
-                                        to={`/editcombatequipment/${combatEquipment.id}`}>
+                                        to={`/editcombatequipment/${combatEquipment.id}`}
+                                        state={{ updateCombatEquipment }}>
                                         Edit
                                     </Link>
-
                                     <button className="btn btn-danger mx-2"
                                         onClick={() => deleteCombatEquipments(combatEquipment.id)}>
                                         Delete

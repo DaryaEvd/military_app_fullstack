@@ -17,7 +17,7 @@ function App() {
           <Route exact path="/" element={<Home />} />
           <Route exact path="/addcombatequipment" element={<AddCombatEquipment />} />
           <Route exact path="/editcombatequipment/:id" element={<EditCombatEquipment />} />
-          <Route exact path="/vieweditcombatequipment/:id" element={<ViewCombatEquipment />} />
+          <Route exact path="/viewcombatequipment/:id" element={<ViewCombatEquipment />} />
         </Routes>
 
       </Router>
