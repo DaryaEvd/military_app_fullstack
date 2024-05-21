@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function Home() {
-
     const [combatEquipments, setCombatEquipments] = useState([]);
 
     useEffect(() => {
@@ -12,7 +12,7 @@ export default function Home() {
     const loadCombatEquipments = async () => {
         const result = await axios.get("http://localhost:8080/api/combat_equipment");
         setCombatEquipments(result.data);
-    }
+    };
 
     return (
         <div className='container'>
@@ -29,31 +29,29 @@ export default function Home() {
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
-
                     <tbody>
-                        {
-                            combatEquipments.map((combatEquipment, index) => (
-                                <tr key={combatEquipment.id}>
-                                    <th scope="row">
-                                        {combatEquipment.id}
-                                    </th>
-                                    <td>{combatEquipment.nameOfEquipment}</td>
-                                    <td>{combatEquipment.experienceOfUsing}</td>
-                                    <td>{combatEquipment.conditionOfVehicle}</td>
-                                    <td>{combatEquipment.numberOfSeats}</td>
-                                    <td>{combatEquipment.nameOfVehicle}</td>
-
-                                    <td>
-                                        <button className="btn btn-primary mx-2">View</button>
-                                        <button className="btn btn-outline-primary mx-2">Edit</button>
-                                        <button className="btn btn-danger mx-2">Delete</button>
-                                    </td>
-                                </tr>
-                            ))
-                        }
+                        {combatEquipments.map((combatEquipment, index) => (
+                            // <tr key={combatEquipment.id}>
+                            <tr key={index}>
+                                <th scope="row">{index + 1}</th>
+                                <td>{combatEquipment.nameOfEquipment}</td>
+                                <td>{combatEquipment.experienceOfUsing}</td>
+                                <td>{combatEquipment.conditionOfVehicle}</td>
+                                <td>{combatEquipment.numberOfSeats}</td>
+                                <td>{combatEquipment.nameOfVehicle}</td>
+                                <td>
+                                    <button className="btn btn-primary mx-2">View</button>
+                                    <Link className="btn btn-outline-primary mx-2" 
+                                    to={`/editcombatequipment/${combatEquipment.id}`}>
+                                        Edit
+                                    </Link>
+                                    <button className="btn btn-danger mx-2">Delete</button>
+                                </td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
             </div>
         </div>
-    )
+    );
 }
