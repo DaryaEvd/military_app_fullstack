@@ -1,10 +1,10 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react'
-import { useNavigate, Link, useParams, useLocation } from 'react-router-dom';
+import { useNavigate, Link, useParams } from 'react-router-dom';
 
 export default function EditMas() {
     let navigate = useNavigate();
-    let location = useLocation();
+
     const { id } = useParams();
 
     const [mas, setMas] = useState({
@@ -24,10 +24,8 @@ export default function EditMas() {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        const result = await axios.put(`http://localhost:8080/api/mas/${id}`, mas);
-        const updatedMas = result.data;
-        location.state.updateMas(updatedMas);
-        navigate("/");
+        await axios.put(`http://localhost:8080/api/mas/${id}`, mas);
+        navigate("/mas");
     };
 
     const loadMas = async () => {

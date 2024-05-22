@@ -14,12 +14,6 @@ export default function Mas() {
         setMas(result.data);
     };
 
-    const updateMas = async (updatedMas) => {
-        setMas(mas.map(mas =>
-            mas.id === updatedMas.id ? updatedMas : mas
-        ));
-    };
-
     const deleteMas = async (id) => {
         if (window.confirm("Are you sure you want to delete this item?")) {
             await axios.delete(`http://localhost:8080/api/mas/${id}`);
@@ -52,12 +46,11 @@ export default function Mas() {
                                 <td>{mas.codeOfMas}</td>
                                 <td>
                                     <Link className="btn btn-primary mx-2"
-                                        to={`/viewmas/${mas.id}`}>
+                                        to={`/mas/view/${mas.id}`}>
                                         View
                                     </Link>
                                     <Link className="btn btn-outline-primary mx-2"
-                                        to={`/editmas/${mas.id}`}
-                                        state={{ updateMas }}>
+                                        to={`/mas/edit/${mas.id}`}>
                                         Edit
                                     </Link>
                                     <button className="btn btn-danger mx-2"

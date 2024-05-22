@@ -59,7 +59,7 @@ export default function AddMas() {
                             Submit
                         </button>
 
-                        <Link className="btn btn-outline-danger mx-2" to="/">
+                        <Link className="btn btn-outline-danger mx-2" to="/mas">
                             Cancel
                         </Link>
 
