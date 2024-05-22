@@ -22,10 +22,19 @@ export default function Navbar() {
                         <span className="navbar-toggler-icon"></span>
                     </button>
 
-
-                    <Link className="btn btn-outline-light" to="/addcombatequipment">
-                        Add Combat Equipment
-                    </Link>
+                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/combat_equipment">Combat Equipment</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/soldiers">Soldiers</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/guns">Guns</Link>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </nav>
         </div>
