@@ -31,7 +31,7 @@ export default function Navbar() {
                                 <Link className="nav-link" to="/mas">Mas</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/soldier_type">Soldier Type</Link>
+                                <Link className="nav-link" to="/soldiers">Soldier</Link>
                             </li>
 
                             {/* <li className="nav-item">

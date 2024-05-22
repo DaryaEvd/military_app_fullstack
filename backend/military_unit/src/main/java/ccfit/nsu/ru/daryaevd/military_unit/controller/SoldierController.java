@@ -12,6 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @RestController
 @RequestMapping("/api/soldiers")
+@CrossOrigin("http://localhost:3000")
 public class SoldierController {
     private final SoldierService soldierService;
 
@@ -47,7 +48,7 @@ public class SoldierController {
     }
 
 
-    @GetMapping("/all-officcers")
+    @GetMapping("/all_officcers")
     public List<Soldier> getAllOfficers() {
         // Call the method from the service to fetch officers and return the result
         return soldierService.getOfficers();
@@ -61,7 +62,7 @@ public class SoldierController {
         return ResponseEntity.ok(officers);
     }
 
-    @GetMapping("/all-sergeants")
+    @GetMapping("/all_sergeants")
     public List<Soldier> getAllSergeants() {
         return soldierService.findSergeants();
     }

@@ -16,7 +16,6 @@ import java.util.List;
 public class SoldierTypeController {
     private SoldierTypeService soldierTypeService;
 
-
     // add military building
     @PostMapping
     public ResponseEntity<SoldierTypeDto> createSavedSoldierType(@RequestBody SoldierTypeDto soldierTypeDto){
