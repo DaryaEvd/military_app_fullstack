@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -23,5 +24,5 @@ public class SoldierDto {
      private Long masId;
      private Long typeOfSoldier;
 
-     private List<Long> subdivisionIds;
+     private List<Long> subdivisionIds = new ArrayList<>();
 }

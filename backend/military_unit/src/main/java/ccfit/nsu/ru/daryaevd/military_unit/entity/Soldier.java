@@ -13,40 +13,40 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
-    @Entity
-    @Table(name = "soldier_table")
-    public class Soldier {
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long id;
+@Entity
+@Table(name = "soldier_table")
+public class Soldier {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-        @Column(name = "first_name", nullable = false)
-        private String firstName;
+    @Column(name = "first_name", nullable = false)
+    private String firstName;
 
-        @Column(name = "last_name", nullable = false)
-        private String lastName;
+    @Column(name = "last_name", nullable = false)
+    private String lastName;
 
-        @Column(name = "date_of_birth", nullable = false)
-        private Date dateOfBirth;
+    @Column(name = "date_of_birth", nullable = false)
+    private Date dateOfBirth;
 
-        @Column(name = "military_card", nullable = false)
-        private String militaryCard;
+    @Column(name = "military_card", nullable = false)
+    private String militaryCard;
 
-        // todo: this doesn't allow normal data like 01.01.1991. fix it
-        @Column(name = "date_of_issue_of_military_card", nullable = false)
-        private Date dateOfIssueMilitaryCard;
+    // todo: this doesn't allow normal data like 01.01.1991. fix it
+    @Column(name = "date_of_issue_of_military_card", nullable = false)
+    private Date dateOfIssueMilitaryCard;
 
-        @ManyToOne(fetch = FetchType.LAZY)
-        @JoinColumn(name = "mas_id", referencedColumnName = "id")
-        private Mas mas;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "mas_id", referencedColumnName = "id")
+    private Mas mas;
 
-        @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-        @JoinTable(name = "commander_table",
-                joinColumns = @JoinColumn(name = "soldier_id"),
-                inverseJoinColumns = @JoinColumn(name = "subdivision_id"))
-        private List<Subdivision> subdivisions;
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "commander_table",
+            joinColumns = @JoinColumn(name = "soldier_id"),
+            inverseJoinColumns = @JoinColumn(name = "subdivision_id"))
+    private List<Subdivision> subdivisions;
 
-        @ManyToOne(fetch = FetchType.LAZY)
-        @JoinColumn(name = "soldier_type", /*referencedColumnName = "id",*/ nullable = false)
-        private SoldierType soldierType;
-    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "soldier_type", /*referencedColumnName = "id",*/ nullable = false)
+    private SoldierType soldierType;
+}

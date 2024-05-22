@@ -14,12 +14,12 @@ export default function Soldier() {
         setSoldiers(result.data);
     };
 
-    // const deleteCombatEquipments = async (id) => {
-    //     if (window.confirm("Are you sure you want to delete this item?")) {
-    //         await axios.delete(`http://localhost:8080/api/soldiers/${id}`);
-    //         setSoldiers();
-    //     }
-    // };
+    const deleteSoldier = async (id) => {
+        if (window.confirm("Are you sure you want to delete this item?")) {
+            await axios.delete(`http://localhost:8080/api/soldiers/${id}`);
+            loadSoldiers();
+        }
+    };
 
     return (
         <div className='container'>
@@ -34,44 +34,29 @@ export default function Soldier() {
                             <th scope="col">#</th>
                             <th scope="col">First Name</th>
                             <th scope="col">Last Name</th>
-                            <th scope="col">Date of birth</th>
+                            <th scope="col">Date of Birth</th>
                             <th scope="col">Military Card</th>
                             <th scope="col">Date Of Issue Military Card</th>
-
                             <th scope="col">Mas</th>
                             <th scope="col">Type Of Soldier</th>
-
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {soldiers.map((soldiers, index) => (
-                            <tr key={soldiers.id}>
-                                <th scope="row">
-                                    {index + 1}
-                                </th>
-                                <td>{soldiers.firstName}</td>
-                                <td>{soldiers.lastName}</td>
-                                <td>{soldiers.dateOfBirth}</td>
-                                <td>{soldiers.militaryCard}</td>
-                                <td>{soldiers.dateOfIssueMilitaryCard}</td>
-                                <td>{soldiers.masId}</td>
-                                <td>{soldiers.typeOfSoldier}</td>
-                                
+                        {soldiers.map((soldier, index) => (
+                            <tr key={soldier.id}>
+                                <th scope="row">{index + 1}</th>
+                                <td>{soldier.firstName}</td>
+                                <td>{soldier.lastName}</td>
+                                <td>{soldier.dateOfBirth}</td>
+                                <td>{soldier.militaryCard}</td>
+                                <td>{soldier.dateOfIssueMilitaryCard}</td>
+                                <td>{soldier.masName}</td>
+                                <td>{soldier.typeOfSoldierName}</td>
                                 <td>
-                                    <Link className="btn btn-primary mx-2"
-                                        to={`/soldiers/view/${soldiers.id}`}>
-                                        View
-                                    </Link>
-                                    <Link className="btn btn-outline-primary mx-2"
-                                        to={`/soldiers/edit/${soldiers.id}`}>
-                                        Edit
-                                    </Link>
-                                    <button className="btn btn-danger mx-2"
-                                        // onClick={() => deleteCombatEquipments(soldiers.id)}
-                                        >
-                                        Delete
-                                    </button>
+                                    <Link className="btn btn-primary mx-2" to={`/soldiers/view/${soldier.id}`}>View</Link>
+                                    <Link className="btn btn-outline-primary mx-2" to={`/soldiers/edit/${soldier.id}`}>Edit</Link>
+                                    <button className="btn btn-danger mx-2" onClick={() => deleteSoldier(soldier.id)}>Delete</button>
                                 </td>
                             </tr>
                         ))}

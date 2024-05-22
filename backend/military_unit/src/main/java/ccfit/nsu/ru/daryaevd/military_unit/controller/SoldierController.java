@@ -47,7 +47,6 @@ public class SoldierController {
         return ResponseEntity.ok("Soldier deleted successfully");
     }
 
-
     @GetMapping("/all_officcers")
     public List<Soldier> getAllOfficers() {
         // Call the method from the service to fetch officers and return the result

@@ -6,6 +6,7 @@ import ccfit.nsu.ru.daryaevd.military_unit.entity.Soldier;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.SoldierType;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.Subdivision;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -56,6 +57,8 @@ public class SoldierMapper {
                 })
                 .toList();
         soldier.setSubdivisions(subdivisions);
+
+
 
         return soldier;
     }
