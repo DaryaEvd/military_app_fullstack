@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
 
 export default function SoldierType() {
     const [soldierTypes, setSoldierTypes] = useState([]);
@@ -24,7 +23,6 @@ export default function SoldierType() {
                             <th scope="col">#</th>
                             <th scope="col">Name Of Type</th>
                             <th scope="col">Type rank</th>
-                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -35,12 +33,7 @@ export default function SoldierType() {
                                 </th>
                                 <td>{soldierType.nameOfType}</td>
                                 <td>{soldierType.typeRank}</td>
-                                <td>
-                                    <Link className="btn btn-primary mx-2"
-                                        to={`/soldier_type/view/${soldierType.id}`}>
-                                        View
-                                    </Link>
-                                </td>
+
                             </tr>
                         ))}
                     </tbody>

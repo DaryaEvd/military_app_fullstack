@@ -16,8 +16,6 @@ import AddMas from './mas/AddMas';
 import EditMas from './mas/EditMas';
 import ViewMas from './mas/ViewMas';
 
-import ViewSoldierType from './soldier_type/ViewSoldierType';
-
 function App() {
   return (
     <div className="App">
@@ -37,7 +35,6 @@ function App() {
           <Route exact path="/mas/view/:id" element={<ViewMas />} />
 
           <Route exact path="/soldier_type" element={<SoldierType />} />
-          <Route exact path="/soldier_type/view/:id" element={<ViewSoldierType />} />
 
 
         </Routes>
