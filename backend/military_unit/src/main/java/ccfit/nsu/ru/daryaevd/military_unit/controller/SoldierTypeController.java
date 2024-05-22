@@ -11,7 +11,8 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/api/soldier-types")
+@RequestMapping("/api/soldier_type")
+@CrossOrigin("http://localhost:3000")
 public class SoldierTypeController {
     private SoldierTypeService soldierTypeService;
 

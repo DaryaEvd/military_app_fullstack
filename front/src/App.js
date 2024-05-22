@@ -6,6 +6,8 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 
 import CombatEquipment from './pages/CombatEquipment';
 import Mas from './pages/Mas';
+import SoldierType from './pages/SoldierType';
+
 import AddCombatEquipment from './combat_equipments/AddCombatEquipment';
 import EditCombatEquipment from './combat_equipments/EditCombatEquipment';
 import ViewCombatEquipment from './combat_equipments/ViewCombatEquipment';
@@ -13,6 +15,8 @@ import ViewCombatEquipment from './combat_equipments/ViewCombatEquipment';
 import AddMas from './mas/AddMas';
 import EditMas from './mas/EditMas';
 import ViewMas from './mas/ViewMas';
+
+import ViewSoldierType from './soldier_type/ViewSoldierType';
 
 function App() {
   return (
@@ -31,6 +35,11 @@ function App() {
           <Route exact path="/mas/add" element={<AddMas />} />
           <Route exact path="/mas/edit/:id" element={<EditMas />} />
           <Route exact path="/mas/view/:id" element={<ViewMas />} />
+
+          <Route exact path="/soldier_type" element={<SoldierType />} />
+          <Route exact path="/soldier_type/view/:id" element={<ViewSoldierType />} />
+
+
         </Routes>
       </Router>
     </div>
