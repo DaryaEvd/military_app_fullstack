@@ -14,12 +14,6 @@ export default function CombatEquipment() {
         setCombatEquipments(result.data);
     };
 
-    const updateCombatEquipment = async (updatedEquipment) => {
-        setCombatEquipments(combatEquipments.map(equipment =>
-            equipment.id === updatedEquipment.id ? updatedEquipment : equipment
-        ));
-    };
-
     const deleteCombatEquipments = async (id) => {
         if (window.confirm("Are you sure you want to delete this item?")) {
             await axios.delete(`http://localhost:8080/api/combat_equipment/${id}`);
@@ -30,7 +24,7 @@ export default function CombatEquipment() {
     return (
         <div className='container'>
             <div className='py-4'>
-                <Link className="btn btn-outline-primary mb-4" to="/addcombatequipment">
+                <Link className="btn btn-outline-primary mb-4" to="/combat_equipment/add">
                     Add Combat Equipment
                 </Link>
 
@@ -59,12 +53,11 @@ export default function CombatEquipment() {
                                 <td>{combatEquipment.nameOfVehicle}</td>
                                 <td>
                                     <Link className="btn btn-primary mx-2"
-                                        to={`/viewcombatequipment/${combatEquipment.id}`}>
+                                        to={`/combat_equipment/view/${combatEquipment.id}`}>
                                         View
                                     </Link>
                                     <Link className="btn btn-outline-primary mx-2"
-                                        to={`/editcombatequipment/${combatEquipment.id}`}
-                                        state={{ updateCombatEquipment }}>
+                                        to={`/combat_equipment/edit/${combatEquipment.id}`}>
                                         Edit
                                     </Link>
                                     <button className="btn btn-danger mx-2"

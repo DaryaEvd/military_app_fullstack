@@ -1,10 +1,9 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react'
-import { useNavigate, Link, useParams, useLocation } from 'react-router-dom';
+import { useNavigate, Link, useParams } from 'react-router-dom';
 
 export default function EditCombatEquipment() {
     let navigate = useNavigate();
-    let location = useLocation();
     const { id } = useParams();
 
     const [combatEquipments, setCombatEquipments] = useState({
@@ -27,10 +26,8 @@ export default function EditCombatEquipment() {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        const result = await axios.put(`http://localhost:8080/api/combat_equipment/${id}`, combatEquipments);
-        const updatedEquipment = result.data;
-        location.state.updateCombatEquipment(updatedEquipment);
-        navigate("/");
+        await axios.put(`http://localhost:8080/api/combat_equipment/${id}`, combatEquipments);
+        navigate("/combat_equipment");
     };
 
     const loadCombatEquipments = async () => {
@@ -43,7 +40,6 @@ export default function EditCombatEquipment() {
             <div className='row'>
                 <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
                     <h2 className='text-center m-4'>Edit Combat Equipment</h2>
-
                     <form onSubmit={(e) => onSubmit(e)}>
                         <div className='mb-3'>
                             <label htmlFor='Name' className='form-label'>Name</label>
@@ -101,7 +97,7 @@ export default function EditCombatEquipment() {
                             />
                         </div>
                         <button type="submit" className="btn btn-outline-primary">Submit</button>
-                        <Link className="btn btn-outline-danger mx-2" to="/">Cancel</Link>
+                        <Link className="btn btn-outline-danger mx-2" to="/combat_equipment">Cancel</Link>
                     </form>
                 </div>
             </div>

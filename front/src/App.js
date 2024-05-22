@@ -5,8 +5,7 @@ import Home from './pages/Home';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 
 import CombatEquipment from './pages/CombatEquipment';
-import Mas
- from './pages/Mas';
+import Mas from './pages/Mas';
 import AddCombatEquipment from './combat_equipments/AddCombatEquipment';
 import EditCombatEquipment from './combat_equipments/EditCombatEquipment';
 import ViewCombatEquipment from './combat_equipments/ViewCombatEquipment';
@@ -24,16 +23,14 @@ function App() {
           <Route exact path="/" element={<Home />} />
 
           <Route exact path="/combat_equipment" element={<CombatEquipment />} />
-          <Route exact path="/addcombatequipment" element={<AddCombatEquipment />} />
-          <Route exact path="/editcombatequipment/:id" element={<EditCombatEquipment />} />
-          <Route exact path="/viewcombatequipment/:id" element={<ViewCombatEquipment />} />
+          <Route exact path="/combat_equipment/add" element={<AddCombatEquipment />} />
+          <Route exact path="/combat_equipment/edit/:id" element={<EditCombatEquipment />} />
+          <Route exact path="/combat_equipment/view/:id" element={<ViewCombatEquipment />} />
 
           <Route exact path="/mas" element={<Mas />} />
-          <Route exact path="/addmas" element={<AddMas />} />
-          <Route exact path="/editmas/:id" element={<EditMas />} />
-          <Route exact path="/viewmas/:id" element={<ViewMas />} />
-
-
+          <Route exact path="/mas/add" element={<AddMas />} />
+          <Route exact path="/mas/edit/:id" element={<EditMas />} />
+          <Route exact path="/mas/view/:id" element={<ViewMas />} />
         </Routes>
       </Router>
     </div>

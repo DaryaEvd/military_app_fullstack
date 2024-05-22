@@ -44,8 +44,8 @@ export default function ViewMas() {
                             </ul>
                         </div>
                     </div>
-                    <Link className="btn btn-primary my-2" to={"/"}>
-                        Back to Home
+                    <Link className="btn btn-primary my-2" to={"/mas"}>
+                        Back
                     </Link>
 
 

@@ -22,7 +22,7 @@ export default function AddMas() {
     const onSubmit = async (e) => {
         e.preventDefault();
         await axios.post("http://localhost:8080/api/mas", mas)
-        navigate("/")
+        navigate("/mas")
     };
 
     return (
