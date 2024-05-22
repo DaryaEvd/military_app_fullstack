@@ -28,11 +28,15 @@ export default function Navbar() {
                                 <Link className="nav-link" to="/combat_equipment">Combat Equipment</Link>
                             </li>
                             <li className="nav-item">
+                                <Link className="nav-link" to="/mas">Mas</Link>
+                            </li>
+
+                            {/* <li className="nav-item">
                                 <Link className="nav-link" to="/soldiers">Soldiers</Link>
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link" to="/guns">Guns</Link>
-                            </li>
+                            </li> */}
                         </ul>
                     </div>
                 </div>

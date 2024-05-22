@@ -11,6 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @RestController
 @RequestMapping("/api/mas")
+@CrossOrigin("http://localhost:3000")
 public class MasController {
     private final MasService masService;
 
