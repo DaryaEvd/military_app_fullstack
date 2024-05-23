@@ -10,6 +10,7 @@ import ccfit.nsu.ru.daryaevd.military_unit.service.SoldierService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,6 +21,10 @@ public class SoldierServiceImpl implements SoldierService {
 
     @Override
     public SoldierDto createSoldier(SoldierDto soldierDto) {
+        if (soldierDto.getSubdivisionIds() == null) {
+            soldierDto.setSubdivisionIds(new ArrayList<>());
+        }
+
         Soldier soldier = SoldierMapper.mapToSoldier(soldierDto);
         Soldier savedSoldier = soldierRepository.save(soldier);
         return SoldierMapper.mapToSoldierDto(savedSoldier);

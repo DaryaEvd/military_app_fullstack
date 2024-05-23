@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 @AllArgsConstructor
 @RestController
 @RequestMapping("/api/soldiers")
@@ -17,9 +18,13 @@ public class SoldierController {
     private final SoldierService soldierService;
 
     @PostMapping
-    public ResponseEntity<SoldierDto> createSoldier(@RequestBody SoldierDto soldierDto){
-        SoldierDto savedSoldier = soldierService.createSoldier(soldierDto);
-        return new ResponseEntity<>(savedSoldier, HttpStatus.CREATED);
+    public ResponseEntity<SoldierDto> createSoldier(@RequestBody SoldierDto soldierDto) {
+        try {
+            SoldierDto savedSoldier = soldierService.createSoldier(soldierDto);
+            return new ResponseEntity<>(savedSoldier, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping("{id}")

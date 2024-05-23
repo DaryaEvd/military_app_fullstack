@@ -98,9 +98,7 @@ export default function AddSoldier() {
                 console.error("Error in setting up request:", error.message);
             }
         }
-    };
-    
-    
+    };   
 
     return (
         <div className='container'>
