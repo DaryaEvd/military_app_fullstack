@@ -36,3 +36,18 @@
     transform: rotate(360deg);
   }
 }
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Ensure there's no CSS causing the list items to be invisible */
+li {
+  color: black; /* or any visible color */
+} 

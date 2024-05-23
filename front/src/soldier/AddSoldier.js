@@ -22,7 +22,7 @@ export default function AddSoldier() {
         const fetchMasList = async () => {
             try {
                 const response = await axios.get("http://localhost:8080/api/mas", {
-                    withCredentials: true
+                    withCredentials: false
                 });
                 setMasList(response.data);
             } catch (error) {
@@ -33,34 +33,7 @@ export default function AddSoldier() {
         const fetchSoldierTypeList = async () => {
             try {
                 const response = await axios.get("http://localhost:8080/api/soldier_type", {
-                    withCredentials: true
-                });
-                setSoldierTypeList(response.data);
-            } catch (error) {
-                console.error("Error fetching SoldierType list:", error);
-            }
-        };
-
-        fetchMasList();
-        fetchSoldierTypeList();
-    }, []); 
-    
-    useEffect(() => {
-        const fetchMasList = async () => {
-            try {
-                const response = await axios.get("http://localhost:8080/api/mas", {
-                    withCredentials: true
-                });
-                setMasList(response.data);
-            } catch (error) {
-                console.error("Error fetching Mas list:", error);
-            }
-        };
-
-        const fetchSoldierTypeList = async () => {
-            try {
-                const response = await axios.get("http://localhost:8080/api/soldier_type", {
-                    withCredentials: true
+                    withCredentials: false
                 });
                 setSoldierTypeList(response.data);
             } catch (error) {
@@ -81,11 +54,9 @@ export default function AddSoldier() {
     const onSubmit = async (e) => {
         e.preventDefault();
         try {
-            // Ensure subdivisionIds is initialized
             if (!soldier.subdivisionIds) {
                 soldier.subdivisionIds = [];
             }
-            
             await axios.post("http://localhost:8080/api/soldiers", soldier);
             navigate("/soldiers");
         } catch (error) {
@@ -98,7 +69,7 @@ export default function AddSoldier() {
                 console.error("Error in setting up request:", error.message);
             }
         }
-    };   
+    };
 
     return (
         <div className='container'>
@@ -106,7 +77,6 @@ export default function AddSoldier() {
                 <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
                     <h2 className='text-center m-4'>Register Soldier</h2>
                     <form onSubmit={(e) => onSubmit(e)}>
-
                         <div className='mb-3'>
                             <label htmlFor='firstName' className='form-label'>First Name</label>
                             <input
@@ -181,7 +151,7 @@ export default function AddSoldier() {
                             >
                                 <option value="">Select Mas</option>
                                 {masList.map(mas => (
-                                    <option key={mas.id} value={mas.id}>{mas.name}</option>
+                                    <option key={mas.id} value={mas.id}>{mas.nameOfMas}</option>
                                 ))}
                             </select>
                         </div>
@@ -197,7 +167,7 @@ export default function AddSoldier() {
                             >
                                 <option value="">Select Type</option>
                                 {soldierTypeList.map(type => (
-                                    <option key={type.id} value={type.id}>{type.name}</option>
+                                    <option key={type.id} value={type.id}>{type.nameOfType}</option>
                                 ))}
                             </select>
                         </div>

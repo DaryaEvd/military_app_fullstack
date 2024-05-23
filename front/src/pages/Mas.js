@@ -24,7 +24,7 @@ export default function Mas() {
     return (
         <div className='container'>
             <div className='py-4'>
-                <Link className="btn btn-outline-primary mb-4" to="/addmas">
+                <Link className="btn btn-outline-primary mb-4" to="/mas/add">
                     Add Mas Information
                 </Link>
 
