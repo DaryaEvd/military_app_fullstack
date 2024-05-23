@@ -54,9 +54,18 @@ export default function Soldier() {
                                 <td>{soldier.masName}</td>
                                 <td>{soldier.typeOfSoldierName}</td>
                                 <td>
-                                    <Link className="btn btn-primary mx-2" to={`/soldiers/view/${soldier.id}`}>View</Link>
-                                    <Link className="btn btn-outline-primary mx-2" to={`/soldiers/edit/${soldier.id}`}>Edit</Link>
-                                    <button className="btn btn-danger mx-2" onClick={() => deleteSoldier(soldier.id)}>Delete</button>
+                                    <Link className="btn btn-primary mx-2" 
+                                    to={`/soldiers/view/${soldier.id}`}>
+                                        View
+                                    </Link>
+                                    <Link className="btn btn-outline-primary mx-2" 
+                                    to={`/soldiers/edit/${soldier.id}`}>
+                                        Edit
+                                        </Link>
+                                    <button className="btn btn-danger mx-2" 
+                                        onClick={() => deleteSoldier(soldier.id)}>
+                                            Delete
+                                    </button>
                                 </td>
                             </tr>
                         ))}

@@ -18,6 +18,9 @@ import EditMas from './mas/EditMas';
 import ViewMas from './mas/ViewMas';
 
 import AddSoldier from './soldier/AddSoldier';
+import EditSoldier from './soldier/EditSoldier';
+import ViewSoldier from './soldier/ViewSoldier';
+
 
 function App() {
   return (
@@ -40,8 +43,9 @@ function App() {
           {/* <Route exact path="/soldier_type" element={<SoldierType />} /> */}
 
           <Route exact path="/soldiers" element={<Soldier/>} />
-          <Route exact path="/soldiers/add" element={<AddSoldier/>} />
-          
+          <Route exact path="/soldiers/add" element={<AddSoldier/>} />          
+          <Route exact path="/soldiers/edit/:id" element={<EditSoldier/>} />
+          <Route exact path="/soldiers/view/:id" element={<ViewSoldier/>} />
 
         </Routes>
       </Router>
