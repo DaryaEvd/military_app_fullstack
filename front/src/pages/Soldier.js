@@ -4,21 +4,61 @@ import { Link } from "react-router-dom";
 
 export default function Soldier() {
     const [soldiers, setSoldiers] = useState([]);
+    const [masList, setMasList] = useState([]);
+    const [soldierTypeList, setSoldierTypeList] = useState([]);
 
     useEffect(() => {
         loadSoldiers();
+        fetchMasList();
+        fetchSoldierTypeList();
     }, []);
 
     const loadSoldiers = async () => {
-        const result = await axios.get("http://localhost:8080/api/soldiers");
-        setSoldiers(result.data);
+        try {
+            const result = await axios.get("http://localhost:8080/api/soldiers");
+            setSoldiers(result.data);
+        } catch (error) {
+            console.error("Error loading soldiers:", error);
+        }
+    };
+
+    const fetchMasList = async () => {
+        try {
+            const response = await axios.get("http://localhost:8080/api/mas");
+            setMasList(response.data);
+        } catch (error) {
+            console.error("Error fetching Mas list:", error);
+        }
+    };
+
+    const fetchSoldierTypeList = async () => {
+        try {
+            const response = await axios.get("http://localhost:8080/api/soldier_type");
+            setSoldierTypeList(response.data);
+        } catch (error) {
+            console.error("Error fetching SoldierType list:", error);
+        }
     };
 
     const deleteSoldier = async (id) => {
         if (window.confirm("Are you sure you want to delete this item?")) {
-            await axios.delete(`http://localhost:8080/api/soldiers/${id}`);
-            loadSoldiers();
+            try {
+                await axios.delete(`http://localhost:8080/api/soldiers/${id}`);
+                loadSoldiers();
+            } catch (error) {
+                console.error("Error deleting soldier:", error);
+            }
         }
+    };
+
+    const getMasName = (id) => {
+        const mas = masList.find(m => m.id === id);
+        return mas ? mas.nameOfMas : "";
+    };
+
+    const getTypeName = (id) => {
+        const type = soldierTypeList.find(t => t.id === id);
+        return type ? type.nameOfType : "";
     };
 
     return (
@@ -27,7 +67,6 @@ export default function Soldier() {
                 <Link className="btn btn-outline-primary mb-4" to="/soldiers/add">
                     Add Soldier Info
                 </Link>
-
                 <table className="table border shadow">
                     <thead>
                         <tr>
@@ -51,20 +90,17 @@ export default function Soldier() {
                                 <td>{soldier.dateOfBirth}</td>
                                 <td>{soldier.militaryCard}</td>
                                 <td>{soldier.dateOfIssueMilitaryCard}</td>
-                                <td>{soldier.masName}</td>
-                                <td>{soldier.typeOfSoldierName}</td>
+                                <td>{getMasName(soldier.masId)}</td>
+                                <td>{getTypeName(soldier.typeOfSoldier)}</td>
                                 <td>
-                                    <Link className="btn btn-primary mx-2" 
-                                    to={`/soldiers/view/${soldier.id}`}>
+                                    <Link className="btn btn-primary mx-2" to={`/soldiers/view/${soldier.id}`}>
                                         View
                                     </Link>
-                                    <Link className="btn btn-outline-primary mx-2" 
-                                    to={`/soldiers/edit/${soldier.id}`}>
+                                    <Link className="btn btn-outline-primary mx-2" to={`/soldiers/edit/${soldier.id}`}>
                                         Edit
-                                        </Link>
-                                    <button className="btn btn-danger mx-2" 
-                                        onClick={() => deleteSoldier(soldier.id)}>
-                                            Delete
+                                    </Link>
+                                    <button className="btn btn-danger mx-2" onClick={() => deleteSoldier(soldier.id)}>
+                                        Delete
                                     </button>
                                 </td>
                             </tr>
