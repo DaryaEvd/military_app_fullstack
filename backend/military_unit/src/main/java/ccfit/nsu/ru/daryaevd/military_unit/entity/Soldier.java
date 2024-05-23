@@ -4,9 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -32,21 +29,21 @@ public class Soldier {
     @Column(name = "military_card", nullable = false)
     private String militaryCard;
 
-    // todo: this doesn't allow normal data like 01.01.1991. fix it
     @Column(name = "date_of_issue_of_military_card", nullable = false)
     private Date dateOfIssueMilitaryCard;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mas_id", referencedColumnName = "id")
-    private Mas mas;
-
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(name = "commander_table",
-            joinColumns = @JoinColumn(name = "soldier_id"),
-            inverseJoinColumns = @JoinColumn(name = "subdivision_id"))
-    private List<Subdivision> subdivisions;
+    private Mas masId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "soldier_type", /*referencedColumnName = "id",*/ nullable = false)
+    @JoinColumn(name = "soldier_type_id", referencedColumnName = "id", nullable = false)
     private SoldierType soldierType;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "subdivision_id", referencedColumnName = "id")
+    private Subdivision subdivision;
+
+    @Column(name = "is_commander", nullable = false)
+    private Boolean isCommander;
 }

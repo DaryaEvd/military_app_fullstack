@@ -13,7 +13,8 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/api/subdivisions")
+@RequestMapping("/api/subdivision")
+@CrossOrigin("http://localhost:3000")
 public class SubdivisionController {
     private SubdivisionService subdivisionService;
 
@@ -54,30 +55,30 @@ public class SubdivisionController {
         return ResponseEntity.ok("Subdivision deleted successfully");
     }
 
-    @GetMapping("/most-military-units")
-    public ResponseEntity<List<Object[]>> getSubdivisionsWithMostMilitaryUnits() {
-        List<Object[]> result = subdivisionService.findSubdivisionsWithMostMilitaryUnits();
-        return new ResponseEntity<>(result, HttpStatus.OK);
-    }
+//    @GetMapping("/most_military_units")
+//    public ResponseEntity<List<Object[]>> getSubdivisionsWithMostMilitaryUnits() {
+//        List<Object[]> result = subdivisionService.findSubdivisionsWithMostMilitaryUnits();
+//        return new ResponseEntity<>(result, HttpStatus.OK);
+//    }
 
-    @GetMapping("/specified-subdivision")
-    public ResponseEntity<Object[]> getCommanderBySubdivisionName(@RequestParam(value = "subdivisionName") String subdivisionName) {
-        List<Object[]> result = subdivisionService.findCommanderBySubdivisionName(subdivisionName);
-        if (result.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(result.get(0)); // Assuming there is only one commander per subdivision
-    }
+//    @GetMapping("/specified-subdivision")
+//    public ResponseEntity<Object[]> getCommanderBySubdivisionName(@RequestParam(value = "subdivisionName") String subdivisionName) {
+//        List<Object[]> result = subdivisionService.findCommanderBySubdivisionName(subdivisionName);
+//        if (result.isEmpty()) {
+//            return ResponseEntity.notFound().build();
+//        }
+//        return ResponseEntity.ok(result.get(0)); // Assuming there is only one commander per subdivision
+//    }
 
-    @GetMapping("/combat-equipment")
-    public List<Subdivision> findSubdivisionsWithSpecifiedCombatEquipment() {
-        return subdivisionService.findSubdivisionsWithSpecifiedCombatEquipment();
-    }
+//    @GetMapping("/combat-equipment")
+//    public List<Subdivision> findSubdivisionsWithSpecifiedCombatEquipment() {
+//        return subdivisionService.findSubdivisionsWithSpecifiedCombatEquipment();
+//    }
 
-    @GetMapping("/military-buildings/dislocation")
-    public List<MilitaryBuilding> getMilitaryBuildingsForDislocation() {
-        return subdivisionService.getMilitaryBuildingsForDislocation();
-    }
+//    @GetMapping("/military-buildings/dislocation")
+//    public List<MilitaryBuilding> getMilitaryBuildingsForDislocation() {
+//        return subdivisionService.getMilitaryBuildingsForDislocation();
+//    }
 
 
 //    @GetMapping("/officers")

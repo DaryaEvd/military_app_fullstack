@@ -17,13 +17,13 @@ public interface SubdivisionRepository extends JpaRepository<Subdivision, Long> 
     Get data about the army, division, corps, which includes the most (least) military units.
      */
 
-    @Query(""" 
-            SELECT s.typeOfSubdivision.nameOfType AS subdivisionType, COUNT(s) AS unitCount
-            FROM Subdivision s
-            GROUP BY s.typeOfSubdivision.nameOfType
-            ORDER BY COUNT(s) DESC
-            """)
-    List<Object[]> findSubdivisionsWithMostMilitaryUnits();
+//    @Query("""
+//            SELECT s.typeOfSubdivision.nameOfType AS subdivisionType, COUNT(s) AS unitCount
+//            FROM Subdivision s
+//            GROUP BY s.typeOfSubdivision.nameOfType
+//            ORDER BY COUNT(s) DESC
+//            """)
+//    List<Object[]> findSubdivisionsWithMostMilitaryUnits();
 
     /* my_query 1
     Получить перечень всех частей военного округа, указанной армии, дивизии,
@@ -32,30 +32,30 @@ public interface SubdivisionRepository extends JpaRepository<Subdivision, Long> 
     Receive a list of all units of the military district, the specified army,
         division, corps and their commanders.
      */
-    @Query("""
-            SELECT sld.firstName AS commanderFirstName, sld.lastName AS commanderLastName
-            FROM Subdivision s
-            JOIN s.soldiers sld
-            WHERE s.nameOfSubdivision = :subdivisionName
-            """)
-    List<Object[]> findCommanderBySubdivisionName(@Param("subdivisionName") String subdivisionName);
+//    @Query("""
+//            SELECT sld.firstName AS commanderFirstName, sld.lastName AS commanderLastName
+//            FROM Subdivision s
+//            JOIN s.soldiers sld
+//            WHERE s.nameOfSubdivision = :subdivisionName
+//            """)
+//    List<Object[]> findCommanderBySubdivisionName(@Param("subdivisionName") String subdivisionName);
 
 
     /* my_query 8
     Receive a list of military subdivisions in which the number of the specified type
     of combat equipment is more than 5 (or there is no specified military equipment).
      */
-    @Query("SELECT s FROM Subdivision s " +
-            "LEFT JOIN s.combatEquipment ce " +
-            "WHERE ce.id IS NULL OR ce.numberOfSeats > 5")
-    List<Subdivision> findSubdivisionsWithSpecifiedCombatEquipment();
+//    @Query("SELECT s FROM Subdivision s " +
+//            "LEFT JOIN s.combatEquipment ce " +
+//            "WHERE ce.id IS NULL OR ce.numberOfSeats > 5")
+//    List<Subdivision> findSubdivisionsWithSpecifiedCombatEquipment();
 
 
     /* my_query 5
     Receive a list of military buildings for dislocation of all military subdivisions.
      */
-    @Query(value = "SELECT DISTINCT mb FROM MilitaryBuilding mb JOIN Subdivision st ON mb.id = st.militaryBuilding.id WHERE st.isDislocated = true")
-    List<MilitaryBuilding> findMilitaryBuildingsForDislocation();
+//    @Query(value = "SELECT DISTINCT mb FROM MilitaryBuilding mb JOIN Subdivision st ON mb.id = st.militaryBuilding.id WHERE st.isDislocated = true")
+//    List<MilitaryBuilding> findMilitaryBuildingsForDislocation();
 
 
 //    @Query("SELECT s.nameOfSubdivision AS subdivisionName, st.nameOfType AS subdivisionType, " +

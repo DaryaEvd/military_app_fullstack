@@ -60,8 +60,8 @@ public class MasServiceImpl implements MasService {
         masRepository.deleteById(masId);
     }
 
-    @Override
-    public List<String> findMasWithMoreThanFiveSoldiersOrNone() {
-        return masRepository.findMasWithMoreThanFiveSoldiersOrNone();
-    }
+//    @Override
+//    public List<String> findMasWithMoreThanFiveSoldiersOrNone() {
+//        return masRepository.findMasWithMoreThanFiveSoldiersOrNone();
+//    }
 }

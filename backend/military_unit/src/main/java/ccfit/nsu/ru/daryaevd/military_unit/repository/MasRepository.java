@@ -11,12 +11,12 @@ public interface MasRepository extends JpaRepository<Mas, Long> {
     Obtain a list of military specialties for which there are more than five
     specialists in a particular subdivision (there are no specialists).
      */
-    @Query("SELECT m.nameOfMas " +
-            "FROM Mas m " +
-            "LEFT JOIN m.soldiers s " +
-            "LEFT JOIN s.subdivisions st " +
-            "GROUP BY m.nameOfMas " +
-            "HAVING COUNT(s.id) > 5 OR COUNT(s.id) = 0")
-    List<String> findMasWithMoreThanFiveSoldiersOrNone();
+//    @Query("SELECT m.nameOfMas " +
+//            "FROM Mas m " +
+//            "LEFT JOIN m.soldiers s " +
+//            "LEFT JOIN s.subdivisions st " +
+//            "GROUP BY m.nameOfMas " +
+//            "HAVING COUNT(s.id) > 5 OR COUNT(s.id) = 0")
+//    List<String> findMasWithMoreThanFiveSoldiersOrNone();
 
 }

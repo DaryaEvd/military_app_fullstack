@@ -6,11 +6,13 @@ export default function Soldier() {
     const [soldiers, setSoldiers] = useState([]);
     const [masList, setMasList] = useState([]);
     const [soldierTypeList, setSoldierTypeList] = useState([]);
+    const [subdivisionList, setSubdivisionList] = useState([]);
 
     useEffect(() => {
         loadSoldiers();
         fetchMasList();
         fetchSoldierTypeList();
+        fetchSubdivisionList();
     }, []);
 
     const loadSoldiers = async () => {
@@ -40,6 +42,15 @@ export default function Soldier() {
         }
     };
 
+    const fetchSubdivisionList = async () => {
+        try {
+            const response = await axios.get("http://localhost:8080/api/subdivision");
+            setSubdivisionList(response.data);
+        } catch (error) {
+            console.error("Error fetching Subdivision list:", error);
+        }
+    };
+
     const deleteSoldier = async (id) => {
         if (window.confirm("Are you sure you want to delete this item?")) {
             try {
@@ -61,6 +72,11 @@ export default function Soldier() {
         return type ? type.nameOfType : "";
     };
 
+    const getSubdivisionName = (id) => {
+        const subdivision = subdivisionList.find(s => s.id === id);
+        return subdivision ? subdivision.nameOfSubdivision : "";
+    };
+
     return (
         <div className='container'>
             <div className='py-4'>
@@ -78,6 +94,8 @@ export default function Soldier() {
                             <th scope="col">Date Of Issue Military Card</th>
                             <th scope="col">Mas</th>
                             <th scope="col">Type Of Soldier</th>
+                            <th scope="col">Subdivision</th>
+                            <th scope="col">Commander</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
@@ -92,6 +110,8 @@ export default function Soldier() {
                                 <td>{soldier.dateOfIssueMilitaryCard}</td>
                                 <td>{getMasName(soldier.masId)}</td>
                                 <td>{getTypeName(soldier.typeOfSoldier)}</td>
+                                <td>{getSubdivisionName(soldier.subdivisionId)}</td>
+                                <td>{soldier.isCommander ? "Yes" : "No"}</td>
                                 <td>
                                     <Link className="btn btn-primary mx-2" to={`/soldiers/view/${soldier.id}`}>
                                         View

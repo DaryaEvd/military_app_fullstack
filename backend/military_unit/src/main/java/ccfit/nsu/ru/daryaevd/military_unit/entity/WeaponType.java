@@ -28,6 +28,6 @@ public class WeaponType {
     @Column(name = "condition_of_vehicle", nullable = false)
     private String conditionOfVehicle;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "weaponType", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, /*mappedBy = "weaponType", */ cascade = CascadeType.ALL)
     private List<Subdivision> subdivisionList;
 }

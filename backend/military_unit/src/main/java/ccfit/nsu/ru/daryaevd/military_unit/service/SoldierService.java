@@ -16,13 +16,13 @@ public interface SoldierService {
 
     void deleteSoldier(Long soldierId);
 
-    List<Soldier> getOfficers();
+//    List<Soldier> getOfficers();
 
-    List<Soldier> getOfficersByTypeAndSubdivisionTypeRank(Integer minRank, Integer maxRank, Integer subdivisionTypeRank);
+//    List<Soldier> getOfficersByTypeAndSubdivisionTypeRank(Integer minRank, Integer maxRank, Integer subdivisionTypeRank);
 
-    List<Soldier> findSergeants();
-
-    List<Soldier> findSergeantsByRankAndSubdivisionType(Integer lowerRank, Integer upperRank, Integer subdivisionRank);
-
-    List<Soldier> findSoldiersByMasIdAndSubdivisionName(Long masId, String subdivisionName);
+//    List<Soldier> findSergeants();
+//
+//    List<Soldier> findSergeantsByRankAndSubdivisionType(Integer lowerRank, Integer upperRank, Integer subdivisionRank);
+//
+//    List<Soldier> findSoldiersByMasIdAndSubdivisionName(Long masId, String subdivisionName);
 }

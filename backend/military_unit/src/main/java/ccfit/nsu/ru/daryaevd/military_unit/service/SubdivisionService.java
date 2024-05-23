@@ -17,13 +17,13 @@ public interface SubdivisionService {
 
     void deleteSubdivision(Long subdivisionId);
 
-    List<Object[]> findSubdivisionsWithMostMilitaryUnits();
+//    List<Object[]> findSubdivisionsWithMostMilitaryUnits();
 
-    List<Object[]> findCommanderBySubdivisionName(String subdivisionName);
-
-    List<Subdivision> findSubdivisionsWithSpecifiedCombatEquipment();
-
-    List<MilitaryBuilding> getMilitaryBuildingsForDislocation();
+//    List<Object[]> findCommanderBySubdivisionName(String subdivisionName);
+//
+//    List<Subdivision> findSubdivisionsWithSpecifiedCombatEquipment();
+//
+//    List<MilitaryBuilding> getMilitaryBuildingsForDislocation();
 
 
 //    List<Object[]> findOfficersByRank(Integer rank);

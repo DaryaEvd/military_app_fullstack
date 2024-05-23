@@ -34,6 +34,6 @@ public class CombatEquipment {
     @Column(name = "name_of_vehicle", nullable = false)
     private String nameOfVehicle;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "combatEquipment", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, /*mappedBy = "combatEquipment",*/ cascade = CascadeType.ALL)
     private List<Subdivision> subdivisionList;
 }

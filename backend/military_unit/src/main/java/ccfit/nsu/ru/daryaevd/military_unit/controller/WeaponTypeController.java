@@ -12,7 +12,8 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/api/weapon-types")
+@RequestMapping("/api/weapon_type")
+@CrossOrigin("http://localhost:3000")
 public class WeaponTypeController {
     private WeaponTypeService weaponTypeService;
 

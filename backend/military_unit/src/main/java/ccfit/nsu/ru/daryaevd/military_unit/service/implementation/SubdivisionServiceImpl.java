@@ -59,6 +59,7 @@ public class SubdivisionServiceImpl implements SubdivisionService {
         subdivisionType.setId(updatedSubdivision.getTypeOfSubdivision());
         subdivision.setTypeOfSubdivision(subdivisionType);
 
+
         Subdivision updatedSubdivisionObj = subdivisionRepository.save(subdivision);
 
         return SubdivisionMapper.mapToSubdivisionDto(updatedSubdivisionObj);
@@ -73,25 +74,25 @@ public class SubdivisionServiceImpl implements SubdivisionService {
     }
 
 
-    @Override
-    public List<Object[]> findSubdivisionsWithMostMilitaryUnits() {
-        return subdivisionRepository.findSubdivisionsWithMostMilitaryUnits();
-    }
+//    @Override
+//    public List<Object[]> findSubdivisionsWithMostMilitaryUnits() {
+//        return subdivisionRepository.findSubdivisionsWithMostMilitaryUnits();
+//    }
 
-    @Override
-    public List<Object[]> findCommanderBySubdivisionName(String subdivisionName) {
-        return subdivisionRepository.findCommanderBySubdivisionName(subdivisionName);
-    }
-
-    @Override
-    public List<Subdivision> findSubdivisionsWithSpecifiedCombatEquipment() {
-        return subdivisionRepository.findSubdivisionsWithSpecifiedCombatEquipment();
-    }
-
-    @Override
-    public List<MilitaryBuilding> getMilitaryBuildingsForDislocation() {
-        return subdivisionRepository.findMilitaryBuildingsForDislocation();
-    }
+//    @Override
+//    public List<Object[]> findCommanderBySubdivisionName(String subdivisionName) {
+//        return subdivisionRepository.findCommanderBySubdivisionName(subdivisionName);
+//    }
+//
+//    @Override
+//    public List<Subdivision> findSubdivisionsWithSpecifiedCombatEquipment() {
+//        return subdivisionRepository.findSubdivisionsWithSpecifiedCombatEquipment();
+//    }
+//
+//    @Override
+//    public List<MilitaryBuilding> getMilitaryBuildingsForDislocation() {
+//        return subdivisionRepository.findMilitaryBuildingsForDislocation();
+//    }
 
 
 

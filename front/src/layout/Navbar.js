@@ -33,6 +33,9 @@ export default function Navbar() {
                             <li className="nav-item">
                                 <Link className="nav-link" to="/soldiers">Soldier</Link>
                             </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/military_building">Military Building</Link>
+                            </li>
 
                             {/* <li className="nav-item">
                                 <Link className="nav-link" to="/soldiers">Soldiers</Link>

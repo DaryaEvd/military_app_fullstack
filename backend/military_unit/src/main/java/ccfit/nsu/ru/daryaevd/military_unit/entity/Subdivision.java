@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -22,13 +23,8 @@ public class Subdivision {
     @Column(name = "name_of_subdivision", nullable = false)
     private String nameOfSubdivision;
 
-    @ManyToMany
-    @JoinTable(
-            name = "commander_table",
-            joinColumns = @JoinColumn(name = "subdivision_id"),
-            inverseJoinColumns = @JoinColumn(name = "soldier_id")
-    )
-    private List<Soldier> soldiers;
+    @OneToMany(mappedBy = "subdivision", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Soldier> soldiers = new ArrayList<>();
 
     @Column(name = "number_of_subdivision", nullable = false)
     private Integer numberOfSubdivision;
@@ -36,25 +32,11 @@ public class Subdivision {
     @Column(name = "dislocated", nullable = false)
     private Boolean isDislocated;
 
-    @Column(name = "commander", nullable = false)
-    private Integer commander; // TODO: think about reference?
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "commander_id", referencedColumnName = "id")
+    private Soldier commander;
 
-    @ManyToOne
-    @JoinColumn(name = "type_of_subdivision", referencedColumnName = "id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "type_of_subdivision_id", referencedColumnName = "id", nullable = false)
     private SubdivisionType typeOfSubdivision;
-
-    @Column(name = "high_type", nullable = false)
-    private Integer highType;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "military_building", /*referencedColumnName = "id",*/ nullable = false)
-    private MilitaryBuilding militaryBuilding;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "combat_equipment", /*referencedColumnName = "id",*/ nullable = false)
-    private CombatEquipment combatEquipment;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "weapon_type", /*referencedColumnName = "id",*/ nullable = false)
-    private WeaponType weaponType;
 }

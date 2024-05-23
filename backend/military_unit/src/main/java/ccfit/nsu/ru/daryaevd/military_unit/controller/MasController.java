@@ -46,8 +46,8 @@ public class MasController {
         return ResponseEntity.ok("MAS type deleted successfully");
     }
 
-    @GetMapping("/soldier-count")
-    public List<String> findMasWithMoreThanFiveSoldiersOrNone() {
-        return masService.findMasWithMoreThanFiveSoldiersOrNone();
-    }
+//    @GetMapping("/soldier-count")
+//    public List<String> findMasWithMoreThanFiveSoldiersOrNone() {
+//        return masService.findMasWithMoreThanFiveSoldiersOrNone();
+//    }
 }

@@ -82,22 +82,22 @@ INSERT INTO mas_type (code_of_mas, name_of_mas) VALUES
 
 -- Inserting data into military_building_table
 INSERT INTO military_building_table (can_use_for_dislocation, type_of_building, area_of_building, amount_of_rooms) VALUES
-    (false, 'Administrative Facilities', 500, 20),
-    (true, 'Ammunition Storage Facilities', 1000, 50),
-    (true, 'Commissary Facilities', 300, 15),
-    (true, 'Correctional Facilities', 200, 10),
-    (true, 'Fortifications', 800, 30),
-    (true, 'Hospitals', 1500, 100),
-    (true, 'Housing', 1200, 60),
-    (true, 'Containers,crates', 400, 10),
-    (true, 'Military Intelligence Facilities', 600, 25),
-    (true, 'POL (Petroleum, Oils, & Lubricants) Storage and Handling Facilities', 1000, 40),
-    (true, 'Recreation Facilities', 900, 35),
-    (true, 'Research Facilities', 700, 25),
-    (false, 'Training Facilities', 800, 30),
-    (true, 'Utility Structures', 500, 20),
-    (true, 'Vehicle Repair, Maintenance, & Storage Facilities', 1000, 50),
-    (true, 'Weapons and Ammunition Production Facilities', 1200, 60);
+   (false, 'Administrative Facilities', 500, 20),
+   (true, 'Ammunition Storage Facilities', 1000, 50),
+   (true, 'Commissary Facilities', 300, 15),
+   (true, 'Correctional Facilities', 200, 10),
+   (true, 'Fortifications', 800, 30),
+   (true, 'Hospitals', 1500, 100),
+   (true, 'Housing', 1200, 60),
+   (true, 'Containers,crates', 400, 10),
+   (true, 'Military Intelligence Facilities', 600, 25),
+   (true, 'POL (Petroleum, Oils, & Lubricants) Storage and Handling Facilities', 1000, 40),
+   (true, 'Recreation Facilities', 900, 35),
+   (true, 'Research Facilities', 700, 25),
+   (false, 'Training Facilities', 800, 30),
+   (true, 'Utility Structures', 500, 20),
+   (true, 'Vehicle Repair, Maintenance, & Storage Facilities', 1000, 50),
+   (true, 'Weapons and Ammunition Production Facilities', 1200, 60);
 
 
 -- Inserting data into combat_equipment_table
@@ -130,49 +130,3 @@ INSERT INTO combat_equipment_table (name_of_equipment, experience_of_using, cond
     ('Main Battle Tank', 7, 'Good', 4, 'K2 Black Panther'),
     ('Infantry Fighting Vehicle', 6, 'Good', 10, 'BMD-4'),
     ('Helicopter', 8, 'Excellent', 8, 'Eurocopter Tiger');
-
-
--- Assuming your table is named 'rocket_weapon_table' and already exists
-
-INSERT INTO rocket_weapon_table (flight_range_of_rocket, type_of_missile_guidance, type_of_ammunition, condition_of_weapon, experience_of_using)
-VALUES
-    (300, 'Infrared', 'Explosive', 'Operational', 5),
-    (500, 'Laser', 'Explosive', 'Operational', 3),
-    (150, 'Radar', 'High-Explosive', 'Maintenance Required', 2),
-    (250, 'Infrared', 'Armor-Piercing', 'Operational', 4),
-    (400, 'GPS', 'Explosive', 'Operational', 6),
-    (350, 'Laser', 'High-Explosive', 'Operational', 5),
-    (450, 'Radar', 'Explosive', 'Operational', 1),
-    (550, 'Infrared', 'Armor-Piercing', 'Maintenance Required', 7),
-    (600, 'Laser', 'Explosive', 'Operational', 8),
-    (700, 'GPS', 'High-Explosive', 'Operational', 3);
-
--- Assuming your table is named 'artillery_table' and already exists
-
-INSERT INTO artillery_table (name_artillery, caliber, firing_distance, shooting_speed, type_of_ammunition, condition_of_weapon, experience_of_using)
-VALUES
-    ('M777 Howitzer', 155, 24000, 5, 'High-Explosive', 'Operational', 7),
-    ('PzH 2000', 155, 30000, 8, 'Armor-Piercing', 'Operational', 5),
-    ('D-30 Howitzer', 122, 15300, 6, 'High-Explosive', 'Maintenance Required', 10),
-    ('M119 Howitzer', 105, 11500, 3, 'Explosive', 'Operational', 4),
-    ('M198 Howitzer', 155, 22200, 4, 'High-Explosive', 'Operational', 8),
-    ('2A65 Msta-B', 152, 28700, 7, 'Explosive', 'Operational', 6),
-    ('Type 99', 155, 39000, 9, 'Armor-Piercing', 'Operational', 3),
-    ('FH70 Howitzer', 155, 24000, 5, 'High-Explosive', 'Operational', 2),
-    ('2A36 Giatsint-B', 152, 28000, 4);
-
-
--- Assuming your table is named 'gun_table' and already exists
-INSERT INTO gun_table (name_of_gun, shooting_speed, caliber, magazine_capacity)
-VALUES
-('M16', 950, 5.56, 30),
-     ('AK-47', 600, 7.62, 30),
-     ('Glock 17', 1200, 9, 17),
-     ('Desert Eagle', 800, 12.7, 7),
-     ('MP5', 800, 9, 30),
-     ('Uzi', 600, 9, 32),
-     ('FN SCAR', 625, 7.62, 20),
-     ('M4 Carbine', 900, 5.56, 30),
-     ('SIG Sauer P226', 1200, 9, 15),
-     ('Steyr AUG', 750, 5.56, 30);
-

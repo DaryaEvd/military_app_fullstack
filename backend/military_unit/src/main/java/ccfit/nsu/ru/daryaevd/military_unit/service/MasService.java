@@ -15,5 +15,5 @@ public interface MasService {
 
     void deleteMas(Long masId);
 
-    List<String> findMasWithMoreThanFiveSoldiersOrNone();
+//    List<String> findMasWithMoreThanFiveSoldiersOrNone();
 }

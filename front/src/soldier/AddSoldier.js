@@ -1,10 +1,9 @@
-import axios from 'axios';
-import React, { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useNavigate, Link} from "react-router-dom";
 
 export default function AddSoldier() {
-    let navigate = useNavigate();
-
+    const navigate = useNavigate();
     const [soldier, setSoldier] = useState({
         firstName: "",
         lastName: "",
@@ -12,168 +11,192 @@ export default function AddSoldier() {
         militaryCard: "",
         dateOfIssueMilitaryCard: "",
         masId: "",
-        typeOfSoldier: ""
+        typeOfSoldier: "",
+        subdivisionId: "",
+        isCommander: false
     });
 
     const [masList, setMasList] = useState([]);
     const [soldierTypeList, setSoldierTypeList] = useState([]);
+    const [subdivisionList, setSubdivisionList] = useState([]);
 
     useEffect(() => {
-        const fetchMasList = async () => {
-            try {
-                const response = await axios.get("http://localhost:8080/api/mas", {
-                    withCredentials: false
-                });
-                setMasList(response.data);
-            } catch (error) {
-                console.error("Error fetching Mas list:", error);
-            }
-        };
-
-        const fetchSoldierTypeList = async () => {
-            try {
-                const response = await axios.get("http://localhost:8080/api/soldier_type", {
-                    withCredentials: false
-                });
-                setSoldierTypeList(response.data);
-            } catch (error) {
-                console.error("Error fetching SoldierType list:", error);
-            }
-        };
-
         fetchMasList();
         fetchSoldierTypeList();
+        fetchSubdivisionList();
     }, []);
 
-    const { firstName, lastName, dateOfBirth, militaryCard, dateOfIssueMilitaryCard, masId, typeOfSoldier } = soldier;
-
-    const onInputChange = (e) => {
-        setSoldier({ ...soldier, [e.target.name]: e.target.value });
+    const fetchMasList = async () => {
+        try {
+            const response = await axios.get("http://localhost:8080/api/mas");
+            setMasList(response.data);
+        } catch (error) {
+            console.error("Error fetching Mas list:", error);
+        }
     };
 
-    const onSubmit = async (e) => {
+    const fetchSoldierTypeList = async () => {
+        try {
+            const response = await axios.get("http://localhost:8080/api/soldier_type");
+            setSoldierTypeList(response.data);
+        } catch (error) {
+            console.error("Error fetching SoldierType list:", error);
+        }
+    };
+
+    const fetchSubdivisionList = async () => {
+        try {
+            const response = await axios.get("http://localhost:8080/api/subdivision");
+            setSubdivisionList(response.data);
+        } catch (error) {
+            console.error("Error fetching Subdivision list:", error);
+        }
+    };
+
+    const onInputChange = e => {
+        const { name, value, type, checked } = e.target;
+        setSoldier({
+            ...soldier,
+            [name]: type === 'checkbox' ? checked : value
+        });
+    };
+
+    const onSubmit = async e => {
         e.preventDefault();
         try {
-            if (!soldier.subdivisionIds) {
-                soldier.subdivisionIds = [];
-            }
             await axios.post("http://localhost:8080/api/soldiers", soldier);
             navigate("/soldiers");
         } catch (error) {
-            if (error.response) {
-                console.error("Backend returned an error:", error.response.data);
-                console.error("Status code:", error.response.status);
-            } else if (error.request) {
-                console.error("No response received:", error.request);
-            } else {
-                console.error("Error in setting up request:", error.message);
-            }
+            console.error("Error creating soldier:", error);
         }
     };
 
     return (
         <div className='container'>
             <div className='row'>
-                <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
-                    <h2 className='text-center m-4'>Register Soldier</h2>
-                    <form onSubmit={(e) => onSubmit(e)}>
+                <div className='col-md-6 offset-md-3 border rounded p-4 mt-2 shadow'>
+                    <h2 className='text-center m-4'>Add Soldier</h2>
+                    <form onSubmit={onSubmit}>
                         <div className='mb-3'>
-                            <label htmlFor='firstName' className='form-label'>First Name</label>
+                            <label className='form-label'>First Name</label>
                             <input
                                 type="text"
-                                className='form-control'
-                                placeholder='Enter first name of soldier'
+                                className="form-control"
                                 name="firstName"
-                                id="firstName"
-                                value={firstName}
-                                onChange={(e) => onInputChange(e)}
+                                value={soldier.firstName}
+                                onChange={onInputChange}
+                                required
                             />
                         </div>
-
                         <div className='mb-3'>
-                            <label htmlFor='lastName' className='form-label'>Last Name</label>
+                            <label className='form-label'>Last Name</label>
                             <input
                                 type="text"
-                                className='form-control'
-                                placeholder='Enter last name of soldier'
+                                className="form-control"
                                 name="lastName"
-                                id="lastName"
-                                value={lastName}
-                                onChange={(e) => onInputChange(e)}
+                                value={soldier.lastName}
+                                onChange={onInputChange}
+                                required
                             />
                         </div>
-
                         <div className='mb-3'>
-                            <label htmlFor='dateOfBirth' className='form-label'>Date Of Birth</label>
+                            <label className='form-label'>Date of Birth</label>
                             <input
                                 type="date"
-                                className='form-control'
+                                className="form-control"
                                 name="dateOfBirth"
-                                id="dateOfBirth"
-                                value={dateOfBirth}
-                                onChange={(e) => onInputChange(e)}
+                                value={soldier.dateOfBirth}
+                                onChange={onInputChange}
+                                required
                             />
                         </div>
-
                         <div className='mb-3'>
-                            <label htmlFor='militaryCard' className='form-label'>Military Card</label>
+                            <label className='form-label'>Military Card</label>
                             <input
                                 type="text"
-                                className='form-control'
-                                placeholder='Enter military card'
+                                className="form-control"
                                 name="militaryCard"
-                                id="militaryCard"
-                                value={militaryCard}
-                                onChange={(e) => onInputChange(e)}
+                                value={soldier.militaryCard}
+                                onChange={onInputChange}
+                                required
                             />
                         </div>
-
                         <div className='mb-3'>
-                            <label htmlFor='dateOfIssueMilitaryCard' className='form-label'>Date Of Issue Military Card</label>
+                            <label className='form-label'>Date of Issue Military Card</label>
                             <input
                                 type="date"
-                                className='form-control'
+                                className="form-control"
                                 name="dateOfIssueMilitaryCard"
-                                id="dateOfIssueMilitaryCard"
-                                value={dateOfIssueMilitaryCard}
-                                onChange={(e) => onInputChange(e)}
+                                value={soldier.dateOfIssueMilitaryCard}
+                                onChange={onInputChange}
+                                required
                             />
                         </div>
-
                         <div className='mb-3'>
-                            <label htmlFor='masId' className='form-label'>Mas</label>
+                            <label className='form-label'>Mas</label>
                             <select
-                                className='form-control'
+                                className="form-control"
                                 name="masId"
-                                id="masId"
-                                value={masId}
-                                onChange={(e) => onInputChange(e)}
+                                value={soldier.masId}
+                                onChange={onInputChange}
+                                required
                             >
                                 <option value="">Select Mas</option>
                                 {masList.map(mas => (
-                                    <option key={mas.id} value={mas.id}>{mas.nameOfMas}</option>
+                                    <option key={mas.id} value={mas.id}>
+                                        {mas.nameOfMas}
+                                    </option>
                                 ))}
                             </select>
                         </div>
-
                         <div className='mb-3'>
-                            <label htmlFor='typeOfSoldier' className='form-label'>Type Of Soldier</label>
+                            <label className='form-label'>Type Of Soldier</label>
                             <select
-                                className='form-control'
+                                className="form-control"
                                 name="typeOfSoldier"
-                                id="typeOfSoldier"
-                                value={typeOfSoldier}
-                                onChange={(e) => onInputChange(e)}
+                                value={soldier.typeOfSoldier}
+                                onChange={onInputChange}
+                                required
                             >
-                                <option value="">Select Type</option>
+                                <option value="">Select Soldier Type</option>
                                 {soldierTypeList.map(type => (
-                                    <option key={type.id} value={type.id}>{type.nameOfType}</option>
+                                    <option key={type.id} value={type.id}>
+                                        {type.nameOfType}
+                                    </option>
                                 ))}
                             </select>
                         </div>
-
-                        <button type="submit" className="btn btn-outline-primary">Submit</button>
-                        <Link className="btn btn-outline-danger mx-2" to="/soldiers">Cancel</Link>
+                        <div className='mb-3'>
+                            <label className='form-label'>Subdivision</label>
+                            <select
+                                className="form-control"
+                                name="subdivisionId"
+                                value={soldier.subdivisionId}
+                                onChange={onInputChange}
+                                required
+                            >
+                                <option value="">Select Subdivision</option>
+                                {subdivisionList.map(subdivision => (
+                                    <option key={subdivision.id} value={subdivision.id}>
+                                        {subdivision.nameOfSubdivision}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                        <div className='mb-3'>
+                            <div className='form-check'>
+                                <input
+                                    className='form-check-input'
+                                    type='checkbox'
+                                    name='isCommander'
+                                    checked={soldier.isCommander}
+                                    onChange={onInputChange}
+                                />
+                                <label className='form-check-label'>Commander</label>
+                            </div>
+                        </div>
+                        <button type="submit" className="btn btn-primary">Submit</button>
+                        <Link className="btn btn-danger mx-2" to="/soldiers">Cancel</Link>
                     </form>
                 </div>
             </div>

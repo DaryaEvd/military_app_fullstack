@@ -12,7 +12,8 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/api/military-building")
+@RequestMapping("/api/military_building")
+@CrossOrigin("http://localhost:3000")
 public class MilitaryBuildingController {
     private MilitaryBuildingService militaryBuildingService;
 

@@ -15,14 +15,16 @@ public class SubdivisionMapper {
         subdivisionDto.setNumberOfSubdivision(subdivision.getNumberOfSubdivision());
         subdivisionDto.setIsDislocated(subdivision.getIsDislocated());
         subdivisionDto.setTypeOfSubdivision(subdivision.getTypeOfSubdivision().getId());
-        subdivisionDto.setMilitaryBuildingId(subdivision.getMilitaryBuilding().getId());
-        subdivisionDto.setCombatEquipmentId(subdivision.getCombatEquipment().getId());
-        subdivisionDto.setWeaponTypeId(subdivision.getWeaponType().getId());
 
-        List<Long> soldierIds = subdivision.getSoldiers().stream()
-                .map(Soldier::getId)
-                .collect(Collectors.toList());
-        subdivisionDto.setSoldierIds(soldierIds);
+
+//        subdivisionDto.setMilitaryBuildingId(subdivision.getMilitaryBuilding().getId());
+//        subdivisionDto.setCombatEquipmentId(subdivision.getCombatEquipment().getId());
+//        subdivisionDto.setWeaponTypeId(subdivision.getWeaponType().getId());
+//
+//        List<Long> soldierIds = subdivision.getSoldiers().stream()
+//                .map(Soldier::getId)
+//                .collect(Collectors.toList());
+//        subdivisionDto.setSoldierIds(soldierIds);
         return subdivisionDto;
     }
 
@@ -37,26 +39,28 @@ public class SubdivisionMapper {
         subdivisionType.setId(subdivisionDto.getTypeOfSubdivision());
         subdivision.setTypeOfSubdivision(subdivisionType);
 
-        MilitaryBuilding militaryBuilding = new MilitaryBuilding();
-        militaryBuilding.setId(subdivisionDto.getMilitaryBuildingId());
-        subdivision.setMilitaryBuilding(militaryBuilding);
 
-        CombatEquipment combatEquipment = new CombatEquipment();
-        combatEquipment.setId(subdivisionDto.getCombatEquipmentId());
-        subdivision.setCombatEquipment(combatEquipment);
 
-        WeaponType weaponType = new WeaponType();
-        weaponType.setId(subdivisionDto.getWeaponTypeId());
-        subdivision.setWeaponType(weaponType);
-
-        List<Soldier> soldiers = subdivisionDto.getSoldierIds().stream()
-                .map(id -> {
-                    Soldier soldier = new Soldier();
-                    soldier.setId(id);
-                    return soldier;
-                })
-                .toList();
-        subdivision.setSoldiers(soldiers);
+//        MilitaryBuilding militaryBuilding = new MilitaryBuilding();
+//        militaryBuilding.setId(subdivisionDto.getMilitaryBuildingId());
+//        subdivision.setMilitaryBuilding(militaryBuilding);
+//
+//        CombatEquipment combatEquipment = new CombatEquipment();
+//        combatEquipment.setId(subdivisionDto.getCombatEquipmentId());
+//        subdivision.setCombatEquipment(combatEquipment);
+//
+//        WeaponType weaponType = new WeaponType();
+//        weaponType.setId(subdivisionDto.getWeaponTypeId());
+//        subdivision.setWeaponType(weaponType);
+//
+//        List<Soldier> soldiers = subdivisionDto.getSoldierIds().stream()
+//                .map(id -> {
+//                    Soldier soldier = new Soldier();
+//                    soldier.setId(id);
+//                    return soldier;
+//                })
+//                .toList();
+//        subdivision.setSoldiers(soldiers);
 
         return subdivision;
     }

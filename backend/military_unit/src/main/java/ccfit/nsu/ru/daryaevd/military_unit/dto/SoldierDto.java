@@ -20,9 +20,9 @@ public class SoldierDto {
      private Date dateOfBirth;
      private String militaryCard;
      private Date dateOfIssueMilitaryCard;
-
      private Long masId;
      private Long typeOfSoldier;
-
-     private List<Long> subdivisionIds = new ArrayList<>();
+     private Long subdivisionId;
+     private Boolean isCommander;
 }
+
