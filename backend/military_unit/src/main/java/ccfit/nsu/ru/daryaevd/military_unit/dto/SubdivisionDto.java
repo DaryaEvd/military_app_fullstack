@@ -17,4 +17,6 @@ public class SubdivisionDto {
     private Integer numberOfSubdivision;
     private Boolean isDislocated;
     private Long typeOfSubdivision;
+    private Long commanderId; //
 }
+

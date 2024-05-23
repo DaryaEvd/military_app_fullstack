@@ -130,3 +130,29 @@ INSERT INTO combat_equipment_table (name_of_equipment, experience_of_using, cond
     ('Main Battle Tank', 7, 'Good', 4, 'K2 Black Panther'),
     ('Infantry Fighting Vehicle', 6, 'Good', 10, 'BMD-4'),
     ('Helicopter', 8, 'Excellent', 8, 'Eurocopter Tiger');
+
+-- Inserting data into the soldier_table
+ INSERT INTO soldier_table (first_name, last_name, date_of_birth, military_card, date_of_issue_of_military_card, mas_id, soldier_type_id, is_commander)
+VALUES
+    ('John', 'Doe', '1990-05-15', 'ABC123', '2020-01-01', 1, 1, false),
+    ('Jane', 'Smith', '1995-08-20', 'XYZ789', '2020-02-15', 2, 2, false),
+    ('Michael', 'Johnson', '1988-11-10', 'DEF456', '2020-03-20', 1, 3, false),
+    ('Emily', 'Williams', '1992-04-25', 'GHI789', '2020-04-30', 3, 4, false),
+    ('Christopher', 'Brown', '1985-09-05', 'JKL012', '2020-05-10', 2, 5, false),
+    ('Amanda', 'Davis', '1993-07-12', 'MNO345', '2020-06-20', 3, 6, false),
+    ('Robert', 'Martinez', '1991-02-28', 'PQR678', '2020-07-25', 1, 7, false),
+    ('Jennifer', 'Rodriguez', '1987-06-18', 'STU901', '2020-08-05', 2, 8, false),
+    ('William', 'Hernandez', '1983-12-08', 'VWX234', '2020-09-15', 3, 9, false),
+    ('Sarah', 'Garcia', '1990-03-22', 'YZA567', '2020-10-20', 1, 10, false);
+
+
+-- Inserting data into the subdivision_table
+INSERT INTO subdivision_table (name_of_subdivision, number_of_subdivision, dislocated, commander_id, type_of_subdivision_id)
+VALUES
+    ('Alpha Squad', 1, false, 1, 5),
+    ('Bravo Platoon', 2, true, 2, 2),
+    ('Charlie Krasniy', 3, false, 3, 3);
+
+INSERT INTO subdivision_table (name_of_subdivision, number_of_subdivision, dislocated, commander_id, type_of_subdivision_id)
+VALUES
+    ('best team', 23, true, 7, 1);

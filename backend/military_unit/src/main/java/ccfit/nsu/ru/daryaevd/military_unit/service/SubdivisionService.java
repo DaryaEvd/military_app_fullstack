@@ -1,6 +1,8 @@
 package ccfit.nsu.ru.daryaevd.military_unit.service;
 
+import ccfit.nsu.ru.daryaevd.military_unit.dto.SoldierDto;
 import ccfit.nsu.ru.daryaevd.military_unit.dto.SubdivisionDto;
+import ccfit.nsu.ru.daryaevd.military_unit.dto.SubdivisionTypeDto;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.MilitaryBuilding;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.Subdivision;
 
@@ -13,9 +15,13 @@ public interface SubdivisionService {
 
     List<SubdivisionDto> getAllSubdivisions();
 
-    SubdivisionDto updateSubdivision(Long subdivisionId, SubdivisionDto updatedEmployee);
+    SubdivisionDto updateSubdivision(Long subdivisionId, SubdivisionDto updatedSubdivision);
 
     void deleteSubdivision(Long subdivisionId);
+
+    List<SoldierDto> getAllCommanders();
+
+    List<SubdivisionTypeDto> getAllSubdivisionTypes();
 
 //    List<Object[]> findSubdivisionsWithMostMilitaryUnits();
 

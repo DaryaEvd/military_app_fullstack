@@ -1,6 +1,8 @@
 package ccfit.nsu.ru.daryaevd.military_unit.controller;
 
+import ccfit.nsu.ru.daryaevd.military_unit.dto.SoldierDto;
 import ccfit.nsu.ru.daryaevd.military_unit.dto.SubdivisionDto;
+import ccfit.nsu.ru.daryaevd.military_unit.dto.SubdivisionTypeDto;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.MilitaryBuilding;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.Subdivision;
 import ccfit.nsu.ru.daryaevd.military_unit.service.SubdivisionService;
@@ -53,6 +55,16 @@ public class SubdivisionController {
         subdivisionService.deleteSubdivision(subdivisionId);
 
         return ResponseEntity.ok("Subdivision deleted successfully");
+    }
+
+    @GetMapping("/commanders")
+    public ResponseEntity<List<SoldierDto>> getAllCommanders() {
+        return ResponseEntity.ok(subdivisionService.getAllCommanders());
+    }
+
+    @GetMapping("/types")
+    public ResponseEntity<List<SubdivisionTypeDto>> getAllSubdivisionTypes() {
+        return ResponseEntity.ok(subdivisionService.getAllSubdivisionTypes());
     }
 
 //    @GetMapping("/most_military_units")
