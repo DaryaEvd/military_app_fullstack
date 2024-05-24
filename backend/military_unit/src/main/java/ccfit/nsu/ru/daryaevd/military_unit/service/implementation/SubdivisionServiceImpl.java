@@ -4,11 +4,14 @@ import ccfit.nsu.ru.daryaevd.military_unit.dto.SoldierDto;
 import ccfit.nsu.ru.daryaevd.military_unit.dto.SubdivisionDto;
 import ccfit.nsu.ru.daryaevd.military_unit.dto.SubdivisionTypeDto;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.MilitaryBuilding;
+import ccfit.nsu.ru.daryaevd.military_unit.entity.Soldier;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.Subdivision;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.SubdivisionType;
 import ccfit.nsu.ru.daryaevd.military_unit.exception.ResourceNotFoundException;
 import ccfit.nsu.ru.daryaevd.military_unit.mapper.SubdivisionMapper;
+import ccfit.nsu.ru.daryaevd.military_unit.repository.SoldierRepository;
 import ccfit.nsu.ru.daryaevd.military_unit.repository.SubdivisionRepository;
+import ccfit.nsu.ru.daryaevd.military_unit.repository.SubdivisionTypeRepository;
 import ccfit.nsu.ru.daryaevd.military_unit.service.SoldierService;
 import ccfit.nsu.ru.daryaevd.military_unit.service.SubdivisionService;
 import ccfit.nsu.ru.daryaevd.military_unit.service.SubdivisionTypeService;
@@ -27,9 +30,25 @@ public class SubdivisionServiceImpl implements SubdivisionService {
     private final SoldierService soldierService;
     private final SubdivisionTypeService subdivisionTypeService;
 
+
+    private SubdivisionTypeRepository subdivisionTypeRepository;
+    private SoldierRepository soldierRepository;
+
     @Override
     public SubdivisionDto createSubdivision(SubdivisionDto subdivisionDto) {
-        Subdivision subdivision = SubdivisionMapper.mapToSubdivision(subdivisionDto);
+        SubdivisionType subdivisionType = subdivisionTypeRepository.findById(subdivisionDto.getTypeOfSubdivision())
+                .orElseThrow(() -> new ResourceNotFoundException("SubdivisionType not found with id " + subdivisionDto.getTypeOfSubdivision()));
+
+        Soldier commander = soldierRepository.findById(subdivisionDto.getCommanderId())
+                .orElseThrow(() -> new ResourceNotFoundException("Soldier not found with id " + subdivisionDto.getCommanderId()));
+
+        Subdivision subdivision = new Subdivision();
+        subdivision.setNameOfSubdivision(subdivisionDto.getNameOfSubdivision());
+        subdivision.setNumberOfSubdivision(subdivisionDto.getNumberOfSubdivision());
+        subdivision.setIsDislocated(subdivisionDto.getIsDislocated());
+        subdivision.setTypeOfSubdivision(subdivisionType);
+        subdivision.setCommander(commander);
+
         Subdivision savedSubdivision = subdivisionRepository.save(subdivision);
         return SubdivisionMapper.mapToSubdivisionDto(savedSubdivision);
     }
@@ -44,13 +63,13 @@ public class SubdivisionServiceImpl implements SubdivisionService {
     @Override
     public List<SubdivisionDto> getAllSubdivisions() {
         List<Subdivision> subdivisions = subdivisionRepository.findAll();
-        return subdivisions.stream().map((subdivision -> SubdivisionMapper.mapToSubdivisionDto(subdivision)))
+        return subdivisions.stream()
+                .map(SubdivisionMapper::mapToSubdivisionDto)
                 .collect(Collectors.toList());
     }
 
     @Override
     public SubdivisionDto updateSubdivision(Long subdivisionId, SubdivisionDto updatedSubdivision) {
-
         Subdivision subdivision = subdivisionRepository.findById(subdivisionId)
                 .orElseThrow(() -> new ResourceNotFoundException("Subdivision doesn't exist with given id: " + subdivisionId));
 
@@ -58,25 +77,25 @@ public class SubdivisionServiceImpl implements SubdivisionService {
         subdivision.setNumberOfSubdivision(updatedSubdivision.getNumberOfSubdivision());
         subdivision.setIsDislocated(updatedSubdivision.getIsDislocated());
 
-//        subdivision.setCommander(updatedSubdivision.getCommander());
+        if (updatedSubdivision.getCommanderId() != null) {
+            Soldier commander = soldierRepository.findById(updatedSubdivision.getCommanderId())
+                    .orElseThrow(() -> new ResourceNotFoundException("Soldier not found with id " + updatedSubdivision.getCommanderId()));
+            subdivision.setCommander(commander);
+        }
 
-        // Create a new SubdivisionType object and set its ID
-        SubdivisionType subdivisionType = new SubdivisionType();
-        subdivisionType.setId(updatedSubdivision.getTypeOfSubdivision());
+        SubdivisionType subdivisionType = subdivisionTypeRepository.findById(updatedSubdivision.getTypeOfSubdivision())
+                .orElseThrow(() -> new ResourceNotFoundException("SubdivisionType not found with id " + updatedSubdivision.getTypeOfSubdivision()));
         subdivision.setTypeOfSubdivision(subdivisionType);
 
-
         Subdivision updatedSubdivisionObj = subdivisionRepository.save(subdivision);
-
         return SubdivisionMapper.mapToSubdivisionDto(updatedSubdivisionObj);
     }
 
     @Override
     public void deleteSubdivision(Long subdivisionId) {
         Subdivision subdivision = subdivisionRepository.findById(subdivisionId)
-                .orElseThrow(() -> new ResourceNotFoundException("Subdivision doesn't exist with given id: " + subdivisionId)
-        );
-        subdivisionRepository.deleteById(subdivisionId);
+                .orElseThrow(() -> new ResourceNotFoundException("Subdivision doesn't exist with given id: " + subdivisionId));
+        subdivisionRepository.delete(subdivision);
     }
 
     @Override
@@ -90,8 +109,6 @@ public class SubdivisionServiceImpl implements SubdivisionService {
         // Return a list of all available subdivision types
         return subdivisionTypeService.getAllSubdivisionTypes();
     }
-
-
 
 
 //    @Override
@@ -113,7 +130,6 @@ public class SubdivisionServiceImpl implements SubdivisionService {
 //    public List<MilitaryBuilding> getMilitaryBuildingsForDislocation() {
 //        return subdivisionRepository.findMilitaryBuildingsForDislocation();
 //    }
-
 
 
 //    public List<Object[]> findOfficersByRank(Integer rank) {

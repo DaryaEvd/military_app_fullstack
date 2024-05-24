@@ -36,7 +36,7 @@ public class Subdivision {
     @JoinColumn(name = "commander_id", referencedColumnName = "id")
     private Soldier commander;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL /*fetch = FetchType.LAZY*/)
     @JoinColumn(name = "type_of_subdivision_id", referencedColumnName = "id", nullable = false)
     private SubdivisionType typeOfSubdivision;
 }

@@ -11,7 +11,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/api/subdivision-types")
+@RequestMapping("/api/subdivision_types")
 public class SubdivisionTypeController {
     private final SubdivisionTypeService subdivisionTypeService;
 

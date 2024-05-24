@@ -6,6 +6,11 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 
 // import SoldierType from './pages/SoldierType';
 
+import Subdivision from './pages/Subdivision';
+import AddSubdivision from './subdivisions/AddSubdivision';
+import EditSubdivision from './subdivisions/EditSubdivision';
+import ViewSubdivision from './subdivisions/ViewSubdivision';
+
 import CombatEquipment from './pages/CombatEquipment';
 import AddCombatEquipment from './combat_equipments/AddCombatEquipment';
 import EditCombatEquipment from './combat_equipments/EditCombatEquipment';
@@ -35,6 +40,11 @@ function App() {
         <Navbar />
         <Routes>
           <Route exact path="/" element={<Home />} />
+
+          <Route exact path="/subdivisions" element={<Subdivision />} />
+          <Route exact path="/subdivisions/add" element={<AddSubdivision />} />
+          <Route exact path="/subdivisions/edit/:id" element={<EditSubdivision />} />
+          <Route exact path="/subdivisions/view/:id" element={<ViewSubdivision />} />
 
           <Route exact path="/combat_equipment" element={<CombatEquipment />} />
           <Route exact path="/combat_equipment/add" element={<AddCombatEquipment />} />

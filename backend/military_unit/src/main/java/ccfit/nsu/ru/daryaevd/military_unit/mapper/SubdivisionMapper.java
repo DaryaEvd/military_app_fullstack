@@ -16,6 +16,7 @@ public class SubdivisionMapper {
         subdivisionDto.setIsDislocated(subdivision.getIsDislocated());
         subdivisionDto.setTypeOfSubdivision(subdivision.getTypeOfSubdivision().getId());
 
+        subdivisionDto.setCommanderId(subdivision.getCommander().getId());
 
 //        subdivisionDto.setMilitaryBuildingId(subdivision.getMilitaryBuilding().getId());
 //        subdivisionDto.setCombatEquipmentId(subdivision.getCombatEquipment().getId());
@@ -39,7 +40,9 @@ public class SubdivisionMapper {
         subdivisionType.setId(subdivisionDto.getTypeOfSubdivision());
         subdivision.setTypeOfSubdivision(subdivisionType);
 
-
+        Soldier soldier = new Soldier();
+        soldier.setId(subdivisionDto.getCommanderId());
+        subdivision.setCommander(soldier);
 
 //        MilitaryBuilding militaryBuilding = new MilitaryBuilding();
 //        militaryBuilding.setId(subdivisionDto.getMilitaryBuildingId());

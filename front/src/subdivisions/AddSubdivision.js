@@ -1,176 +1,149 @@
-import axios from 'axios';
-import React, { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useNavigate, Link } from "react-router-dom";
 
 export default function AddSubdivision() {
-    let navigate = useNavigate();
-
+    const navigate = useNavigate();
     const [subdivision, setSubdivision] = useState({
         nameOfSubdivision: "",
         numberOfSubdivision: "",
-        isDislocated: "",
+        isDislocated: false,
+        commanderId: "",
         typeOfSubdivision: ""
     });
 
-    const [masList, setMasList] = useState([]);
-    const [soldierTypeList, setSoldierTypeList] = useState([]);
+    const [commanderList, setCommanderList] = useState([]);
+    const [subdivisionTypeList, setSubdivisionTypeList] = useState([]);
 
     useEffect(() => {
-        const fetchMasList = async () => {
-            try {
-                const response = await axios.get("http://localhost:8080/api/mas", {
-                    withCredentials: false
-                });
-                setMasList(response.data);
-            } catch (error) {
-                console.error("Error fetching Mas list:", error);
-            }
-        };
-
-        const fetchSoldierTypeList = async () => {
-            try {
-                const response = await axios.get("http://localhost:8080/api/soldier_type", {
-                    withCredentials: false
-                });
-                setSoldierTypeList(response.data);
-            } catch (error) {
-                console.error("Error fetching SoldierType list:", error);
-            }
-        };
-
-        fetchMasList();
-        fetchSoldierTypeList();
+        fetchCommanderList();
+        fetchSubdivisionTypeList();
     }, []);
 
-    const { firstName, lastName, dateOfBirth, militaryCard, dateOfIssueMilitaryCard, masId, typeOfSoldier } = subdivision;
-
-    const onInputChange = (e) => {
-        setSubdivision({ ...subdivision, [e.target.name]: e.target.value });
+    const fetchCommanderList = async () => {
+        try {
+            const response = await axios.get("http://localhost:8080/api/soldiers");
+            setCommanderList(response.data);
+        } catch (error) {
+            console.error("Error fetching commander list:", error);
+        }
     };
 
-    const onSubmit = async (e) => {
-        e.preventDefault();
+    const fetchSubdivisionTypeList = async () => {
         try {
-            if (!subdivision.subdivisionIds) {
-                subdivision.subdivisionIds = [];
-            }
-            await axios.post("http://localhost:8080/api/soldiers", subdivision);
-            navigate("/soldiers");
+            const response = await axios.get("http://localhost:8080/api/subdivision_types");
+            setSubdivisionTypeList(response.data);
         } catch (error) {
-            if (error.response) {
-                console.error("Backend returned an error:", error.response.data);
-                console.error("Status code:", error.response.status);
-            } else if (error.request) {
-                console.error("No response received:", error.request);
-            } else {
-                console.error("Error in setting up request:", error.message);
-            }
+            console.error("Error fetching subdivision type list:", error);
+        }
+    };
+
+    const onInputChange = e => {
+        const { name, value, type, checked } = e.target;
+        setSubdivision({
+            ...subdivision,
+            [name]: type === 'checkbox' ? checked : value
+        });
+    };
+
+    const onSubmit = async e => {
+        e.preventDefault();
+        if (!subdivision.typeOfSubdivision || !subdivision.commanderId) {
+            alert("Please select a valid Commander and Subdivision Type.");
+            return;
+        }
+
+        const subdivisionData = {
+            ...subdivision,
+            typeOfSubdivisionId: subdivision.typeOfSubdivision,
+            isDislocated: Boolean(subdivision.isDislocated)
+        };
+
+        try {
+            await axios.post("http://localhost:8080/api/subdivision", subdivisionData);
+            navigate("/subdivisions");
+        } catch (error) {
+            console.error("Error creating subdivision:", error);
+            alert("Error creating subdivision. Please check your input and try again.");
         }
     };
 
     return (
         <div className='container'>
             <div className='row'>
-                <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
-                    <h2 className='text-center m-4'>Register Soldier</h2>
-                    <form onSubmit={(e) => onSubmit(e)}>
+                <div className='col-md-6 offset-md-3 border rounded p-4 mt-2 shadow'>
+                    <h2 className='text-center m-4'>Add Subdivision</h2>
+                    <form onSubmit={onSubmit}>
                         <div className='mb-3'>
-                            <label htmlFor='firstName' className='form-label'>First Name</label>
+                            <label className='form-label'>Name Of Subdivision</label>
                             <input
                                 type="text"
-                                className='form-control'
-                                placeholder='Enter first name of subdivision'
-                                name="firstName"
-                                id="firstName"
-                                value={firstName}
-                                onChange={(e) => onInputChange(e)}
+                                className="form-control"
+                                name="nameOfSubdivision"
+                                value={subdivision.nameOfSubdivision}
+                                onChange={onInputChange}
+                                required
                             />
                         </div>
-
                         <div className='mb-3'>
-                            <label htmlFor='lastName' className='form-label'>Last Name</label>
+                            <label className='form-label'>Number Of Subdivision</label>
                             <input
-                                type="text"
-                                className='form-control'
-                                placeholder='Enter last name of subdivision'
-                                name="lastName"
-                                id="lastName"
-                                value={lastName}
-                                onChange={(e) => onInputChange(e)}
+                                type="number"
+                                className="form-control"
+                                name="numberOfSubdivision"
+                                value={subdivision.numberOfSubdivision}
+                                onChange={onInputChange}
+                                required
                             />
                         </div>
-
                         <div className='mb-3'>
-                            <label htmlFor='dateOfBirth' className='form-label'>Date Of Birth</label>
-                            <input
-                                type="date"
-                                className='form-control'
-                                name="dateOfBirth"
-                                id="dateOfBirth"
-                                value={dateOfBirth}
-                                onChange={(e) => onInputChange(e)}
-                            />
+                            <div className='form-check'>
+                                <input
+                                    className='form-check-input'
+                                    type='checkbox'
+                                    name='isDislocated'
+                                    checked={subdivision.isDislocated}
+                                    onChange={onInputChange}
+                                />
+                                <label className='form-check-label'>Dislocated</label>
+                            </div>
                         </div>
-
                         <div className='mb-3'>
-                            <label htmlFor='militaryCard' className='form-label'>Military Card</label>
-                            <input
-                                type="text"
-                                className='form-control'
-                                placeholder='Enter military card'
-                                name="militaryCard"
-                                id="militaryCard"
-                                value={militaryCard}
-                                onChange={(e) => onInputChange(e)}
-                            />
-                        </div>
-
-                        <div className='mb-3'>
-                            <label htmlFor='dateOfIssueMilitaryCard' className='form-label'>Date Of Issue Military Card</label>
-                            <input
-                                type="date"
-                                className='form-control'
-                                name="dateOfIssueMilitaryCard"
-                                id="dateOfIssueMilitaryCard"
-                                value={dateOfIssueMilitaryCard}
-                                onChange={(e) => onInputChange(e)}
-                            />
-                        </div>
-
-                        <div className='mb-3'>
-                            <label htmlFor='masId' className='form-label'>Mas</label>
+                            <label className='form-label'>Commander</label>
                             <select
-                                className='form-control'
-                                name="masId"
-                                id="masId"
-                                value={masId}
-                                onChange={(e) => onInputChange(e)}
+                                className="form-control"
+                                name="commanderId"
+                                value={subdivision.commanderId}
+                                onChange={onInputChange}
+                                required
                             >
-                                <option value="">Select Mas</option>
-                                {masList.map(mas => (
-                                    <option key={mas.id} value={mas.id}>{mas.nameOfMas}</option>
+                                <option value="">Select Commander</option>
+                                {commanderList.map(commander => (
+                                    <option key={commander.id} value={commander.id}>
+                                        {commander.firstName} {commander.lastName}
+                                    </option>
                                 ))}
                             </select>
                         </div>
-
                         <div className='mb-3'>
-                            <label htmlFor='typeOfSoldier' className='form-label'>Type Of Soldier</label>
+                            <label className='form-label'>Type Of Subdivision</label>
                             <select
-                                className='form-control'
-                                name="typeOfSoldier"
-                                id="typeOfSoldier"
-                                value={typeOfSoldier}
-                                onChange={(e) => onInputChange(e)}
+                                className="form-control"
+                                name="typeOfSubdivision"
+                                value={subdivision.typeOfSubdivision}
+                                onChange={onInputChange}
+                                required
                             >
-                                <option value="">Select Type</option>
-                                {soldierTypeList.map(type => (
-                                    <option key={type.id} value={type.id}>{type.nameOfType}</option>
+                                <option value="">Select Subdivision Type</option>
+                                {subdivisionTypeList.map(type => (
+                                    <option key={type.id} value={type.id}>
+                                        {type.nameOfType}
+                                    </option>
                                 ))}
                             </select>
                         </div>
-
-                        <button type="submit" className="btn btn-outline-primary">Submit</button>
-                        <Link className="btn btn-outline-danger mx-2" to="/soldiers">Cancel</Link>
+                        <button type="submit" className="btn btn-primary">Submit</button>
+                        <Link className="btn btn-danger mx-2" to="/subdivisions">Cancel</Link>
                     </form>
                 </div>
             </div>
