@@ -46,6 +46,7 @@ INSERT INTO mas_type (code_of_mas, name_of_mas) VALUES
     ('106097', 'Deputy commander of reconnaissance unit'),
     ('106646', 'Reconnaissance scout');
 
+
 -- Inserting data into the subdivision_table
 INSERT INTO subdivision_table (name_of_subdivision, number_of_subdivision, dislocated, type_of_subdivision_id)
 VALUES
@@ -102,3 +103,5 @@ VALUES
   ('Main Battle Tank', 7, 'Good', 4, 'K2 Black Panther', 6),
   ('Infantry Fighting Vehicle', 6, 'Good', 10, 'BMD-4', 5),
   ('Helicopter', 8, 'Excellent', 8, 'Eurocopter Tiger', 2);
+
+
