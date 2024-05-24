@@ -5,24 +5,21 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class SoldierDto {
-     private Long id;
-     private String firstName;
-     private String lastName;
-     private Date dateOfBirth;
-     private String militaryCard;
-     private Date dateOfIssueMilitaryCard;
-     private Long masId;
-     private Long typeOfSoldier;
-     private Long subdivisionId;
-     private Boolean isCommander;
+    private Long id;
+    private String firstName;
+    private String lastName;
+    private Date dateOfBirth;
+    private String militaryCard;
+    private Date dateOfIssueMilitaryCard;
+    private Long masId;
+    private Long typeOfSoldier;
+    private Long subdivisionId;
+    private Boolean isCommander;
 }
-

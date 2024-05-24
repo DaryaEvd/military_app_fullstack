@@ -13,7 +13,7 @@ export default function EditSubdivision() {
         commanderId: "",
         typeOfSubdivisionId: ""
     });
-
+    
     const [commanderList, setCommanderList] = useState([]);
     const [subdivisionTypeList, setSubdivisionTypeList] = useState([]);
 

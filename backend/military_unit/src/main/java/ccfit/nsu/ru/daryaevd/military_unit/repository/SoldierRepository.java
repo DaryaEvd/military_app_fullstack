@@ -3,18 +3,12 @@ package ccfit.nsu.ru.daryaevd.military_unit.repository;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.Soldier;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
 public interface SoldierRepository extends JpaRepository<Soldier, Long> {
-
-//    List<Soldier> findByIsCommanderTrue();
-//     List<Soldier> findBySoldierTypeRankBetween(Integer lowerRank, Integer upperRank);
-//    List<Soldier> findSergeantsByRankAndSubdivisionType(Integer lowerRank, Integer upperRank, Integer subdivisionRank);
-//    List<Soldier> findByMasIdAndSubdivisionName(Long masId, String subdivisionName);
-//
-
+    @Query("SELECT s FROM Soldier s WHERE s.soldierType.typeRank BETWEEN 5 AND 10")
+    List<Soldier> findOfficersByRankRange();
 
     /* my_query 2
     Получить данные по офицерскому составу в целом и по офицерскому составу указанного звания

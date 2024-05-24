@@ -1,6 +1,5 @@
 package ccfit.nsu.ru.daryaevd.military_unit.service.implementation;
 
-
 import ccfit.nsu.ru.daryaevd.military_unit.dto.SoldierDto;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.Mas;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.Soldier;
@@ -16,7 +15,6 @@ import ccfit.nsu.ru.daryaevd.military_unit.service.SoldierService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -115,6 +113,14 @@ public class SoldierServiceImpl implements SoldierService {
             throw new ResourceNotFoundException("Soldier doesn't exist with given id: " + soldierId);
         }
         soldierRepository.deleteById(soldierId);
+    }
+
+    @Override
+    public List<SoldierDto> getOfficersByRankRange() {
+        List<Soldier> soldiers = soldierRepository.findOfficersByRankRange();
+        return soldiers.stream()
+                .map(SoldierMapper::mapToSoldierDto)
+                .collect(Collectors.toList());
     }
 
 //    @Override

@@ -1,5 +1,6 @@
 package ccfit.nsu.ru.daryaevd.military_unit.entity;
 
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -10,6 +11,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @Entity
 @Table(name = "soldier_table")
 public class Soldier {
@@ -37,7 +39,7 @@ public class Soldier {
     private Mas masId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "soldier_type_id", referencedColumnName = "id" /*, nullable = false*/)
+    @JoinColumn(name = "soldier_type_id", referencedColumnName = "id")
     private SoldierType soldierType;
 
     @ManyToOne(fetch = FetchType.LAZY)

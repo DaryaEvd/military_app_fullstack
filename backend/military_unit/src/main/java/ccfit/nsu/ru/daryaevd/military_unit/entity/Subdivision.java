@@ -36,10 +36,12 @@ public class Subdivision {
     @JoinColumn(name = "commander_id", referencedColumnName = "id")
     private Soldier commander;
 
+//    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL /*fetch = FetchType.LAZY*/)
     @JoinColumn(name = "type_of_subdivision_id", referencedColumnName = "id"/*, nullable = false*/)
     private SubdivisionType typeOfSubdivision;
 
+//    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL /*fetch = FetchType.LAZY*/)
     @JoinColumn(name = "combat_equipment_id", referencedColumnName = "id" /*, nullable = false*/)
     private CombatEquipment combatEquipment;

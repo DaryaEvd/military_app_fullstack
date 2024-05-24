@@ -1,7 +1,6 @@
 package ccfit.nsu.ru.daryaevd.military_unit.service;
 
 import ccfit.nsu.ru.daryaevd.military_unit.dto.SoldierDto;
-import ccfit.nsu.ru.daryaevd.military_unit.entity.Soldier;
 
 import java.util.List;
 
@@ -15,6 +14,10 @@ public interface SoldierService {
     SoldierDto updateSoldier(Long soldierId, SoldierDto updatedSoldier);
 
     void deleteSoldier(Long soldierId);
+
+
+    List<SoldierDto> getOfficersByRankRange();
+
 
 //    List<Soldier> getOfficers();
 

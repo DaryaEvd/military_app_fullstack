@@ -23,7 +23,7 @@ public class SubdivisionType {
     private String nameOfType;
 
     @Column(name = "type_rank", /*unique = true,*/
-nullable = false
+            nullable = false
             /*, columnDefinition = "INT CHECK (rank_subdiv > 0 AND rank_subdiv < 5)"*/)
     private Integer subdivisionRank;
 
