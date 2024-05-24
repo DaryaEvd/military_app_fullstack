@@ -3,20 +3,9 @@ import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 
 export default function ViewSubdivision() {
-    const [subdivision, setSubdivision] = useState({
-        nameOfSubdivision: "",
-        numberOfSubdivision: "",
-        isDislocated: false,
-        typeOfSubdivision: {
-            id: "",
-            nameOfType: ""
-        },
-        commander: {
-            firstName: "",
-            lastName: ""
-        }
-    });
-
+    const [subdivision, setSubdivision] = useState(null);
+    const [commander, setCommander] = useState(null);
+    const [subdivisionType, setSubdivisionType] = useState(null);
     const { id } = useParams();
 
     useEffect(() => {
@@ -26,11 +15,40 @@ export default function ViewSubdivision() {
     const loadSubdivision = async () => {
         try {
             const result = await axios.get(`http://localhost:8080/api/subdivision/${id}`);
+            console.log('Fetched subdivision data:', result.data);
             setSubdivision(result.data);
+            if (result.data.commanderId) {
+                loadCommander(result.data.commanderId);
+            }
+            if (result.data.typeOfSubdivision) {
+                loadSubdivisionType(result.data.typeOfSubdivision);
+            }
         } catch (error) {
             console.error("Error loading subdivision:", error);
         }
     };
+
+    const loadCommander = async (commanderId) => {
+        try {
+            const result = await axios.get(`http://localhost:8080/api/soldiers/${commanderId}`);
+            setCommander(result.data);
+        } catch (error) {
+            console.error("Error loading commander:", error);
+        }
+    };
+
+    const loadSubdivisionType = async (typeId) => {
+        try {
+            const result = await axios.get(`http://localhost:8080/api/subdivision_types/${typeId}`);
+            setSubdivisionType(result.data);
+        } catch (error) {
+            console.error("Error loading subdivision type:", error);
+        }
+    };
+
+    if (!subdivision) {
+        return <div>Loading...</div>;
+    }
 
     return (
         <div className='container'>
@@ -51,16 +69,11 @@ export default function ViewSubdivision() {
                                     <b>Dislocated:</b> {subdivision.isDislocated ? "Yes" : "No"}
                                 </li>
                                 <li className="list-group-item">
-                                    <b>Type of Subdivision:</b> {subdivision.typeOfSubdivision.nameOfType}
+                                    <b>Type of Subdivision:</b> {subdivisionType ? subdivisionType.nameOfType : "Loading..."}
                                 </li>
-                                {/* <li className="list-group-item">
-                                    <b>Commander:</b> {subdivision.commander.firstName} {subdivision.commander.lastName}
-                                </li> */}
-                                
-                                    <li className="list-group-item">
-                                        <b>Commander:</b> {subdivision.commander.id}  
-                                    </li>
-                                
+                                <li className="list-group-item">
+                                    <b>Commander:</b> {commander ? `${commander.firstName} ${commander.lastName}` : "Loading..."}
+                                </li>
                             </ul>
                         </div>
                     </div>
