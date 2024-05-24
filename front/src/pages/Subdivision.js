@@ -7,33 +7,27 @@ export default function Subdivision() {
     const [subdivisionTypes, setSubdivisionTypes] = useState([]);
 
     useEffect(() => {
-        loadSubdivisions();
-        fetchSubdivisionTypes();
+        const fetchData = async () => {
+            try {
+                const [subdivisionsResult, typesResult] = await Promise.all([
+                    axios.get("http://localhost:8080/api/subdivision"),
+                    axios.get("http://localhost:8080/api/subdivision_types")
+                ]);
+                setSubdivisions(subdivisionsResult.data);
+                setSubdivisionTypes(typesResult.data);
+            } catch (error) {
+                console.error("Error loading data:", error);
+            }
+        };
+
+        fetchData();
     }, []);
-
-    const loadSubdivisions = async () => {
-        try {
-            const result = await axios.get("http://localhost:8080/api/subdivision");
-            setSubdivisions(result.data);
-        } catch (error) {
-            console.error("Error loading subdivisions:", error);
-        }
-    };
-
-    const fetchSubdivisionTypes = async () => {
-        try {
-            const response = await axios.get("http://localhost:8080/api/subdivision_types");
-            setSubdivisionTypes(response.data);
-        } catch (error) {
-            console.error("Error fetching subdivision types:", error);
-        }
-    };
 
     const deleteSubdivision = async (id) => {
         if (window.confirm("Are you sure you want to delete this subdivision?")) {
             try {
                 await axios.delete(`http://localhost:8080/api/subdivision/${id}`);
-                loadSubdivisions();
+                setSubdivisions(subdivisions.filter(subdivision => subdivision.id !== id));
             } catch (error) {
                 console.error("Error deleting subdivision:", error);
             }
@@ -42,7 +36,7 @@ export default function Subdivision() {
 
     const getSubdivisionTypeName = (id) => {
         const type = subdivisionTypes.find(t => t.id === id);
-        return type ? type.nameOfType : "";
+        return type ? type.nameOfType : "Unknown";
     };
 
     return (
