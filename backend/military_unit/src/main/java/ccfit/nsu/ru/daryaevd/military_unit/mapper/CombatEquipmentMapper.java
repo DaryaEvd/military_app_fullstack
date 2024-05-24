@@ -14,7 +14,7 @@ public class CombatEquipmentMapper {
         combatEquipmentDto.setNumberOfSeats(combatEquipment.getNumberOfSeats());
         combatEquipmentDto.setNameOfVehicle(combatEquipment.getNameOfVehicle());
 
-        combatEquipmentDto.setSubdivisionId(combatEquipment.getId());
+        combatEquipmentDto.setSubdivisionId(combatEquipment.getSubdivision().getId());
 
         return combatEquipmentDto;
     }
@@ -28,9 +28,9 @@ public class CombatEquipmentMapper {
         combatEquipment.setNumberOfSeats(combatEquipmentDto.getNumberOfSeats());
         combatEquipment.setNameOfVehicle(combatEquipmentDto.getNameOfVehicle());
 
-//        Subdivision subdivision = new Subdivision();
-//        subdivision.setId(combatEquipmentDto.getSubdivisionId());
-//        combatEquipment.setSubdivision(subdivision);
+        Subdivision subdivision = new Subdivision();
+        subdivision.setId(combatEquipmentDto.getSubdivisionId());
+        combatEquipment.setSubdivision(subdivision);
 
         return combatEquipment;
     }

@@ -37,6 +37,10 @@ public class Subdivision {
     private Soldier commander;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL /*fetch = FetchType.LAZY*/)
-    @JoinColumn(name = "type_of_subdivision_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "type_of_subdivision_id", referencedColumnName = "id"/*, nullable = false*/)
     private SubdivisionType typeOfSubdivision;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL /*fetch = FetchType.LAZY*/)
+    @JoinColumn(name = "combat_equipment_id", referencedColumnName = "id" /*, nullable = false*/)
+    private CombatEquipment combatEquipment;
 }

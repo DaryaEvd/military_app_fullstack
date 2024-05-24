@@ -54,14 +54,13 @@ public class CombatEquipmentController {
         return ResponseEntity.ok("Combat equipment deleted successfully");
     }
 
-    @GetMapping("/availability")
-    public List<Object[]> getAvailabilityOfEquipment() {
-        return combatEquipmentService.getAvailabilityOfEquipment();
-    }
-
-    @GetMapping("/availability/{subdivisionType}")
-    public List<Object[]> getAvailabilityBySubdivisionType(@PathVariable String subdivisionType) {
-        return combatEquipmentService.getAvailabilityBySubdivisionType(subdivisionType);
-    }
+//    @GetMapping("/availability")
+//    public List<Object[]> getAvailabilityOfEquipment() {
+//        return combatEquipmentService.getAvailabilityOfEquipment();
+//    }
+//
+//    @GetMapping("/availability/{subdivisionType}")
+//    public List<Object[]> getAvailabilityBySubdivisionType(@PathVariable String subdivisionType) {
+//        return combatEquipmentService.getAvailabilityBySubdivisionType(subdivisionType);
+//    }
 }
-

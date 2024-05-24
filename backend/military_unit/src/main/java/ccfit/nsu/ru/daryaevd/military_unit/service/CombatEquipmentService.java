@@ -15,8 +15,8 @@ public interface CombatEquipmentService {
 
     void deleteCombatEquipment(Long combatEquipmentId);
 
-    List<Object[]> getAvailabilityOfEquipment();
-
-    List<Object[]> getAvailabilityBySubdivisionType(String subdivisionType);
+//    List<Object[]> getAvailabilityOfEquipment();
+//
+//    List<Object[]> getAvailabilityBySubdivisionType(String subdivisionType);
 
 }
