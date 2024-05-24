@@ -2,11 +2,13 @@ package ccfit.nsu.ru.daryaevd.military_unit.repository;
 
 import ccfit.nsu.ru.daryaevd.military_unit.entity.Soldier;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface SoldierRepository extends JpaRepository<Soldier, Long> {
+public interface SoldierRepository extends JpaRepository<Soldier, Long>, JpaSpecificationExecutor<Soldier> {
+
     @Query("SELECT s FROM Soldier s WHERE s.soldierType.typeRank BETWEEN 5 AND 10")
     List<Soldier> findOfficersByRankRange();
 

@@ -12,7 +12,9 @@ import ccfit.nsu.ru.daryaevd.military_unit.repository.SoldierRepository;
 import ccfit.nsu.ru.daryaevd.military_unit.repository.SoldierTypeRepository;
 import ccfit.nsu.ru.daryaevd.military_unit.repository.SubdivisionRepository;
 import ccfit.nsu.ru.daryaevd.military_unit.service.SoldierService;
+import ccfit.nsu.ru.daryaevd.military_unit.specification.SoldierSpecifications;
 import lombok.AllArgsConstructor;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -123,6 +125,23 @@ public class SoldierServiceImpl implements SoldierService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public List<Soldier> getOfficers(Integer rank, Integer subdivisionRank) {
+        Specification<Soldier> spec = Specification.where(SoldierSpecifications.hasRankBetween(5, 10));
+
+        if (rank != null) {
+            spec = spec.and(SoldierSpecifications.hasRank(rank));
+        }
+
+        if (subdivisionRank != null) {
+            spec = spec.and(SoldierSpecifications.hasSubdivisionRank(subdivisionRank));
+        }
+
+        return soldierRepository.findAll(spec);
+    }
+}
+
+
 //    @Override
 //    public List<Soldier> getOfficers() {
 //        return soldierRepository.findByIsCommanderTrue();
@@ -147,7 +166,6 @@ public class SoldierServiceImpl implements SoldierService {
 //    public List<Soldier> findSoldiersByMasIdAndSubdivisionName(Long masId, String subdivisionName) {
 //        return soldierRepository.findByMasIdAndSubdivisionName(masId, subdivisionName);
 //    }
-}
 
 
 

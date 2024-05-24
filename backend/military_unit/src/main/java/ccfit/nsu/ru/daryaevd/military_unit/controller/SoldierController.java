@@ -1,6 +1,8 @@
 package ccfit.nsu.ru.daryaevd.military_unit.controller;
 
 import ccfit.nsu.ru.daryaevd.military_unit.dto.SoldierDto;
+import ccfit.nsu.ru.daryaevd.military_unit.entity.Soldier;
+import ccfit.nsu.ru.daryaevd.military_unit.mapper.SoldierMapper;
 import ccfit.nsu.ru.daryaevd.military_unit.service.SoldierService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -8,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @RestController
@@ -47,12 +50,15 @@ public class SoldierController {
         return ResponseEntity.ok("Soldier deleted successfully");
     }
 
-
-    @GetMapping("/all_officcers")
-    public List<SoldierDto> getOfficersByRankRange() {
-        return soldierService.getOfficersByRankRange();
+    @GetMapping("/officers")
+    public ResponseEntity<List<SoldierDto>> getOfficers(@RequestParam(value = "soldier_rank", required = false) Integer soldierRank,
+                                                        @RequestParam(value = "subdivision_rank", required = false) Integer subdivisionRank) {
+        List<Soldier> officers = soldierService.getOfficers(soldierRank, subdivisionRank);
+        List<SoldierDto> officerDtos = officers.stream()
+                .map(SoldierMapper::mapToSoldierDto)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(officerDtos);
     }
-
 
 //    @GetMapping("/all_officcers")
 //    public List<Soldier> getAllOfficers() {

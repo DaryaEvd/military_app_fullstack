@@ -1,6 +1,7 @@
 package ccfit.nsu.ru.daryaevd.military_unit.service;
 
 import ccfit.nsu.ru.daryaevd.military_unit.dto.SoldierDto;
+import ccfit.nsu.ru.daryaevd.military_unit.entity.Soldier;
 
 import java.util.List;
 
@@ -18,6 +19,7 @@ public interface SoldierService {
 
     List<SoldierDto> getOfficersByRankRange();
 
+    List<Soldier> getOfficers(Integer rank, Integer subdivisionRank);
 
 //    List<Soldier> getOfficers();
 
