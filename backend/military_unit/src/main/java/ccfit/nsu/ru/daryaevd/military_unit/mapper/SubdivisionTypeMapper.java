@@ -10,8 +10,7 @@ public class SubdivisionTypeMapper {
         subdivisionTypeDto.setNameOfType(subdivisionType.getNameOfType());
         subdivisionTypeDto.setSubdivisionRank(subdivisionType.getSubdivisionRank());
 
-        subdivisionTypeDto.setSubdivisionType(subdivisionType.getId());
-        return subdivisionTypeDto;
+         return subdivisionTypeDto;
     }
 
     public static SubdivisionType mapToSubdivisionType(SubdivisionTypeDto subdivisionTypeDto) {

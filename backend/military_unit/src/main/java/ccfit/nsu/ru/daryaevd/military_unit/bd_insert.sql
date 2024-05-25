@@ -12,7 +12,7 @@ VALUES
     ('Colonel', 9),
     ('General', 10);
 
-INSERT INTO subdivision_type(name_of_type, type_rank)
+INSERT INTO subdivision_type(name_of_type, subdivision_rank)
 VALUES
     ('Squad', 0),
     ('Platoon', 1),
@@ -61,16 +61,17 @@ VALUES
 -- Inserting data into the soldier_table
 INSERT INTO soldier_table (first_name, last_name, date_of_birth, military_card, date_of_issue_of_military_card, mas_id, soldier_type_id, subdivision_id, is_commander)
 VALUES
-    ('John', 'Doe', '1990-05-15', 'ABC123', '2020-01-01', 1, 1, 2, false),
-    ('Jane', 'Smith', '1995-08-20', 'XYZ789', '2020-02-15', 2, 2, 7, false),
-    ('Michael', 'Johnson', '1988-11-10', 'DEF456', '2020-03-20', 1, 3, 2,false),
-    ('Emily', 'Williams', '1992-04-25', 'GHI789', '2020-04-30', 3, 4, 5, false),
-    ('Christopher', 'Brown', '1985-09-05', 'JKL012', '2020-05-10', 2, 5, 4, false),
-    ('Amanda', 'Davis', '1993-07-12', 'MNO345', '2020-06-20', 3, 6, 5, false),
-    ('Robert', 'Martinez', '1991-02-28', 'PQR678', '2020-07-25', 1, 7, 5, false),
-    ('Jennifer', 'Rodriguez', '1987-06-18', 'STU901', '2020-08-05', 2, 8, 6, false),
-    ('William', 'Hernandez', '1983-12-08', 'VWX234', '2020-09-15', 3, 9, 2, false),
-    ('Sarah', 'Garcia', '1990-03-22', 'YZA567', '2020-10-20', 1, 10, 1, false);
+    ('Seva', 'Nosov', '1980-05-15', 'hahaha123', '2010-01-01', 3, (SELECT id FROM soldier_type WHERE type_rank = 0), 2, false),
+    ('John', 'Doe', '1990-05-15', 'ABC123', '2020-01-01', 1, (SELECT id FROM soldier_type WHERE type_rank = 1), 2, false),
+    ('Jane', 'Smith', '1995-08-20', 'XYZ789', '2020-02-15', 2, (SELECT id FROM soldier_type WHERE type_rank = 2), 7, false),
+    ('Michael', 'Johnson', '1988-11-10', 'DEF456', '2020-03-20', 1, (SELECT id FROM soldier_type WHERE type_rank = 3), 2,false),
+    ('Emily', 'Williams', '1992-04-25', 'GHI789', '2020-04-30', 3, (SELECT id FROM soldier_type WHERE type_rank = 4), 5, false),
+    ('Christopher', 'Brown', '1985-09-05', 'JKL012', '2020-05-10', 2, (SELECT id FROM soldier_type WHERE type_rank = 5), 4, false),
+    ('Amanda', 'Davis', '1993-07-12', 'MNO345', '2020-06-20', 3, (SELECT id FROM soldier_type WHERE type_rank = 6), 5, false),
+    ('Robert', 'Martinez', '1991-02-28', 'PQR678', '2020-07-25', 1, (SELECT id FROM soldier_type WHERE type_rank = 7), 5, false),
+    ('Jennifer', 'Rodriguez', '1987-06-18', 'STU901', '2020-08-05', 2, (SELECT id FROM soldier_type WHERE type_rank = 8), 6, false),
+    ('William', 'Hernandez', '1983-12-08', 'VWX234', '2020-09-15', 3, (SELECT id FROM soldier_type WHERE type_rank = 9), 2, false),
+    ('Sarah', 'Garcia', '1990-03-22', 'YZA567', '2020-10-20', 1, (SELECT id FROM soldier_type WHERE type_rank = 10), 1, false);
 
 
 -- Inserting data into combat_equipment_table

@@ -4,6 +4,7 @@ import ccfit.nsu.ru.daryaevd.military_unit.dto.SoldierDto;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.Soldier;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface SoldierService {
     SoldierDto createSoldier(SoldierDto soldierDto);
@@ -19,7 +20,11 @@ public interface SoldierService {
 
     List<SoldierDto> getOfficersByRankRange();
 
-    List<Soldier> getOfficers(Integer rank, Integer subdivisionRank);
+//    List<Soldier> getOfficers(Integer rank, Integer subdivisionRank);
+
+
+    List<SoldierDto> getOfficers(Integer soldierRank, Integer subdivisionRank);
+
 
 //    List<Soldier> getOfficers();
 

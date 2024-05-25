@@ -18,6 +18,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -44,7 +45,7 @@ public class SoldierServiceImpl implements SoldierService {
         }
 
         if (soldierDto.getTypeOfSoldier() != null) {
-            SoldierType soldierType = soldierTypeRepository.findById(soldierDto.getTypeOfSoldier())
+            SoldierType soldierType = soldierTypeRepository.findById(Long.valueOf(soldierDto.getTypeOfSoldier()))
                     .orElseThrow(() -> new ResourceNotFoundException("SoldierType doesn't exist with given id: " + soldierDto.getTypeOfSoldier()));
             soldier.setSoldierType(soldierType);
         }
@@ -92,7 +93,7 @@ public class SoldierServiceImpl implements SoldierService {
         }
 
         if (updatedSoldier.getTypeOfSoldier() != null) {
-            SoldierType soldierType = soldierTypeRepository.findById(updatedSoldier.getTypeOfSoldier())
+            SoldierType soldierType = soldierTypeRepository.findById(Long.valueOf(updatedSoldier.getTypeOfSoldier()))
                     .orElseThrow(() -> new ResourceNotFoundException("SoldierType doesn't exist with given id: " + updatedSoldier.getTypeOfSoldier()));
             soldier.setSoldierType(soldierType);
         }
@@ -126,19 +127,21 @@ public class SoldierServiceImpl implements SoldierService {
     }
 
     @Override
-    public List<Soldier> getOfficers(Integer rank, Integer subdivisionRank) {
-        Specification<Soldier> spec = Specification.where(SoldierSpecifications.hasRankBetween(5, 10));
+    public List<SoldierDto> getOfficers(Integer soldierRank, Integer subdivisionRank) {
+        Specification<Soldier> specification = Specification.where(SoldierSpecifications.hasRankBetween(5, 10));
 
-        if (rank != null) {
-            spec = spec.and(SoldierSpecifications.hasRank(rank));
+        if (soldierRank != null) {
+            specification = specification.and(SoldierSpecifications.hasRank(soldierRank));
         }
 
         if (subdivisionRank != null) {
-            spec = spec.and(SoldierSpecifications.hasSubdivisionRank(subdivisionRank));
+            specification = specification.and(SoldierSpecifications.hasSubdivisionRank(subdivisionRank));
         }
 
-        return soldierRepository.findAll(spec);
+        List<Soldier> soldiers = soldierRepository.findAll(specification);
+        return soldiers.stream().map(SoldierMapper::mapToSoldierDto).collect(Collectors.toList());
     }
+
 }
 
 

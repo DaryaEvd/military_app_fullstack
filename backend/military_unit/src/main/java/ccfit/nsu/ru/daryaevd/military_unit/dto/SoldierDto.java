@@ -19,7 +19,7 @@ public class SoldierDto {
     private String militaryCard;
     private Date dateOfIssueMilitaryCard;
     private Long masId;
-    private Long typeOfSoldier;
+    private Integer typeOfSoldier;
     private Long subdivisionId;
     private Boolean isCommander;
 }

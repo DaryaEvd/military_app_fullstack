@@ -51,13 +51,11 @@ public class SoldierController {
     }
 
     @GetMapping("/officers")
-    public ResponseEntity<List<SoldierDto>> getOfficers(@RequestParam(value = "soldier_rank", required = false) Integer soldierRank,
-                                                        @RequestParam(value = "subdivision_rank", required = false) Integer subdivisionRank) {
-        List<Soldier> officers = soldierService.getOfficers(soldierRank, subdivisionRank);
-        List<SoldierDto> officerDtos = officers.stream()
-                .map(SoldierMapper::mapToSoldierDto)
-                .collect(Collectors.toList());
-        return ResponseEntity.ok(officerDtos);
+    public ResponseEntity<List<SoldierDto>> getOfficers(
+            @RequestParam(value = "soldier_rank", required = false) Integer soldierRank,
+            @RequestParam(value = "subdivision_rank", required = false) Integer subdivisionRank) {
+        List<SoldierDto> officers = soldierService.getOfficers(soldierRank, subdivisionRank);
+        return ResponseEntity.ok(officers);
     }
 
 //    @GetMapping("/all_officcers")
