@@ -13,7 +13,7 @@ export default function EditSubdivision() {
         commanderId: "",
         typeOfSubdivisionId: ""
     });
-    
+
     const [commanderList, setCommanderList] = useState([]);
     const [subdivisionTypeList, setSubdivisionTypeList] = useState([]);
 
@@ -44,7 +44,11 @@ export default function EditSubdivision() {
     const loadSubdivision = async () => {
         try {
             const result = await axios.get(`http://localhost:8080/api/subdivision/${id}`);
-            setSubdivision(result.data);
+            setSubdivision({
+                ...result.data,
+                commanderId: result.data.commanderId || "",
+                typeOfSubdivisionId: result.data.typeOfSubdivisionId || ""
+            });
         } catch (error) {
             console.error("Error loading subdivision:", error);
         }
@@ -80,7 +84,7 @@ export default function EditSubdivision() {
                                 type="text"
                                 className="form-control"
                                 name="nameOfSubdivision"
-                                value={subdivision.nameOfSubdivision}
+                                value={subdivision.nameOfSubdivision || ""}
                                 onChange={onInputChange}
                                 required
                             />
@@ -91,7 +95,7 @@ export default function EditSubdivision() {
                                 type="number"
                                 className="form-control"
                                 name="numberOfSubdivision"
-                                value={subdivision.numberOfSubdivision}
+                                value={subdivision.numberOfSubdivision || ""}
                                 onChange={onInputChange}
                                 required
                             />
@@ -113,7 +117,7 @@ export default function EditSubdivision() {
                             <select
                                 className="form-control"
                                 name="commanderId"
-                                value={subdivision.commanderId}
+                                value={subdivision.commanderId || ""}
                                 onChange={onInputChange}
                                 required
                             >
@@ -130,7 +134,7 @@ export default function EditSubdivision() {
                             <select
                                 className="form-control"
                                 name="typeOfSubdivisionId"
-                                value={subdivision.typeOfSubdivisionId}
+                                value={subdivision.typeOfSubdivisionId || ""}
                                 onChange={onInputChange}
                                 required
                             >

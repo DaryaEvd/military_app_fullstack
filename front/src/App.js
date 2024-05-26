@@ -25,6 +25,7 @@ import Soldier from './pages/Soldier';
 import AddSoldier from './soldier/AddSoldier';
 import EditSoldier from './soldier/EditSoldier';
 import ViewSoldier from './soldier/ViewSoldier';
+import FindSoldier from './soldier/FindSoldier';
 
 import MilitaryBuilding from './pages/MilitaryBuilding';
 import AddMilitaryBuilding from './military_buildings/AddMilitaryBuilding';
@@ -62,6 +63,8 @@ function App() {
           <Route exact path="/soldiers/add" element={<AddSoldier/>} />          
           <Route exact path="/soldiers/edit/:id" element={<EditSoldier/>} />
           <Route exact path="/soldiers/view/:id" element={<ViewSoldier/>} />
+          <Route exact path="/soldiers/find" element={<FindSoldier />} />
+
 
           <Route exact path="/military_building" element={<MilitaryBuilding/>} />
           <Route exact path="/military_building/add" element={<AddMilitaryBuilding/>} />

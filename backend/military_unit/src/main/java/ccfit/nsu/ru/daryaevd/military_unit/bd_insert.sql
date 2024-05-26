@@ -23,30 +23,6 @@ VALUES
     ('Division', 6),
     ('Army', 7);
 
--- Inserting data into mas_type table
-INSERT INTO mas_type (code_of_mas, name_of_mas) VALUES
-    ('00201', 'Operation and repair of engineering vehicles'),
-    ('01000', 'Medical service in ground forces (general practitioner)'),
-    ('01001', 'Combat use of engineer-sapper units and formations'),
-    ('021000', 'Commander of motorized rifle platoon or Combat use of motorized rifle units, formations, and associations'),
-    ('021001', 'Combat use of motorized rifle units, parts on BMP'),
-    ('021002', 'Combat use of motorized rifle units, military units, and formations on BTR (vehicles)'),
-    ('021101', 'Combat use of medium tank units or Combat use of medium tank units, parts'),
-    ('0300', 'Organization of food supply'),
-    ('030403', 'Combat use of units and parts of regimental and divisional artillery. May hold positions: commander of fire platoon, commander of control platoon, commander of mortar platoon'),
-    ('030404', 'Combat use of units and military units of anti-tank artillery'),
-    ('043203', 'Combat use of starting units of multi-channel medium-range air defense systems'),
-    ('06008', 'Technical personnel'),
-    ('062600', 'Flight personnel'),
-    ('072301', 'Navigator of diesel submarines'),
-    ('08600', 'Organization of humanitarian training'),
-    ('093500', 'Psychological warfare officer (with knowledge of a foreign language)'),
-    ('106147', 'Commander of reconnaissance unit'),
-    ('106182', 'Reconnaissance unit commander'),
-    ('106097', 'Deputy commander of reconnaissance unit'),
-    ('106646', 'Reconnaissance scout');
-
-
 -- Inserting data into the subdivision_table
 INSERT INTO subdivision_table (name_of_subdivision, number_of_subdivision, dislocated, type_of_subdivision_id)
 VALUES
@@ -168,6 +144,32 @@ VALUES
     ('potap', 'arturov', '1983-04-22', 'sdgrge', '2018-12-20', 1,
      (SELECT id FROM soldier_type WHERE type_rank = 7 ),
      (SELECT s.id FROM subdivision_table s JOIN subdivision_type st ON s.type_of_subdivision_id = st.id WHERE st.subdivision_rank = 3 ), false);
+
+
+
+-- Inserting data into mas_type table
+INSERT INTO mas_type (code_of_mas, name_of_mas) VALUES
+                                                    ('00201', 'Operation and repair of engineering vehicles'),
+                                                    ('01000', 'Medical service in ground forces (general practitioner)'),
+                                                    ('01001', 'Combat use of engineer-sapper units and formations'),
+                                                    ('021000', 'Commander of motorized rifle platoon or Combat use of motorized rifle units, formations, and associations'),
+                                                    ('021001', 'Combat use of motorized rifle units, parts on BMP'),
+                                                    ('021002', 'Combat use of motorized rifle units, military units, and formations on BTR (vehicles)'),
+                                                    ('021101', 'Combat use of medium tank units or Combat use of medium tank units, parts'),
+                                                    ('0300', 'Organization of food supply'),
+                                                    ('030403', 'Combat use of units and parts of regimental and divisional artillery. May hold positions: commander of fire platoon, commander of control platoon, commander of mortar platoon'),
+                                                    ('030404', 'Combat use of units and military units of anti-tank artillery'),
+                                                    ('043203', 'Combat use of starting units of multi-channel medium-range air defense systems'),
+                                                    ('06008', 'Technical personnel'),
+                                                    ('062600', 'Flight personnel'),
+                                                    ('072301', 'Navigator of diesel submarines'),
+                                                    ('08600', 'Organization of humanitarian training'),
+                                                    ('093500', 'Psychological warfare officer (with knowledge of a foreign language)'),
+                                                    ('106147', 'Commander of reconnaissance unit'),
+                                                    ('106182', 'Reconnaissance unit commander'),
+                                                    ('106097', 'Deputy commander of reconnaissance unit'),
+                                                    ('106646', 'Reconnaissance scout');
+
 
 
 ---------------------- nononononononoonono
