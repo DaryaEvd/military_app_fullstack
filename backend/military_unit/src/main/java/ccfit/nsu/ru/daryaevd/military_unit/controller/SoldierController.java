@@ -58,6 +58,15 @@ public class SoldierController {
         return ResponseEntity.ok(officers);
     }
 
+    @GetMapping("/sergeants")
+    public ResponseEntity<List<SoldierDto>> getSergeants(
+            @RequestParam(value = "soldier_rank", required = false) Integer soldierRank,
+            @RequestParam(value = "subdivision_rank", required = false) Integer subdivisionRank) {
+        List<SoldierDto> officers = soldierService.getSergeants(soldierRank, subdivisionRank);
+        return ResponseEntity.ok(officers);
+    }
+
+
 //    @GetMapping("/all_officcers")
 //    public List<Soldier> getAllOfficers() {
 //        // Call the method from the service to fetch officers and return the result

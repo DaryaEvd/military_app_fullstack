@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import FindSoldier from "../soldier/FindSoldier";
 
 export default function Soldier() {
     const [soldiers, setSoldiers] = useState([]);
@@ -84,8 +83,11 @@ export default function Soldier() {
                 <Link className="btn btn-outline-primary mb-4" to="/soldiers/add">
                     Add Soldier Info
                 </Link>
-                <Link className="btn btn-outline-secondary mb-4 mx-2" to="/soldiers/find">
-                    Find Soldier
+                <Link className="btn btn-outline-secondary mb-4 mx-2" to="/soldiers/find_officers">
+                    Find Officers
+                </Link>
+                <Link className="btn btn-outline-secondary mb-4 mx-2" to="/soldiers/find_sergeants">
+                    Find Sergeants
                 </Link>
                 <table className="table border shadow">
                     <thead>

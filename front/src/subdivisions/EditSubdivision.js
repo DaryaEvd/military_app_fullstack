@@ -11,7 +11,7 @@ export default function EditSubdivision() {
         numberOfSubdivision: "",
         isDislocated: false,
         commanderId: "",
-        typeOfSubdivisionId: ""
+        typeOfSubdivision: ""
     });
 
     const [commanderList, setCommanderList] = useState([]);
@@ -47,7 +47,7 @@ export default function EditSubdivision() {
             setSubdivision({
                 ...result.data,
                 commanderId: result.data.commanderId || "",
-                typeOfSubdivisionId: result.data.typeOfSubdivisionId || ""
+                typeOfSubdivision: result.data.typeOfSubdivision || ""
             });
         } catch (error) {
             console.error("Error loading subdivision:", error);
@@ -133,8 +133,8 @@ export default function EditSubdivision() {
                             <label className='form-label'>Type Of Subdivision</label>
                             <select
                                 className="form-control"
-                                name="typeOfSubdivisionId"
-                                value={subdivision.typeOfSubdivisionId || ""}
+                                name="typeOfSubdivision"
+                                value={subdivision.typeOfSubdivision || ""}
                                 onChange={onInputChange}
                                 required
                             >

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-export default function FindSoldier() {
+export default function FindSergeant() {
     const [soldiers, setSoldiers] = useState([]);
     const [soldierRank, setSoldierRank] = useState("");
     const [subdivisionRank, setSubdivisionRank] = useState("");
@@ -16,7 +16,7 @@ export default function FindSoldier() {
     const fetchSoldierTypeList = async () => {
         try {
             const response = await axios.get("http://localhost:8080/api/soldier_type");
-            const filteredTypes = response.data.filter(type => type.typeRank > 5); // Only include types with rank 4 or lower
+            const filteredTypes = response.data.filter(type => type.typeRank <= 4);
             setSoldierTypeList(filteredTypes);
         } catch (error) {
             console.error("Error fetching SoldierType list:", error);
@@ -36,7 +36,7 @@ export default function FindSoldier() {
         try {
             const soldierRankInt = soldierRank !== "" ? parseInt(soldierRank, 10) : null;
             const subdivisionRankInt = subdivisionRank !== "" ? parseInt(subdivisionRank, 10) : null;
-            const response = await axios.get(`http://localhost:8080/api/soldiers/officers`, {
+            const response = await axios.get(`http://localhost:8080/api/soldiers/sergeants`, {
                 params: {
                     soldier_rank: soldierRankInt,
                     subdivision_rank: subdivisionRankInt
@@ -50,7 +50,7 @@ export default function FindSoldier() {
 
     return (
         <div className='container'>
-            <h2 className='my-4'>Find Soldiers</h2>
+            <h2 className='my-4'>Find Sergeants</h2>
             <div className='row'>
                 <div className='col-md-6'>
                     <select

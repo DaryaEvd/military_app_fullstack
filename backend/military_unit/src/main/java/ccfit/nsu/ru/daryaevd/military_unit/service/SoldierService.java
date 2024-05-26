@@ -25,6 +25,7 @@ public interface SoldierService {
 
     List<SoldierDto> getOfficers(Integer soldierRank, Integer subdivisionRank);
 
+    List<SoldierDto> getSergeants(Integer soldierRank, Integer subdivisionRank);
 
 //    List<Soldier> getOfficers();
 

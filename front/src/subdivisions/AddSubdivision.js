@@ -55,7 +55,7 @@ export default function AddSubdivision() {
 
         const subdivisionData = {
             ...subdivision,
-            typeOfSubdivisionId: subdivision.typeOfSubdivision,
+            typeOfSubdivision: subdivision.typeOfSubdivision,
             isDislocated: Boolean(subdivision.isDislocated)
         };
 

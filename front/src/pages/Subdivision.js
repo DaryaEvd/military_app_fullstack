@@ -53,6 +53,7 @@ export default function Subdivision() {
                             <th scope="col">Number</th>
                             <th scope="col">Dislocated</th>
                             <th scope="col">Type</th>
+                            {/* <th scope="col">Commander</th> */}
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
@@ -64,6 +65,8 @@ export default function Subdivision() {
                                 <td>{subdivision.numberOfSubdivision}</td>
                                 <td>{subdivision.isDislocated ? "Yes" : "No"}</td>
                                 <td>{getSubdivisionTypeName(subdivision.typeOfSubdivision)}</td>
+                                {/* <td>{subdivision.commander ? `${subdivision.commander.firstName} ${subdivision.commander.lastName}` : "not appointed"}</td> */}
+
                                 <td>
                                     <Link className="btn btn-primary mx-2" to={`/subdivisions/view/${subdivision.id}`}>
                                         View

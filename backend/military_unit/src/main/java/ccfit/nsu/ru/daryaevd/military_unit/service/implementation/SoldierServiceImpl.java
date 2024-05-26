@@ -142,6 +142,22 @@ public class SoldierServiceImpl implements SoldierService {
         return soldiers.stream().map(SoldierMapper::mapToSoldierDto).collect(Collectors.toList());
     }
 
+    @Override
+    public List<SoldierDto> getSergeants(Integer soldierRank, Integer subdivisionRank) {
+        Specification<Soldier> specification = Specification.where(SoldierSpecifications.hasRankBetween(0, 4));
+
+        if (soldierRank != null) {
+            specification = specification.and(SoldierSpecifications.hasRank(soldierRank));
+        }
+
+        if (subdivisionRank != null) {
+            specification = specification.and(SoldierSpecifications.hasSubdivisionRank(subdivisionRank));
+        }
+
+        List<Soldier> soldiers = soldierRepository.findAll(specification);
+        return soldiers.stream().map(SoldierMapper::mapToSoldierDto).collect(Collectors.toList());
+    }
+
 }
 
 
