@@ -149,81 +149,27 @@ VALUES
 
 -- Inserting data into mas_type table
 INSERT INTO mas_type (code_of_mas, name_of_mas) VALUES
-                                                    ('00201', 'Operation and repair of engineering vehicles'),
-                                                    ('01000', 'Medical service in ground forces (general practitioner)'),
-                                                    ('01001', 'Combat use of engineer-sapper units and formations'),
-                                                    ('021000', 'Commander of motorized rifle platoon or Combat use of motorized rifle units, formations, and associations'),
-                                                    ('021001', 'Combat use of motorized rifle units, parts on BMP'),
-                                                    ('021002', 'Combat use of motorized rifle units, military units, and formations on BTR (vehicles)'),
-                                                    ('021101', 'Combat use of medium tank units or Combat use of medium tank units, parts'),
-                                                    ('0300', 'Organization of food supply'),
-                                                    ('030403', 'Combat use of units and parts of regimental and divisional artillery. May hold positions: commander of fire platoon, commander of control platoon, commander of mortar platoon'),
-                                                    ('030404', 'Combat use of units and military units of anti-tank artillery'),
-                                                    ('043203', 'Combat use of starting units of multi-channel medium-range air defense systems'),
-                                                    ('06008', 'Technical personnel'),
-                                                    ('062600', 'Flight personnel'),
-                                                    ('072301', 'Navigator of diesel submarines'),
-                                                    ('08600', 'Organization of humanitarian training'),
-                                                    ('093500', 'Psychological warfare officer (with knowledge of a foreign language)'),
-                                                    ('106147', 'Commander of reconnaissance unit'),
-                                                    ('106182', 'Reconnaissance unit commander'),
-                                                    ('106097', 'Deputy commander of reconnaissance unit'),
-                                                    ('106646', 'Reconnaissance scout');
+    ('00201', 'Operation and repair of engineering vehicles'),
+    ('01000', 'Medical service in ground forces (general practitioner)'),
+    ('01001', 'Combat use of engineer-sapper units and formations'),
+    ('021000', 'Commander of motorized rifle platoon or Combat use of motorized rifle units, formations, and associations'),
+    ('021001', 'Combat use of motorized rifle units, parts on BMP'),
+    ('021002', 'Combat use of motorized rifle units, military units, and formations on BTR (vehicles)'),
+    ('021101', 'Combat use of medium tank units or Combat use of medium tank units, parts'),
+    ('0300', 'Organization of food supply'),
+    ('030403', 'Combat use of units and parts of regimental and divisional artillery. May hold positions: commander of fire platoon, commander of control platoon, commander of mortar platoon'),
+    ('030404', 'Combat use of units and military units of anti-tank artillery'),
+    ('043203', 'Combat use of starting units of multi-channel medium-range air defense systems'),
+    ('06008', 'Technical personnel'),
+    ('062600', 'Flight personnel'),
+    ('072301', 'Navigator of diesel submarines'),
+    ('08600', 'Organization of humanitarian training'),
+    ('093500', 'Psychological warfare officer (with knowledge of a foreign language)'),
+    ('106147', 'Commander of reconnaissance unit'),
+    ('106182', 'Reconnaissance unit commander'),
+    ('106097', 'Deputy commander of reconnaissance unit'),
+    ('106646', 'Reconnaissance scout');
 
-
-
----------------------- nononononononoonono
-INSERT INTO soldier_table (first_name, last_name, date_of_birth, military_card, date_of_issue_of_military_card,
-                           mas_id, soldier_type_id, subdivision_id, is_commander)
-    VALUES
-    ('Amanda', 'drtyfu', '1980-05-15', 'rdthr', '2018-01-01', 3,
-        (SELECT id FROM soldier_type WHERE type_rank = 5 ),
-        (SELECT s.id FROM subdivision_table s JOIN subdivision_type st ON s.type_of_subdivision_id = st.id WHERE st.subdivision_rank = 5  ), true),
-
-    ('Jennifer', 'ergr', '1980-03-22', 'dhrt', '2014-10-20', 11,
-        (SELECT id FROM soldier_type WHERE type_rank = 8 ),
-        (SELECT s.id FROM subdivision_table s JOIN subdivision_type st ON s.type_of_subdivision_id = st.id WHERE st.subdivision_rank = 7 ), false),
-
-    ('Brown', 'gerg', '1983-04-22', 'rdthrd', '2018-04-20', 4,
-        (SELECT id FROM soldier_type WHERE type_rank = 9 ),
-        (SELECT s.id FROM subdivision_table s JOIN subdivision_type st ON s.type_of_subdivision_id = st.id WHERE st.subdivision_rank = 4 ), false);
-
-
--- INSERT INTO soldier_table (first_name, last_name, date_of_birth, military_card, date_of_issue_of_military_card, mas_id, soldier_type_id, subdivision_id, is_commander)
--- VALUES
---     ('Seva', 'Nosov', '1980-05-15', 'hahaha123', '2010-01-01', 3, (SELECT id FROM soldier_type WHERE type_rank = 0 LIMIT 1), (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'Platoon' LIMIT 1), false),
---     ('kirill', 'kirillov', '1980-03-22', 'YZAdgfd567', '2010-10-20', 1, (SELECT id FROM soldier_type WHERE type_rank = 0 LIMIT 1), (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'Squad' LIMIT 1), false),
---     ('Jane', 'Smith', '1995-08-20', 'XYZ789', '2020-02-15', 2, (SELECT id FROM soldier_type WHERE type_rank = 2), (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'Rota' LIMIT 1), false),
---     ('Michael', 'Johnson', '1988-11-10', 'DEF456', '2020-03-20', 1, (SELECT id FROM soldier_type WHERE type_rank = 3), (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'Military Unit' LIMIT 1), false),
---     ('Emily', 'Williams', '1992-04-25', 'GHI789', '2020-04-30', 3, (SELECT id FROM soldier_type WHERE type_rank = 4), (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'Corps' LIMIT 1), false),
---     ('Christopher', 'Brown', '1985-09-05', 'JKL012', '2020-05-10', 2, (SELECT id FROM soldier_type WHERE type_rank = 5), (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'Brigade' LIMIT 1), false),
---     ('Amanda', 'Davis', '1993-07-12', 'MNO345', '2020-06-20', 3, (SELECT id FROM soldier_type WHERE type_rank = 6), (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'Division' LIMIT 1), false),
---     ('Amanda', 'Martinez', '1991-02-28', 'PQR678', '2020-07-25', 1, (SELECT id FROM soldier_type WHERE type_rank = 7), (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'Army' LIMIT 1), false),
---     ('Jennifer', 'Rodriguez', '1987-06-18', 'STU901', '2020-08-05', 2, (SELECT id FROM soldier_type WHERE type_rank = 8), (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'Corps' LIMIT 1), false),
---     ('William', 'Hernandez', '1983-12-08', 'VWX234', '2020-09-15', 3, (SELECT id FROM soldier_type WHERE type_rank = 9), (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'Brigade' LIMIT 1), false),
---     ('Amanda', 'Garcia', '1990-03-22', 'YZA567', '2020-10-20', 1, (SELECT id FROM soldier_type WHERE type_rank = 10), (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'Brigade' LIMIT 1), false);
-
--- Inserting data into the soldier_table
--- INSERT INTO soldier_table (first_name, last_name, date_of_birth, military_card, date_of_issue_of_military_card, mas_id, soldier_type_id, subdivision_id, is_commander)
--- VALUES
---     ('Seva', 'Nosov', '1980-05-15', 'hahaha123', '2010-01-01', 3, (SELECT id FROM soldier_type WHERE type_rank = 0), (SELECT id FROM subdivision_type WHERE subdivision_rank = 2), false),
---     -- Insert other rows here
---     ('kirill', 'kirillov', '1980-03-22', 'YZAdgfd567', '2010-10-20', 1, (SELECT id FROM soldier_type WHERE type_rank = 0), (SELECT id FROM subdivision_type WHERE subdivision_rank = 0), false);
---
--- INSERT INTO soldier_table (first_name, last_name, date_of_birth, military_card, date_of_issue_of_military_card, mas_id, soldier_type_id, subdivision_id, is_commander)
--- VALUES
---     ('Seva', 'Nosov', '1980-05-15', 'hahaha123', '2010-01-01', 3, (SELECT id FROM soldier_type WHERE type_rank = 0), 2, false),
---     ('John', 'Doe', '1990-05-15', 'ABC123', '2020-01-01', 1, (SELECT id FROM soldier_type WHERE type_rank = 1), 2, false),
---     ('Jane', 'Smith', '1995-08-20', 'XYZ789', '2020-02-15', 2, (SELECT id FROM soldier_type WHERE type_rank = 2), 7, false),
---     ('Michael', 'Johnson', '1988-11-10', 'DEF456', '2020-03-20', 1, (SELECT id FROM soldier_type WHERE type_rank = 3), 2, false),
---     ('Emily', 'Williams', '1992-04-25', 'GHI789', '2020-04-30', 3, (SELECT id FROM soldier_type WHERE type_rank = 4), 5, false),
---     ('Christopher', 'Brown', '1985-09-05', 'JKL012', '2020-05-10', 2, (SELECT id FROM soldier_type WHERE type_rank = 5), 4, false),
---     ('Amanda', 'Davis', '1993-07-12', 'MNO345', '2020-06-20', 3, (SELECT id FROM soldier_type WHERE type_rank = 6), 5, false),
---     ('Robert', 'Martinez', '1991-02-28', 'PQR678', '2020-07-25', 1, (SELECT id FROM soldier_type WHERE type_rank = 7), 5, false),
---     ('Jennifer', 'Rodriguez', '1987-06-18', 'STU901', '2020-08-05', 2, (SELECT id FROM soldier_type WHERE type_rank = 8), 6, false),
---     ('William', 'Hernandez', '1983-12-08', 'VWX234', '2020-09-15', 3, (SELECT id FROM soldier_type WHERE type_rank = 9), 2, false),
---     ('Sarah', 'Garcia', '1990-03-22', 'YZA567', '2020-10-20', 1, (SELECT id FROM soldier_type WHERE type_rank = 10), 1, false),
---     ('kirill', 'kirillov', '1980-03-22', 'YZAdgfd567', '2010-10-20', 1, (SELECT id FROM soldier_type WHERE type_rank = 0), 0, false);
 
 -- Inserting data into combat_equipment_table
 INSERT INTO combat_equipment_table (name_of_equipment, experience_of_using, condition_of_vehicle, number_of_seats, name_of_vehicle, subdivision_id)

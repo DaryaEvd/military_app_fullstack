@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function FindOfficer() {
     const [soldiers, setSoldiers] = useState([]);
@@ -51,6 +52,10 @@ export default function FindOfficer() {
     return (
         <div className='container'>
             <h2 className='my-4'>Find Officers</h2>
+            <Link className="btn btn-outline-primary mb-4" to="/soldiers">
+                    Back
+            </Link>
+            
             <div className='row'>
                 <div className='col-md-6'>
                     <select

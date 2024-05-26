@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 export default function Subdivision() {
     const [subdivisions, setSubdivisions] = useState([]);
     const [subdivisionTypes, setSubdivisionTypes] = useState([]);
+    const [showOnlyDislocated, setShowOnlyDislocated] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -39,12 +40,27 @@ export default function Subdivision() {
         return type ? type.nameOfType : "Unknown";
     };
 
+    const filteredSubdivisions = showOnlyDislocated
+        ? subdivisions.filter(subdivision => subdivision.isDislocated)
+        : subdivisions;
+
     return (
         <div className="container">
             <div className="py-4">
                 <Link className="btn btn-outline-primary mb-4" to="/subdivisions/add">
                     Add Subdivision
                 </Link>
+                <button 
+                    className="btn btn-secondary mb-4"
+                    onClick={() => setShowOnlyDislocated(!showOnlyDislocated)}
+                >
+                    {showOnlyDislocated ? "Show All" : "Show Only Dislocated"}
+                </button>
+
+                <Link className="btn btn-outline-primary mb-4" to="/subdivisions/find_dislocated_places">
+                    Dislocated Places
+                </Link>
+
                 <table className="table border shadow">
                     <thead>
                         <tr>
@@ -53,20 +69,17 @@ export default function Subdivision() {
                             <th scope="col">Number</th>
                             <th scope="col">Dislocated</th>
                             <th scope="col">Type</th>
-                            {/* <th scope="col">Commander</th> */}
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {subdivisions.map((subdivision, index) => (
+                        {filteredSubdivisions.map((subdivision, index) => (
                             <tr key={subdivision.id}>
                                 <th scope="row">{index + 1}</th>
                                 <td>{subdivision.nameOfSubdivision}</td>
                                 <td>{subdivision.numberOfSubdivision}</td>
                                 <td>{subdivision.isDislocated ? "Yes" : "No"}</td>
                                 <td>{getSubdivisionTypeName(subdivision.typeOfSubdivision)}</td>
-                                {/* <td>{subdivision.commander ? `${subdivision.commander.firstName} ${subdivision.commander.lastName}` : "not appointed"}</td> */}
-
                                 <td>
                                     <Link className="btn btn-primary mx-2" to={`/subdivisions/view/${subdivision.id}`}>
                                         View

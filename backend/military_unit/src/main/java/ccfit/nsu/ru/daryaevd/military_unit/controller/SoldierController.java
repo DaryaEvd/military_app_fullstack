@@ -62,8 +62,8 @@ public class SoldierController {
     public ResponseEntity<List<SoldierDto>> getSergeants(
             @RequestParam(value = "soldier_rank", required = false) Integer soldierRank,
             @RequestParam(value = "subdivision_rank", required = false) Integer subdivisionRank) {
-        List<SoldierDto> officers = soldierService.getSergeants(soldierRank, subdivisionRank);
-        return ResponseEntity.ok(officers);
+        List<SoldierDto> sergeants = soldierService.getSergeants(soldierRank, subdivisionRank);
+        return ResponseEntity.ok(sergeants);
     }
 
 
