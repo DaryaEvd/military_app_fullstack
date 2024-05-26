@@ -21,7 +21,7 @@ public class SubdivisionMapper {
         }
 
         return subdivisionDto;
-
+    }
 
 //        SubdivisionDto subdivisionDto = new SubdivisionDto();
 //
@@ -42,7 +42,7 @@ public class SubdivisionMapper {
 ////                .collect(Collectors.toList());
 ////        subdivisionDto.setSoldierIds(soldierIds);
 //        return subdivisionDto;
-    }
+//    }
 
     public static Subdivision mapToSubdivision(SubdivisionDto subdivisionDto) {
 

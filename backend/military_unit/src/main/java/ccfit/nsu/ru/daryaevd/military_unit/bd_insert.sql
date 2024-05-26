@@ -50,29 +50,105 @@ INSERT INTO mas_type (code_of_mas, name_of_mas) VALUES
 -- Inserting data into the subdivision_table
 INSERT INTO subdivision_table (name_of_subdivision, number_of_subdivision, dislocated, type_of_subdivision_id)
 VALUES
-    ('Alpha Squad', 1, false,  5),
-    ('Bravo Platoon', 2, true,   2),
-    ('best team', 23, true,  1),
-    ('vzvod by Pirogov', 234, true, 4),
-    ('gffjj team', 78, false, 5),
-    ('bbeveest team', 654, false,  3),
-    ('pupupu Krasniy', 3, false, 3);
+    ('Alpha', 1, false,  (SELECT id FROM subdivision_type WHERE subdivision_rank = 5)),
+    ('Bravo', 2, true,   (SELECT id FROM subdivision_type WHERE subdivision_rank = 2)),
+    ('rere team', 318, false, (SELECT id FROM subdivision_type WHERE subdivision_rank = 0)),
+    ('best team', 23, true,  (SELECT id FROM subdivision_type WHERE subdivision_rank = 1)),
+    ('grug team', 45, true,  (SELECT id FROM subdivision_type WHERE subdivision_rank = 6)),
+    ('plolpl team', 764, false,  (SELECT id FROM subdivision_type WHERE subdivision_rank = 7)),
+    ('vzvod by Pirogov', 24, true, (SELECT id FROM subdivision_type WHERE subdivision_rank = 4)),
+    ('gffjj team', 7653, false, (SELECT id FROM subdivision_type WHERE subdivision_rank = 5)),
+    ('rfrhrt team', 457, true,  (SELECT id FROM subdivision_type WHERE subdivision_rank = 7)),
+    ('bbeveest team', 654, false,  (SELECT id FROM subdivision_type WHERE subdivision_rank = 3)),
+    ('pupupu Krasniy', 3, false, (SELECT id FROM subdivision_type WHERE subdivision_rank = 3));
+
 
 
 INSERT INTO soldier_table (first_name, last_name, date_of_birth, military_card, date_of_issue_of_military_card, mas_id, soldier_type_id, subdivision_id, is_commander)
 VALUES
     ('Seva', 'Nosov', '1980-05-15', 'hahaha123', '2010-01-01', 3,
-     (SELECT id FROM soldier_type WHERE type_rank = 5),
-     (SELECT s.id FROM subdivision_table s JOIN subdivision_type st ON s.type_of_subdivision_id = st.id WHERE st.subdivision_rank = 0), false),
+     (SELECT id FROM soldier_type WHERE type_rank = 5 LIMIT 1),
+     (SELECT s.id FROM subdivision_table s JOIN subdivision_type st ON s.type_of_subdivision_id = st.id WHERE st.subdivision_rank = 0 LIMIT 1), false),
 
-    ('kirill', 'kirillov', '1980-03-22', 'YZAdgfd567', '2010-10-20', 1,
-     (SELECT id FROM soldier_type WHERE type_rank = 7),
-     (SELECT s.id FROM subdivision_table s JOIN subdivision_type st ON s.type_of_subdivision_id = st.id WHERE st.subdivision_rank = 1), false),
+    ('Kirill', 'Kirillov', '1980-03-22', 'YZAdgfd567', '2010-10-20', 1,
+     (SELECT id FROM soldier_type WHERE type_rank = 7 LIMIT 1),
+     (SELECT s.id FROM subdivision_table s JOIN subdivision_type st ON s.type_of_subdivision_id = st.id WHERE st.subdivision_rank = 1 LIMIT 1), false),
 
-    ('potap', 'arturov', '1983-04-22', 'sdgrge', '2018-12-20', 1,
-     (SELECT id FROM soldier_type WHERE type_rank = 7),
-     (SELECT s.id FROM subdivision_table s JOIN subdivision_type st ON s.type_of_subdivision_id = st.id WHERE st.subdivision_rank = 3), false);
+    ('Potap', 'Arturov', '1983-04-22', 'sdgrge', '2018-12-20', 1,
+     (SELECT id FROM soldier_type WHERE type_rank = 7 LIMIT 1),
+     (SELECT s.id FROM subdivision_table s JOIN subdivision_type st ON s.type_of_subdivision_id = st.id WHERE st.subdivision_rank = 3 LIMIT 1), false),
 
+    ('John', 'Doe', '1990-05-15', 'ABC123', '2020-01-01', 1,
+     (SELECT id FROM soldier_type WHERE type_rank = 2 LIMIT 1),
+     (SELECT s.id FROM subdivision_table s JOIN subdivision_type st ON s.type_of_subdivision_id = st.id WHERE st.subdivision_rank = 2 LIMIT 1), false),
+
+    ('Jane', 'Smith', '1995-08-20', 'XYZ789', '2020-02-15', 2,
+     (SELECT id FROM soldier_type WHERE type_rank = 1 LIMIT 1),
+     (SELECT s.id FROM subdivision_table s JOIN subdivision_type st ON s.type_of_subdivision_id = st.id WHERE st.subdivision_rank = 3 LIMIT 1), false),
+
+    ('Michael', 'Johnson', '1988-11-10', 'DEF456', '2020-03-20', 1,
+     (SELECT id FROM soldier_type WHERE type_rank = 3 LIMIT 1),
+     (SELECT s.id FROM subdivision_table s JOIN subdivision_type st ON s.type_of_subdivision_id = st.id WHERE st.subdivision_rank = 4 LIMIT 1), false),
+
+    ('Emily', 'Williams', '1992-04-25', 'GHI789', '2020-04-30', 3,
+     (SELECT id FROM soldier_type WHERE type_rank = 4 LIMIT 1),
+     (SELECT s.id FROM subdivision_table s JOIN subdivision_type st ON s.type_of_subdivision_id = st.id WHERE st.subdivision_rank = 5 LIMIT 1), false),
+
+    ('Christopher', 'Brown', '1985-09-05', 'JKL012', '2020-05-10', 2,
+     (SELECT id FROM soldier_type WHERE type_rank = 6 LIMIT 1),
+     (SELECT s.id FROM subdivision_table s JOIN subdivision_type st ON s.type_of_subdivision_id = st.id WHERE st.subdivision_rank = 6 LIMIT 1), false),
+
+    ('Amanda', 'Davis', '1993-07-12', 'MNO345', '2020-06-20', 3,
+     (SELECT id FROM soldier_type WHERE type_rank = 8 LIMIT 1),
+     (SELECT s.id FROM subdivision_table s JOIN subdivision_type st ON s.type_of_subdivision_id = st.id WHERE st.subdivision_rank = 7 LIMIT 1), false),
+
+    ('Robert', 'Martinez', '1991-02-28', 'PQR678', '2020-07-25', 1,
+     (SELECT id FROM soldier_type WHERE type_rank = 9 LIMIT 1),
+     (SELECT s.id FROM subdivision_table s JOIN subdivision_type st ON s.type_of_subdivision_id = st.id WHERE st.subdivision_rank = 0 LIMIT 1), false),
+
+    ('Jennifer', 'Rodriguez', '1987-06-18', 'STU901', '2020-08-05', 2,
+     (SELECT id FROM soldier_type WHERE type_rank = 10 LIMIT 1),
+     (SELECT s.id FROM subdivision_table s JOIN subdivision_type st ON s.type_of_subdivision_id = st.id WHERE st.subdivision_rank = 1 LIMIT 1), false),
+
+    ('William', 'Hernandez', '1983-12-08', 'VWX234', '2020-09-15', 3,
+     (SELECT id FROM soldier_type WHERE type_rank = 0 LIMIT 1),
+     (SELECT s.id FROM subdivision_table s JOIN subdivision_type st ON s.type_of_subdivision_id = st.id WHERE st.subdivision_rank = 2 LIMIT 1), false),
+
+    ('Sarah', 'Garcia', '1990-03-22', 'YZA567', '2020-10-20', 1,
+     (SELECT id FROM soldier_type WHERE type_rank = 1 LIMIT 1),
+     (SELECT s.id FROM subdivision_table s JOIN subdivision_type st ON s.type_of_subdivision_id = st.id WHERE st.subdivision_rank = 3 LIMIT 1), false),
+
+    ('David', 'Lopez', '1982-05-30', 'BNM432', '2019-05-15', 3,
+     (SELECT id FROM soldier_type WHERE type_rank = 2 LIMIT 1),
+     (SELECT s.id FROM subdivision_table s JOIN subdivision_type st ON s.type_of_subdivision_id = st.id WHERE st.subdivision_rank = 4 LIMIT 1), false),
+
+    ('Emily', 'Moore', '1994-07-23', 'CVB987', '2018-04-22', 2,
+     (SELECT id FROM soldier_type WHERE type_rank = 3 LIMIT 1),
+     (SELECT s.id FROM subdivision_table s JOIN subdivision_type st ON s.type_of_subdivision_id = st.id WHERE st.subdivision_rank = 5 LIMIT 1), false),
+
+    ('James', 'Taylor', '1991-11-11', 'QWE654', '2019-08-30', 1,
+     (SELECT id FROM soldier_type WHERE type_rank = 4 LIMIT 1),
+     (SELECT s.id FROM subdivision_table s JOIN subdivision_type st ON s.type_of_subdivision_id = st.id WHERE st.subdivision_rank = 6 LIMIT 1), false),
+
+    ('Patricia', 'Anderson', '1986-09-15', 'ASD321', '2020-10-10', 3,
+     (SELECT id FROM soldier_type WHERE type_rank = 5 LIMIT 1),
+     (SELECT s.id FROM subdivision_table s JOIN subdivision_type st ON s.type_of_subdivision_id = st.id WHERE st.subdivision_rank = 7 LIMIT 1), false),
+
+    ('Richard', 'Thomas', '1987-04-02', 'ZXC098', '2017-11-11', 2,
+     (SELECT id FROM soldier_type WHERE type_rank = 6 LIMIT 1),
+     (SELECT s.id FROM subdivision_table s JOIN subdivision_type st ON s.type_of_subdivision_id = st.id WHERE st.subdivision_rank = 0 LIMIT 1), false),
+
+    ('Linda', 'Jackson', '1985-12-22', 'RTY567', '2018-06-05', 3,
+     (SELECT id FROM soldier_type WHERE type_rank = 7 LIMIT 1),
+     (SELECT s.id FROM subdivision_table s JOIN subdivision_type st ON s.type_of_subdivision_id = st.id WHERE st.subdivision_rank = 1 LIMIT 1), false),
+
+    ('Charles', 'White', '1990-10-10', 'FGB345', '2019-09-01', 1,
+     (SELECT id FROM soldier_type WHERE type_rank = 8 LIMIT 1),
+     (SELECT s.id FROM subdivision_table s JOIN subdivision_type st ON s.type_of_subdivision_id = st.id WHERE st.subdivision_rank = 2 LIMIT 1), false),
+
+    ('Barbara', 'Harris', '1984-06-06', 'HJK678', '2020-12-12', 2,
+     (SELECT id FROM soldier_type WHERE type_rank = 9 LIMIT 1),
+     (SELECT s.id FROM subdivision_table s JOIN subdivision_type st ON s.type_of_subdivision_id = st.id WHERE st.subdivision_rank = 3 LIMIT 1), false);
 
 
 
