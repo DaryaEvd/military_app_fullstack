@@ -16,7 +16,8 @@ export default function FindSoldier() {
     const fetchSoldierTypeList = async () => {
         try {
             const response = await axios.get("http://localhost:8080/api/soldier_type");
-            setSoldierTypeList(response.data);
+            const filteredTypes = response.data.filter(type => type.typeRank > 5); // Only include types with rank 4 or lower
+            setSoldierTypeList(filteredTypes);
         } catch (error) {
             console.error("Error fetching SoldierType list:", error);
         }
@@ -24,7 +25,7 @@ export default function FindSoldier() {
 
     const fetchSubdivisionList = async () => {
         try {
-            const response = await axios.get("http://localhost:8080/api/subdivision");
+            const response = await axios.get("http://localhost:8080/api/subdivision_types");
             setSubdivisionList(response.data);
         } catch (error) {
             console.error("Error fetching Subdivision list:", error);
@@ -76,7 +77,7 @@ export default function FindSoldier() {
                         <option value="">Select Subdivision Rank</option>
                         {subdivisionList.map(subdivision => (
                             <option key={subdivision.id} value={subdivision.subdivisionRank}>
-                                {subdivision.nameOfSubdivision}
+                                {subdivision.nameOfType}
                             </option>
                         ))}
                     </select>
