@@ -20,6 +20,6 @@ public class SoldierDto {
     private Date dateOfIssueMilitaryCard;
     private Long masId;
     private Integer typeOfSoldier;
-    private Long subdivisionId;
+    private Integer subdivisionId;
     private Boolean isCommander;
 }

@@ -19,9 +19,9 @@ VALUES
     ('Rota', 2),
     ('Military Unit', 3),
     ('Corps', 4),
-    ('Brigade', 4),
-    ('Division', 4),
-    ('Army', 5);
+    ('Brigade', 5),
+    ('Division', 6),
+    ('Army', 7);
 
 -- Inserting data into mas_type table
 INSERT INTO mas_type (code_of_mas, name_of_mas) VALUES
@@ -54,24 +54,76 @@ VALUES
     ('Bravo Platoon', 2, true,   2),
     ('best team', 23, true,  1),
     ('vzvod by Pirogov', 234, true, 4),
-    ('best team', 23, true,  1),
+    ('gffjj team', 78, false, 5),
     ('bbeveest team', 654, false,  3),
     ('pupupu Krasniy', 3, false, 3);
 
 
 INSERT INTO soldier_table (first_name, last_name, date_of_birth, military_card, date_of_issue_of_military_card, mas_id, soldier_type_id, subdivision_id, is_commander)
 VALUES
-    ('Seva', 'Nosov', '1980-05-15', 'hahaha123', '2010-01-01', 3, (SELECT id FROM soldier_type WHERE type_rank = 0 LIMIT 1), (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'Platoon' LIMIT 1), false),
-    ('kirill', 'kirillov', '1980-03-22', 'YZAdgfd567', '2010-10-20', 1, (SELECT id FROM soldier_type WHERE type_rank = 0 LIMIT 1), (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'Squad' LIMIT 1), false),
-    ('Jane', 'Smith', '1995-08-20', 'XYZ789', '2020-02-15', 2, (SELECT id FROM soldier_type WHERE type_rank = 2), (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'Rota' LIMIT 1), false),
-    ('Michael', 'Johnson', '1988-11-10', 'DEF456', '2020-03-20', 1, (SELECT id FROM soldier_type WHERE type_rank = 3), (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'Military Unit' LIMIT 1), false),
-    ('Emily', 'Williams', '1992-04-25', 'GHI789', '2020-04-30', 3, (SELECT id FROM soldier_type WHERE type_rank = 4), (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'Corps' LIMIT 1), false),
-    ('Christopher', 'Brown', '1985-09-05', 'JKL012', '2020-05-10', 2, (SELECT id FROM soldier_type WHERE type_rank = 5), (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'Brigade' LIMIT 1), false),
-    ('Amanda', 'Davis', '1993-07-12', 'MNO345', '2020-06-20', 3, (SELECT id FROM soldier_type WHERE type_rank = 6), (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'Division' LIMIT 1), false),
-    ('Robert', 'Martinez', '1991-02-28', 'PQR678', '2020-07-25', 1, (SELECT id FROM soldier_type WHERE type_rank = 7), (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'Army' LIMIT 1), false),
-    ('Jennifer', 'Rodriguez', '1987-06-18', 'STU901', '2020-08-05', 2, (SELECT id FROM soldier_type WHERE type_rank = 8), (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'Corps' LIMIT 1), false),
-    ('William', 'Hernandez', '1983-12-08', 'VWX234', '2020-09-15', 3, (SELECT id FROM soldier_type WHERE type_rank = 9), (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'Brigade' LIMIT 1), false),
-    ('Sarah', 'Garcia', '1990-03-22', 'YZA567', '2020-10-20', 1, (SELECT id FROM soldier_type WHERE type_rank = 10), (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'Brigade' LIMIT 1), false);
+    ('Seva', 'Nosov', '1980-05-15', 'hahaha123', '2010-01-01', 3,
+     (SELECT id FROM soldier_type WHERE type_rank = 5),
+     (SELECT s.id FROM subdivision_table s JOIN subdivision_type st ON s.type_of_subdivision_id = st.id WHERE st.subdivision_rank = 0), false),
+
+    ('kirill', 'kirillov', '1980-03-22', 'YZAdgfd567', '2010-10-20', 1,
+     (SELECT id FROM soldier_type WHERE type_rank = 7),
+     (SELECT s.id FROM subdivision_table s JOIN subdivision_type st ON s.type_of_subdivision_id = st.id WHERE st.subdivision_rank = 1), false),
+
+    ('potap', 'arturov', '1983-04-22', 'sdgrge', '2018-12-20', 1,
+     (SELECT id FROM soldier_type WHERE type_rank = 7),
+     (SELECT s.id FROM subdivision_table s JOIN subdivision_type st ON s.type_of_subdivision_id = st.id WHERE st.subdivision_rank = 3), false);
+
+
+
+
+------------------------------------------
+---------------------- nononononononoonono
+INSERT INTO soldier_table (first_name, last_name, date_of_birth, military_card, date_of_issue_of_military_card,
+                           mas_id, soldier_type_id, subdivision_id, is_commander)
+VALUES
+    ('Seva', 'Nosov', '1980-05-15', 'hahaha123', '2010-01-01', 3,
+     (SELECT id FROM soldier_type WHERE type_rank = 5  ),
+     (SELECT s.id FROM subdivision_table s JOIN subdivision_type st ON s.type_of_subdivision_id = st.id WHERE st.subdivision_rank = 0  ), false),
+
+    ('kirill', 'kirillov', '1980-03-22', 'YZAdgfd567', '2010-10-20', 1,
+     (SELECT id FROM soldier_type WHERE type_rank = 7 ),
+     (SELECT s.id FROM subdivision_table s JOIN subdivision_type st ON s.type_of_subdivision_id = st.id WHERE st.subdivision_rank = 1 ), false),
+
+    ('potap', 'arturov', '1983-04-22', 'sdgrge', '2018-12-20', 1,
+     (SELECT id FROM soldier_type WHERE type_rank = 7 ),
+     (SELECT s.id FROM subdivision_table s JOIN subdivision_type st ON s.type_of_subdivision_id = st.id WHERE st.subdivision_rank = 3 ), false);
+
+
+---------------------- nononononononoonono
+INSERT INTO soldier_table (first_name, last_name, date_of_birth, military_card, date_of_issue_of_military_card,
+                           mas_id, soldier_type_id, subdivision_id, is_commander)
+    VALUES
+    ('Amanda', 'drtyfu', '1980-05-15', 'rdthr', '2018-01-01', 3,
+        (SELECT id FROM soldier_type WHERE type_rank = 5 ),
+        (SELECT s.id FROM subdivision_table s JOIN subdivision_type st ON s.type_of_subdivision_id = st.id WHERE st.subdivision_rank = 5  ), true),
+
+    ('Jennifer', 'ergr', '1980-03-22', 'dhrt', '2014-10-20', 11,
+        (SELECT id FROM soldier_type WHERE type_rank = 8 ),
+        (SELECT s.id FROM subdivision_table s JOIN subdivision_type st ON s.type_of_subdivision_id = st.id WHERE st.subdivision_rank = 7 ), false),
+
+    ('Brown', 'gerg', '1983-04-22', 'rdthrd', '2018-04-20', 4,
+        (SELECT id FROM soldier_type WHERE type_rank = 9 ),
+        (SELECT s.id FROM subdivision_table s JOIN subdivision_type st ON s.type_of_subdivision_id = st.id WHERE st.subdivision_rank = 4 ), false);
+
+
+-- INSERT INTO soldier_table (first_name, last_name, date_of_birth, military_card, date_of_issue_of_military_card, mas_id, soldier_type_id, subdivision_id, is_commander)
+-- VALUES
+--     ('Seva', 'Nosov', '1980-05-15', 'hahaha123', '2010-01-01', 3, (SELECT id FROM soldier_type WHERE type_rank = 0 LIMIT 1), (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'Platoon' LIMIT 1), false),
+--     ('kirill', 'kirillov', '1980-03-22', 'YZAdgfd567', '2010-10-20', 1, (SELECT id FROM soldier_type WHERE type_rank = 0 LIMIT 1), (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'Squad' LIMIT 1), false),
+--     ('Jane', 'Smith', '1995-08-20', 'XYZ789', '2020-02-15', 2, (SELECT id FROM soldier_type WHERE type_rank = 2), (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'Rota' LIMIT 1), false),
+--     ('Michael', 'Johnson', '1988-11-10', 'DEF456', '2020-03-20', 1, (SELECT id FROM soldier_type WHERE type_rank = 3), (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'Military Unit' LIMIT 1), false),
+--     ('Emily', 'Williams', '1992-04-25', 'GHI789', '2020-04-30', 3, (SELECT id FROM soldier_type WHERE type_rank = 4), (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'Corps' LIMIT 1), false),
+--     ('Christopher', 'Brown', '1985-09-05', 'JKL012', '2020-05-10', 2, (SELECT id FROM soldier_type WHERE type_rank = 5), (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'Brigade' LIMIT 1), false),
+--     ('Amanda', 'Davis', '1993-07-12', 'MNO345', '2020-06-20', 3, (SELECT id FROM soldier_type WHERE type_rank = 6), (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'Division' LIMIT 1), false),
+--     ('Amanda', 'Martinez', '1991-02-28', 'PQR678', '2020-07-25', 1, (SELECT id FROM soldier_type WHERE type_rank = 7), (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'Army' LIMIT 1), false),
+--     ('Jennifer', 'Rodriguez', '1987-06-18', 'STU901', '2020-08-05', 2, (SELECT id FROM soldier_type WHERE type_rank = 8), (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'Corps' LIMIT 1), false),
+--     ('William', 'Hernandez', '1983-12-08', 'VWX234', '2020-09-15', 3, (SELECT id FROM soldier_type WHERE type_rank = 9), (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'Brigade' LIMIT 1), false),
+--     ('Amanda', 'Garcia', '1990-03-22', 'YZA567', '2020-10-20', 1, (SELECT id FROM soldier_type WHERE type_rank = 10), (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'Brigade' LIMIT 1), false);
 
 -- Inserting data into the soldier_table
 -- INSERT INTO soldier_table (first_name, last_name, date_of_birth, military_card, date_of_issue_of_military_card, mas_id, soldier_type_id, subdivision_id, is_commander)

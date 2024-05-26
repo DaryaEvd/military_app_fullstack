@@ -51,7 +51,7 @@ public class SoldierServiceImpl implements SoldierService {
         }
 
         if (soldierDto.getSubdivisionId() != null) {
-            Subdivision subdivision = subdivisionRepository.findById(soldierDto.getSubdivisionId())
+            Subdivision subdivision = subdivisionRepository.findById(Long.valueOf(soldierDto.getSubdivisionId()))
                     .orElseThrow(() -> new ResourceNotFoundException("Subdivision doesn't exist with given id: " + soldierDto.getSubdivisionId()));
             soldier.setSubdivision(subdivision);
         }
@@ -99,7 +99,7 @@ public class SoldierServiceImpl implements SoldierService {
         }
 
         if (updatedSoldier.getSubdivisionId() != null) {
-            Subdivision subdivision = subdivisionRepository.findById(updatedSoldier.getSubdivisionId())
+            Subdivision subdivision = subdivisionRepository.findById(Long.valueOf(updatedSoldier.getSubdivisionId()))
                     .orElseThrow(() -> new ResourceNotFoundException("Subdivision doesn't exist with given id: " + updatedSoldier.getSubdivisionId()));
             soldier.setSubdivision(subdivision);
         }

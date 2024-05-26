@@ -36,7 +36,7 @@ public class SubdivisionServiceImpl implements SubdivisionService {
 
     @Override
     public SubdivisionDto createSubdivision(SubdivisionDto subdivisionDto) {
-        SubdivisionType subdivisionType = subdivisionTypeRepository.findById(subdivisionDto.getTypeOfSubdivision())
+        SubdivisionType subdivisionType = subdivisionTypeRepository.findById(Long.valueOf(subdivisionDto.getTypeOfSubdivision()))
                 .orElseThrow(() -> new ResourceNotFoundException("SubdivisionType not found with id " + subdivisionDto.getTypeOfSubdivision()));
 
         Soldier commander = soldierRepository.findById(subdivisionDto.getCommanderId())
@@ -83,7 +83,7 @@ public class SubdivisionServiceImpl implements SubdivisionService {
             subdivision.setCommander(commander);
         }
 
-        SubdivisionType subdivisionType = subdivisionTypeRepository.findById(updatedSubdivision.getTypeOfSubdivision())
+        SubdivisionType subdivisionType = subdivisionTypeRepository.findById(Long.valueOf(updatedSubdivision.getTypeOfSubdivision()))
                 .orElseThrow(() -> new ResourceNotFoundException("SubdivisionType not found with id " + updatedSubdivision.getTypeOfSubdivision()));
         subdivision.setTypeOfSubdivision(subdivisionType);
 

@@ -23,13 +23,15 @@ public class SoldierMapper {
         soldierDto.setDateOfIssueMilitaryCard(soldier.getDateOfIssueMilitaryCard());
         soldierDto.setMasId(soldier.getMasId() != null ? soldier.getMasId().getId() : null);
         soldierDto.setTypeOfSoldier(soldier.getSoldierType() != null ? soldier.getSoldierType().getTypeRank() : null);
-        soldierDto.setSubdivisionId(soldier.getSubdivision() != null ? soldier.getSubdivision().getTypeOfSubdivision().getId() : null);
+//        soldierDto.setSubdivisionId(soldier.getSubdivision() != null ? soldier.getSubdivision().getTypeOfSubdivision() : null); // Исправлено здесь
 
-//        soldierDto.setSubdivisionId(soldier.getSubdivision().getTypeOfSubdivision().getId());
+        soldierDto.setSubdivisionId(soldier.getSubdivision().getTypeOfSubdivision() != null ?
+                    soldier.getSubdivision().getTypeOfSubdivision().getSubdivisionRank() : null);
 
         soldierDto.setIsCommander(soldier.getIsCommander());
         return soldierDto;
     }
+
 
 //    public static Soldier mapToSoldier(SoldierDto soldierDto, MasRepository masRepository, SoldierTypeRepository soldierTypeRepository, SubdivisionRepository subdivisionRepository) {
 //        Soldier soldier = new Soldier();
