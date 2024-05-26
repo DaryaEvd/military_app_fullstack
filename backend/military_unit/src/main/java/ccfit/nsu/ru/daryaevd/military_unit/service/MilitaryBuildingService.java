@@ -16,8 +16,12 @@ public interface MilitaryBuildingService {
 
     void deleteMilitaryBuilding(Long militaryBuildingId);
 
-    List<MilitaryBuilding> findBySubdivisionType(String subdivisionType);
+    List<MilitaryBuilding> getAllMilitaryBuildings();
 
-    List<MilitaryBuilding> findMilitaryBuildingsWithMultipleDislocatedSubdivisions();
+
+
+//    List<MilitaryBuilding> findBySubdivisionType(String subdivisionType);
+//
+//    List<MilitaryBuilding> findMilitaryBuildingsWithMultipleDislocatedSubdivisions();
 
 }

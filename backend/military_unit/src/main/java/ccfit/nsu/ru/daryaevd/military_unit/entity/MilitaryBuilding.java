@@ -31,6 +31,8 @@ public class MilitaryBuilding {
     @Column(name = "amount_of_rooms", nullable = false)
     private Integer amountOfRooms;
 
-    @OneToMany(fetch = FetchType.LAZY, /*mappedBy = "militaryBuilding", */ cascade = CascadeType.ALL)
-    private List<Subdivision> subdivisionList;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "subdivision_id", referencedColumnName = "id")
+    private Subdivision subdivision;
+
 }

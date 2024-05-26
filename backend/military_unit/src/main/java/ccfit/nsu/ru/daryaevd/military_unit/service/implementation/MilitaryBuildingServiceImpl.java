@@ -60,12 +60,18 @@ public class MilitaryBuildingServiceImpl implements MilitaryBuildingService {
     }
 
     @Override
-    public List<MilitaryBuilding> findBySubdivisionType(String subdivisionType) {
-        return militaryBuildingRepository.findBySubdivisionType(subdivisionType);
+    public List<MilitaryBuilding> getAllMilitaryBuildings() {
+        return militaryBuildingRepository.findAll();
     }
 
-    @Override
-    public List<MilitaryBuilding> findMilitaryBuildingsWithMultipleDislocatedSubdivisions() {
-        return militaryBuildingRepository.findMilitaryBuildingsWithMultipleDislocatedSubdivisions();
-    }
+
+//    @Override
+//    public List<MilitaryBuilding> findBySubdivisionType(String subdivisionType) {
+//        return militaryBuildingRepository.findBySubdivisionType(subdivisionType);
+//    }
+//
+//    @Override
+//    public List<MilitaryBuilding> findMilitaryBuildingsWithMultipleDislocatedSubdivisions() {
+//        return militaryBuildingRepository.findMilitaryBuildingsWithMultipleDislocatedSubdivisions();
+//    }
 }

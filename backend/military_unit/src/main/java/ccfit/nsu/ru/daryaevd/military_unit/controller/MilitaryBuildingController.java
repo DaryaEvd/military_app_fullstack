@@ -40,7 +40,7 @@ public class MilitaryBuildingController {
 
     //update military building info
     @PutMapping("{id}")
-    public ResponseEntity<MilitaryBuildingDto> updateSubdivision(@PathVariable("id") Long militaryBuildingId,
+    public ResponseEntity<MilitaryBuildingDto> updateMilitaryBuilding(@PathVariable("id") Long militaryBuildingId,
                                                                  @RequestBody MilitaryBuildingDto updatedMilitaryBuilding) {
         MilitaryBuildingDto militaryBuildingDto = militaryBuildingService.updateMilitaryBuilding(militaryBuildingId, updatedMilitaryBuilding);
         return ResponseEntity.ok(militaryBuildingDto);
@@ -48,18 +48,19 @@ public class MilitaryBuildingController {
 
     //delete military building
     @DeleteMapping("{id}")
-    public ResponseEntity<String> deleteSubdivision(@PathVariable("id") Long subdivisionId) {
-        militaryBuildingService.deleteMilitaryBuilding(subdivisionId);
+    public ResponseEntity<String> deleteMilitaryBuilding(@PathVariable("id") Long militaryBuildingId) {
+        militaryBuildingService.deleteMilitaryBuilding(militaryBuildingId);
         return ResponseEntity.ok("Subdivision deleted successfully");
     }
 
-    @GetMapping("/subdivision/{subdivisionType}")
-    public List<MilitaryBuilding> findBySubdivisionType(@PathVariable String subdivisionType) {
-        return militaryBuildingService.findBySubdivisionType(subdivisionType);
-    }
 
-    @GetMapping("/multiple-dislocated")
-    public List<MilitaryBuilding> findMilitaryBuildingsWithMultipleDislocatedSubdivisions() {
-        return militaryBuildingService.findMilitaryBuildingsWithMultipleDislocatedSubdivisions();
-    }
+//    @GetMapping("/subdivision/{subdivisionType}")
+//    public List<MilitaryBuilding> findBySubdivisionType(@PathVariable String subdivisionType) {
+//        return militaryBuildingService.findBySubdivisionType(subdivisionType);
+//    }
+//
+//    @GetMapping("/multiple-dislocated")
+//    public List<MilitaryBuilding> findMilitaryBuildingsWithMultipleDislocatedSubdivisions() {
+//        return militaryBuildingService.findMilitaryBuildingsWithMultipleDislocatedSubdivisions();
+//    }
 }
