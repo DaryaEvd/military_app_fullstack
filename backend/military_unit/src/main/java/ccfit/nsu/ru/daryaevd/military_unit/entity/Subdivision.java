@@ -26,6 +26,9 @@ public class Subdivision {
     @OneToMany(mappedBy = "subdivision", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Soldier> soldiers = new ArrayList<>();
 
+    @OneToMany(mappedBy = "subdivision", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<CombatEquipment> combatEquipments = new ArrayList<>();
+
     @Column(name = "number_of_subdivision", nullable = false)
     private Integer numberOfSubdivision;
 
@@ -40,10 +43,6 @@ public class Subdivision {
     @JoinColumn(name = "type_of_subdivision_id", referencedColumnName = "id", nullable = false)
     private SubdivisionType typeOfSubdivision;
 
-//    @OneToMany(mappedBy = "subdivision", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//    private List<MilitaryBuilding> militaryBuildings = new ArrayList<>();
-
     @ManyToMany(mappedBy = "subdivisions")
     private List<MilitaryBuilding> militaryBuildings = new ArrayList<>();
-
 }

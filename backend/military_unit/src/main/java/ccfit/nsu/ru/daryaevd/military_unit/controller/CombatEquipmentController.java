@@ -33,11 +33,11 @@ public class CombatEquipmentController {
     }
 
     // get all combat equipment
-    @GetMapping
-    public ResponseEntity<List<CombatEquipmentDto>> getAllCombatEquipment() {
-        List<CombatEquipmentDto> combatEquipmentList = combatEquipmentService.getAllCombatEquipment();
-        return ResponseEntity.ok(combatEquipmentList);
-    }
+//    @GetMapping
+//    public ResponseEntity<List<CombatEquipmentDto>> getAllCombatEquipment() {
+//        List<CombatEquipmentDto> combatEquipmentList = combatEquipmentService.getAllCombatEquipment();
+//        return ResponseEntity.ok(combatEquipmentList);
+//    }
 
     // update combat equipment info
     @PutMapping("{id}")
@@ -52,6 +52,18 @@ public class CombatEquipmentController {
     public ResponseEntity<String> deleteCombatEquipment(@PathVariable("id") Long combatEquipmentId) {
         combatEquipmentService.deleteCombatEquipment(combatEquipmentId);
         return ResponseEntity.ok("Combat equipment deleted successfully");
+    }
+
+    @GetMapping
+    public ResponseEntity<List<CombatEquipmentDto>> getAllCombatEquipments() {
+        List<CombatEquipmentDto> combatEquipments = combatEquipmentService.getAllCombatEquipments();
+        return ResponseEntity.ok(combatEquipments);
+    }
+
+    @GetMapping("/subdivision/{subdivisionId}")
+    public ResponseEntity<List<CombatEquipmentDto>> getCombatEquipmentsBySubdivisionId(@PathVariable Long subdivisionId) {
+        List<CombatEquipmentDto> combatEquipments = combatEquipmentService.getCombatEquipmentsBySubdivisionId(subdivisionId);
+        return ResponseEntity.ok(combatEquipments);
     }
 
 //    @GetMapping("/availability")

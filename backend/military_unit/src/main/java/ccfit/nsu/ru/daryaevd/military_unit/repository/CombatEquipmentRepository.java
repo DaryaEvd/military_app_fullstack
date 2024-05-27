@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface CombatEquipmentRepository extends JpaRepository<CombatEquipment, Long> {
+    List<CombatEquipment> findBySubdivisionId(Long subdivisionId);
 
     /* my_query 6.1
         Obtain data on the availability of military equipment in general

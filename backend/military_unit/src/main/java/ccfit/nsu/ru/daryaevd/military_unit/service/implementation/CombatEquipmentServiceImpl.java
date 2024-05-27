@@ -64,6 +64,24 @@ public class CombatEquipmentServiceImpl implements CombatEquipmentService {
         combatEquipmentRepository.deleteById(combatEquipmentId);
     }
 
+    @Override
+    public List<CombatEquipmentDto> getAllCombatEquipments() {
+        List<CombatEquipment> combatEquipments = combatEquipmentRepository.findAll();
+        return combatEquipments.stream()
+                .map(CombatEquipmentMapper::mapToCombatEquipmentDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<CombatEquipmentDto> getCombatEquipmentsBySubdivisionId(Long subdivisionId) {
+        List<CombatEquipment> combatEquipments = combatEquipmentRepository.findBySubdivisionId(subdivisionId);
+        return combatEquipments.stream()
+                .map(CombatEquipmentMapper::mapToCombatEquipmentDto)
+                .collect(Collectors.toList());
+    }
+
+
+
 //    @Override
 //    public List<Object[]> getAvailabilityOfEquipment() {
 //        return combatEquipmentRepository.getAvailabilityOfEquipment();
