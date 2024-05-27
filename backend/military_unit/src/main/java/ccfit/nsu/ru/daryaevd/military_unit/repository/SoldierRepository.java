@@ -4,6 +4,7 @@ import ccfit.nsu.ru.daryaevd.military_unit.entity.Soldier;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -11,6 +12,14 @@ public interface SoldierRepository extends JpaRepository<Soldier, Long>, JpaSpec
 
     @Query("SELECT s FROM Soldier s WHERE s.soldierType.typeRank BETWEEN 5 AND 10")
     List<Soldier> findOfficersByRankRange();
+
+    @Query("SELECT s FROM Soldier s WHERE s.mas.id = :masId")
+    List<Soldier> findSoldiersByMasId(@Param("masId") Long masId);
+
+    @Query("SELECT s FROM Soldier s WHERE s.mas.id = :masId AND s.subdivision.id = :subdivisionId")
+    List<Soldier> findSoldiersByMasIdAndSubdivisionId(@Param("masId") Long masId, @Param("subdivisionId") Long subdivisionId);
+
+
 
     /* my_query 2
     Получить данные по офицерскому составу в целом и по офицерскому составу указанного звания

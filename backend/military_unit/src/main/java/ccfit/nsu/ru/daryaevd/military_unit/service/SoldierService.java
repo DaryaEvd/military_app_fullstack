@@ -27,6 +27,12 @@ public interface SoldierService {
 
     List<SoldierDto> getSergeants(Integer soldierRank, Integer subdivisionRank);
 
+
+    List<SoldierDto> getSoldiersByMasId(Long masId);
+    List<SoldierDto> getSoldiersByMasIdAndSubdivisionId(Long masId, Long subdivisionId);
+
+
+
 //    List<Soldier> getOfficers();
 
 //    List<Soldier> getOfficersByTypeAndSubdivisionTypeRank(Integer minRank, Integer maxRank, Integer subdivisionTypeRank);

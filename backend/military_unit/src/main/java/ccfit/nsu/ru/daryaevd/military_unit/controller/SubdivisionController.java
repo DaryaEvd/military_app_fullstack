@@ -7,6 +7,7 @@ import ccfit.nsu.ru.daryaevd.military_unit.dto.SubdivisionTypeDto;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.MilitaryBuilding;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.Subdivision;
 import ccfit.nsu.ru.daryaevd.military_unit.service.MilitaryBuildingService;
+import ccfit.nsu.ru.daryaevd.military_unit.service.SoldierService;
 import ccfit.nsu.ru.daryaevd.military_unit.service.SubdivisionService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -22,6 +23,7 @@ import java.util.List;
 public class SubdivisionController {
     private SubdivisionService subdivisionService;
     private final MilitaryBuildingService militaryBuildingService;
+    private final SoldierService soldierService;
 
     // add subdivision
     @PostMapping
@@ -79,6 +81,20 @@ public class SubdivisionController {
     public List<MilitaryBuildingDto> getDislocationPlacesBySubdivisionId(@PathVariable Long subdivisionId) {
         return militaryBuildingService.getDislocationPlacesBySubdivisionId(subdivisionId);
     }
+
+    @GetMapping("/specialists/{masId}")
+    public ResponseEntity<List<SoldierDto>> getSoldiersByMasId(@PathVariable Long masId) {
+        List<SoldierDto> soldiers = soldierService.getSoldiersByMasId(masId);
+        return ResponseEntity.ok(soldiers);
+    }
+
+    @GetMapping("/specialists/{masId}/{subdivisionId}")
+    public ResponseEntity<List<SoldierDto>> getSoldiersByMasIdAndSubdivisionId(@PathVariable Long masId, @PathVariable Long subdivisionId) {
+        List<SoldierDto> soldiers = soldierService.getSoldiersByMasIdAndSubdivisionId(masId, subdivisionId);
+        return ResponseEntity.ok(soldiers);
+    }
+
+
 
 //    @GetMapping("/most_military_units")
 //    public ResponseEntity<List<Object[]>> getSubdivisionsWithMostMilitaryUnits() {

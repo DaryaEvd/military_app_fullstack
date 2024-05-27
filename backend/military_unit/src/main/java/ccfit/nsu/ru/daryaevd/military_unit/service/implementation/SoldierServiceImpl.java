@@ -158,6 +158,23 @@ public class SoldierServiceImpl implements SoldierService {
         return soldiers.stream().map(SoldierMapper::mapToSoldierDto).collect(Collectors.toList());
     }
 
+    @Override
+    public List<SoldierDto> getSoldiersByMasId(Long masId) {
+        List<Soldier> soldiers = soldierRepository.findSoldiersByMasId(masId);
+        return soldiers.stream()
+                .map(SoldierMapper::mapToSoldierDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<SoldierDto> getSoldiersByMasIdAndSubdivisionId(Long masId, Long subdivisionId) {
+        List<Soldier> soldiers = soldierRepository.findSoldiersByMasIdAndSubdivisionId(masId, subdivisionId);
+        return soldiers.stream()
+                .map(SoldierMapper::mapToSoldierDto)
+                .collect(Collectors.toList());
+    }
+    
+
 }
 
 
