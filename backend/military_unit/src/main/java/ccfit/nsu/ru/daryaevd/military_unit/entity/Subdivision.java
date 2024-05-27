@@ -40,6 +40,10 @@ public class Subdivision {
     @JoinColumn(name = "type_of_subdivision_id", referencedColumnName = "id", nullable = false)
     private SubdivisionType typeOfSubdivision;
 
-    @OneToMany(mappedBy = "subdivision", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    @OneToMany(mappedBy = "subdivision", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    private List<MilitaryBuilding> militaryBuildings = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "subdivisions")
     private List<MilitaryBuilding> militaryBuildings = new ArrayList<>();
+
 }

@@ -6,17 +6,31 @@ import ccfit.nsu.ru.daryaevd.military_unit.entity.MilitaryBuilding;
 import java.util.List;
 
 public interface MilitaryBuildingService {
-    MilitaryBuildingDto createMilitaryBuilding(MilitaryBuildingDto militaryBuildingDto);
+    List<MilitaryBuildingDto> getAllMilitaryBuildings();
+    MilitaryBuildingDto getMilitaryBuildingById(Long id);
+    MilitaryBuildingDto createMilitaryBuilding(MilitaryBuildingDto dto);
+    MilitaryBuildingDto updateMilitaryBuilding(Long id, MilitaryBuildingDto dto);
+    void deleteMilitaryBuilding(Long id);
 
-    MilitaryBuildingDto getMilitaryBuildingById(Long militaryBuildingId);
+//    List<MilitaryBuildingDto> getMilitaryBuildingsBySubdivision(Long subdivisionId, Boolean isDislocated);
+//    List<MilitaryBuildingDto> getBuildingsWithDislocatedSubdivisions(Boolean isDislocated, int minSubdivisions);
 
-    List<MilitaryBuildingDto> getAllBuildings();
+    List<MilitaryBuildingDto> getBuildingsBySubdivisionId(Long subdivisionId);
+    List<MilitaryBuildingDto> getBuildingsWithMinSubdivisions(int minSubdivisions);
+    List<MilitaryBuildingDto> getBuildingsWithNoSubdivisions();
 
-    MilitaryBuildingDto updateMilitaryBuilding(Long militaryBuildingId, MilitaryBuildingDto updatedMilitaryBuilding);
 
-    void deleteMilitaryBuilding(Long militaryBuildingId);
-
-    List<MilitaryBuilding> getAllMilitaryBuildings();
+//    MilitaryBuildingDto createMilitaryBuilding(MilitaryBuildingDto militaryBuildingDto);
+//
+//    MilitaryBuildingDto getMilitaryBuildingById(Long militaryBuildingId);
+//
+//    List<MilitaryBuildingDto> getAllBuildings();
+//
+//    MilitaryBuildingDto updateMilitaryBuilding(Long militaryBuildingId, MilitaryBuildingDto updatedMilitaryBuilding);
+//
+//    void deleteMilitaryBuilding(Long militaryBuildingId);
+//
+//    List<MilitaryBuilding> getAllMilitaryBuildings();
 
 
 

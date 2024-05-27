@@ -38,6 +38,92 @@ VALUES
     ('bbeveest team', 654, false,  (SELECT id FROM subdivision_type WHERE subdivision_rank = 3)),
     ('pupupu Krasniy', 3, false, (SELECT id FROM subdivision_type WHERE subdivision_rank = 3));
 
+-- Insert military buildings
+INSERT INTO military_building_table (can_use_for_dislocation, type_of_building, area_of_building, amount_of_rooms)
+VALUES
+    (true, 'Barracks', 500, 20),
+    (false, 'Armory', 200, 5),
+    (true, 'Headquarters', 800, 30),
+    (true, 'Storage', 300, 10),
+    (false, 'Medical', 250, 8),
+    (true, 'Training Facility', 1000, 40),
+    (false, 'Workshop', 150, 6),
+    (true, 'Garage', 400, 15),
+    (true, 'Warehouse', 600, 25),
+    (false, 'Communications', 180, 7),
+    (true, 'Mess Hall', 350, 12);
+
+-- Link military buildings with subdivisions
+INSERT INTO military_building_subdivision (military_building_id, subdivision_id)
+VALUES
+    ((SELECT id FROM military_building_table WHERE type_of_building = 'Barracks'), (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'Alpha')),
+    ((SELECT id FROM military_building_table WHERE type_of_building = 'Armory'), (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'Bravo')),
+    ((SELECT id FROM military_building_table WHERE type_of_building = 'Headquarters'), (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'rere team')),
+    ((SELECT id FROM military_building_table WHERE type_of_building = 'Storage'), (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'best team')),
+    ((SELECT id FROM military_building_table WHERE type_of_building = 'Medical'), (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'grug team')),
+    ((SELECT id FROM military_building_table WHERE type_of_building = 'Training Facility'), (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'plolpl team')),
+    ((SELECT id FROM military_building_table WHERE type_of_building = 'Workshop'), (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'vzvod by Pirogov')),
+    ((SELECT id FROM military_building_table WHERE type_of_building = 'Garage'), (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'gffjj team')),
+    ((SELECT id FROM military_building_table WHERE type_of_building = 'Warehouse'), (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'rfrhrt team')),
+    ((SELECT id FROM military_building_table WHERE type_of_building = 'Communications'), (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'bbeveest team')),
+    ((SELECT id FROM military_building_table WHERE type_of_building = 'Mess Hall'), (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'pupupu Krasniy'));
+
+INSERT INTO military_building_subdivision (military_building_id, subdivision_id)
+VALUES
+    ((SELECT id FROM military_building_table WHERE type_of_building = 'Headquarters'), (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'vzvod by Pirogov')),
+    ((SELECT id FROM military_building_table WHERE type_of_building = 'Storage'), (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'pupupu Krasniy')),
+    ((SELECT id FROM military_building_table WHERE type_of_building = 'Medical'), (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'pupupu Krasniy')),
+    ((SELECT id FROM military_building_table WHERE type_of_building = 'Training Facility'), (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'best team')),
+    ((SELECT id FROM military_building_table WHERE type_of_building = 'Workshop'), (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'grug team')),
+    ((SELECT id FROM military_building_table WHERE type_of_building = 'Garage'), (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'grug team')),
+    ((SELECT id FROM military_building_table WHERE type_of_building = 'Training Facility'), (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'Bravo')),
+    ((SELECT id FROM military_building_table WHERE type_of_building = 'Workshop'), (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'Bravo')),
+    ((SELECT id FROM military_building_table WHERE type_of_building = 'Garage'), (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'Alpha'));
+
+
+
+-- INSERT INTO military_building_table (can_use_for_dislocation, type_of_building, area_of_building, amount_of_rooms, subdivision_id)
+-- VALUES
+--     (true, 'Barracks', 500, 20, (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'Alpha')),
+--     (false, 'Armory', 200, 5, (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'Bravo')),
+--     (true, 'Headquarters', 800, 30, (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'rere team')),
+--     (true, 'Storage', 300, 10, (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'best team')),
+--     (false, 'Medical', 250, 8, (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'grug team')),
+--     (true, 'Training Facility', 1000, 40, (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'plolpl team')),
+--     (false, 'Workshop', 150, 6, (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'vzvod by Pirogov')),
+--     (true, 'Garage', 400, 15, (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'gffjj team')),
+--     (true, 'Warehouse', 600, 25, (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'rfrhrt team')),
+--     (false, 'Communications', 180, 7, (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'bbeveest team')),
+--     (true, 'Mess Hall', 350, 12, (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'pupupu Krasniy'));
+--
+-- INSERT INTO military_building_table (can_use_for_dislocation, type_of_building, area_of_building, amount_of_rooms, subdivision_id)
+-- VALUES
+--     (true, 'Medical', 300, 30, (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'pupupu Krasniy')),
+--     (false, 'Workshop', 250, 8, (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'vzvod by Pirogov'));
+
+
+-- Inserting data into mas_type table
+INSERT INTO mas_type (code_of_mas, name_of_mas) VALUES
+    ('00201', 'Operation and repair of engineering vehicles'),
+    ('01000', 'Medical service in ground forces (general practitioner)'),
+    ('01001', 'Combat use of engineer-sapper units and formations'),
+    ('021000', 'Commander of motorized rifle platoon or Combat use of motorized rifle units, formations, and associations'),
+    ('021001', 'Combat use of motorized rifle units, parts on BMP'),
+    ('021002', 'Combat use of motorized rifle units, military units, and formations on BTR (vehicles)'),
+    ('021101', 'Combat use of medium tank units or Combat use of medium tank units, parts'),
+    ('0300', 'Organization of food supply'),
+    ('030403', 'Combat use of units and parts of regimental and divisional artillery. May hold positions: commander of fire platoon, commander of control platoon, commander of mortar platoon'),
+    ('030404', 'Combat use of units and military units of anti-tank artillery'),
+    ('043203', 'Combat use of starting units of multi-channel medium-range air defense systems'),
+    ('06008', 'Technical personnel'),
+    ('062600', 'Flight personnel'),
+    ('072301', 'Navigator of diesel submarines'),
+    ('08600', 'Organization of humanitarian training'),
+    ('093500', 'Psychological warfare officer (with knowledge of a foreign language)'),
+    ('106147', 'Commander of reconnaissance unit'),
+    ('106182', 'Reconnaissance unit commander'),
+    ('106097', 'Deputy commander of reconnaissance unit'),
+    ('106646', 'Reconnaissance scout');
 
 
 INSERT INTO soldier_table (first_name, last_name, date_of_birth, military_card, date_of_issue_of_military_card, mas_id, soldier_type_id, subdivision_id, is_commander)
@@ -128,48 +214,6 @@ VALUES
 
 
 
-------------------------------------------
----------------------- nononononononoonono
-INSERT INTO soldier_table (first_name, last_name, date_of_birth, military_card, date_of_issue_of_military_card,
-                           mas_id, soldier_type_id, subdivision_id, is_commander)
-VALUES
-    ('Seva', 'Nosov', '1980-05-15', 'hahaha123', '2010-01-01', 3,
-     (SELECT id FROM soldier_type WHERE type_rank = 5  ),
-     (SELECT s.id FROM subdivision_table s JOIN subdivision_type st ON s.type_of_subdivision_id = st.id WHERE st.subdivision_rank = 0  ), false),
-
-    ('kirill', 'kirillov', '1980-03-22', 'YZAdgfd567', '2010-10-20', 1,
-     (SELECT id FROM soldier_type WHERE type_rank = 7 ),
-     (SELECT s.id FROM subdivision_table s JOIN subdivision_type st ON s.type_of_subdivision_id = st.id WHERE st.subdivision_rank = 1 ), false),
-
-    ('potap', 'arturov', '1983-04-22', 'sdgrge', '2018-12-20', 1,
-     (SELECT id FROM soldier_type WHERE type_rank = 7 ),
-     (SELECT s.id FROM subdivision_table s JOIN subdivision_type st ON s.type_of_subdivision_id = st.id WHERE st.subdivision_rank = 3 ), false);
-
-
-
--- Inserting data into mas_type table
-INSERT INTO mas_type (code_of_mas, name_of_mas) VALUES
-    ('00201', 'Operation and repair of engineering vehicles'),
-    ('01000', 'Medical service in ground forces (general practitioner)'),
-    ('01001', 'Combat use of engineer-sapper units and formations'),
-    ('021000', 'Commander of motorized rifle platoon or Combat use of motorized rifle units, formations, and associations'),
-    ('021001', 'Combat use of motorized rifle units, parts on BMP'),
-    ('021002', 'Combat use of motorized rifle units, military units, and formations on BTR (vehicles)'),
-    ('021101', 'Combat use of medium tank units or Combat use of medium tank units, parts'),
-    ('0300', 'Organization of food supply'),
-    ('030403', 'Combat use of units and parts of regimental and divisional artillery. May hold positions: commander of fire platoon, commander of control platoon, commander of mortar platoon'),
-    ('030404', 'Combat use of units and military units of anti-tank artillery'),
-    ('043203', 'Combat use of starting units of multi-channel medium-range air defense systems'),
-    ('06008', 'Technical personnel'),
-    ('062600', 'Flight personnel'),
-    ('072301', 'Navigator of diesel submarines'),
-    ('08600', 'Organization of humanitarian training'),
-    ('093500', 'Psychological warfare officer (with knowledge of a foreign language)'),
-    ('106147', 'Commander of reconnaissance unit'),
-    ('106182', 'Reconnaissance unit commander'),
-    ('106097', 'Deputy commander of reconnaissance unit'),
-    ('106646', 'Reconnaissance scout');
-
 
 -- Inserting data into combat_equipment_table
 INSERT INTO combat_equipment_table (name_of_equipment, experience_of_using, condition_of_vehicle, number_of_seats, name_of_vehicle, subdivision_id)
@@ -201,5 +245,3 @@ VALUES
   ('Main Battle Tank', 7, 'Good', 4, 'K2 Black Panther', 6),
   ('Infantry Fighting Vehicle', 6, 'Good', 10, 'BMD-4', 5),
   ('Helicopter', 8, 'Excellent', 8, 'Eurocopter Tiger', 2);
-
-
