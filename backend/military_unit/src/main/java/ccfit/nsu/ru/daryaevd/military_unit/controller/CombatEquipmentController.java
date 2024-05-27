@@ -66,6 +66,20 @@ public class CombatEquipmentController {
         return ResponseEntity.ok(combatEquipments);
     }
 
+
+    @GetMapping("/subdivisions/more-than-five/{equipmentId}")
+    public ResponseEntity<List<Long>> getSubdivisionsWithMoreThanFiveEquipment(@PathVariable Long equipmentId) {
+        List<Long> subdivisions = combatEquipmentService.getSubdivisionsWithMoreThanFiveEquipment(equipmentId);
+        return ResponseEntity.ok(subdivisions);
+    }
+
+    @GetMapping("/subdivisions/no-equipment/{equipmentId}")
+    public ResponseEntity<List<Long>> getSubdivisionsWithNoEquipment(@PathVariable Long equipmentId) {
+        List<Long> subdivisions = combatEquipmentService.getSubdivisionsWithNoEquipment(equipmentId);
+        return ResponseEntity.ok(subdivisions);
+    }
+
+
 //    @GetMapping("/availability")
 //    public List<Object[]> getAvailabilityOfEquipment() {
 //        return combatEquipmentService.getAvailabilityOfEquipment();
