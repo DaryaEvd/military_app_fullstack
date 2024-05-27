@@ -19,6 +19,10 @@ public interface MilitaryBuildingService {
     List<MilitaryBuildingDto> getBuildingsWithMinSubdivisions(int minSubdivisions);
     List<MilitaryBuildingDto> getBuildingsWithNoSubdivisions();
 
+    List<MilitaryBuildingDto> getAllDislocationPlaces();
+    List<MilitaryBuildingDto> getDislocationPlacesBySubdivisionId(Long subdivisionId);
+
+
 
 //    MilitaryBuildingDto createMilitaryBuilding(MilitaryBuildingDto militaryBuildingDto);
 //

@@ -41,7 +41,7 @@ public class SoldierServiceImpl implements SoldierService {
         if (soldierDto.getMasId() != null) {
             Mas mas = masRepository.findById(soldierDto.getMasId())
                     .orElseThrow(() -> new ResourceNotFoundException("Mas doesn't exist with given id: " + soldierDto.getMasId()));
-            soldier.setMasId(mas);
+            soldier.setMas(mas);
         }
 
         if (soldierDto.getTypeOfSoldier() != null) {
@@ -89,7 +89,7 @@ public class SoldierServiceImpl implements SoldierService {
         if (updatedSoldier.getMasId() != null) {
             Mas mas = masRepository.findById(updatedSoldier.getMasId())
                     .orElseThrow(() -> new ResourceNotFoundException("Mas doesn't exist with given id: " + updatedSoldier.getMasId()));
-            soldier.setMasId(mas);
+            soldier.setMas(mas);
         }
 
         if (updatedSoldier.getTypeOfSoldier() != null) {

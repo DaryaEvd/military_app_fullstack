@@ -36,7 +36,7 @@ public class Soldier {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mas_id", referencedColumnName = "id")
-    private Mas masId;
+    private Mas mas;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "soldier_type_id", referencedColumnName = "id")

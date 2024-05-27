@@ -1,10 +1,12 @@
 package ccfit.nsu.ru.daryaevd.military_unit.controller;
 
+import ccfit.nsu.ru.daryaevd.military_unit.dto.MilitaryBuildingDto;
 import ccfit.nsu.ru.daryaevd.military_unit.dto.SoldierDto;
 import ccfit.nsu.ru.daryaevd.military_unit.dto.SubdivisionDto;
 import ccfit.nsu.ru.daryaevd.military_unit.dto.SubdivisionTypeDto;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.MilitaryBuilding;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.Subdivision;
+import ccfit.nsu.ru.daryaevd.military_unit.service.MilitaryBuildingService;
 import ccfit.nsu.ru.daryaevd.military_unit.service.SubdivisionService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -16,9 +18,10 @@ import java.util.List;
 @AllArgsConstructor
 @RestController
 @RequestMapping("/api/subdivision")
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin("CrossOrigin")
 public class SubdivisionController {
     private SubdivisionService subdivisionService;
+    private final MilitaryBuildingService militaryBuildingService;
 
     // add subdivision
     @PostMapping
@@ -65,6 +68,16 @@ public class SubdivisionController {
     @GetMapping("/types")
     public ResponseEntity<List<SubdivisionTypeDto>> getAllSubdivisionTypes() {
         return ResponseEntity.ok(subdivisionService.getAllSubdivisionTypes());
+    }
+
+    @GetMapping("/dislocation_places")
+    public List<MilitaryBuildingDto> getAllDislocationPlaces() {
+        return militaryBuildingService.getAllDislocationPlaces();
+    }
+
+    @GetMapping("/dislocation_places/{subdivisionId}")
+    public List<MilitaryBuildingDto> getDislocationPlacesBySubdivisionId(@PathVariable Long subdivisionId) {
+        return militaryBuildingService.getDislocationPlacesBySubdivisionId(subdivisionId);
     }
 
 //    @GetMapping("/most_military_units")

@@ -19,6 +19,13 @@ public interface MilitaryBuildingRepository extends JpaRepository<MilitaryBuildi
     List<MilitaryBuilding> findWithNoSubdivisions();
 
 
+    @Query("SELECT DISTINCT mb FROM MilitaryBuilding mb JOIN mb.subdivisions s")
+    List<MilitaryBuilding> findAllDislocationPlaces();
+
+    @Query("SELECT mb FROM MilitaryBuilding mb JOIN mb.subdivisions s WHERE s.id = :subdivisionId")
+    List<MilitaryBuilding> findDislocationPlacesBySubdivisionId(Long subdivisionId);
+
+
 //    @Query("SELECT mb FROM MilitaryBuilding mb JOIN mb.subdivisions s WHERE s.id = :subdivisionId AND s.isDislocated = :isDislocated")
 //    List<MilitaryBuilding> findBySubdivisionIdAndDislocatedStatus(@Param("subdivisionId") Long subdivisionId, @Param("isDislocated") Boolean isDislocated);
 //

@@ -21,7 +21,7 @@ public class SoldierMapper {
         soldierDto.setDateOfBirth(soldier.getDateOfBirth());
         soldierDto.setMilitaryCard(soldier.getMilitaryCard());
         soldierDto.setDateOfIssueMilitaryCard(soldier.getDateOfIssueMilitaryCard());
-        soldierDto.setMasId(soldier.getMasId() != null ? soldier.getMasId().getId() : null);
+        soldierDto.setMasId(soldier.getMas() != null ? soldier.getMas().getId() : null);
         soldierDto.setTypeOfSoldier(soldier.getSoldierType() != null ? soldier.getSoldierType().getTypeRank() : null);
 //        soldierDto.setSubdivisionId(soldier.getSubdivision() != null ? soldier.getSubdivision().getTypeOfSubdivision() : null); // Исправлено здесь
 

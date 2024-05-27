@@ -87,6 +87,25 @@ public class MilitaryBuildingServiceImpl implements MilitaryBuildingService {
     }
 
 
+
+    @Override
+    public List<MilitaryBuildingDto> getAllDislocationPlaces() {
+        List<MilitaryBuilding> buildings = militaryBuildingRepository.findAllDislocationPlaces();
+        return buildings.stream()
+                .map(MilitaryBuildingMapper::mapToMilitaryBuildingDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<MilitaryBuildingDto> getDislocationPlacesBySubdivisionId(Long subdivisionId) {
+        List<MilitaryBuilding> buildings = militaryBuildingRepository.findDislocationPlacesBySubdivisionId(subdivisionId);
+        return buildings.stream()
+                .map(MilitaryBuildingMapper::mapToMilitaryBuildingDto)
+                .collect(Collectors.toList());
+    }
+
+
+
 //    public List<MilitaryBuildingDto> getMilitaryBuildingsBySubdivision(Long subdivisionId, Boolean isDislocated) {
 //        List<MilitaryBuilding> buildings = militaryBuildingRepository.findBySubdivisionIdAndDislocatedStatus(subdivisionId, isDislocated);
 //        return buildings.stream()
