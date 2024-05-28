@@ -13,20 +13,14 @@ public interface WeaponTypeService {
 
     WeaponTypeDto getWeaponTypeById(Long weaponTypeId);
 
-    List<WeaponTypeDto> getAllWeaponTypes();
+//    List<WeaponTypeDto> getAllWeaponTypes();
 
     WeaponTypeDto updateWeaponType(Long weaponTypeId, WeaponTypeDto updatedWeaponType);
 
-    void deleteWeaponType(Long weaponTypeId);
+//    void deleteWeaponType(Long weaponTypeId);
 
-    List<Gun> getGunsBySubdivision(Long subdivisionId);
+    List<WeaponTypeDto> getAllWeaponTypes();
+    List<WeaponTypeDto> getWeaponTypesByCategory(String category);
+    List<WeaponTypeDto> getWeaponTypesByCategoryAndSubdivision(String category, Long subdivisionId);
 
-    List<Artillery> getArtilleryBySubdivision(Long subdivisionId);
-
-    List<RocketWeapon> getRocketWeaponsBySubdivision(Long subdivisionId);
-
-    List<WeaponType> getWeaponsBySubdivision(Long subdivisionId);
-
-
-//    List<WeaponType> getWeaponsByCategoryOrTypeName(Long subdivisionId, String category, String typeName);
 }

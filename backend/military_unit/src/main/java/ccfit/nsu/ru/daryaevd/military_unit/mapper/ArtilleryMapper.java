@@ -11,7 +11,6 @@ public class ArtilleryMapper {
     public static ArtilleryDto mapToArtilleryDto(Artillery artillery) {
         ArtilleryDto dto = new ArtilleryDto();
         dto.setId(artillery.getId());
-        dto.setNameOfType(artillery.getNameOfType());
         dto.setExperienceOfUsing(artillery.getExperienceOfUsing());
         dto.setConditionOfWeapon(artillery.getConditionOfWeapon());
         dto.setSubdivisionId(artillery.getSubdivision().getId());
@@ -20,14 +19,14 @@ public class ArtilleryMapper {
         dto.setFiringDistance(artillery.getFiringDistance());
         dto.setShootingSpeed(artillery.getShootingSpeed());
         dto.setTypeOfAmmunition(artillery.getTypeOfAmmunition());
+        dto.setWeaponCategory("Artillery");
         return dto;
     }
 
     public static Artillery mapToArtillery(ArtilleryDto dto) {
         Artillery artillery = new Artillery();
         artillery.setId(dto.getId());
-        artillery.setNameOfType(dto.getNameOfType());
-        artillery.setExperienceOfUsing(dto.getExperienceOfUsing());
+         artillery.setExperienceOfUsing(dto.getExperienceOfUsing());
         artillery.setConditionOfWeapon(dto.getConditionOfWeapon());
         // Subdivision should be set separately
         artillery.setNameArtillery(dto.getNameArtillery());

@@ -11,21 +11,23 @@ public class RocketWeaponMapper {
     public static RocketWeaponDto toDto(RocketWeapon rocketWeapon) {
         RocketWeaponDto dto = new RocketWeaponDto();
         dto.setId(rocketWeapon.getId());
-        dto.setNameOfType(rocketWeapon.getNameOfType());
+        dto.setWeaponCategory(rocketWeapon.getWeaponCategory());
         dto.setExperienceOfUsing(rocketWeapon.getExperienceOfUsing());
         dto.setConditionOfWeapon(rocketWeapon.getConditionOfWeapon());
         dto.setSubdivisionId(rocketWeapon.getSubdivision().getId());
+
         dto.setFlightRangeOfRocket(rocketWeapon.getFlightRangeOfRocket());
         dto.setTypeOfMissileGuidance(rocketWeapon.getTypeOfMissileGuidance());
         dto.setTypeOfAmmunition(rocketWeapon.getTypeOfAmmunition());
-        dto.setType("ROCKET");
+        dto.setWeaponCategory("RocketWeapon");
+
         return dto;
     }
 
     public static RocketWeapon toEntity(RocketWeaponDto dto) {
         RocketWeapon rocketWeapon = new RocketWeapon();
         rocketWeapon.setId(dto.getId());
-        rocketWeapon.setNameOfType(dto.getNameOfType());
+        rocketWeapon.setWeaponCategory(dto.getWeaponCategory());
         rocketWeapon.setExperienceOfUsing(dto.getExperienceOfUsing());
         rocketWeapon.setConditionOfWeapon(dto.getConditionOfWeapon());
         // Subdivision should be set separately

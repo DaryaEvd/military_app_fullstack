@@ -12,23 +12,21 @@ public class GunMapper {
     public static GunDto toDto(Gun gun) {
         GunDto dto = new GunDto();
         dto.setId(gun.getId());
-        dto.setNameOfType(gun.getNameOfType());
-        dto.setExperienceOfUsing(gun.getExperienceOfUsing());
+         dto.setExperienceOfUsing(gun.getExperienceOfUsing());
         dto.setConditionOfWeapon(gun.getConditionOfWeapon());
         dto.setSubdivisionId(gun.getSubdivision().getId());
         dto.setNameOfGun(gun.getNameOfGun());
         dto.setShootingSpeed(gun.getShootingSpeed());
         dto.setCaliber(gun.getCaliber());
         dto.setMagazineCapacity(gun.getMagazineCapacity());
-        dto.setType("GUN");
+        dto.setWeaponCategory("Gun");
         return dto;
-    }
+   }
 
     public static Gun toEntity(GunDto dto) {
         Gun gun = new Gun();
         gun.setId(dto.getId());
-        gun.setNameOfType(dto.getNameOfType());
-        gun.setExperienceOfUsing(dto.getExperienceOfUsing());
+         gun.setExperienceOfUsing(dto.getExperienceOfUsing());
         gun.setConditionOfWeapon(dto.getConditionOfWeapon());
         // Subdivision should be set separately
         gun.setNameOfGun(dto.getNameOfGun());

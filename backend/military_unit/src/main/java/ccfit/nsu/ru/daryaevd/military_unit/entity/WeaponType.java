@@ -14,16 +14,15 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "dtype")
+@DiscriminatorColumn(name = "dtype", discriminatorType = DiscriminatorType.STRING)
 @Table(name = "weapon_type_table")
 public abstract class WeaponType {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name_of_type", nullable = false)
-    private String nameOfType;
+    @Column(name = "weapon_category", nullable = false)
+    private String weaponCategory;
 
     @Column(name = "experience_of_using", nullable = false)
     private Integer experienceOfUsing;
@@ -34,4 +33,6 @@ public abstract class WeaponType {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "subdivision_id", referencedColumnName = "id", nullable = false)
     private Subdivision subdivision;
+
 }
+

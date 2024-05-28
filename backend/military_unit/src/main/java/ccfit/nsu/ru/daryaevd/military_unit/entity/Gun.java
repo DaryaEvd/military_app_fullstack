@@ -25,8 +25,6 @@ public class Gun extends WeaponType {
 
     @Column(name = "magazine_capacity" )
     private Integer magazineCapacity;
-
-    // Getters and Setters
 }
 
 

@@ -14,5 +14,4 @@ public class GunDto extends WeaponTypeDto {
     private Integer shootingSpeed;
     private Integer caliber;
     private Integer magazineCapacity;
-
 }
