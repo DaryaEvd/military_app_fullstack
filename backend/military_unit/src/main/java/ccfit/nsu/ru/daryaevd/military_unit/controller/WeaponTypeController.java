@@ -1,6 +1,10 @@
 package ccfit.nsu.ru.daryaevd.military_unit.controller;
 
 import ccfit.nsu.ru.daryaevd.military_unit.dto.WeaponTypeDto;
+import ccfit.nsu.ru.daryaevd.military_unit.entity.Artillery;
+import ccfit.nsu.ru.daryaevd.military_unit.entity.Gun;
+import ccfit.nsu.ru.daryaevd.military_unit.entity.RocketWeapon;
+import ccfit.nsu.ru.daryaevd.military_unit.entity.WeaponType;
 import ccfit.nsu.ru.daryaevd.military_unit.service.WeaponTypeService;
 
 import lombok.AllArgsConstructor;
@@ -12,7 +16,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/api/weapon_type")
+@RequestMapping("/api/weapons")
 @CrossOrigin("http://localhost:3000")
 public class WeaponTypeController {
     private WeaponTypeService weaponTypeService;
@@ -46,6 +50,22 @@ public class WeaponTypeController {
     public ResponseEntity<String> deleteWeaponType(@PathVariable("id") Long weaponTypeId) {
         weaponTypeService.deleteWeaponType(weaponTypeId);
         return ResponseEntity.ok("Weapon type deleted successfully");
+    }
+
+
+    @GetMapping("/subdivision/{subdivisionId}/guns")
+    public List<Gun> getGunsBySubdivision(@PathVariable Long subdivisionId) {
+        return weaponTypeService.getGunsBySubdivision(subdivisionId);
+    }
+
+    @GetMapping("/subdivision/{subdivisionId}/artillery")
+    public List<Artillery> getArtilleryBySubdivision(@PathVariable Long subdivisionId) {
+        return weaponTypeService.getArtilleryBySubdivision(subdivisionId);
+    }
+
+    @GetMapping("/subdivision/{subdivisionId}/rocket-weapons")
+    public List<RocketWeapon> getRocketWeaponsBySubdivision(@PathVariable Long subdivisionId) {
+        return weaponTypeService.getRocketWeaponsBySubdivision(subdivisionId);
     }
 }
 

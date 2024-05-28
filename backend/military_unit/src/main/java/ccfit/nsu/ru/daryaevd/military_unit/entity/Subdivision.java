@@ -45,4 +45,9 @@ public class Subdivision {
 
     @ManyToMany(mappedBy = "subdivisions")
     private List<MilitaryBuilding> militaryBuildings = new ArrayList<>();
+
+    @OneToMany(mappedBy = "subdivision", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<WeaponType> weaponTypes = new ArrayList<>();
+
+
 }

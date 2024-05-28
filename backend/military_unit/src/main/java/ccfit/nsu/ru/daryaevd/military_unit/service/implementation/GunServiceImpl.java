@@ -19,22 +19,22 @@ public class GunServiceImpl implements GunService {
 
     @Override
     public GunDto createGun(GunDto gunDto) {
-        Gun gun = GunMapper.mapToGun(gunDto);
+        Gun gun = GunMapper.toEntity(gunDto);
         Gun savedGun = gunRepository.save(gun);
-        return GunMapper.mapToGunDto(savedGun);
+        return GunMapper.toDto(savedGun);
     }
 
     @Override
     public GunDto getGunById(Long gunId) {
         Gun gun = gunRepository.findById(gunId)
                 .orElseThrow(() -> new ResourceNotFoundException("Gun doesn't exist with given id: " + gunId));
-        return GunMapper.mapToGunDto(gun);
+        return GunMapper.toDto(gun);
     }
 
     @Override
     public List<GunDto> getAllGuns() {
         List<Gun> guns = gunRepository.findAll();
-        return guns.stream().map(GunMapper::mapToGunDto).collect(Collectors.toList());
+        return guns.stream().map(GunMapper::toDto).collect(Collectors.toList());
     }
 
     @Override
@@ -48,7 +48,7 @@ public class GunServiceImpl implements GunService {
         gun.setMagazineCapacity(updatedGun.getMagazineCapacity());
 
         Gun updatedGunObj = gunRepository.save(gun);
-        return GunMapper.mapToGunDto(updatedGunObj);
+        return GunMapper.toDto(updatedGunObj);
     }
 
     @Override

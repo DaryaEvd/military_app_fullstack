@@ -13,8 +13,11 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "dtype")
 @Table(name = "weapon_type_table")
-public class WeaponType {
+public abstract class WeaponType {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,9 +28,10 @@ public class WeaponType {
     @Column(name = "experience_of_using", nullable = false)
     private Integer experienceOfUsing;
 
-    @Column(name = "condition_of_vehicle", nullable = false)
-    private String conditionOfVehicle;
+    @Column(name = "condition_of_weapon", nullable = false)
+    private String conditionOfWeapon;
 
-    @OneToMany(fetch = FetchType.LAZY, /*mappedBy = "weaponType", */ cascade = CascadeType.ALL)
-    private List<Subdivision> subdivisionList;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "subdivision_id", referencedColumnName = "id", nullable = false)
+    private Subdivision subdivision;
 }

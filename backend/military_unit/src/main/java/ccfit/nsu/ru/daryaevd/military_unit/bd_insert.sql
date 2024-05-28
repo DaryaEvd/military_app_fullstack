@@ -280,3 +280,47 @@ VALUES
     ('Helicopter AB', 20, 'Operational', 2, 'Mi-24', (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'Bravo')),
     ('Truck AC', 10, 'Operational', 3, 'Ural-4320', (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'rere team')),
     ('Tank AD', 12, 'Operational', 4, 'T-90', (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'best team'));
+
+
+
+-----------------------------------------------------
+-----------------------------------------------------
+-- Insert into weapon_type_table
+-- Insert into weapon_type_table
+INSERT INTO weapon_type_table (dtype, name_of_type, experience_of_using, condition_of_weapon, subdivision_id, name_of_gun, shooting_speed, caliber, magazine_capacity, name_artillery, firing_distance, type_of_ammunition, flight_range_of_rocket, type_of_missile_guidance)
+VALUES
+-- Guns
+('Gun', 'Handgun', 5, 'Excellent', 1, 'Glock 17', 120, 9, 17, NULL, NULL, NULL, NULL, NULL),
+('Gun', 'Rifle', 10, 'Good', 2, 'M16', 800, 5.56, 30, NULL, NULL, NULL, NULL, NULL),
+('Gun', 'Shotgun', 7, 'Fair', 3, 'Remington 870', 70, 12, 8, NULL, NULL, NULL, NULL, NULL),
+('Gun', 'Assault Rifle', 9, 'Good', 2, 'AK-47', 600, 7.62, 30, NULL, NULL, NULL, NULL, NULL),
+('Gun', 'Pistol', 8, 'Excellent', 1, 'Desert Eagle', 80, 0.50, 7, NULL, NULL, NULL, NULL, NULL),
+('Gun', 'Shotgun', 8, 'Good', 3, 'Benelli M4', 100, 12, 7, NULL, NULL, NULL, NULL, NULL),
+('Gun', 'Rifle', 9, 'Good', 2, 'AR-15', 750, 5.56, 30, NULL, NULL, NULL, NULL, NULL),
+('Gun', 'Pistol', 7, 'Excellent', 1, 'Beretta 92', 120, 9, 15, NULL, NULL, NULL, NULL, NULL),
+('Gun', 'Rifle', 6, 'Fair', 3, 'Winchester Model 70', 50, 0.30, 5, NULL, NULL, NULL, NULL, NULL),
+('Gun', 'Assault Rifle', 8, 'Good', 2, 'FN SCAR', 650, 7.62, 20, NULL, NULL, NULL, NULL, NULL),
+
+-- Artillery
+('Artillery', 'Howitzer', 15, 'Good', 1, NULL, NULL, NULL, NULL, 'M777 Howitzer', 30000, 'Shell', NULL, NULL),
+('Artillery', 'Mortar', 12, 'Excellent', 2, NULL, NULL, NULL, NULL, 'M224 Mortar', 5700, 'Mortar Shell', NULL, NULL),
+('Artillery', 'Howitzer', 14, 'Fair', 3, NULL, NULL, NULL, NULL, 'D-30 Howitzer', 15300, 'Shell', NULL, NULL),
+('Artillery', 'Howitzer', 15, 'Good', 1, NULL, NULL, NULL, NULL, 'M119 Howitzer', 19000, 'Shell', NULL, NULL),
+('Artillery', 'Mortar', 13, 'Excellent', 2, NULL, NULL, NULL, NULL, 'M120 Mortar', 7200, 'Mortar Shell', NULL, NULL),
+('Artillery', 'Howitzer', 12, 'Good', 1, NULL, NULL, NULL, NULL, 'M198 Howitzer', 22000, 'Shell', NULL, NULL),
+('Artillery', 'Mortar', 14, 'Excellent', 3, NULL, NULL, NULL, NULL, '2B14 Podnos', 4270, 'Mortar Shell', NULL, NULL),
+('Artillery', 'Field Gun', 10, 'Fair', 2, NULL, NULL, NULL, NULL, 'M58 Field Gun', 18200, 'Shell', NULL, NULL),
+('Artillery', 'Howitzer', 11, 'Good', 1, NULL, NULL, NULL, NULL, 'M101 Howitzer', 11500, 'Shell', NULL, NULL),
+('Artillery', 'Howitzer', 13, 'Fair', 2, NULL, NULL, NULL, NULL, 'M30 Howitzer', 15300, 'Shell', NULL, NULL),
+
+-- Rocket Weapons
+('RocketWeapon', 'Surface-to-Air Missile', 20, 'Excellent', 1, NULL, NULL, NULL, NULL, NULL, NULL, 'Missile', 15000, 'Radar'),
+('RocketWeapon', 'Anti-Tank Missile', 18, 'Good', 2, NULL, NULL, NULL, NULL, NULL, NULL, 'Missile', 2000, 'Infrared'),
+('RocketWeapon', 'Ballistic Missile', 25, 'Excellent', 3, NULL, NULL, NULL, NULL, NULL, NULL, 'Missile', 30000, 'Inertial'),
+('RocketWeapon', 'Anti-Tank Missile', 18, 'Good', 2, NULL, NULL, NULL, NULL, NULL, NULL, 'Missile', 2500, 'Infrared'),
+('RocketWeapon', 'Ballistic Missile', 22, 'Excellent', 1, NULL, NULL, NULL, NULL, NULL, NULL, 'Missile', 50000, 'GPS'),
+('RocketWeapon', 'Anti-Tank Missile', 20, 'Good', 2, NULL, NULL, NULL, NULL, NULL, NULL, 'Missile', 1500, 'Laser'),
+('RocketWeapon', 'Surface-to-Air Missile', 19, 'Excellent', 1, NULL, NULL, NULL, NULL, NULL, NULL, 'Missile', 2000, 'Radar'),
+('RocketWeapon', 'Ballistic Missile', 23, 'Excellent', 3, NULL, NULL, NULL, NULL, NULL, NULL, 'Missile', 60000, 'Inertial'),
+('RocketWeapon', 'Surface-to-Air Missile', 21, 'Good', 2, NULL, NULL, NULL, NULL, NULL, NULL, 'Missile', 1500, 'Infrared'),
+('RocketWeapon', 'Cruise Missile', 24, 'Good', 1, NULL, NULL, NULL, NULL, NULL, NULL, 'Missile', 1900, 'Infrared');

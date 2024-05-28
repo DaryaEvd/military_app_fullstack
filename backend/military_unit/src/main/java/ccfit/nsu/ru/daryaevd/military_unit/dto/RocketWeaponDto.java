@@ -9,13 +9,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class RocketWeaponDto {
-    private Long id;
+public class RocketWeaponDto extends WeaponTypeDto {
     private Integer flightRangeOfRocket;
     private String typeOfMissileGuidance;
     private String typeOfAmmunition;
-    private String conditionOfWeapon;
-    private Integer experienceOfUsing;
-
-    private Long weaponTypeId;
 }

@@ -13,7 +13,8 @@ public class WeaponTypeDto {
     private Long id;
     private String nameOfType;
     private Integer experienceOfUsing;
-    private String conditionOfVehicle;
-
+    private String conditionOfWeapon;
     private Long subdivisionId;
+    private String type; // Added field to indicate the type of weapon
+
 }
