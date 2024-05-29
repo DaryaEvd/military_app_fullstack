@@ -110,13 +110,24 @@ public class SubdivisionServiceImpl implements SubdivisionService {
         return subdivisionTypeService.getAllSubdivisionTypes();
     }
 
-
+    @Override
     public List<Object[]> findSubdivisionsWithMostUnits() {
         return subdivisionRepository.findSubdivisionsWithMostUnits();
     }
 
+    @Override
     public List<Object[]> findSubdivisionsWithLeastUnits() {
         return subdivisionRepository.findSubdivisionsWithLeastUnits();
+    }
+
+    @Override
+    public List<Subdivision> getAllSubdivisionsWithCommanders() {
+        return subdivisionRepository.findAllWithCommanders();
+    }
+
+    @Override
+    public Subdivision getSubdivisionWithCommander(Long subdivisionId) {
+        return subdivisionRepository.findByIdWithCommander(subdivisionId);
     }
 
 

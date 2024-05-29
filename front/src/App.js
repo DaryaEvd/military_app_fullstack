@@ -33,7 +33,7 @@ import AddMilitaryBuilding from './military_buildings/AddMilitaryBuilding';
 import EditMilitaryBuilding from './military_buildings/EditMilitaryBuilding';
 import ViewMilitaryBuilding from './military_buildings/ViewMilitaryBuilding';
 import WeaponType from './pages/WeaponType';
-
+import MilitaryBuildingQueries from './military_buildings/MilitaryBuildingQueries';
 
 function App() {
   return (
@@ -71,6 +71,8 @@ function App() {
           <Route exact path="/military_building/add" element={<AddMilitaryBuilding/>} />
           <Route exact path="/military_building/edit/:id" element={<EditMilitaryBuilding/>} />
           <Route exact path="/military_building/view/:id" element={<ViewMilitaryBuilding/>} />
+          <Route exact path="/military_building/queries" element={<MilitaryBuildingQueries/>} />
+
 
           <Route exact path="/weapon_type" element={<WeaponType/>} />
           

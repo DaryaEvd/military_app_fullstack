@@ -26,6 +26,12 @@ public interface SubdivisionRepository extends JpaRepository<Subdivision, Long> 
     List<Object[]> findSubdivisionsWithLeastUnits();
 
 
+    @Query("SELECT s FROM Subdivision s LEFT JOIN FETCH s.commander")
+    List<Subdivision> findAllWithCommanders();
+
+    @Query("SELECT s FROM Subdivision s LEFT JOIN FETCH s.commander WHERE s.id = :subdivisionId")
+    Subdivision findByIdWithCommander(@Param("subdivisionId") Long subdivisionId);
+
 
 
 //    @Query("SELECT s.id FROM Subdivision s JOIN s.weaponTypes w " +

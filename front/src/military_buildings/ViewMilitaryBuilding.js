@@ -3,16 +3,17 @@ import { useParams, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
+ 
 export default function ViewMilitaryBuilding() {
     const [militaryBuilding, setMilitaryBuilding] = useState({
         typeOfBuilding: "",
         canUseForDislocation: false,
         areaOfBuilding: "",
-        amountOfRooms: "",
-        subdivision: {
-            id: "",
-            name: ""
-        }
+        amountOfRooms: ""
+        // subdivision: {
+        //     id: "",
+        //     name: ""
+        // }
     });
 
     const { id } = useParams();
@@ -51,9 +52,9 @@ export default function ViewMilitaryBuilding() {
                                 <li className="list-group-item">
                                     <b>Amount Of Rooms:</b> {militaryBuilding.amountOfRooms}
                                 </li>
-                                <li className="list-group-item">
-                                    <b>Subdivision:</b> {militaryBuilding.subdivisionId}
-                                </li>
+                                {/* <li className="list-group-item">
+                                    <b>Subdivision:</b> {militaryBuilding.subdivisionId.nameOf}
+                                </li> */}
                             </ul>
                         </div>
                     </div>

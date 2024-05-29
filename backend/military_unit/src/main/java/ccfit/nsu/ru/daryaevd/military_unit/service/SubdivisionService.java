@@ -27,6 +27,10 @@ public interface SubdivisionService {
     List<Object[]> findSubdivisionsWithLeastUnits();
 
 
+    List<Subdivision> getAllSubdivisionsWithCommanders();
+    Subdivision getSubdivisionWithCommander(Long subdivisionId);
+
+
 //    List<Long> getSubdivisionsWithWeaponCountGreaterThanThree(String category);
 //    List<Long> getSubdivisionsWithoutWeaponCategory(String category);
 

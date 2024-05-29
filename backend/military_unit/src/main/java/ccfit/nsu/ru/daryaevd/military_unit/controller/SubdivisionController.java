@@ -110,6 +110,20 @@ public class SubdivisionController {
     }
 
 
+    @GetMapping("/with-commanders")
+    public ResponseEntity<List<Subdivision>> getAllSubdivisionsWithCommanders() {
+        List<Subdivision> subdivisions = subdivisionService.getAllSubdivisionsWithCommanders();
+        return ResponseEntity.ok(subdivisions);
+    }
+
+    @GetMapping("/{subdivisionId}/with-commander")
+    public ResponseEntity<Subdivision> getSubdivisionWithCommander(@PathVariable Long subdivisionId) {
+        Subdivision subdivision = subdivisionService.getSubdivisionWithCommander(subdivisionId);
+        return ResponseEntity.ok(subdivision);
+    }
+
+
+
 
 //    @GetMapping("/weapons/count-greater-than-three")
 //    public ResponseEntity<List<Long>> getSubdivisionsWithWeaponCountGreaterThanThree(
