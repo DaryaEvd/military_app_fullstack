@@ -27,6 +27,9 @@ export default function CombatEquipment() {
                 <Link className="btn btn-outline-primary mb-4" to="/combat_equipment/add">
                     Add Combat Equipment
                 </Link>
+                <Link className="btn btn-outline-primary mb-4" to="/combat_equipment/subdivision">
+                    Find In Subdivision
+                </Link>
 
                 <table className="table border shadow">
                     <thead>
