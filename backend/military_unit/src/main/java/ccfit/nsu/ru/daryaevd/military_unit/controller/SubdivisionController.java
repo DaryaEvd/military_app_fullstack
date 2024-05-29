@@ -97,22 +97,33 @@ public class SubdivisionController {
         return ResponseEntity.ok(soldiers);
     }
 
-    @GetMapping("/weapons/count-greater-than-three")
-    public ResponseEntity<List<Long>> getSubdivisionsWithWeaponCountGreaterThanThree(
-            @RequestParam String category) {
-         List<Long> subdivisionIds = subdivisionRepository.findSubdivisionsWithWeaponCountGreaterThanThree(category);
-        return ResponseEntity.ok(subdivisionIds);
+    @GetMapping("/most-units")
+    public ResponseEntity<List<Object[]>> getSubdivisionsWithMostUnits() {
+        List<Object[]> result = subdivisionService.findSubdivisionsWithMostUnits();
+        return ResponseEntity.ok(result);
     }
 
-    @GetMapping("/weapons/without-category")
-    public ResponseEntity<List<Long>> getSubdivisionsWithoutWeaponCategory(
-            @RequestParam String category) {
-        List<Long> subdivisionIds = subdivisionRepository.findSubdivisionsWithoutWeaponCategory(category);
-        return ResponseEntity.ok(subdivisionIds);
+    @GetMapping("/least-units")
+    public ResponseEntity<List<Object[]>> getSubdivisionsWithLeastUnits() {
+        List<Object[]> result = subdivisionService.findSubdivisionsWithLeastUnits();
+        return ResponseEntity.ok(result);
     }
 
 
 
+//    @GetMapping("/weapons/count-greater-than-three")
+//    public ResponseEntity<List<Long>> getSubdivisionsWithWeaponCountGreaterThanThree(
+//            @RequestParam String category) {
+//         List<Long> subdivisionIds = subdivisionRepository.findSubdivisionsWithWeaponCountGreaterThanThree(category);
+//        return ResponseEntity.ok(subdivisionIds);
+//    }
+//
+//    @GetMapping("/weapons/without-category")
+//    public ResponseEntity<List<Long>> getSubdivisionsWithoutWeaponCategory(
+//            @RequestParam String category) {
+//        List<Long> subdivisionIds = subdivisionRepository.findSubdivisionsWithoutWeaponCategory(category);
+//        return ResponseEntity.ok(subdivisionIds);
+//    }
 
 //    @GetMapping("/most_military_units")
 //    public ResponseEntity<List<Object[]>> getSubdivisionsWithMostMilitaryUnits() {

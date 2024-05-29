@@ -1,5 +1,6 @@
 package ccfit.nsu.ru.daryaevd.military_unit.repository;
 
+import ccfit.nsu.ru.daryaevd.military_unit.dto.SubdivisionDto;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.MilitaryBuilding;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.Subdivision;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,17 +13,34 @@ import java.util.List;
 @Repository // todo: think
 public interface SubdivisionRepository extends JpaRepository<Subdivision, Long> {
 
-    @Query("SELECT s.id FROM Subdivision s JOIN s.weaponTypes w " +
-            "WHERE w.weaponCategory = :category " +
-            "GROUP BY s.id " +
-            "HAVING COUNT(w) > 3")
-    List<Long> findSubdivisionsWithWeaponCountGreaterThanThree(@Param("category") String category);
+    @Query("SELECT s.typeOfSubdivision.nameOfType, s.nameOfSubdivision, COUNT(s) " +
+            "FROM Subdivision s " +
+            "GROUP BY s.typeOfSubdivision.nameOfType, s.nameOfSubdivision " +
+            "ORDER BY COUNT(s) DESC")
+    List<Object[]> findSubdivisionsWithMostUnits();
 
-    @Query("SELECT s.id FROM Subdivision s LEFT JOIN s.weaponTypes w " +
-            "ON w.weaponCategory = :category " +
-            "WHERE w.id IS NULL " +
-            "GROUP BY s.id")
-    List<Long> findSubdivisionsWithoutWeaponCategory(@Param("category") String category);
+    @Query("SELECT s.typeOfSubdivision.nameOfType, s.nameOfSubdivision, COUNT(s) " +
+            "FROM Subdivision s " +
+            "GROUP BY s.typeOfSubdivision.nameOfType, s.nameOfSubdivision " +
+            "ORDER BY COUNT(s)")
+    List<Object[]> findSubdivisionsWithLeastUnits();
+
+
+
+
+//    @Query("SELECT s.id FROM Subdivision s JOIN s.weaponTypes w " +
+//            "WHERE w.weaponCategory = :category " +
+//            "GROUP BY s.id " +
+//            "HAVING COUNT(w) > 3")
+//    List<Long> findSubdivisionsWithWeaponCountGreaterThanThree(@Param("category") String category);
+//
+//    @Query("SELECT s.id FROM Subdivision s LEFT JOIN s.weaponTypes w " +
+//            "ON w.weaponCategory = :category " +
+//            "WHERE w.id IS NULL " +
+//            "GROUP BY s.id")
+//    List<Long> findSubdivisionsWithoutWeaponCategory(@Param("category") String category);
+
+
 
 
     /* my_query 13

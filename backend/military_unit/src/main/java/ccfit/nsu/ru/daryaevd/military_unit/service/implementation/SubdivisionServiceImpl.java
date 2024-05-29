@@ -110,15 +110,26 @@ public class SubdivisionServiceImpl implements SubdivisionService {
         return subdivisionTypeService.getAllSubdivisionTypes();
     }
 
-    @Override
-    public List<Long> getSubdivisionsWithWeaponCountGreaterThanThree(String category) {
-        return subdivisionRepository.findSubdivisionsWithWeaponCountGreaterThanThree(category);
+
+    public List<Object[]> findSubdivisionsWithMostUnits() {
+        return subdivisionRepository.findSubdivisionsWithMostUnits();
     }
 
-    @Override
-    public List<Long> getSubdivisionsWithoutWeaponCategory(String category) {
-        return subdivisionRepository.findSubdivisionsWithoutWeaponCategory(category);
+    public List<Object[]> findSubdivisionsWithLeastUnits() {
+        return subdivisionRepository.findSubdivisionsWithLeastUnits();
     }
+
+
+
+//    @Override
+//    public List<Long> getSubdivisionsWithWeaponCountGreaterThanThree(String category) {
+//        return subdivisionRepository.findSubdivisionsWithWeaponCountGreaterThanThree(category);
+//    }
+//
+//    @Override
+//    public List<Long> getSubdivisionsWithoutWeaponCategory(String category) {
+//        return subdivisionRepository.findSubdivisionsWithoutWeaponCategory(category);
+//    }
 
 //    @Override
 //    public List<Object[]> findSubdivisionsWithMostMilitaryUnits() {
