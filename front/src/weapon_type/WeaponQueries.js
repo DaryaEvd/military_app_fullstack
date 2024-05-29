@@ -1,13 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 export default function WeaponQueries() {
+  const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [subdivisionId, setSubdivisionId] = useState("");
   const [weaponTypes, setWeaponTypes] = useState([]);
   const [queryType, setQueryType] = useState("");
 
-  const categories = ["Gun", "Artillery", "Rocket"]; // Hardcoded categories
+  useEffect(() => {
+    loadCategories();
+  }, []);
+
+  const loadCategories = async () => {
+    const result = await axios.get("http://localhost:8080/api/weapons");
+    setCategories(result.data);
+  };
 
   const handleCategoryChange = (event) => {
     setSelectedCategory(event.target.value);
