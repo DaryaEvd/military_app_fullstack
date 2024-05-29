@@ -89,6 +89,9 @@ export default function Soldier() {
                 <Link className="btn btn-outline-secondary mb-4 mx-2" to="/soldiers/find_sergeants">
                     Find Sergeants
                 </Link>
+                <Link className="btn btn-outline-secondary mb-4 mx-2" to="/soldiers/mas">
+                    Find Soldiers by Mas
+                </Link>
                 <table className="table border shadow">
                     <thead>
                         <tr>

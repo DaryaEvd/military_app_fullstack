@@ -36,6 +36,7 @@ import WeaponType from './pages/WeaponType';
 import MilitaryBuildingQueries from './military_buildings/MilitaryBuildingQueries';
 import DislocationPlaces from './subdivisions/DislocationPlaces';
 import SpecialtiesQueries from './mas/SpecialistsMas';
+import FindByMas from './soldier/FindByMas';
 
 function App() {
   return (
@@ -78,6 +79,10 @@ function App() {
           <Route exact path="/subdivisions/buildings" element={<DislocationPlaces/>} />
 
           <Route exact path="/mas/specialities" element={<SpecialtiesQueries/>} />
+
+          <Route exact path="soldiers/mas" element={<FindByMas/>} />
+
+
 
           <Route exact path="/weapon_type" element={<WeaponType/>} />
           
