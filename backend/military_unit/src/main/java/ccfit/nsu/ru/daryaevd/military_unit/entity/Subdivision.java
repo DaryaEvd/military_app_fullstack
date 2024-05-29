@@ -1,5 +1,6 @@
 package ccfit.nsu.ru.daryaevd.military_unit.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -47,7 +48,6 @@ public class Subdivision {
     private List<MilitaryBuilding> militaryBuildings = new ArrayList<>();
 
     @OneToMany(mappedBy = "subdivision", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<WeaponType> weaponTypes = new ArrayList<>();
-
-
 }

@@ -1,10 +1,7 @@
 package ccfit.nsu.ru.daryaevd.military_unit.controller;
 
 import ccfit.nsu.ru.daryaevd.military_unit.dto.WeaponTypeDto;
-import ccfit.nsu.ru.daryaevd.military_unit.entity.Artillery;
-import ccfit.nsu.ru.daryaevd.military_unit.entity.Gun;
-import ccfit.nsu.ru.daryaevd.military_unit.entity.RocketWeapon;
-import ccfit.nsu.ru.daryaevd.military_unit.entity.WeaponType;
+import ccfit.nsu.ru.daryaevd.military_unit.entity.*;
 import ccfit.nsu.ru.daryaevd.military_unit.mapper.WeaponTypeMapper;
 import ccfit.nsu.ru.daryaevd.military_unit.service.WeaponTypeService;
 
@@ -75,6 +72,28 @@ public class WeaponTypeController {
     }
 
 
+    @GetMapping("/subdivisions-with-weapon-count")
+    public ResponseEntity<List<Subdivision>> getSubdivisionsWithWeaponCountGreaterThan(
+            @RequestParam String category,
+            @RequestParam Long count) {
+        List<Subdivision> subdivisions = weaponTypeService.getSubdivisionsWithWeaponCountGreaterThan(category, count);
+        return ResponseEntity.ok(subdivisions);
+    }
+
+
+//    @GetMapping("/subdivisions-with-weapon-count-greater-than-three")
+//    public ResponseEntity<List<Subdivision>> getSubdivisionsWithWeaponCountGreaterThanThree(
+//            @RequestParam String category) {
+//        List<Subdivision> subdivisions = weaponTypeService.getSubdivisionsWithWeaponCountGreaterThanThree(category);
+//        return ResponseEntity.ok(subdivisions);
+//    }
+//
+//    @GetMapping("/subdivisions-without-weapon-category")
+//    public ResponseEntity<List<Subdivision>> getSubdivisionsWithoutWeaponCategory(
+//            @RequestParam String category) {
+//        List<Subdivision> subdivisions = weaponTypeService.getSubdivisionsWithoutWeaponCategory(category);
+//        return ResponseEntity.ok(subdivisions);
+//    }
 
 
 //    @GetMapping("/category/{category}")

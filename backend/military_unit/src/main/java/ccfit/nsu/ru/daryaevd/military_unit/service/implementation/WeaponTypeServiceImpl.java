@@ -102,6 +102,24 @@ public class WeaponTypeServiceImpl implements WeaponTypeService {
     }
 
 
+    @Override
+    public List<Subdivision> getSubdivisionsWithWeaponCountGreaterThan(String category, Long count) {
+        return weaponTypeRepository.findSubdivisionsWithWeaponCountGreaterThan(category, count);
+    }
+
+
+
+//    @Override
+//    public List<Subdivision> getSubdivisionsWithWeaponCountGreaterThanThree(String category) {
+//        return weaponTypeRepository.findSubdivisionsWithWeaponCountGreaterThanThree(category);
+//    }
+//
+//    @Override
+//    public List<Subdivision> getSubdivisionsWithoutWeaponCategory(String category) {
+//        return weaponTypeRepository.findSubdivisionsWithoutWeaponCategory(category);
+//    }
+
+
 
 //    public List<WeaponTypeDto> getWeaponsByCategoryOrTypeName(Long subdivisionId, String category, String typeName) {
 //        Class<? extends WeaponType> categoryClass = getCategoryClass(category);

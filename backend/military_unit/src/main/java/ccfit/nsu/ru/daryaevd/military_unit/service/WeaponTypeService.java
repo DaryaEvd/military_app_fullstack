@@ -1,10 +1,7 @@
 package ccfit.nsu.ru.daryaevd.military_unit.service;
 
 import ccfit.nsu.ru.daryaevd.military_unit.dto.WeaponTypeDto;
-import ccfit.nsu.ru.daryaevd.military_unit.entity.Artillery;
-import ccfit.nsu.ru.daryaevd.military_unit.entity.Gun;
-import ccfit.nsu.ru.daryaevd.military_unit.entity.RocketWeapon;
-import ccfit.nsu.ru.daryaevd.military_unit.entity.WeaponType;
+import ccfit.nsu.ru.daryaevd.military_unit.entity.*;
 
 import java.util.List;
 
@@ -22,5 +19,12 @@ public interface WeaponTypeService {
     List<WeaponTypeDto> getAllWeaponTypes();
     List<WeaponTypeDto> getWeaponTypesByCategory(String category);
     List<WeaponTypeDto> getWeaponTypesByCategoryAndSubdivision(String category, Long subdivisionId);
+
+//    List<Subdivision> getSubdivisionsWithWeaponCountGreaterThanThree(String category);
+//    List<Subdivision> getSubdivisionsWithoutWeaponCategory(String category);
+
+
+    List<Subdivision> getSubdivisionsWithWeaponCountGreaterThan(String category, Long count);
+
 
 }

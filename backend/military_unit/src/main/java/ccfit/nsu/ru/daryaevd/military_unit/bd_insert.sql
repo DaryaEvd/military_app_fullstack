@@ -352,3 +352,13 @@ VALUES
     ('RocketWeapon', 'Rocket', 15, 'Fair', 3, 30000, 'Laser guidance'),
     ('RocketWeapon', 'Rocket', 12, 'Poor', 9, 80000, 'Infrared guidance'),
     ('RocketWeapon', 'Rocket', 20, 'Good', 5, 120000, 'Radar guidance');
+
+
+-- Insert Rocket Weapons
+INSERT INTO weapon_type_table (dtype, weapon_category, experience_of_using, condition_of_weapon, subdivision_id, flight_range_of_rocket, type_of_missile_guidance)
+VALUES
+    ('RocketWeapon', 'Rocket', 10, 'Good', 11, 50000, 'Inertial guidance'),
+    ('RocketWeapon', 'Rocket', 8, 'Excellent', 9, 100000, 'GPS guidance'),
+    ('RocketWeapon', 'Rocket', 15, 'Fair', 9, 30000, 'Laser guidance'),
+    ('RocketWeapon', 'Rocket', 12, 'Poor', 9, 80000, 'Infrared guidance'),
+    ('RocketWeapon', 'Rocket', 20, 'Good', 9, 120000, 'Radar guidance');

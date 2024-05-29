@@ -23,6 +23,9 @@ public interface SubdivisionService {
 
     List<SubdivisionTypeDto> getAllSubdivisionTypes();
 
+    List<Long> getSubdivisionsWithWeaponCountGreaterThanThree(String category);
+    List<Long> getSubdivisionsWithoutWeaponCategory(String category);
+
 //    List<Object[]> findSubdivisionsWithMostMilitaryUnits();
 
 //    List<Object[]> findCommanderBySubdivisionName(String subdivisionName);

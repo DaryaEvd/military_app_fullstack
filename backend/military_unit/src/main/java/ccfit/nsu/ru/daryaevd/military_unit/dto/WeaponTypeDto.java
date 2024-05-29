@@ -30,7 +30,6 @@ public class WeaponTypeDto {
     // Параметры для RocketWeapon
     private Integer flightRangeOfRocket;
     private String typeOfMissileGuidance;
-
 }
 
 

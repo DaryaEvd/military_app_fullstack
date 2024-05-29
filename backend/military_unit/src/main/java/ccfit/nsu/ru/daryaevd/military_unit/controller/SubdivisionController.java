@@ -6,6 +6,7 @@ import ccfit.nsu.ru.daryaevd.military_unit.dto.SubdivisionDto;
 import ccfit.nsu.ru.daryaevd.military_unit.dto.SubdivisionTypeDto;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.MilitaryBuilding;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.Subdivision;
+import ccfit.nsu.ru.daryaevd.military_unit.repository.SubdivisionRepository;
 import ccfit.nsu.ru.daryaevd.military_unit.service.MilitaryBuildingService;
 import ccfit.nsu.ru.daryaevd.military_unit.service.SoldierService;
 import ccfit.nsu.ru.daryaevd.military_unit.service.SubdivisionService;
@@ -24,6 +25,8 @@ public class SubdivisionController {
     private SubdivisionService subdivisionService;
     private final MilitaryBuildingService militaryBuildingService;
     private final SoldierService soldierService;
+    private SubdivisionRepository subdivisionRepository;
+
 
     // add subdivision
     @PostMapping
@@ -93,6 +96,21 @@ public class SubdivisionController {
         List<SoldierDto> soldiers = soldierService.getSoldiersByMasIdAndSubdivisionId(masId, subdivisionId);
         return ResponseEntity.ok(soldiers);
     }
+
+    @GetMapping("/weapons/count-greater-than-three")
+    public ResponseEntity<List<Long>> getSubdivisionsWithWeaponCountGreaterThanThree(
+            @RequestParam String category) {
+         List<Long> subdivisionIds = subdivisionRepository.findSubdivisionsWithWeaponCountGreaterThanThree(category);
+        return ResponseEntity.ok(subdivisionIds);
+    }
+
+    @GetMapping("/weapons/without-category")
+    public ResponseEntity<List<Long>> getSubdivisionsWithoutWeaponCategory(
+            @RequestParam String category) {
+        List<Long> subdivisionIds = subdivisionRepository.findSubdivisionsWithoutWeaponCategory(category);
+        return ResponseEntity.ok(subdivisionIds);
+    }
+
 
 
 

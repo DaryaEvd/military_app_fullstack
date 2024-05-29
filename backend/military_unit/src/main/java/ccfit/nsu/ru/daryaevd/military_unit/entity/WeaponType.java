@@ -31,8 +31,6 @@ public abstract class WeaponType {
     private String conditionOfWeapon;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "subdivision_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "subdivision_id", referencedColumnName = "id" /*, nullable = false*/)
     private Subdivision subdivision;
-
 }
-

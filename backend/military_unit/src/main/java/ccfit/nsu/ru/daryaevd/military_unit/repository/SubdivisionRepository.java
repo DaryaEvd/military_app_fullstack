@@ -11,6 +11,20 @@ import java.util.List;
 
 @Repository // todo: think
 public interface SubdivisionRepository extends JpaRepository<Subdivision, Long> {
+
+    @Query("SELECT s.id FROM Subdivision s JOIN s.weaponTypes w " +
+            "WHERE w.weaponCategory = :category " +
+            "GROUP BY s.id " +
+            "HAVING COUNT(w) > 3")
+    List<Long> findSubdivisionsWithWeaponCountGreaterThanThree(@Param("category") String category);
+
+    @Query("SELECT s.id FROM Subdivision s LEFT JOIN s.weaponTypes w " +
+            "ON w.weaponCategory = :category " +
+            "WHERE w.id IS NULL " +
+            "GROUP BY s.id")
+    List<Long> findSubdivisionsWithoutWeaponCategory(@Param("category") String category);
+
+
     /* my_query 13
     Получить данные об армии, дивизии, корпусе, в которые входит больше всего
     (меньше всего) военных частей.
