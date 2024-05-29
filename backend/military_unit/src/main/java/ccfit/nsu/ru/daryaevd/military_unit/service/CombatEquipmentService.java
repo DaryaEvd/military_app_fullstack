@@ -18,9 +18,8 @@ public interface CombatEquipmentService {
     List<CombatEquipmentDto> getAllCombatEquipments();
     List<CombatEquipmentDto> getCombatEquipmentsBySubdivisionId(Long subdivisionId);
 
-    List<Long> getSubdivisionsWithMoreThanFiveEquipment(String nameOfEquipment);
-    List<Long> getSubdivisionsWithNoEquipment(String nameOfEquipment);
-
+    List<String> getSubdivisionsWithMoreThanFiveEquipment(String nameOfEquipment);
+    List<String> getSubdivisionsWithNoEquipment(String nameOfEquipment);
 
 //    List<Long> getSubdivisionsWithMoreThanFiveEquipment(Long equipmentId);
 //    List<Long> getSubdivisionsWithNoEquipment(Long equipmentId);

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-export default function EquipmentQueries() {
+export default function FindCombatEquipment() {
   const [equipments, setEquipments] = useState([]);
   const [selectedEquipment, setSelectedEquipment] = useState("");
   const [subdivisions, setSubdivisions] = useState([]);

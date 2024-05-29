@@ -10,11 +10,18 @@ import java.util.List;
 public interface CombatEquipmentRepository extends JpaRepository<CombatEquipment, Long> {
     List<CombatEquipment> findBySubdivisionId(Long subdivisionId);
 
-    @Query("SELECT ce.subdivision.id FROM CombatEquipment ce WHERE ce.nameOfEquipment = :nameOfEquipment GROUP BY ce.subdivision.id HAVING COUNT(ce.id) > 5")
-    List<Long> findSubdivisionsWithMoreThanFiveEquipment(@Param("nameOfEquipment") String nameOfEquipment);
+//    @Query("SELECT ce.subdivision.id FROM CombatEquipment ce WHERE ce.nameOfEquipment = :nameOfEquipment GROUP BY ce.subdivision.id HAVING COUNT(ce.id) > 5")
+//    List<Long> findSubdivisionsWithMoreThanFiveEquipment(@Param("nameOfEquipment") String nameOfEquipment);
+//
+//    @Query("SELECT s.id FROM Subdivision s WHERE s.id NOT IN (SELECT ce.subdivision.id FROM CombatEquipment ce WHERE ce.nameOfEquipment = :nameOfEquipment)")
+//    List<Long> findSubdivisionsWithNoEquipment(@Param("nameOfEquipment") String nameOfEquipment);
 
-    @Query("SELECT s.id FROM Subdivision s WHERE s.id NOT IN (SELECT ce.subdivision.id FROM CombatEquipment ce WHERE ce.nameOfEquipment = :nameOfEquipment)")
-    List<Long> findSubdivisionsWithNoEquipment(@Param("nameOfEquipment") String nameOfEquipment);
+
+    @Query("SELECT ce.subdivision.nameOfSubdivision FROM CombatEquipment ce WHERE ce.nameOfEquipment = :nameOfEquipment GROUP BY ce.subdivision.nameOfSubdivision HAVING COUNT(ce.id) > 5")
+    List<String> findSubdivisionsWithMoreThanFiveEquipment(@Param("nameOfEquipment") String nameOfEquipment);
+
+    @Query("SELECT s.nameOfSubdivision FROM Subdivision s WHERE s.id NOT IN (SELECT ce.subdivision.id FROM CombatEquipment ce WHERE ce.nameOfEquipment = :nameOfEquipment)")
+    List<String> findSubdivisionsWithNoEquipment(@Param("nameOfEquipment") String nameOfEquipment);
 
 
 

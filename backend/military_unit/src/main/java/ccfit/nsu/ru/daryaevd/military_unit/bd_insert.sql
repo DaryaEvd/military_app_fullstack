@@ -281,39 +281,6 @@ VALUES
     ('Truck AC', 10, 'Operational', 3, 'Ural-4320', (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'rere team')),
     ('Tank AD', 12, 'Operational', 4, 'T-90', (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'best team'));
 
-INSERT INTO combat_equipment_table (name_of_equipment, experience_of_using, condition_of_vehicle, number_of_seats, name_of_vehicle, subdivision_id)
-VALUES
-    ('Tank A', 10, 'Operational', 4, 'T-90', (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'vzvod by Pirogov')),
-    ('Tank A', 10, 'Operational', 4, 'T-90', (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'rere team')),
-    ('Tank A', 10, 'Operational', 4, 'T-90', (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'Bravo')),
-    ('Tank A', 10, 'Operational', 4, 'T-90', (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'grug team')),
-    ('Tank A', 10, 'Operational', 4, 'T-90', (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'best team')),
-
-    ('Truck AC', 10, 'Operational', 3, 'Ural-4320', (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'vzvod by Pirogov')),
-    ('Truck AC', 10, 'Operational', 3, 'Ural-4320', (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'grug team')),
-    ('Truck AC', 10, 'Operational', 3, 'Ural-4320', (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'plolpl team')),
-    ('Truck AC', 10, 'Operational', 3, 'Ural-4320', (SELECT id FROM subdivision_table WHERE name_of_subdivision = '')),
-    ('Truck AC', 10, 'Operational', 3, 'Ural-4320', (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'pupupu Krasniy')),
-    ('Truck AC', 10, 'Operational', 3, 'Ural-4320', (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'gffjj team'));
-
-INSERT INTO combat_equipment_table (name_of_equipment, experience_of_using, condition_of_vehicle, number_of_seats, name_of_vehicle, subdivision_id)
-VALUES
-    ('Helicopter', 18, 'Operational', 2, 'Mi-24', (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'best team')),
-    ('Helicopter', 18, 'Operational', 2, 'Mi-24', (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'vzvod by Pirogov')),
-    ('Helicopter', 18, 'Operational', 2, 'Mi-24', (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'bAlpha')),
-    ('Helicopter', 18, 'Operational', 2, 'Mi-24', (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'gffjj team')),
-    ('Helicopter', 18, 'Operational', 2, 'Mi-24', (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'best team')),
-    ('Helicopter', 18, 'Operational', 2, 'Mi-24', (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'pupupu team'));
-
-INSERT INTO combat_equipment_table (name_of_equipment, experience_of_using, condition_of_vehicle, number_of_seats, name_of_vehicle, subdivision_id)
-VALUES
-    ('vertolet', 18, 'Operational', 2, 'Mi-24', (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'best team')),
-    ('vertolet', 18, 'good', 2, 'Mi-4', (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'best team')),
-    ('vertolet', 18, 'norm', 2, 'Mip-344', (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'best team')),
-    ('vertolet', 18, 'Operational', 2, 'Mis-24', (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'best team')),
-    ('vertolet', 18, 'bad', 2, 'Mig-24', (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'best team')),
-    ('vertolet', 18, 'Operational', 2, 'Mir-24', (SELECT id FROM subdivision_table WHERE name_of_subdivision = 'best team'));
-
 -----------------------------------------------------
 -----------------------------------------------------
 -- Insert into weapon_type_table

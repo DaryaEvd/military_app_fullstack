@@ -67,15 +67,13 @@ public class CombatEquipmentController {
     }
 
     @GetMapping("/subdivisions/more_than_five/{nameOfEquipment}")
-    public ResponseEntity<List<Long>> getSubdivisionsWithMoreThanFiveEquipment(@PathVariable String nameOfEquipment) {
-        List<Long> subdivisions = combatEquipmentService.getSubdivisionsWithMoreThanFiveEquipment(nameOfEquipment);
-        return ResponseEntity.ok(subdivisions);
+    public List<String> getSubdivisionsWithMoreThanFiveEquipment(@PathVariable String nameOfEquipment) {
+        return combatEquipmentService.getSubdivisionsWithMoreThanFiveEquipment(nameOfEquipment);
     }
 
     @GetMapping("/subdivisions/no_equipment/{nameOfEquipment}")
-    public ResponseEntity<List<Long>> getSubdivisionsWithNoEquipment(@PathVariable String nameOfEquipment) {
-        List<Long> subdivisions = combatEquipmentService.getSubdivisionsWithNoEquipment(nameOfEquipment);
-        return ResponseEntity.ok(subdivisions);
+    public List<String> getSubdivisionsWithNoEquipment(@PathVariable String nameOfEquipment) {
+        return combatEquipmentService.getSubdivisionsWithNoEquipment(nameOfEquipment);
     }
 
 
