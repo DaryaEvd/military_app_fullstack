@@ -31,6 +31,7 @@ public interface SoldierService {
     List<SoldierDto> getSoldiersByMasId(Long masId);
     List<SoldierDto> getSoldiersByMasIdAndSubdivisionId(Long masId, Long subdivisionId);
 
+    List<SoldierDto> getChainOfCommand(Long soldierId);
 
 
 //    List<Soldier> getOfficers();

@@ -17,6 +17,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -173,7 +174,55 @@ public class SoldierServiceImpl implements SoldierService {
                 .map(SoldierMapper::mapToSoldierDto)
                 .collect(Collectors.toList());
     }
-    
+
+    public List<SoldierDto> getChainOfCommand(Long soldierId) {
+        Soldier soldier = soldierRepository.findById(soldierId).orElseThrow(() -> new IllegalArgumentException("Soldier not found"));
+
+        List<SoldierDto> chainOfCommand = new ArrayList<>();
+
+        // Find commanders recursively
+        findCommanders(soldier, chainOfCommand);
+
+        // Find the soldier itself
+        chainOfCommand.add(toDto(soldier));
+
+        // Find subordinates recursively
+        findSubordinates(soldier, chainOfCommand);
+
+        return chainOfCommand;
+    }
+
+    private void findCommanders(Soldier soldier, List<SoldierDto> chainOfCommand) {
+        List<Soldier> commanders = soldierRepository.findCommanders(soldier.getSoldierType().getTypeRank(), soldier.getSubdivision().getId());
+        for (Soldier commander : commanders) {
+            chainOfCommand.add(toDto(commander));
+            findCommanders(commander, chainOfCommand);
+        }
+    }
+
+    private void findSubordinates(Soldier soldier, List<SoldierDto> chainOfCommand) {
+        List<Soldier> subordinates = soldierRepository.findSubordinates(soldier.getSoldierType().getTypeRank(), soldier.getSubdivision().getId());
+        for (Soldier subordinate : subordinates) {
+            chainOfCommand.add(toDto(subordinate));
+            findSubordinates(subordinate, chainOfCommand);
+        }
+    }
+
+    private SoldierDto toDto(Soldier soldier) {
+        SoldierDto dto = new SoldierDto();
+        dto.setId(soldier.getId());
+        dto.setFirstName(soldier.getFirstName());
+        dto.setLastName(soldier.getLastName());
+        dto.setDateOfBirth(soldier.getDateOfBirth());
+        dto.setMilitaryCard(soldier.getMilitaryCard());
+        dto.setDateOfIssueMilitaryCard(soldier.getDateOfIssueMilitaryCard());
+        dto.setMasId(soldier.getMas() != null ? soldier.getMas().getId() : null);
+        dto.setTypeOfSoldier(soldier.getSoldierType().getTypeRank());
+        dto.setSubdivisionId(Math.toIntExact(soldier.getSubdivision().getId()));
+        dto.setIsCommander(soldier.getIsCommander());
+        return dto;
+    }
+
 
 }
 

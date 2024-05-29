@@ -42,14 +42,9 @@ public class Soldier {
     @JoinColumn(name = "soldier_type_id", referencedColumnName = "id")
     private SoldierType soldierType;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "subdivision_id", referencedColumnName = "id")
-//    private Subdivision subdivision;
-
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "subdivision_id", referencedColumnName = "id", nullable = false)
     private Subdivision subdivision;
-
 
     @Column(name = "is_commander", nullable = false)
     private Boolean isCommander;

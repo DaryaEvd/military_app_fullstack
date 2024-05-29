@@ -66,6 +66,12 @@ public class SoldierController {
         return ResponseEntity.ok(sergeants);
     }
 
+    @GetMapping("/{soldierId}/chain-of-command")
+    public ResponseEntity<List<SoldierDto>> getChainOfCommand(@PathVariable Long soldierId) {
+        List<SoldierDto> chainOfCommand = soldierService.getChainOfCommand(soldierId);
+        return ResponseEntity.ok(chainOfCommand);
+    }
+
 
 //    @GetMapping("/all_officcers")
 //    public List<Soldier> getAllOfficers() {

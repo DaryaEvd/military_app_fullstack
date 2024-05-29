@@ -20,6 +20,13 @@ public interface SoldierRepository extends JpaRepository<Soldier, Long>, JpaSpec
     List<Soldier> findSoldiersByMasIdAndSubdivisionId(@Param("masId") Long masId, @Param("subdivisionId") Long subdivisionId);
 
 
+    @Query("SELECT s FROM Soldier s WHERE s.soldierType.typeRank < :typeRank AND s.subdivision.id = :subdivisionId")
+    List<Soldier> findSubordinates(@Param("typeRank") Integer typeRank, @Param("subdivisionId") Long subdivisionId);
+
+    @Query("SELECT s FROM Soldier s WHERE s.soldierType.typeRank > :typeRank AND s.subdivision.id = :subdivisionId")
+    List<Soldier> findCommanders(@Param("typeRank") Integer typeRank, @Param("subdivisionId") Long subdivisionId);
+
+
 
     /* my_query 2
     Получить данные по офицерскому составу в целом и по офицерскому составу указанного звания
