@@ -66,18 +66,31 @@ public class CombatEquipmentController {
         return ResponseEntity.ok(combatEquipments);
     }
 
-
-    @GetMapping("/subdivisions/more_than_five/{equipmentId}")
-    public ResponseEntity<List<Long>> getSubdivisionsWithMoreThanFiveEquipment(@PathVariable Long equipmentId) {
-        List<Long> subdivisions = combatEquipmentService.getSubdivisionsWithMoreThanFiveEquipment(equipmentId);
+    @GetMapping("/subdivisions/more_than_five/{nameOfEquipment}")
+    public ResponseEntity<List<Long>> getSubdivisionsWithMoreThanFiveEquipment(@PathVariable String nameOfEquipment) {
+        List<Long> subdivisions = combatEquipmentService.getSubdivisionsWithMoreThanFiveEquipment(nameOfEquipment);
         return ResponseEntity.ok(subdivisions);
     }
 
-    @GetMapping("/subdivisions/no_equipment/{equipmentId}")
-    public ResponseEntity<List<Long>> getSubdivisionsWithNoEquipment(@PathVariable Long equipmentId) {
-        List<Long> subdivisions = combatEquipmentService.getSubdivisionsWithNoEquipment(equipmentId);
+    @GetMapping("/subdivisions/no_equipment/{nameOfEquipment}")
+    public ResponseEntity<List<Long>> getSubdivisionsWithNoEquipment(@PathVariable String nameOfEquipment) {
+        List<Long> subdivisions = combatEquipmentService.getSubdivisionsWithNoEquipment(nameOfEquipment);
         return ResponseEntity.ok(subdivisions);
     }
+
+
+
+//    @GetMapping("/subdivisions/more_than_five/{equipmentId}")
+//    public ResponseEntity<List<Long>> getSubdivisionsWithMoreThanFiveEquipment(@PathVariable Long equipmentId) {
+//        List<Long> subdivisions = combatEquipmentService.getSubdivisionsWithMoreThanFiveEquipment(equipmentId);
+//        return ResponseEntity.ok(subdivisions);
+//    }
+//
+//    @GetMapping("/subdivisions/no_equipment/{equipmentId}")
+//    public ResponseEntity<List<Long>> getSubdivisionsWithNoEquipment(@PathVariable Long equipmentId) {
+//        List<Long> subdivisions = combatEquipmentService.getSubdivisionsWithNoEquipment(equipmentId);
+//        return ResponseEntity.ok(subdivisions);
+//    }
 
 
 //    @GetMapping("/availability")

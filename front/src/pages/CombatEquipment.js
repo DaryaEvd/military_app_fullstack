@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
+
+//from combat equipmnet page
 export default function CombatEquipment() {
     const [combatEquipments, setCombatEquipments] = useState([]);
 

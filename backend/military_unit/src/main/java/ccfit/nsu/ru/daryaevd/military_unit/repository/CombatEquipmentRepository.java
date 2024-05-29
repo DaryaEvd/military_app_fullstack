@@ -10,11 +10,20 @@ import java.util.List;
 public interface CombatEquipmentRepository extends JpaRepository<CombatEquipment, Long> {
     List<CombatEquipment> findBySubdivisionId(Long subdivisionId);
 
-    @Query("SELECT ce.subdivision.id FROM CombatEquipment ce WHERE ce.id = :equipmentId GROUP BY ce.subdivision.id HAVING COUNT(ce) > 5")
-    List<Long> findSubdivisionsWithMoreThanFiveEquipment(@Param("equipmentId") Long equipmentId);
+    @Query("SELECT ce.subdivision.id FROM CombatEquipment ce WHERE ce.nameOfEquipment = :nameOfEquipment GROUP BY ce.subdivision.id HAVING COUNT(ce.id) > 5")
+    List<Long> findSubdivisionsWithMoreThanFiveEquipment(@Param("nameOfEquipment") String nameOfEquipment);
 
-    @Query("SELECT s.id FROM Subdivision s WHERE s.id NOT IN (SELECT DISTINCT ce.subdivision.id FROM CombatEquipment ce WHERE ce.id = :equipmentId)")
-    List<Long> findSubdivisionsWithNoEquipment(@Param("equipmentId") Long equipmentId);
+    @Query("SELECT s.id FROM Subdivision s WHERE s.id NOT IN (SELECT ce.subdivision.id FROM CombatEquipment ce WHERE ce.nameOfEquipment = :nameOfEquipment)")
+    List<Long> findSubdivisionsWithNoEquipment(@Param("nameOfEquipment") String nameOfEquipment);
+
+
+
+//
+//    @Query("SELECT ce.subdivision.id FROM CombatEquipment ce WHERE ce.id = :equipmentId GROUP BY ce.subdivision.id HAVING COUNT(ce) > 5")
+//    List<Long> findSubdivisionsWithMoreThanFiveEquipment(@Param("equipmentId") Long equipmentId);
+//
+//    @Query("SELECT s.id FROM Subdivision s WHERE s.id NOT IN (SELECT DISTINCT ce.subdivision.id FROM CombatEquipment ce WHERE ce.id = :equipmentId)")
+//    List<Long> findSubdivisionsWithNoEquipment(@Param("equipmentId") Long equipmentId);
 
 
     /* my_query 6.1

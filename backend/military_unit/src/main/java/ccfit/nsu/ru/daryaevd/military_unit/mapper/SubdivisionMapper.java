@@ -14,7 +14,8 @@ public class SubdivisionMapper {
         subdivisionDto.setNameOfSubdivision(subdivision.getNameOfSubdivision());
         subdivisionDto.setNumberOfSubdivision(subdivision.getNumberOfSubdivision());
         subdivisionDto.setIsDislocated(subdivision.getIsDislocated());
-        subdivisionDto.setTypeOfSubdivision(Math.toIntExact(subdivision.getTypeOfSubdivision().getId()));
+//        subdivisionDto.setTypeOfSubdivision(Math.toIntExact(subdivision.getTypeOfSubdivision().getId()));
+        subdivisionDto.setTypeOfSubdivision(subdivision.getTypeOfSubdivision().getId());
 
         if (subdivision.getCommander() != null) {
             subdivisionDto.setCommanderId(subdivision.getCommander().getId());

@@ -38,6 +38,7 @@ import DislocationPlaces from './subdivisions/DislocationPlaces';
 import SpecialtiesQueries from './mas/SpecialistsMas';
 import FindByMas from './soldier/FindByMas';
 import CombatEquipmentInSubdiv from './combat_equipments/CombatEquipmentInSubdiv';
+import FindCombatEquipment from './subdivisions/FindCombatEquipment';
 
 function App() {
   return (
@@ -85,7 +86,9 @@ function App() {
 
           <Route exact path="/combat_equipment/subdivision" element={<CombatEquipmentInSubdiv/>} />
 
+          <Route exact path="/subdivisions/combat_equipment" element={<FindCombatEquipment/>} />
 
+           
           <Route exact path="/weapon_type" element={<WeaponType/>} />
           
         </Routes>

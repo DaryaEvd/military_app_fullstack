@@ -80,15 +80,25 @@ public class CombatEquipmentServiceImpl implements CombatEquipmentService {
                 .collect(Collectors.toList());
     }
 
-    @Override
-    public List<Long> getSubdivisionsWithMoreThanFiveEquipment(Long equipmentId) {
-        return combatEquipmentRepository.findSubdivisionsWithMoreThanFiveEquipment(equipmentId);
+    public List<Long> getSubdivisionsWithMoreThanFiveEquipment(String nameOfEquipment) {
+        return combatEquipmentRepository.findSubdivisionsWithMoreThanFiveEquipment(nameOfEquipment);
     }
 
-    @Override
-    public List<Long> getSubdivisionsWithNoEquipment(Long equipmentId) {
-        return combatEquipmentRepository.findSubdivisionsWithNoEquipment(equipmentId);
+    public List<Long> getSubdivisionsWithNoEquipment(String nameOfEquipment) {
+        return combatEquipmentRepository.findSubdivisionsWithNoEquipment(nameOfEquipment);
     }
+
+
+
+//    @Override
+//    public List<Long> getSubdivisionsWithMoreThanFiveEquipment(Long equipmentId) {
+//        return combatEquipmentRepository.findSubdivisionsWithMoreThanFiveEquipment(equipmentId);
+//    }
+//
+//    @Override
+//    public List<Long> getSubdivisionsWithNoEquipment(Long equipmentId) {
+//        return combatEquipmentRepository.findSubdivisionsWithNoEquipment(equipmentId);
+//    }
 
 
 

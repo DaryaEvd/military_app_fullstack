@@ -33,7 +33,7 @@ export default function CombatEquipmentInSubdiv() {
   return (
     <div className="container">
       <div className="py-4">
-        <h2>Query Combat Equipment by Subdivision</h2>
+        <h2>Combat Equipment by Subdivision</h2>
 
         <div className="mb-4">
           <h4>Select Subdivision</h4>
@@ -64,14 +64,14 @@ export default function CombatEquipmentInSubdiv() {
               </tr>
             </thead>
             <tbody>
-              {combatEquipments.map((equipment, index) => (
-                <tr key={equipment.id}>
+              {combatEquipments.map((combatEquipment, index) => (
+                <tr key={combatEquipment.id}>
                   <th scope="row">{index + 1}</th>
-                  <td>{equipment.nameOfEquipment}</td>
-                  <td>{equipment.experienceOfUsing}</td>
-                  <td>{equipment.conditionOfVehicle}</td>
-                  <td>{equipment.numberOfSeats}</td>
-                  <td>{equipment.nameOfVehicle}</td>
+                  <td>{combatEquipment.nameOfEquipment}</td>
+                  <td>{combatEquipment.experienceOfUsing}</td>
+                  <td>{combatEquipment.conditionOfVehicle}</td>
+                  <td>{combatEquipment.numberOfSeats}</td>
+                  <td>{combatEquipment.nameOfVehicle}</td>
                 </tr>
               ))}
             </tbody>
