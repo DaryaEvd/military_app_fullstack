@@ -57,8 +57,8 @@ export default function Subdivision() {
                     {showOnlyDislocated ? "Show All" : "Show Only Dislocated"}
                 </button>
 
-                <Link className="btn btn-outline-primary mb-4" to="/subdivisions/find_dislocated_places">
-                    Dislocated Places
+                <Link className="btn btn-outline-primary mb-4" to="/subdivisions/buildings">
+                    Dislocated Places !!!
                 </Link>
 
                 <table className="table border shadow">

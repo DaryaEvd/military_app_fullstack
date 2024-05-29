@@ -34,6 +34,8 @@ import EditMilitaryBuilding from './military_buildings/EditMilitaryBuilding';
 import ViewMilitaryBuilding from './military_buildings/ViewMilitaryBuilding';
 import WeaponType from './pages/WeaponType';
 import MilitaryBuildingQueries from './military_buildings/MilitaryBuildingQueries';
+import DislocationPlaces from './subdivisions/DislocationPlaces';
+import SpecialtiesQueries from './mas/SpecialistsMas';
 
 function App() {
   return (
@@ -73,6 +75,9 @@ function App() {
           <Route exact path="/military_building/view/:id" element={<ViewMilitaryBuilding/>} />
           <Route exact path="/military_building/queries" element={<MilitaryBuildingQueries/>} />
 
+          <Route exact path="/subdivisions/buildings" element={<DislocationPlaces/>} />
+
+          <Route exact path="/mas/specialities" element={<SpecialtiesQueries/>} />
 
           <Route exact path="/weapon_type" element={<WeaponType/>} />
           

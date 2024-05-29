@@ -28,6 +28,10 @@ export default function Mas() {
                     Add Mas Information
                 </Link>
 
+                <Link className="btn btn-outline-primary mb-4" to="/mas/specialities">
+                    Find Specialists
+                </Link>
+
                 <table className="table border shadow">
                     <thead>
                         <tr>
