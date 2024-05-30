@@ -6,6 +6,7 @@ import ccfit.nsu.ru.daryaevd.military_unit.dto.SubdivisionTypeDto;
 import ccfit.nsu.ru.daryaevd.military_unit.dto.SubdivisionWithCommanderDto;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.MilitaryBuilding;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.Subdivision;
+import ccfit.nsu.ru.daryaevd.military_unit.entity.SubdivisionType;
 
 import java.util.List;
 import java.util.Map;
@@ -45,7 +46,8 @@ public interface SubdivisionService {
 
     List<SubdivisionTypeDto> countSubdivisionsByType();
 
-
+    String getMostFrequentSubdivisionTypeName();
+    String getLeastFrequentSubdivisionTypeName();
 
 //    List<Long> getSubdivisionsWithWeaponCountGreaterThanThree(String category);
 //    List<Long> getSubdivisionsWithoutWeaponCategory(String category);

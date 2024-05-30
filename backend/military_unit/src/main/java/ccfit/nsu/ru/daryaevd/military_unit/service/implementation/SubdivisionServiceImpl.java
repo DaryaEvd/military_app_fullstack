@@ -165,6 +165,17 @@ public class SubdivisionServiceImpl implements SubdivisionService {
                 .collect(Collectors.toList());
     }
 
+
+    public String getMostFrequentSubdivisionTypeName() {
+        Long typeId = subdivisionRepository.findMostFrequentSubdivisionTypeId();
+        return subdivisionTypeRepository.findById(typeId).map(type -> type.getNameOfType()).orElse(null);
+    }
+
+    public String getLeastFrequentSubdivisionTypeName() {
+        Long typeId = subdivisionRepository.findLeastFrequentSubdivisionTypeId();
+        return subdivisionTypeRepository.findById(typeId).map(type -> type.getNameOfType()).orElse(null);
+    }
+
 //    @Override
 //    public List<Long> getSubdivisionsWithWeaponCountGreaterThanThree(String category) {
 //        return subdivisionRepository.findSubdivisionsWithWeaponCountGreaterThanThree(category);

@@ -3,6 +3,7 @@ package ccfit.nsu.ru.daryaevd.military_unit.repository;
 import ccfit.nsu.ru.daryaevd.military_unit.dto.SubdivisionDto;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.MilitaryBuilding;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.Subdivision;
+import ccfit.nsu.ru.daryaevd.military_unit.entity.SubdivisionType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -59,6 +60,14 @@ public interface SubdivisionRepository extends JpaRepository<Subdivision, Long> 
 
     @Query("SELECT st.nameOfType, COUNT(s.id) FROM Subdivision s JOIN s.typeOfSubdivision st GROUP BY st.nameOfType")
     List<Object[]> countSubdivisionsByType();
+
+
+    @Query(value = "SELECT s.type_of_subdivision_id FROM subdivision_table s GROUP BY s.type_of_subdivision_id ORDER BY COUNT(*) DESC LIMIT 1", nativeQuery = true)
+    Long findMostFrequentSubdivisionTypeId();
+
+    @Query(value = "SELECT s.type_of_subdivision_id FROM subdivision_table s GROUP BY s.type_of_subdivision_id ORDER BY COUNT(*) ASC LIMIT 1", nativeQuery = true)
+    Long findLeastFrequentSubdivisionTypeId();
+
 
 //    @Query("SELECT s.id FROM Subdivision s JOIN s.weaponTypes w " +
 //            "WHERE w.weaponCategory = :category " +

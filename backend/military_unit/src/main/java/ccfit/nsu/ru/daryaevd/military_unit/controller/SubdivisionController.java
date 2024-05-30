@@ -3,6 +3,7 @@ package ccfit.nsu.ru.daryaevd.military_unit.controller;
 import ccfit.nsu.ru.daryaevd.military_unit.dto.*;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.MilitaryBuilding;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.Subdivision;
+import ccfit.nsu.ru.daryaevd.military_unit.entity.SubdivisionType;
 import ccfit.nsu.ru.daryaevd.military_unit.repository.SubdivisionRepository;
 import ccfit.nsu.ru.daryaevd.military_unit.service.MilitaryBuildingService;
 import ccfit.nsu.ru.daryaevd.military_unit.service.SoldierService;
@@ -139,6 +140,28 @@ public class SubdivisionController {
         List<SubdivisionWithCommanderDto> subdivisionsWithCommanders = subdivisionService.getAllSubdivisionsWithCommanders();
         return ResponseEntity.ok(subdivisionsWithCommanders);
     }
+
+    @GetMapping("/most-frequent-type")
+    public ResponseEntity<String> getMostFrequentSubdivisionType() {
+        String subdivisionTypeName = subdivisionService.getMostFrequentSubdivisionTypeName();
+        if (subdivisionTypeName != null) {
+            return ResponseEntity.ok(subdivisionTypeName);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/least-frequent-type")
+    public ResponseEntity<String> getLeastFrequentSubdivisionType() {
+        String subdivisionTypeName = subdivisionService.getLeastFrequentSubdivisionTypeName();
+        if (subdivisionTypeName != null) {
+            return ResponseEntity.ok(subdivisionTypeName);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
 
 //    @GetMapping("/weapons/count-greater-than-three")
 //    public ResponseEntity<List<Long>> getSubdivisionsWithWeaponCountGreaterThanThree(
