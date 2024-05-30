@@ -141,7 +141,7 @@ public class SubdivisionController {
         return ResponseEntity.ok(subdivisionsWithCommanders);
     }
 
-    @GetMapping("/most-frequent-type")
+    @GetMapping("/most_frequent_type")
     public ResponseEntity<String> getMostFrequentSubdivisionType() {
         String subdivisionTypeName = subdivisionService.getMostFrequentSubdivisionTypeName();
         if (subdivisionTypeName != null) {
@@ -151,7 +151,7 @@ public class SubdivisionController {
         }
     }
 
-    @GetMapping("/least-frequent-type")
+    @GetMapping("/least_frequent_type")
     public ResponseEntity<String> getLeastFrequentSubdivisionType() {
         String subdivisionTypeName = subdivisionService.getLeastFrequentSubdivisionTypeName();
         if (subdivisionTypeName != null) {

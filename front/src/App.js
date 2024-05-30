@@ -43,6 +43,7 @@ import WeaponQueries from './weapon_type/WeaponQueries';
 import WeaponTypeCount from './weapon_type/WeaponTypeCount';
 import HierarchyQueries from './soldier/HierarchyQueries';
 import SubdivisionsWithCommanders from './subdivisions/SubdivisionsWithCommanders';
+import SubdivTypeFrequencyQueries from './subdivisions/SubdivTypeFrequencyQueries';
 
 function App() {
   return (
@@ -100,7 +101,8 @@ function App() {
           <Route exact path="/soldiers/hierarchy" element={<HierarchyQueries/>} />
 
           <Route exact path="/subdivisions/with_commanders" element={<SubdivisionsWithCommanders/>} />
-
+           
+          <Route exact path="/subdivisions/frequency" element={<SubdivTypeFrequencyQueries/>} />
 
         </Routes>
       </Router>

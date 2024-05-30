@@ -68,7 +68,10 @@ export default function Subdivision() {
                 <Link className="btn btn-outline-primary mb-4" to="/subdivisions/with_commanders">
                     Show Commanders
                 </Link>
-
+                 
+                <Link className="btn btn-outline-primary mb-4" to="/subdivisions/frequency">
+                    Frequency
+                </Link>
 
                 <table className="table border shadow">
                     <thead>
