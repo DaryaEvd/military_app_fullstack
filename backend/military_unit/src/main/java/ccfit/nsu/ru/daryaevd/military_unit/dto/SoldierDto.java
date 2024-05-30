@@ -22,4 +22,6 @@ public class SoldierDto {
     private Integer typeOfSoldier;
     private Integer subdivisionId;
     private Boolean isCommander;
+
+    private Long commanderId;
 }

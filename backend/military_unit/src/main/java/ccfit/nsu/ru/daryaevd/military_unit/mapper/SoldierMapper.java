@@ -29,6 +29,10 @@ public class SoldierMapper {
                     soldier.getSubdivision().getTypeOfSubdivision().getSubdivisionRank() : null);
 
         soldierDto.setIsCommander(soldier.getIsCommander());
+
+        soldierDto.setCommanderId(soldier.getCommanderId() != null ?
+                soldier.getCommanderId() : null);
+
         return soldierDto;
     }
 

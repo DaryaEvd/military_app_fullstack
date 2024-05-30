@@ -73,6 +73,13 @@ public class SoldierController {
     }
 
 
+    @GetMapping("/hierarchy/{soldierId}")
+    public ResponseEntity<List<SoldierDto>> getHierarchyForSoldier(@PathVariable Long soldierId) {
+        List<SoldierDto> hierarchy = soldierService.getHierarchyForSoldier(soldierId);
+        return ResponseEntity.ok(hierarchy);
+    }
+
+
 //    @GetMapping("/all_officcers")
 //    public List<Soldier> getAllOfficers() {
 //        // Call the method from the service to fetch officers and return the result

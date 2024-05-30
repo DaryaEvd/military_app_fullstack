@@ -19,8 +19,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import static ccfit.nsu.ru.daryaevd.military_unit.mapper.SoldierMapper.mapToSoldierDto;
 
 @Service
 @AllArgsConstructor
@@ -60,14 +63,14 @@ public class SoldierServiceImpl implements SoldierService {
         soldier.setIsCommander(soldierDto.getIsCommander());
 
         Soldier savedSoldier = soldierRepository.save(soldier);
-        return SoldierMapper.mapToSoldierDto(savedSoldier);
+        return mapToSoldierDto(savedSoldier);
     }
 
     @Override
     public SoldierDto getSoldierById(Long soldierId) {
         Soldier soldier = soldierRepository.findById(soldierId)
                 .orElseThrow(() -> new ResourceNotFoundException("Soldier doesn't exist with given id: " + soldierId));
-        return SoldierMapper.mapToSoldierDto(soldier);
+        return mapToSoldierDto(soldier);
     }
 
     @Override
@@ -108,7 +111,7 @@ public class SoldierServiceImpl implements SoldierService {
         soldier.setIsCommander(updatedSoldier.getIsCommander());
 
         Soldier updatedSoldierObj = soldierRepository.save(soldier);
-        return SoldierMapper.mapToSoldierDto(updatedSoldierObj);
+        return mapToSoldierDto(updatedSoldierObj);
     }
 
     @Override
@@ -209,6 +212,8 @@ public class SoldierServiceImpl implements SoldierService {
     }
 
     private SoldierDto toDto(Soldier soldier) {
+        if (soldier == null) return null;
+
         SoldierDto dto = new SoldierDto();
         dto.setId(soldier.getId());
         dto.setFirstName(soldier.getFirstName());
@@ -223,6 +228,19 @@ public class SoldierServiceImpl implements SoldierService {
         return dto;
     }
 
+
+    public List<SoldierDto> getHierarchyForSoldier(Long soldierId) {
+        List<SoldierDto> hierarchy = new ArrayList<>();
+        SoldierDto soldier = mapToSoldierDto(Objects.requireNonNull(soldierRepository.findById(soldierId).orElse(null)));
+        hierarchy.add(soldier);
+        Long commanderId = soldier.getCommanderId();
+        while (commanderId != null) {
+            SoldierDto commander = mapToSoldierDto(Objects.requireNonNull(soldierRepository.findById(commanderId).orElse(null)));
+            hierarchy.add(commander);
+            commanderId = commander.getCommanderId();
+        }
+        return hierarchy;
+    }
 
 }
 

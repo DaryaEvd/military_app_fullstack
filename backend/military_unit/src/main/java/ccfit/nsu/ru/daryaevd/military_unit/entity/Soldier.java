@@ -48,4 +48,7 @@ public class Soldier {
 
     @Column(name = "is_commander", nullable = false)
     private Boolean isCommander;
+
+    @Column(name = "commander_id")
+    private Long commanderId;
 }

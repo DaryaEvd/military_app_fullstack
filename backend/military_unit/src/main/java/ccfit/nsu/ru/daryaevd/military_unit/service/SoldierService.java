@@ -33,6 +33,8 @@ public interface SoldierService {
 
     List<SoldierDto> getChainOfCommand(Long soldierId);
 
+    List<SoldierDto> getHierarchyForSoldier(Long soldierId) ;
+
 
 //    List<Soldier> getOfficers();
 

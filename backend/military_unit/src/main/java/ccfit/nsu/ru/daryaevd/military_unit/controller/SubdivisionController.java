@@ -97,7 +97,7 @@ public class SubdivisionController {
         return ResponseEntity.ok(soldiers);
     }
 
-    @GetMapping("/most-units")
+    @GetMapping("/most_units")
     public ResponseEntity<List<Object[]>> getSubdivisionsWithMostUnits() {
         List<Object[]> result = subdivisionService.findSubdivisionsWithMostUnits();
         return ResponseEntity.ok(result);
@@ -108,7 +108,6 @@ public class SubdivisionController {
         List<Object[]> result = subdivisionService.findSubdivisionsWithLeastUnits();
         return ResponseEntity.ok(result);
     }
-
 
     @GetMapping("/with-commanders")
     public ResponseEntity<List<Subdivision>> getAllSubdivisionsWithCommanders() {
@@ -131,6 +130,14 @@ public class SubdivisionController {
     public List<String> getSubdivisionsWithoutWeapon(@RequestParam String weaponCategory) {
         return subdivisionService.getSubdivisionsWithoutWeapon(weaponCategory);
     }
+
+    @GetMapping("/count_by_type")
+    public ResponseEntity<List<SubdivisionTypeDto>> countSubdivisionsByType() {
+        List<SubdivisionTypeDto> dtos = subdivisionService.countSubdivisionsByType();
+        return ResponseEntity.ok(dtos);
+    }
+
+
 
 //    @GetMapping("/weapons/count-greater-than-three")
 //    public ResponseEntity<List<Long>> getSubdivisionsWithWeaponCountGreaterThanThree(

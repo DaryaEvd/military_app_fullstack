@@ -57,6 +57,8 @@ public interface SubdivisionRepository extends JpaRepository<Subdivision, Long> 
     List<String> findSubdivisionsWithoutWeapon(@Param("weaponCategory") String weaponCategory);
 
 
+    @Query("SELECT st.nameOfType, COUNT(s.id) FROM Subdivision s JOIN s.typeOfSubdivision st GROUP BY st.nameOfType")
+    List<Object[]> countSubdivisionsByType();
 
 //    @Query("SELECT s.id FROM Subdivision s JOIN s.weaponTypes w " +
 //            "WHERE w.weaponCategory = :category " +

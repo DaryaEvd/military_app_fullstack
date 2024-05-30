@@ -40,6 +40,9 @@ public interface SubdivisionService {
     List<String> getSubdivisionsWithWeaponMoreThan(String weaponCategory, int count);
     List<String> getSubdivisionsWithoutWeapon(String weaponCategory);
 
+    List<SubdivisionTypeDto> countSubdivisionsByType();
+
+
 
 //    List<Long> getSubdivisionsWithWeaponCountGreaterThanThree(String category);
 //    List<Long> getSubdivisionsWithoutWeaponCategory(String category);

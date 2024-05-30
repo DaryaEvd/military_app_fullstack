@@ -26,6 +26,7 @@ public interface SoldierRepository extends JpaRepository<Soldier, Long>, JpaSpec
     @Query("SELECT s FROM Soldier s WHERE s.soldierType.typeRank > :typeRank AND s.subdivision.id = :subdivisionId")
     List<Soldier> findCommanders(@Param("typeRank") Integer typeRank, @Param("subdivisionId") Long subdivisionId);
 
+    List<Soldier> findByCommanderId(Long commanderId);
 
 
     /* my_query 2

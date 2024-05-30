@@ -143,6 +143,20 @@ public class SubdivisionServiceImpl implements SubdivisionService {
         return subdivisionRepository.findSubdivisionsWithoutWeapon(weaponCategory);
     }
 
+    public List<SubdivisionTypeDto> countSubdivisionsByType() {
+        List<Object[]> results = subdivisionRepository.countSubdivisionsByType();
+        List<SubdivisionTypeDto> dtos = new ArrayList<>();
+        for (Object[] result : results) {
+            String nameOfType = (String) result[0];
+            Integer count = (Integer) result[1];
+            SubdivisionTypeDto dto = new SubdivisionTypeDto();
+            dto.setNameOfType(nameOfType);
+            dto.setCount(count);
+            dtos.add(dto);
+        }
+        return dtos;
+    }
+
 
 //    @Override
 //    public List<Long> getSubdivisionsWithWeaponCountGreaterThanThree(String category) {
