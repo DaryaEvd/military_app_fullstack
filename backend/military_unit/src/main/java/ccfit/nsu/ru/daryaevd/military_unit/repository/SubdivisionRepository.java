@@ -44,6 +44,20 @@ public interface SubdivisionRepository extends JpaRepository<Subdivision, Long> 
     }
 
 
+//    @Query("SELECT s.nameOfSubdivision FROM Subdivision s JOIN s.weaponTypes wt WHERE wt.weaponCategory = :weaponCategory GROUP BY s.id HAVING COUNT(wt.id) > :count")
+//    List<String> findSubdivisionsWithWeaponMoreThan(@Param("weaponCategory") String weaponCategory, @Param("count") long count);
+//
+//    @Query("SELECT s.nameOfSubdivision FROM Subdivision s WHERE s.id NOT IN (SELECT wt.subdivision.id FROM WeaponType wt WHERE wt.weaponCategory = :weaponCategory)")
+//    List<String> findSubdivisionsWithoutWeapon(@Param("weaponCategory") String weaponCategory);
+
+    @Query("SELECT s.nameOfSubdivision FROM Subdivision s JOIN s.weaponTypes wt WHERE wt.weaponCategory = :weaponCategory GROUP BY s.id HAVING COUNT(wt.id) > :count")
+    List<String> findSubdivisionsWithWeaponMoreThan(@Param("weaponCategory") String weaponCategory, @Param("count") int count);
+
+    @Query("SELECT s.nameOfSubdivision FROM Subdivision s WHERE s.id NOT IN (SELECT wt.subdivision.id FROM WeaponType wt WHERE wt.weaponCategory = :weaponCategory)")
+    List<String> findSubdivisionsWithoutWeapon(@Param("weaponCategory") String weaponCategory);
+
+
+
 //    @Query("SELECT s.id FROM Subdivision s JOIN s.weaponTypes w " +
 //            "WHERE w.weaponCategory = :category " +
 //            "GROUP BY s.id " +

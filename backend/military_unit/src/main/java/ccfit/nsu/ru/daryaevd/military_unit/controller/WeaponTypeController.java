@@ -83,7 +83,7 @@ public class WeaponTypeController {
     }
 
 
-    @GetMapping("/subdivisions-with-weapon-count")
+    @GetMapping("/subdivisions_with_weapon_count")
     public ResponseEntity<List<Subdivision>> getSubdivisionsWithWeaponCountGreaterThan(
             @RequestParam String category,
             @RequestParam Long count) {
@@ -92,13 +92,15 @@ public class WeaponTypeController {
     }
 
 
-//    @GetMapping("/subdivisions-with-weapon-count-greater-than-three")
+    //////////////////////
+
+//    @GetMapping("/subdivisions/count_more_than_three")
 //    public ResponseEntity<List<Subdivision>> getSubdivisionsWithWeaponCountGreaterThanThree(
 //            @RequestParam String category) {
 //        List<Subdivision> subdivisions = weaponTypeService.getSubdivisionsWithWeaponCountGreaterThanThree(category);
 //        return ResponseEntity.ok(subdivisions);
 //    }
-//
+
 //    @GetMapping("/subdivisions-without-weapon-category")
 //    public ResponseEntity<List<Subdivision>> getSubdivisionsWithoutWeaponCategory(
 //            @RequestParam String category) {

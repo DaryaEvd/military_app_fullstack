@@ -40,6 +40,7 @@ import FindByMas from './soldier/FindByMas';
 import CombatEquipmentInSubdiv from './combat_equipments/CombatEquipmentInSubdiv';
 import FindCombatEquipment from './subdivisions/FindCombatEquipment';
 import WeaponQueries from './weapon_type/WeaponQueries';
+import WeaponTypeCount from './weapon_type/WeaponTypeCount';
 
 function App() {
   return (
@@ -93,7 +94,8 @@ function App() {
           <Route exact path="/weapon_type" element={<WeaponType/>} />
           <Route exact path="/weapon_type/categories" element={<WeaponQueries/>} />
           
-          
+          <Route exact path="/weapon_type/amount" element={<WeaponTypeCount/>} />
+
         </Routes>
       </Router>
     </div>

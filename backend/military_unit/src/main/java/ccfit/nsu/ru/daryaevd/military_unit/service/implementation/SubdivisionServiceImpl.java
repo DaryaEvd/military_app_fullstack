@@ -131,10 +131,16 @@ public class SubdivisionServiceImpl implements SubdivisionService {
         return subdivisionRepository.findByIdWithCommander(subdivisionId);
     }
 
-
-
     public Map<Long, String> getSubdivisionNames(List<Long> subdivisionIds) {
         return subdivisionRepository.getSubdivisionNames(subdivisionIds);
+    }
+
+    public List<String> getSubdivisionsWithWeaponMoreThan(String weaponCategory, int count) {
+        return subdivisionRepository.findSubdivisionsWithWeaponMoreThan(weaponCategory, count);
+    }
+
+    public List<String> getSubdivisionsWithoutWeapon(String weaponCategory) {
+        return subdivisionRepository.findSubdivisionsWithoutWeapon(weaponCategory);
     }
 
 

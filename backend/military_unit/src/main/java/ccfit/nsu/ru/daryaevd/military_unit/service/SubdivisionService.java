@@ -33,6 +33,13 @@ public interface SubdivisionService {
 
     Map<Long, String> getSubdivisionNames(List<Long> subdivisionIds) ;
 
+//
+//    List<String> getSubdivisionsWithWeaponMoreThan(String weaponCategory, long count);
+//    List<String> getSubdivisionsWithoutWeapon(String weaponCategory);
+
+    List<String> getSubdivisionsWithWeaponMoreThan(String weaponCategory, int count);
+    List<String> getSubdivisionsWithoutWeapon(String weaponCategory);
+
 
 //    List<Long> getSubdivisionsWithWeaponCountGreaterThanThree(String category);
 //    List<Long> getSubdivisionsWithoutWeaponCategory(String category);

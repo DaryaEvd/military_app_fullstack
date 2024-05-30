@@ -122,8 +122,15 @@ public class SubdivisionController {
         return ResponseEntity.ok(subdivision);
     }
 
+    @GetMapping("/weapon_more_than")
+    public List<String> getSubdivisionsWithWeaponMoreThan(@RequestParam String weaponCategory, @RequestParam int count) {
+        return subdivisionService.getSubdivisionsWithWeaponMoreThan(weaponCategory, count);
+    }
 
-
+    @GetMapping("/no_weapon")
+    public List<String> getSubdivisionsWithoutWeapon(@RequestParam String weaponCategory) {
+        return subdivisionService.getSubdivisionsWithoutWeapon(weaponCategory);
+    }
 
 //    @GetMapping("/weapons/count-greater-than-three")
 //    public ResponseEntity<List<Long>> getSubdivisionsWithWeaponCountGreaterThanThree(

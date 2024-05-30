@@ -26,7 +26,9 @@ export default function WeaponType() {
                  <Link className="btn btn-outline-primary mb-4" to="/weapon_type/categories">
                     Query
                 </Link>
-
+                <Link className="btn btn-outline-primary mb-4" to="/weapon_type/amount">
+                    Query Count
+                </Link>
 
                 <table className="table border shadow">
                     <thead>
