@@ -3,6 +3,7 @@ package ccfit.nsu.ru.daryaevd.military_unit.controller;
 import ccfit.nsu.ru.daryaevd.military_unit.dto.WeaponTypeDto;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.*;
 import ccfit.nsu.ru.daryaevd.military_unit.mapper.WeaponTypeMapper;
+import ccfit.nsu.ru.daryaevd.military_unit.service.SubdivisionService;
 import ccfit.nsu.ru.daryaevd.military_unit.service.WeaponTypeService;
 
 import lombok.AllArgsConstructor;
@@ -11,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
@@ -19,6 +21,8 @@ import java.util.stream.Collectors;
 @CrossOrigin("http://localhost:3000")
 public class WeaponTypeController {
     private WeaponTypeService weaponTypeService;
+    private SubdivisionService subdivisionService;
+
 
     @PostMapping
     public ResponseEntity<WeaponTypeDto> createWeaponType(@RequestBody WeaponTypeDto weaponTypeDto) {
@@ -49,6 +53,13 @@ public class WeaponTypeController {
 //    public ResponseEntity<String> deleteWeaponType(@PathVariable("id") Long weaponTypeId) {
 //        weaponTypeService.deleteWeaponType(weaponTypeId);
 //        return ResponseEntity.ok("Weapon type deleted successfully");
+//    }
+
+    // todo: delete mb???
+//    @PostMapping("/subdivisions/names")
+//    public ResponseEntity<Map<Long, String>> getSubdivisionNames(@RequestBody List<Long> subdivisionIds) {
+//        Map<Long, String> subdivisionNames = subdivisionService.getSubdivisionNames(subdivisionIds);
+//        return ResponseEntity.ok(subdivisionNames);
 //    }
 
     /////////////////////////////////////

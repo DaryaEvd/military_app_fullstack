@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -130,6 +131,11 @@ public class SubdivisionServiceImpl implements SubdivisionService {
         return subdivisionRepository.findByIdWithCommander(subdivisionId);
     }
 
+
+
+    public Map<Long, String> getSubdivisionNames(List<Long> subdivisionIds) {
+        return subdivisionRepository.getSubdivisionNames(subdivisionIds);
+    }
 
 
 //    @Override

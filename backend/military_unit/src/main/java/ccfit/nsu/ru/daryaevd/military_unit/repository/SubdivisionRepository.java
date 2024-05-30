@@ -9,6 +9,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Repository // todo: think
 public interface SubdivisionRepository extends JpaRepository<Subdivision, Long> {
@@ -32,6 +34,14 @@ public interface SubdivisionRepository extends JpaRepository<Subdivision, Long> 
     @Query("SELECT s FROM Subdivision s LEFT JOIN FETCH s.commander WHERE s.id = :subdivisionId")
     Subdivision findByIdWithCommander(@Param("subdivisionId") Long subdivisionId);
 
+
+    @Query("SELECT s.id, s.nameOfSubdivision FROM Subdivision s WHERE s.id IN :ids")
+    List<Object[]> findNamesByIds(@Param("ids") List<Long> ids);
+
+    default Map<Long, String> getSubdivisionNames(List<Long> ids) {
+        return findNamesByIds(ids).stream()
+                .collect(Collectors.toMap(result -> (Long) result[0], result -> (String) result[1]));
+    }
 
 
 //    @Query("SELECT s.id FROM Subdivision s JOIN s.weaponTypes w " +

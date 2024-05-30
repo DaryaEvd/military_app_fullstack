@@ -21,7 +21,9 @@ public class WeaponTypeMapper {
         dto.setWeaponCategory(weaponType.getWeaponCategory());
         dto.setExperienceOfUsing(weaponType.getExperienceOfUsing());
         dto.setConditionOfWeapon(weaponType.getConditionOfWeapon());
-        dto.setSubdivisionId(weaponType.getSubdivision().getId());
+//        dto.setSubdivisionId(weaponType.getSubdivision().getId());
+        dto.setSubdivisionId(weaponType.getSubdivision().getId() != null ? weaponType.getSubdivision().getId() : null);
+
 
         if (weaponType instanceof Gun) {
             Gun gun = (Gun) weaponType;

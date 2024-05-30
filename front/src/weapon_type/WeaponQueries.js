@@ -2,20 +2,30 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 export default function WeaponQueries() {
-  const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [subdivisionId, setSubdivisionId] = useState("");
   const [weaponTypes, setWeaponTypes] = useState([]);
   const [queryType, setQueryType] = useState("");
+  const [subdivisions, setSubdivisions] = useState([]);
 
   useEffect(() => {
-    loadCategories();
+    const fetchSubdivisions = async () => {
+      const result = await axios.get("http://localhost:8080/api/subdivision");
+      setSubdivisions(result.data);
+    };
+
+    fetchSubdivisions();
   }, []);
 
-  const loadCategories = async () => {
-    const result = await axios.get("http://localhost:8080/api/weapons");
-    setCategories(result.data);
+  const getSubdivisionNames = (subdivisionIds) => {
+    if (!subdivisionIds) return "Unknown"; // Проверка на undefined или null
+    return subdivisionIds.map(id => {
+      const subdivision = subdivisions.find(sub => sub.id === id);
+      return subdivision ? subdivision.nameOfSubdivision : "Unknown";
+    }).join(", ");
   };
+
+  const categories = ["Gun", "Artillery", "Rocket"]; // Hardcoded categories
 
   const handleCategoryChange = (event) => {
     setSelectedCategory(event.target.value);
@@ -67,8 +77,15 @@ export default function WeaponQueries() {
 
         {queryType === "subdivision" && (
           <div className="mb-4">
-            <h4>Enter Subdivision ID</h4>
-            <input type="number" value={subdivisionId} onChange={handleSubdivisionChange} className="form-control" />
+            <h4>Select Subdivision</h4>
+            <select value={subdivisionId} onChange={handleSubdivisionChange} className="form-control">
+              <option value="" disabled>Select a subdivision</option>
+              {subdivisions.map((subdivision) => (
+                <option key={subdivision.id} value={subdivision.id}>
+                  {subdivision.nameOfSubdivision}
+                </option>
+              ))}
+            </select>
           </div>
         )}
 
@@ -95,7 +112,28 @@ export default function WeaponQueries() {
                   <th scope="col">Category</th>
                   <th scope="col">Experience of Using</th>
                   <th scope="col">Condition of Weapon</th>
-                  <th scope="col">Subdivision ID</th>
+                  <th scope="col">Subdivision Name</th>
+                  {selectedCategory === "Gun" && (
+                    <>
+                      <th scope="col">Name of Gun</th>
+                      <th scope="col">Shooting Speed</th>
+                      <th scope="col">Caliber</th>
+                      <th scope="col">Magazine Capacity</th>
+                    </>
+                  )}
+                  {selectedCategory === "Artillery" && (
+                    <>
+                      <th scope="col">Name of Artillery</th>
+                      <th scope="col">Firing Distance</th>
+                      <th scope="col">Type of Ammunition</th>
+                    </>
+                  )}
+                  {selectedCategory === "Rocket" && (
+                    <>
+                      <th scope="col">Flight Range of Rocket</th>
+                      <th scope="col">Type of Missile Guidance</th>
+                    </>
+                  )}
                 </tr>
               </thead>
               <tbody>
@@ -105,7 +143,28 @@ export default function WeaponQueries() {
                     <td>{weapon.weaponCategory}</td>
                     <td>{weapon.experienceOfUsing}</td>
                     <td>{weapon.conditionOfWeapon}</td>
-                    <td>{weapon.subdivisionId}</td>
+                    <td>{getSubdivisionNames([weapon.subdivisionId])}</td>
+                    {selectedCategory === "Gun" && (
+                      <>
+                        <td>{weapon.nameOfGun}</td>
+                        <td>{weapon.shootingSpeed}</td>
+                        <td>{weapon.caliber}</td>
+                        <td>{weapon.magazineCapacity}</td>
+                      </>
+                    )}
+                    {selectedCategory === "Artillery" && (
+                      <>
+                        <td>{weapon.nameArtillery}</td>
+                        <td>{weapon.firingDistance}</td>
+                        <td>{weapon.typeOfAmmunition}</td>
+                      </>
+                    )}
+                    {selectedCategory === "Rocket" && (
+                      <>
+                        <td>{weapon.flightRangeOfRocket}</td>
+                        <td>{weapon.typeOfMissileGuidance}</td>
+                      </>
+                    )}
                   </tr>
                 ))}
               </tbody>

@@ -7,6 +7,7 @@ import ccfit.nsu.ru.daryaevd.military_unit.entity.MilitaryBuilding;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.Subdivision;
 
 import java.util.List;
+import java.util.Map;
 
 public interface SubdivisionService {
     SubdivisionDto createSubdivision(SubdivisionDto subdivisionDto);
@@ -29,6 +30,8 @@ public interface SubdivisionService {
 
     List<Subdivision> getAllSubdivisionsWithCommanders();
     Subdivision getSubdivisionWithCommander(Long subdivisionId);
+
+    Map<Long, String> getSubdivisionNames(List<Long> subdivisionIds) ;
 
 
 //    List<Long> getSubdivisionsWithWeaponCountGreaterThanThree(String category);
