@@ -242,6 +242,22 @@ public class SoldierServiceImpl implements SoldierService {
         return hierarchy;
     }
 
+    public List<SoldierDto> getSubordinates(Long soldierId) {
+        List<SoldierDto> result = new ArrayList<>();
+        findSubordinatesRecursive(soldierId, result);
+        return result;
+    }
+
+    private void findSubordinatesRecursive(Long commanderId, List<SoldierDto> result) {
+        List<Soldier> subordinates = soldierRepository.findByCommanderId(commanderId);
+        for (Soldier subordinate : subordinates) {
+            SoldierDto dto = mapToSoldierDto(subordinate);
+            result.add(dto);
+            findSubordinatesRecursive(subordinate.getId(), result);
+        }
+    }
+
+
 }
 
 

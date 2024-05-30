@@ -35,6 +35,10 @@ public interface SoldierService {
 
     List<SoldierDto> getHierarchyForSoldier(Long soldierId) ;
 
+    public List<SoldierDto> getSubordinates(Long soldierId);
+
+
+
 
 //    List<Soldier> getOfficers();
 

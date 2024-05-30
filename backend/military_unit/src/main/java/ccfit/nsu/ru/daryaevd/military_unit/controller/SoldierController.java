@@ -79,6 +79,12 @@ public class SoldierController {
         return ResponseEntity.ok(hierarchy);
     }
 
+    @GetMapping("/subordinates/{id}")
+    public ResponseEntity<List<SoldierDto>> getSubordinates(@PathVariable Long id) {
+        List<SoldierDto> subordinates = soldierService.getSubordinates(id);
+        return ResponseEntity.ok(subordinates);
+    }
+
 
 //    @GetMapping("/all_officcers")
 //    public List<Soldier> getAllOfficers() {

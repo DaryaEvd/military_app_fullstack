@@ -59,7 +59,7 @@ export default function HierarchyQueries() {
     setLoading(true);
 
     try {
-      const result = await axios.get(`http://localhost:8080/api/soldiers/hierarchy/${soldierId}`);
+      const result = await axios.get(`http://localhost:8080/api/soldiers/subordinates/${soldierId}`);
       setHierarchy(result.data);
     } catch (error) {
       console.error("Error fetching hierarchy data:", error);
@@ -81,7 +81,7 @@ export default function HierarchyQueries() {
 
   const getSoldierTypeName = (typeId) => {
     const type = soldierTypes.find(type => type.id === typeId);
-    return type ? type.typeName : "N/A";
+    return type ? type.nameOfType : "N/A";
   };
 
   return (
