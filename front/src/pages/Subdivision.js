@@ -58,14 +58,18 @@ export default function Subdivision() {
                 </button>
 
                 <Link className="btn btn-outline-primary mb-4" to="/subdivisions/buildings">
-                    Find Dislocated Places !!!
+                    Find Dislocated Places
                 </Link>
 
                 <Link className="btn btn-outline-primary mb-4" to="/subdivisions/combat_equipment">
                     Find Combat Equipment
                 </Link>
 
- 
+                <Link className="btn btn-outline-primary mb-4" to="/subdivisions/with_commanders">
+                    Show Commanders
+                </Link>
+
+
                 <table className="table border shadow">
                     <thead>
                         <tr>

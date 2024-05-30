@@ -42,6 +42,7 @@ import FindCombatEquipment from './subdivisions/FindCombatEquipment';
 import WeaponQueries from './weapon_type/WeaponQueries';
 import WeaponTypeCount from './weapon_type/WeaponTypeCount';
 import HierarchyQueries from './soldier/HierarchyQueries';
+import SubdivisionsWithCommanders from './subdivisions/SubdivisionsWithCommanders';
 
 function App() {
   return (
@@ -94,10 +95,11 @@ function App() {
            
           <Route exact path="/weapon_type" element={<WeaponType/>} />
           <Route exact path="/weapon_type/categories" element={<WeaponQueries/>} />
-          
           <Route exact path="/weapon_type/amount" element={<WeaponTypeCount/>} />
 
           <Route exact path="/soldiers/hierarchy" element={<HierarchyQueries/>} />
+
+          <Route exact path="/subdivisions/with_commanders" element={<SubdivisionsWithCommanders/>} />
 
 
         </Routes>

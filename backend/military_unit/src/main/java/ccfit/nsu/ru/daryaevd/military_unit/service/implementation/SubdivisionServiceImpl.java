@@ -3,6 +3,7 @@ package ccfit.nsu.ru.daryaevd.military_unit.service.implementation;
 import ccfit.nsu.ru.daryaevd.military_unit.dto.SoldierDto;
 import ccfit.nsu.ru.daryaevd.military_unit.dto.SubdivisionDto;
 import ccfit.nsu.ru.daryaevd.military_unit.dto.SubdivisionTypeDto;
+import ccfit.nsu.ru.daryaevd.military_unit.dto.SubdivisionWithCommanderDto;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.MilitaryBuilding;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.Soldier;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.Subdivision;
@@ -121,10 +122,10 @@ public class SubdivisionServiceImpl implements SubdivisionService {
         return subdivisionRepository.findSubdivisionsWithLeastUnits();
     }
 
-    @Override
-    public List<Subdivision> getAllSubdivisionsWithCommanders() {
-        return subdivisionRepository.findAllWithCommanders();
-    }
+//    @Override
+//    public List<Subdivision> getAllSubdivisionsWithCommanders() {
+//        return subdivisionRepository.findAllWithCommanders();
+//    }
 
     @Override
     public Subdivision getSubdivisionWithCommander(Long subdivisionId) {
@@ -157,6 +158,12 @@ public class SubdivisionServiceImpl implements SubdivisionService {
         return dtos;
     }
 
+    public List<SubdivisionWithCommanderDto> getAllSubdivisionsWithCommanders() {
+        List<Subdivision> subdivisions = subdivisionRepository.findAll();
+        return subdivisions.stream()
+                .map(SubdivisionMapper::toSubdivisionWithCommanderDto)
+                .collect(Collectors.toList());
+    }
 
 //    @Override
 //    public List<Long> getSubdivisionsWithWeaponCountGreaterThanThree(String category) {

@@ -69,10 +69,10 @@ export default function HierarchyQueries() {
     setLoading(false);
   };
 
-  const getCommanderName = (commanderId) => {
-    const commander = hierarchy.find(soldier => soldier.id === commanderId);
-    return commander ? `${commander.firstName} ${commander.lastName}` : "N/A";
-  };
+  // const getCommanderName = (commanderId) => {
+  //   const commander = hierarchy.find(soldier => soldier.id === commanderId);
+  //   return commander ? `${commander.firstName} ${commander.lastName}` : "N/A";
+  // };
 
   const getSubdivisionName = (subdivisionId) => {
     const subdivision = subdivisions.find(sub => sub.id === subdivisionId);

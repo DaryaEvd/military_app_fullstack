@@ -1,6 +1,7 @@
 package ccfit.nsu.ru.daryaevd.military_unit.mapper;
 
 import ccfit.nsu.ru.daryaevd.military_unit.dto.SubdivisionDto;
+import ccfit.nsu.ru.daryaevd.military_unit.dto.SubdivisionWithCommanderDto;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.*;
 
 import java.util.List;
@@ -24,6 +25,23 @@ public class SubdivisionMapper {
 
         return subdivisionDto;
     }
+
+    public static SubdivisionWithCommanderDto toSubdivisionWithCommanderDto(Subdivision subdivision) {
+        SubdivisionWithCommanderDto dto = new SubdivisionWithCommanderDto();
+        dto.setSubdivisionId(subdivision.getId());
+        dto.setSubdivisionName(subdivision.getNameOfSubdivision());
+
+        Soldier commander = subdivision.getCommander();
+        if (commander != null) {
+            dto.setCommanderId(commander.getId());
+            dto.setCommanderFirstName(commander.getFirstName());
+            dto.setCommanderLastName(commander.getLastName());
+        }
+
+        return dto;
+    }
+
+
 
 //        SubdivisionDto subdivisionDto = new SubdivisionDto();
 //

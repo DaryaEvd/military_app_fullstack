@@ -219,6 +219,40 @@ VALUES
 
 ----------------------NEED ABOVE ------------------
 
+UPDATE subdivision_table SET commander_id = (SELECT id FROM soldier_table WHERE first_name = 'Amanda' AND last_name = 'Davis' LIMIT 1) WHERE name_of_subdivision = 'Alpha';
+UPDATE subdivision_table SET commander_id = (SELECT id FROM soldier_table WHERE first_name = 'Christopher' AND last_name = 'Brown' LIMIT 1) WHERE name_of_subdivision = 'Bravo';
+
+
+UPDATE subdivision_table
+SET commander_id = (SELECT id FROM soldier_table WHERE first_name = 'Seva' AND last_name = 'Nosov' LIMIT 1)
+WHERE name_of_subdivision = 'rere team';
+
+UPDATE subdivision_table
+SET commander_id = (SELECT id FROM soldier_table WHERE first_name = 'Michael' AND last_name = 'Johnson' LIMIT 1)
+WHERE name_of_subdivision = 'grug team';
+
+UPDATE subdivision_table
+SET commander_id = (SELECT id FROM soldier_table WHERE first_name = 'Potap' AND last_name = 'Arturov' LIMIT 1)
+WHERE name_of_subdivision = 'plolpl team';
+
+UPDATE subdivision_table
+SET commander_id = (SELECT id FROM soldier_table WHERE first_name = 'Amanda' AND last_name = 'Davis' LIMIT 1)
+WHERE name_of_subdivision = 'vzvod by Pirogov';
+
+UPDATE subdivision_table
+SET commander_id = (SELECT id FROM soldier_table WHERE first_name = 'Jane' AND last_name = 'Smith' LIMIT 1)
+WHERE name_of_subdivision = 'gffjj team';
+
+
+UPDATE subdivision_table
+SET commander_id = (SELECT id FROM soldier_table WHERE first_name = 'Emily' AND last_name = 'Williams' LIMIT 1)
+WHERE name_of_subdivision = 'bbeveest team';
+
+UPDATE subdivision_table
+SET commander_id = (SELECT id FROM soldier_table WHERE first_name = 'Christopher' AND last_name = 'Brown' LIMIT 1)
+WHERE name_of_subdivision = 'pupupu Krasniy';
+
+
 
 -- -- Inserting data into combat_equipment_table
 -- INSERT INTO combat_equipment_table (name_of_equipment, experience_of_using, condition_of_vehicle, number_of_seats, name_of_vehicle, subdivision_id)

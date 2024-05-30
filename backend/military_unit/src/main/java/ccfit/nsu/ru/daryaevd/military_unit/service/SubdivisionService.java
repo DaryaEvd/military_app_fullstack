@@ -3,6 +3,7 @@ package ccfit.nsu.ru.daryaevd.military_unit.service;
 import ccfit.nsu.ru.daryaevd.military_unit.dto.SoldierDto;
 import ccfit.nsu.ru.daryaevd.military_unit.dto.SubdivisionDto;
 import ccfit.nsu.ru.daryaevd.military_unit.dto.SubdivisionTypeDto;
+import ccfit.nsu.ru.daryaevd.military_unit.dto.SubdivisionWithCommanderDto;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.MilitaryBuilding;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.Subdivision;
 
@@ -28,8 +29,10 @@ public interface SubdivisionService {
     List<Object[]> findSubdivisionsWithLeastUnits();
 
 
-    List<Subdivision> getAllSubdivisionsWithCommanders();
+//    List<Subdivision> getAllSubdivisionsWithCommanders();
     Subdivision getSubdivisionWithCommander(Long subdivisionId);
+
+    List<SubdivisionWithCommanderDto> getAllSubdivisionsWithCommanders();
 
     Map<Long, String> getSubdivisionNames(List<Long> subdivisionIds) ;
 

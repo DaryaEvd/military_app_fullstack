@@ -1,9 +1,6 @@
 package ccfit.nsu.ru.daryaevd.military_unit.controller;
 
-import ccfit.nsu.ru.daryaevd.military_unit.dto.MilitaryBuildingDto;
-import ccfit.nsu.ru.daryaevd.military_unit.dto.SoldierDto;
-import ccfit.nsu.ru.daryaevd.military_unit.dto.SubdivisionDto;
-import ccfit.nsu.ru.daryaevd.military_unit.dto.SubdivisionTypeDto;
+import ccfit.nsu.ru.daryaevd.military_unit.dto.*;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.MilitaryBuilding;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.Subdivision;
 import ccfit.nsu.ru.daryaevd.military_unit.repository.SubdivisionRepository;
@@ -109,11 +106,11 @@ public class SubdivisionController {
         return ResponseEntity.ok(result);
     }
 
-    @GetMapping("/with-commanders")
-    public ResponseEntity<List<Subdivision>> getAllSubdivisionsWithCommanders() {
-        List<Subdivision> subdivisions = subdivisionService.getAllSubdivisionsWithCommanders();
-        return ResponseEntity.ok(subdivisions);
-    }
+//    @GetMapping("/with-commanders")
+//    public ResponseEntity<List<Subdivision>> getAllSubdivisionsWithCommanders() {
+//        List<Subdivision> subdivisions = subdivisionService.getAllSubdivisionsWithCommanders();
+//        return ResponseEntity.ok(subdivisions);
+//    }
 
     @GetMapping("/{subdivisionId}/with-commander")
     public ResponseEntity<Subdivision> getSubdivisionWithCommander(@PathVariable Long subdivisionId) {
@@ -137,7 +134,11 @@ public class SubdivisionController {
         return ResponseEntity.ok(dtos);
     }
 
-
+    @GetMapping("/with_commanders")
+    public ResponseEntity<List<SubdivisionWithCommanderDto>> getAllSubdivisionsWithCommanders() {
+        List<SubdivisionWithCommanderDto> subdivisionsWithCommanders = subdivisionService.getAllSubdivisionsWithCommanders();
+        return ResponseEntity.ok(subdivisionsWithCommanders);
+    }
 
 //    @GetMapping("/weapons/count-greater-than-three")
 //    public ResponseEntity<List<Long>> getSubdivisionsWithWeaponCountGreaterThanThree(
