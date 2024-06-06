@@ -15,8 +15,21 @@ public interface CombatEquipmentService {
 
     void deleteCombatEquipment(Long combatEquipmentId);
 
-    List<Object[]> getAvailabilityOfEquipment();
+    List<CombatEquipmentDto> getAllCombatEquipments();
+    List<CombatEquipmentDto> getCombatEquipmentsBySubdivisionId(Long subdivisionId);
 
-    List<Object[]> getAvailabilityBySubdivisionType(String subdivisionType);
+    List<String> getSubdivisionsWithMoreThanFiveEquipment(String nameOfEquipment);
+    List<String> getSubdivisionsWithNoEquipment(String nameOfEquipment);
+
+//    List<Long> getSubdivisionsWithMoreThanFiveEquipment(Long equipmentId);
+//    List<Long> getSubdivisionsWithNoEquipment(Long equipmentId);
+
+
+//    List<Long> getSubdivisionsWithMoreThanFiveEquipment(String equipmentName);
+//    List<Long> getSubdivisionsWithNoEquipment(String equipmentName);
+
+
+//    List<Object[]> getAvailabilityOfEquipment();
+//    List<Object[]> getAvailabilityBySubdivisionType(String subdivisionType);
 
 }

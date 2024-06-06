@@ -4,6 +4,7 @@ import ccfit.nsu.ru.daryaevd.military_unit.dto.RocketWeaponDto;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.RocketWeapon;
 import ccfit.nsu.ru.daryaevd.military_unit.exception.ResourceNotFoundException;
 import ccfit.nsu.ru.daryaevd.military_unit.mapper.RocketWeaponMapper;
+import ccfit.nsu.ru.daryaevd.military_unit.mapper.WeaponTypeMapper;
 import ccfit.nsu.ru.daryaevd.military_unit.repository.RocketWeaponRepository;
 import ccfit.nsu.ru.daryaevd.military_unit.service.RocketWeaponService;
 import lombok.AllArgsConstructor;
@@ -19,22 +20,22 @@ public class RocketWeaponServiceImpl implements RocketWeaponService {
 
     @Override
     public RocketWeaponDto createRocketWeapon(RocketWeaponDto rocketWeaponDto) {
-        RocketWeapon rocketWeapon = RocketWeaponMapper.mapToRocketWeapon(rocketWeaponDto);
+        RocketWeapon rocketWeapon = RocketWeaponMapper.toEntity(rocketWeaponDto);
         RocketWeapon savedRocketWeapon = rocketWeaponRepository.save(rocketWeapon);
-        return RocketWeaponMapper.mapToRocketWeaponDto(savedRocketWeapon);
+        return RocketWeaponMapper.toDto(savedRocketWeapon);
     }
 
     @Override
     public RocketWeaponDto getRocketWeaponById(Long rocketWeaponId) {
         RocketWeapon rocketWeapon = rocketWeaponRepository.findById(rocketWeaponId)
                 .orElseThrow(() -> new ResourceNotFoundException("RocketWeapon doesn't exist with given id: " + rocketWeaponId));
-        return RocketWeaponMapper.mapToRocketWeaponDto(rocketWeapon);
+        return RocketWeaponMapper.toDto(rocketWeapon);
     }
 
     @Override
     public List<RocketWeaponDto> getAllRocketWeapons() {
         List<RocketWeapon> rocketWeapons = rocketWeaponRepository.findAll();
-        return rocketWeapons.stream().map(RocketWeaponMapper::mapToRocketWeaponDto).collect(Collectors.toList());
+        return rocketWeapons.stream().map(RocketWeaponMapper::toDto).collect(Collectors.toList());
     }
 
     @Override
@@ -49,11 +50,24 @@ public class RocketWeaponServiceImpl implements RocketWeaponService {
         rocketWeapon.setExperienceOfUsing(updatedRocketWeapon.getExperienceOfUsing());
 
         RocketWeapon updatedRocketWeaponObj = rocketWeaponRepository.save(rocketWeapon);
-        return RocketWeaponMapper.mapToRocketWeaponDto(updatedRocketWeaponObj);
+        return RocketWeaponMapper.toDto(updatedRocketWeaponObj);
     }
 
     @Override
     public void deleteRocketWeapon(Long rocketWeaponId) {
         rocketWeaponRepository.deleteById(rocketWeaponId);
     }
+
+//    public RocketWeaponDto createRocketWeapon(RocketWeaponDto rocketWeaponDto) {
+//        RocketWeapon rocketWeapon = WeaponTypeMapper.toEntity(rocketWeaponDto);
+//        RocketWeapon savedRocketWeapon = rocketWeaponRepository.save(rocketWeapon);
+//        return WeaponTypeMapper.toDto(savedRocketWeapon);
+//    }
+
+//    public RocketWeaponDto getRocketWeaponById(Long id) {
+//        RocketWeapon rocketWeapon = rocketWeaponRepository.findById(id)
+//                .orElseThrow(() -> new ResourceNotFoundException("RocketWeapon not found"));
+//        return WeaponTypeMapper.ma(rocketWeapon);
+//    }
+
 }

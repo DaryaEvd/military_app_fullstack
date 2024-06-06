@@ -65,12 +65,52 @@ public class CombatEquipmentServiceImpl implements CombatEquipmentService {
     }
 
     @Override
-    public List<Object[]> getAvailabilityOfEquipment() {
-        return combatEquipmentRepository.getAvailabilityOfEquipment();
+    public List<CombatEquipmentDto> getAllCombatEquipments() {
+        List<CombatEquipment> combatEquipments = combatEquipmentRepository.findAll();
+        return combatEquipments.stream()
+                .map(CombatEquipmentMapper::mapToCombatEquipmentDto)
+                .collect(Collectors.toList());
     }
 
     @Override
-    public List<Object[]> getAvailabilityBySubdivisionType(String subdivisionType) {
-        return combatEquipmentRepository.getAvailabilityBySubdivisionType(subdivisionType);
+    public List<CombatEquipmentDto> getCombatEquipmentsBySubdivisionId(Long subdivisionId) {
+        List<CombatEquipment> combatEquipments = combatEquipmentRepository.findBySubdivisionId(subdivisionId);
+        return combatEquipments.stream()
+                .map(CombatEquipmentMapper::mapToCombatEquipmentDto)
+                .collect(Collectors.toList());
     }
+
+
+    @Override
+    public List<String> getSubdivisionsWithMoreThanFiveEquipment(String nameOfEquipment) {
+        return combatEquipmentRepository.findSubdivisionsWithMoreThanFiveEquipment(nameOfEquipment);
+    }
+
+    @Override
+    public List<String> getSubdivisionsWithNoEquipment(String nameOfEquipment) {
+        return combatEquipmentRepository.findSubdivisionsWithNoEquipment(nameOfEquipment);
+    }
+
+
+//    @Override
+//    public List<Long> getSubdivisionsWithMoreThanFiveEquipment(Long equipmentId) {
+//        return combatEquipmentRepository.findSubdivisionsWithMoreThanFiveEquipment(equipmentId);
+//    }
+//
+//    @Override
+//    public List<Long> getSubdivisionsWithNoEquipment(Long equipmentId) {
+//        return combatEquipmentRepository.findSubdivisionsWithNoEquipment(equipmentId);
+//    }
+
+
+
+//    @Override
+//    public List<Object[]> getAvailabilityOfEquipment() {
+//        return combatEquipmentRepository.getAvailabilityOfEquipment();
+//    }
+//
+//    @Override
+//    public List<Object[]> getAvailabilityBySubdivisionType(String subdivisionType) {
+//        return combatEquipmentRepository.getAvailabilityBySubdivisionType(subdivisionType);
+//    }
 }

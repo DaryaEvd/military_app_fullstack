@@ -11,7 +11,8 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/api/subdivision-types")
+@RequestMapping("/api/subdivision_types")
+@CrossOrigin("http://localhost:3000")
 public class SubdivisionTypeController {
     private final SubdivisionTypeService subdivisionTypeService;
 

@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 @AllArgsConstructor
 @RestController
-@RequestMapping("/api/combat-equipment")
+@RequestMapping("/api/combat_equipment")
+@CrossOrigin("http://localhost:3000")
 public class CombatEquipmentController {
     private CombatEquipmentService combatEquipmentService;
 
@@ -32,11 +33,11 @@ public class CombatEquipmentController {
     }
 
     // get all combat equipment
-    @GetMapping
-    public ResponseEntity<List<CombatEquipmentDto>> getAllCombatEquipment() {
-        List<CombatEquipmentDto> combatEquipmentList = combatEquipmentService.getAllCombatEquipment();
-        return ResponseEntity.ok(combatEquipmentList);
-    }
+//    @GetMapping
+//    public ResponseEntity<List<CombatEquipmentDto>> getAllCombatEquipment() {
+//        List<CombatEquipmentDto> combatEquipmentList = combatEquipmentService.getAllCombatEquipment();
+//        return ResponseEntity.ok(combatEquipmentList);
+//    }
 
     // update combat equipment info
     @PutMapping("{id}")
@@ -53,14 +54,50 @@ public class CombatEquipmentController {
         return ResponseEntity.ok("Combat equipment deleted successfully");
     }
 
-    @GetMapping("/availability")
-    public List<Object[]> getAvailabilityOfEquipment() {
-        return combatEquipmentService.getAvailabilityOfEquipment();
+    @GetMapping
+    public ResponseEntity<List<CombatEquipmentDto>> getAllCombatEquipments() {
+        List<CombatEquipmentDto> combatEquipments = combatEquipmentService.getAllCombatEquipments();
+        return ResponseEntity.ok(combatEquipments);
     }
 
-    @GetMapping("/availability/{subdivisionType}")
-    public List<Object[]> getAvailabilityBySubdivisionType(@PathVariable String subdivisionType) {
-        return combatEquipmentService.getAvailabilityBySubdivisionType(subdivisionType);
+    @GetMapping("/subdivision/{subdivisionId}")
+    public ResponseEntity<List<CombatEquipmentDto>> getCombatEquipmentsBySubdivisionId(@PathVariable Long subdivisionId) {
+        List<CombatEquipmentDto> combatEquipments = combatEquipmentService.getCombatEquipmentsBySubdivisionId(subdivisionId);
+        return ResponseEntity.ok(combatEquipments);
     }
+
+    @GetMapping("/subdivisions/more_than_five/{nameOfEquipment}")
+    public List<String> getSubdivisionsWithMoreThanFiveEquipment(@PathVariable String nameOfEquipment) {
+        return combatEquipmentService.getSubdivisionsWithMoreThanFiveEquipment(nameOfEquipment);
+    }
+
+    @GetMapping("/subdivisions/no_equipment/{nameOfEquipment}")
+    public List<String> getSubdivisionsWithNoEquipment(@PathVariable String nameOfEquipment) {
+        return combatEquipmentService.getSubdivisionsWithNoEquipment(nameOfEquipment);
+    }
+
+
+
+//    @GetMapping("/subdivisions/more_than_five/{equipmentId}")
+//    public ResponseEntity<List<Long>> getSubdivisionsWithMoreThanFiveEquipment(@PathVariable Long equipmentId) {
+//        List<Long> subdivisions = combatEquipmentService.getSubdivisionsWithMoreThanFiveEquipment(equipmentId);
+//        return ResponseEntity.ok(subdivisions);
+//    }
+//
+//    @GetMapping("/subdivisions/no_equipment/{equipmentId}")
+//    public ResponseEntity<List<Long>> getSubdivisionsWithNoEquipment(@PathVariable Long equipmentId) {
+//        List<Long> subdivisions = combatEquipmentService.getSubdivisionsWithNoEquipment(equipmentId);
+//        return ResponseEntity.ok(subdivisions);
+//    }
+
+
+//    @GetMapping("/availability")
+//    public List<Object[]> getAvailabilityOfEquipment() {
+//        return combatEquipmentService.getAvailabilityOfEquipment();
+//    }
+//
+//    @GetMapping("/availability/{subdivisionType}")
+//    public List<Object[]> getAvailabilityBySubdivisionType(@PathVariable String subdivisionType) {
+//        return combatEquipmentService.getAvailabilityBySubdivisionType(subdivisionType);
+//    }
 }
-

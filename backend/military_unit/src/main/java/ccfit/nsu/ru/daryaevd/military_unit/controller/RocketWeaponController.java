@@ -11,6 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @RestController
 @RequestMapping("/api/rocket-weapons")
+@CrossOrigin("http://localhost:3000")
 public class RocketWeaponController {
     private RocketWeaponService rocketWeaponService;
 

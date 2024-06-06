@@ -11,6 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @RestController
 @RequestMapping("/api/mas")
+@CrossOrigin("http://localhost:3000")
 public class MasController {
     private final MasService masService;
 
@@ -45,8 +46,32 @@ public class MasController {
         return ResponseEntity.ok("MAS type deleted successfully");
     }
 
-    @GetMapping("/soldier-count")
-    public List<String> findMasWithMoreThanFiveSoldiersOrNone() {
-        return masService.findMasWithMoreThanFiveSoldiersOrNone();
+    @GetMapping("/specialists/more_than_five")
+    public ResponseEntity<List<MasDto>> getSpecialistsWithMoreThanFive() {
+        List<MasDto> masDtoList = masService.getSpecialistsWithMoreThanFive();
+        return ResponseEntity.ok(masDtoList);
     }
+
+    @GetMapping("/specialists/none")
+    public ResponseEntity<List<MasDto>> getSpecialistsWithNone() {
+        List<MasDto> masDtoList = masService.getSpecialistsWithNone();
+        return ResponseEntity.ok(masDtoList);
+    }
+
+    @GetMapping("/specialists/more_than_five/{subdivisionId}")
+    public ResponseEntity<List<MasDto>> getSpecialistsWithMoreThanFiveBySubdivision(@PathVariable Long subdivisionId) {
+        List<MasDto> masDtoList = masService.getSpecialistsWithMoreThanFiveBySubdivision(subdivisionId);
+        return ResponseEntity.ok(masDtoList);
+    }
+
+    @GetMapping("/specialists/none/{subdivisionId}")
+    public ResponseEntity<List<MasDto>> getSpecialistsWithNoneBySubdivision(@PathVariable Long subdivisionId) {
+        List<MasDto> masDtoList = masService.getSpecialistsWithNoneBySubdivision(subdivisionId);
+        return ResponseEntity.ok(masDtoList);
+    }
+
+//    @GetMapping("/soldier-count")
+//    public List<String> findMasWithMoreThanFiveSoldiersOrNone() {
+//        return masService.findMasWithMoreThanFiveSoldiersOrNone();
+//    }
 }

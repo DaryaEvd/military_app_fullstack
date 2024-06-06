@@ -1,8 +1,12 @@
 package ccfit.nsu.ru.daryaevd.military_unit.controller;
 
-import ccfit.nsu.ru.daryaevd.military_unit.dto.SubdivisionDto;
+import ccfit.nsu.ru.daryaevd.military_unit.dto.*;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.MilitaryBuilding;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.Subdivision;
+import ccfit.nsu.ru.daryaevd.military_unit.entity.SubdivisionType;
+import ccfit.nsu.ru.daryaevd.military_unit.repository.SubdivisionRepository;
+import ccfit.nsu.ru.daryaevd.military_unit.service.MilitaryBuildingService;
+import ccfit.nsu.ru.daryaevd.military_unit.service.SoldierService;
 import ccfit.nsu.ru.daryaevd.military_unit.service.SubdivisionService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -13,9 +17,14 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/api/subdivisions")
+@RequestMapping("/api/subdivision")
+@CrossOrigin("CrossOrigin")
 public class SubdivisionController {
     private SubdivisionService subdivisionService;
+    private final MilitaryBuildingService militaryBuildingService;
+    private final SoldierService soldierService;
+    private SubdivisionRepository subdivisionRepository;
+
 
     // add subdivision
     @PostMapping
@@ -54,30 +63,144 @@ public class SubdivisionController {
         return ResponseEntity.ok("Subdivision deleted successfully");
     }
 
-    @GetMapping("/most-military-units")
-    public ResponseEntity<List<Object[]>> getSubdivisionsWithMostMilitaryUnits() {
-        List<Object[]> result = subdivisionService.findSubdivisionsWithMostMilitaryUnits();
-        return new ResponseEntity<>(result, HttpStatus.OK);
+    @GetMapping("/commanders")
+    public ResponseEntity<List<SoldierDto>> getAllCommanders() {
+        return ResponseEntity.ok(subdivisionService.getAllCommanders());
     }
 
-    @GetMapping("/specified-subdivision")
-    public ResponseEntity<Object[]> getCommanderBySubdivisionName(@RequestParam(value = "subdivisionName") String subdivisionName) {
-        List<Object[]> result = subdivisionService.findCommanderBySubdivisionName(subdivisionName);
-        if (result.isEmpty()) {
+    @GetMapping("/types")
+    public ResponseEntity<List<SubdivisionTypeDto>> getAllSubdivisionTypes() {
+        return ResponseEntity.ok(subdivisionService.getAllSubdivisionTypes());
+    }
+
+    @GetMapping("/dislocation_places")
+    public List<MilitaryBuildingDto> getAllDislocationPlaces() {
+        return militaryBuildingService.getAllDislocationPlaces();
+    }
+
+    @GetMapping("/dislocation_places/{subdivisionId}")
+    public List<MilitaryBuildingDto> getDislocationPlacesBySubdivisionId(@PathVariable Long subdivisionId) {
+        return militaryBuildingService.getDislocationPlacesBySubdivisionId(subdivisionId);
+    }
+
+    @GetMapping("/specialists/{masId}")
+    public ResponseEntity<List<SoldierDto>> getSoldiersByMasId(@PathVariable Long masId) {
+        List<SoldierDto> soldiers = soldierService.getSoldiersByMasId(masId);
+        return ResponseEntity.ok(soldiers);
+    }
+
+    @GetMapping("/specialists/{masId}/{subdivisionId}")
+    public ResponseEntity<List<SoldierDto>> getSoldiersByMasIdAndSubdivisionId(@PathVariable Long masId, @PathVariable Long subdivisionId) {
+        List<SoldierDto> soldiers = soldierService.getSoldiersByMasIdAndSubdivisionId(masId, subdivisionId);
+        return ResponseEntity.ok(soldiers);
+    }
+
+    @GetMapping("/most_units")
+    public ResponseEntity<List<Object[]>> getSubdivisionsWithMostUnits() {
+        List<Object[]> result = subdivisionService.findSubdivisionsWithMostUnits();
+        return ResponseEntity.ok(result);
+    }
+
+    @GetMapping("/least-units")
+    public ResponseEntity<List<Object[]>> getSubdivisionsWithLeastUnits() {
+        List<Object[]> result = subdivisionService.findSubdivisionsWithLeastUnits();
+        return ResponseEntity.ok(result);
+    }
+
+//    @GetMapping("/with-commanders")
+//    public ResponseEntity<List<Subdivision>> getAllSubdivisionsWithCommanders() {
+//        List<Subdivision> subdivisions = subdivisionService.getAllSubdivisionsWithCommanders();
+//        return ResponseEntity.ok(subdivisions);
+//    }
+
+    @GetMapping("/{subdivisionId}/with-commander")
+    public ResponseEntity<Subdivision> getSubdivisionWithCommander(@PathVariable Long subdivisionId) {
+        Subdivision subdivision = subdivisionService.getSubdivisionWithCommander(subdivisionId);
+        return ResponseEntity.ok(subdivision);
+    }
+
+    @GetMapping("/weapon_more_than")
+    public List<String> getSubdivisionsWithWeaponMoreThan(@RequestParam String weaponCategory, @RequestParam int count) {
+        return subdivisionService.getSubdivisionsWithWeaponMoreThan(weaponCategory, count);
+    }
+
+    @GetMapping("/no_weapon")
+    public List<String> getSubdivisionsWithoutWeapon(@RequestParam String weaponCategory) {
+        return subdivisionService.getSubdivisionsWithoutWeapon(weaponCategory);
+    }
+
+    @GetMapping("/count_by_type")
+    public ResponseEntity<List<SubdivisionTypeDto>> countSubdivisionsByType() {
+        List<SubdivisionTypeDto> dtos = subdivisionService.countSubdivisionsByType();
+        return ResponseEntity.ok(dtos);
+    }
+
+    @GetMapping("/with_commanders")
+    public ResponseEntity<List<SubdivisionWithCommanderDto>> getAllSubdivisionsWithCommanders() {
+        List<SubdivisionWithCommanderDto> subdivisionsWithCommanders = subdivisionService.getAllSubdivisionsWithCommanders();
+        return ResponseEntity.ok(subdivisionsWithCommanders);
+    }
+
+    @GetMapping("/most_frequent_type")
+    public ResponseEntity<String> getMostFrequentSubdivisionType() {
+        String subdivisionTypeName = subdivisionService.getMostFrequentSubdivisionTypeName();
+        if (subdivisionTypeName != null) {
+            return ResponseEntity.ok(subdivisionTypeName);
+        } else {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(result.get(0)); // Assuming there is only one commander per subdivision
     }
 
-    @GetMapping("/combat-equipment")
-    public List<Subdivision> findSubdivisionsWithSpecifiedCombatEquipment() {
-        return subdivisionService.findSubdivisionsWithSpecifiedCombatEquipment();
+    @GetMapping("/least_frequent_type")
+    public ResponseEntity<String> getLeastFrequentSubdivisionType() {
+        String subdivisionTypeName = subdivisionService.getLeastFrequentSubdivisionTypeName();
+        if (subdivisionTypeName != null) {
+            return ResponseEntity.ok(subdivisionTypeName);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
-    @GetMapping("/military-buildings/dislocation")
-    public List<MilitaryBuilding> getMilitaryBuildingsForDislocation() {
-        return subdivisionService.getMilitaryBuildingsForDislocation();
-    }
+
+
+//    @GetMapping("/weapons/count-greater-than-three")
+//    public ResponseEntity<List<Long>> getSubdivisionsWithWeaponCountGreaterThanThree(
+//            @RequestParam String category) {
+//         List<Long> subdivisionIds = subdivisionRepository.findSubdivisionsWithWeaponCountGreaterThanThree(category);
+//        return ResponseEntity.ok(subdivisionIds);
+//    }
+//
+//    @GetMapping("/weapons/without-category")
+//    public ResponseEntity<List<Long>> getSubdivisionsWithoutWeaponCategory(
+//            @RequestParam String category) {
+//        List<Long> subdivisionIds = subdivisionRepository.findSubdivisionsWithoutWeaponCategory(category);
+//        return ResponseEntity.ok(subdivisionIds);
+//    }
+
+//    @GetMapping("/most_military_units")
+//    public ResponseEntity<List<Object[]>> getSubdivisionsWithMostMilitaryUnits() {
+//        List<Object[]> result = subdivisionService.findSubdivisionsWithMostMilitaryUnits();
+//        return new ResponseEntity<>(result, HttpStatus.OK);
+//    }
+
+//    @GetMapping("/specified-subdivision")
+//    public ResponseEntity<Object[]> getCommanderBySubdivisionName(@RequestParam(value = "subdivisionName") String subdivisionName) {
+//        List<Object[]> result = subdivisionService.findCommanderBySubdivisionName(subdivisionName);
+//        if (result.isEmpty()) {
+//            return ResponseEntity.notFound().build();
+//        }
+//        return ResponseEntity.ok(result.get(0)); // Assuming there is only one commander per subdivision
+//    }
+
+//    @GetMapping("/combat-equipment")
+//    public List<Subdivision> findSubdivisionsWithSpecifiedCombatEquipment() {
+//        return subdivisionService.findSubdivisionsWithSpecifiedCombatEquipment();
+//    }
+
+//    @GetMapping("/military-buildings/dislocation")
+//    public List<MilitaryBuilding> getMilitaryBuildingsForDislocation() {
+//        return subdivisionService.getMilitaryBuildingsForDislocation();
+//    }
 
 
 //    @GetMapping("/officers")

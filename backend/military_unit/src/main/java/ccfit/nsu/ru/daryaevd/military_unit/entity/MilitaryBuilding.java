@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -31,6 +32,12 @@ public class MilitaryBuilding {
     @Column(name = "amount_of_rooms", nullable = false)
     private Integer amountOfRooms;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "militaryBuilding", cascade = CascadeType.ALL)
-    private List<Subdivision> subdivisionList;
+    @ManyToMany
+    @JoinTable(
+            name = "military_building_subdivision",
+            joinColumns = @JoinColumn(name = "military_building_id"),
+            inverseJoinColumns = @JoinColumn(name = "subdivision_id")
+    )
+    private List<Subdivision> subdivisions = new ArrayList<>();
+
 }

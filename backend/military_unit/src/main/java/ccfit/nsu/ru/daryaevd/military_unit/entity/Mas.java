@@ -22,6 +22,6 @@ public class Mas {
     @Column(name = "code_of_mas", unique = true, nullable = false)
     private String codeOfMas;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "mas")
+    @OneToMany(mappedBy = "mas", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Soldier> soldiers;
 }

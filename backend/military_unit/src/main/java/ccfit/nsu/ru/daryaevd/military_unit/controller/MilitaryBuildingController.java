@@ -12,53 +12,101 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/api/military-building")
+@RequestMapping("/api/military_building")
+@CrossOrigin("http://localhost:3000")
 public class MilitaryBuildingController {
     private MilitaryBuildingService militaryBuildingService;
 
-    // add military building
-    @PostMapping
-    public ResponseEntity<MilitaryBuildingDto> createMilitaryBuilding(@RequestBody MilitaryBuildingDto militaryBuildingDto) {
-        MilitaryBuildingDto savedMilitaryBuilding = militaryBuildingService.createMilitaryBuilding(militaryBuildingDto);
-        return new ResponseEntity<>(savedMilitaryBuilding, HttpStatus.CREATED);
-    }
-
-    // get military building
-    @GetMapping("{id}")
-    public ResponseEntity<MilitaryBuildingDto> getMilitaryBuildingById(@PathVariable("id") Long militaryBuildingId) {
-        MilitaryBuildingDto militaryBuildingDto = militaryBuildingService.getMilitaryBuildingById(militaryBuildingId);
-        return ResponseEntity.ok(militaryBuildingDto);
-    }
-
-    // get all military buildings
     @GetMapping
-    public ResponseEntity<List<MilitaryBuildingDto>> getAllMilitaryBuildings() {
-        List<MilitaryBuildingDto> militaryBuildingDto = militaryBuildingService.getAllBuildings();
-        return ResponseEntity.ok(militaryBuildingDto);
+    public List<MilitaryBuildingDto> getAllMilitaryBuildings() {
+        return militaryBuildingService.getAllMilitaryBuildings();
     }
 
-    //update military building info
-    @PutMapping("{id}")
-    public ResponseEntity<MilitaryBuildingDto> updateSubdivision(@PathVariable("id") Long militaryBuildingId,
-                                                                 @RequestBody MilitaryBuildingDto updatedMilitaryBuilding) {
-        MilitaryBuildingDto militaryBuildingDto = militaryBuildingService.updateMilitaryBuilding(militaryBuildingId, updatedMilitaryBuilding);
-        return ResponseEntity.ok(militaryBuildingDto);
+    @GetMapping("/{id}")
+    public MilitaryBuildingDto getMilitaryBuildingById(@PathVariable Long id) {
+        return militaryBuildingService.getMilitaryBuildingById(id);
     }
 
-    //delete military building
-    @DeleteMapping("{id}")
-    public ResponseEntity<String> deleteSubdivision(@PathVariable("id") Long subdivisionId) {
-        militaryBuildingService.deleteMilitaryBuilding(subdivisionId);
-        return ResponseEntity.ok("Subdivision deleted successfully");
+    @PostMapping
+    public MilitaryBuildingDto createMilitaryBuilding(@RequestBody MilitaryBuildingDto dto) {
+        return militaryBuildingService.createMilitaryBuilding(dto);
     }
 
-    @GetMapping("/subdivision/{subdivisionType}")
-    public List<MilitaryBuilding> findBySubdivisionType(@PathVariable String subdivisionType) {
-        return militaryBuildingService.findBySubdivisionType(subdivisionType);
+    @PutMapping("/{id}")
+    public MilitaryBuildingDto updateMilitaryBuilding(@PathVariable Long id, @RequestBody MilitaryBuildingDto dto) {
+        return militaryBuildingService.updateMilitaryBuilding(id, dto);
     }
 
-    @GetMapping("/multiple-dislocated")
-    public List<MilitaryBuilding> findMilitaryBuildingsWithMultipleDislocatedSubdivisions() {
-        return militaryBuildingService.findMilitaryBuildingsWithMultipleDislocatedSubdivisions();
+    @DeleteMapping("/{id}")
+    public void deleteMilitaryBuilding(@PathVariable Long id) {
+        militaryBuildingService.deleteMilitaryBuilding(id);
     }
+
+    @GetMapping("/subdivision/{subdivisionId}")
+    public List<MilitaryBuildingDto> getMilitaryBuildingsBySubdivision(@PathVariable Long subdivisionId) {
+        return militaryBuildingService.getBuildingsBySubdivisionId(subdivisionId);
+    }
+
+    @GetMapping("/subdivision")
+    public List<MilitaryBuildingDto> getMilitaryBuildingsByDislocation(
+            @RequestParam boolean is_dislocated,
+            @RequestParam(required = false, defaultValue = "0") int min_amount_subdivisions) {
+        if (is_dislocated) {
+            return militaryBuildingService.getBuildingsWithMinSubdivisions(min_amount_subdivisions);
+        } else {
+            return militaryBuildingService.getBuildingsWithNoSubdivisions();
+        }
+    }
+
+
+
+
+    ////////////////////////////////////////////////////////
+
+//    // add military building
+//    @PostMapping
+//    public ResponseEntity<MilitaryBuildingDto> createMilitaryBuilding(@RequestBody MilitaryBuildingDto militaryBuildingDto) {
+//        MilitaryBuildingDto savedMilitaryBuilding = militaryBuildingService.createMilitaryBuilding(militaryBuildingDto);
+//        return new ResponseEntity<>(savedMilitaryBuilding, HttpStatus.CREATED);
+//    }
+//
+//    // get military building
+//    @GetMapping("{id}")
+//    public ResponseEntity<MilitaryBuildingDto> getMilitaryBuildingById(@PathVariable("id") Long militaryBuildingId) {
+//        MilitaryBuildingDto militaryBuildingDto = militaryBuildingService.getMilitaryBuildingById(militaryBuildingId);
+//        return ResponseEntity.ok(militaryBuildingDto);
+//    }
+//
+//    // get all military buildings
+//    @GetMapping
+//    public ResponseEntity<List<MilitaryBuildingDto>> getAllMilitaryBuildings() {
+//        List<MilitaryBuildingDto> militaryBuildingDto = militaryBuildingService.getAllBuildings();
+//        return ResponseEntity.ok(militaryBuildingDto);
+//    }
+//
+//    //update military building info
+//    @PutMapping("{id}")
+//    public ResponseEntity<MilitaryBuildingDto> updateMilitaryBuilding(@PathVariable("id") Long militaryBuildingId,
+//                                                                 @RequestBody MilitaryBuildingDto updatedMilitaryBuilding) {
+//        MilitaryBuildingDto militaryBuildingDto = militaryBuildingService.updateMilitaryBuilding(militaryBuildingId, updatedMilitaryBuilding);
+//        return ResponseEntity.ok(militaryBuildingDto);
+//    }
+//
+//    //delete military building
+//    @DeleteMapping("{id}")
+//    public ResponseEntity<String> deleteMilitaryBuilding(@PathVariable("id") Long militaryBuildingId) {
+//        militaryBuildingService.deleteMilitaryBuilding(militaryBuildingId);
+//        return ResponseEntity.ok("Subdivision deleted successfully");
+//    }
+
+
+//    @GetMapping("/subdivision/{subdivisionType}")
+//    public List<MilitaryBuilding> findBySubdivisionType(@PathVariable String subdivisionType) {
+//        return militaryBuildingService.findBySubdivisionType(subdivisionType);
+//    }
+//
+//    @GetMapping("/multiple-dislocated")
+//    public List<MilitaryBuilding> findMilitaryBuildingsWithMultipleDislocatedSubdivisions() {
+//        return militaryBuildingService.findMilitaryBuildingsWithMultipleDislocatedSubdivisions();
+//    }
 }

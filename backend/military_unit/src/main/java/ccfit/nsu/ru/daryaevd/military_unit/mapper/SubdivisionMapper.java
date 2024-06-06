@@ -1,6 +1,7 @@
 package ccfit.nsu.ru.daryaevd.military_unit.mapper;
 
 import ccfit.nsu.ru.daryaevd.military_unit.dto.SubdivisionDto;
+import ccfit.nsu.ru.daryaevd.military_unit.dto.SubdivisionWithCommanderDto;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.*;
 
 import java.util.List;
@@ -14,19 +15,57 @@ public class SubdivisionMapper {
         subdivisionDto.setNameOfSubdivision(subdivision.getNameOfSubdivision());
         subdivisionDto.setNumberOfSubdivision(subdivision.getNumberOfSubdivision());
         subdivisionDto.setIsDislocated(subdivision.getIsDislocated());
+//        subdivisionDto.setTypeOfSubdivision(Math.toIntExact(subdivision.getTypeOfSubdivision().getId()));
         subdivisionDto.setTypeOfSubdivision(subdivision.getTypeOfSubdivision().getId());
-        subdivisionDto.setMilitaryBuildingId(subdivision.getMilitaryBuilding().getId());
-        subdivisionDto.setCombatEquipmentId(subdivision.getCombatEquipment().getId());
-        subdivisionDto.setWeaponTypeId(subdivision.getWeaponType().getId());
+        
 
-        List<Long> soldierIds = subdivision.getSoldiers().stream()
-                .map(Soldier::getId)
-                .collect(Collectors.toList());
-        subdivisionDto.setSoldierIds(soldierIds);
+        if (subdivision.getCommander() != null) {
+            subdivisionDto.setCommanderId(subdivision.getCommander().getId());
+        }
+
         return subdivisionDto;
     }
 
+    public static SubdivisionWithCommanderDto toSubdivisionWithCommanderDto(Subdivision subdivision) {
+        SubdivisionWithCommanderDto dto = new SubdivisionWithCommanderDto();
+        dto.setSubdivisionId(subdivision.getId());
+        dto.setSubdivisionName(subdivision.getNameOfSubdivision());
+
+        Soldier commander = subdivision.getCommander();
+        if (commander != null) {
+            dto.setCommanderId(commander.getId());
+            dto.setCommanderFirstName(commander.getFirstName());
+            dto.setCommanderLastName(commander.getLastName());
+        }
+
+        return dto;
+    }
+
+
+
+//        SubdivisionDto subdivisionDto = new SubdivisionDto();
+//
+//        subdivisionDto.setId(subdivision.getId());
+//        subdivisionDto.setNameOfSubdivision(subdivision.getNameOfSubdivision());
+//        subdivisionDto.setNumberOfSubdivision(subdivision.getNumberOfSubdivision());
+//        subdivisionDto.setIsDislocated(subdivision.getIsDislocated());
+//        subdivisionDto.setTypeOfSubdivision(subdivision.getTypeOfSubdivision().getId());
+//
+//        subdivisionDto.setCommanderId(subdivision.getCommander().getId());
+//
+////        subdivisionDto.setMilitaryBuildingId(subdivision.getMilitaryBuilding().getId());
+////        subdivisionDto.setCombatEquipmentId(subdivision.getCombatEquipment().getId());
+////        subdivisionDto.setWeaponTypeId(subdivision.getWeaponType().getId());
+////
+////        List<Long> soldierIds = subdivision.getSoldiers().stream()
+////                .map(Soldier::getId)
+////                .collect(Collectors.toList());
+////        subdivisionDto.setSoldierIds(soldierIds);
+//        return subdivisionDto;
+//    }
+
     public static Subdivision mapToSubdivision(SubdivisionDto subdivisionDto) {
+
         Subdivision subdivision = new Subdivision();
         subdivision.setId(subdivisionDto.getId());
         subdivision.setNameOfSubdivision(subdivisionDto.getNameOfSubdivision());
@@ -34,30 +73,53 @@ public class SubdivisionMapper {
         subdivision.setIsDislocated(subdivisionDto.getIsDislocated());
 
         SubdivisionType subdivisionType = new SubdivisionType();
-        subdivisionType.setId(subdivisionDto.getTypeOfSubdivision());
+        subdivisionType.setId(Long.valueOf(subdivisionDto.getTypeOfSubdivision()));
         subdivision.setTypeOfSubdivision(subdivisionType);
 
-        MilitaryBuilding militaryBuilding = new MilitaryBuilding();
-        militaryBuilding.setId(subdivisionDto.getMilitaryBuildingId());
-        subdivision.setMilitaryBuilding(militaryBuilding);
-
-        CombatEquipment combatEquipment = new CombatEquipment();
-        combatEquipment.setId(subdivisionDto.getCombatEquipmentId());
-        subdivision.setCombatEquipment(combatEquipment);
-
-        WeaponType weaponType = new WeaponType();
-        weaponType.setId(subdivisionDto.getWeaponTypeId());
-        subdivision.setWeaponType(weaponType);
-
-        List<Soldier> soldiers = subdivisionDto.getSoldierIds().stream()
-                .map(id -> {
-                    Soldier soldier = new Soldier();
-                    soldier.setId(id);
-                    return soldier;
-                })
-                .toList();
-        subdivision.setSoldiers(soldiers);
+        Soldier soldier = new Soldier();
+        if (subdivisionDto.getCommanderId() != null) {
+            soldier.setId(subdivisionDto.getCommanderId());
+        }
+        subdivision.setCommander(soldier);
 
         return subdivision;
+
+
+//        Subdivision subdivision = new Subdivision();
+//        subdivision.setId(subdivisionDto.getId());
+//        subdivision.setNameOfSubdivision(subdivisionDto.getNameOfSubdivision());
+//        subdivision.setNumberOfSubdivision(subdivisionDto.getNumberOfSubdivision());
+//        subdivision.setIsDislocated(subdivisionDto.getIsDislocated());
+//
+//        SubdivisionType subdivisionType = new SubdivisionType();
+//        subdivisionType.setId(subdivisionDto.getTypeOfSubdivision());
+//        subdivision.setTypeOfSubdivision(subdivisionType);
+//
+//        Soldier soldier = new Soldier();
+//        soldier.setId(subdivisionDto.getCommanderId());
+//        subdivision.setCommander(soldier);
+//
+////        MilitaryBuilding militaryBuilding = new MilitaryBuilding();
+////        militaryBuilding.setId(subdivisionDto.getMilitaryBuildingId());
+////        subdivision.setMilitaryBuilding(militaryBuilding);
+////
+////        CombatEquipment combatEquipment = new CombatEquipment();
+////        combatEquipment.setId(subdivisionDto.getCombatEquipmentId());
+////        subdivision.setCombatEquipment(combatEquipment);
+////
+////        WeaponType weaponType = new WeaponType();
+////        weaponType.setId(subdivisionDto.getWeaponTypeId());
+////        subdivision.setWeaponType(weaponType);
+////
+////        List<Soldier> soldiers = subdivisionDto.getSoldierIds().stream()
+////                .map(id -> {
+////                    Soldier soldier = new Soldier();
+////                    soldier.setId(id);
+////                    return soldier;
+////                })
+////                .toList();
+////        subdivision.setSoldiers(soldiers);
+//
+//        return subdivision;
     }
 }

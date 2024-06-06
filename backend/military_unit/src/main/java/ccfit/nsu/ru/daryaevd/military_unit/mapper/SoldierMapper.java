@@ -5,11 +5,14 @@ import ccfit.nsu.ru.daryaevd.military_unit.entity.Mas;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.Soldier;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.SoldierType;
 import ccfit.nsu.ru.daryaevd.military_unit.entity.Subdivision;
+import ccfit.nsu.ru.daryaevd.military_unit.exception.ResourceNotFoundException;
+import ccfit.nsu.ru.daryaevd.military_unit.repository.MasRepository;
+import ccfit.nsu.ru.daryaevd.military_unit.repository.SoldierTypeRepository;
+import ccfit.nsu.ru.daryaevd.military_unit.repository.SubdivisionRepository;
 
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class SoldierMapper {
+
     public static SoldierDto mapToSoldierDto(Soldier soldier) {
         SoldierDto soldierDto = new SoldierDto();
         soldierDto.setId(soldier.getId());
@@ -18,45 +21,50 @@ public class SoldierMapper {
         soldierDto.setDateOfBirth(soldier.getDateOfBirth());
         soldierDto.setMilitaryCard(soldier.getMilitaryCard());
         soldierDto.setDateOfIssueMilitaryCard(soldier.getDateOfIssueMilitaryCard());
+        soldierDto.setMasId(soldier.getMas() != null ? soldier.getMas().getId() : null);
+        soldierDto.setTypeOfSoldier(soldier.getSoldierType() != null ? soldier.getSoldierType().getTypeRank() : null);
+//        soldierDto.setSubdivisionId(soldier.getSubdivision() != null ? soldier.getSubdivision().getTypeOfSubdivision() : null); // Исправлено здесь
 
-        soldierDto.setMasId(soldier.getMas().getId());
+        soldierDto.setSubdivisionId(soldier.getSubdivision().getTypeOfSubdivision() != null ?
+                    soldier.getSubdivision().getTypeOfSubdivision().getSubdivisionRank() : null);
 
-        soldierDto.setTypeOfSoldier(soldier.getSoldierType().getId());
+        soldierDto.setIsCommander(soldier.getIsCommander());
 
-        List<Long> subdivisionIds = soldier.getSubdivisions().stream()
-                .map(Subdivision::getId)
-                .collect(Collectors.toList());
-        soldierDto.setSubdivisionIds(subdivisionIds);
+        soldierDto.setCommanderId(soldier.getCommanderId() != null ?
+                soldier.getCommanderId() : null);
 
         return soldierDto;
     }
 
-    public static Soldier mapToSoldier(SoldierDto soldierDto) {
-        Soldier soldier = new Soldier();
-        soldier.setId(soldierDto.getId());
-        soldier.setFirstName(soldierDto.getFirstName());
-        soldier.setLastName(soldierDto.getLastName());
-        soldier.setDateOfBirth(soldierDto.getDateOfBirth());
-        soldier.setMilitaryCard(soldierDto.getMilitaryCard());
-        soldier.setDateOfIssueMilitaryCard(soldierDto.getDateOfIssueMilitaryCard());
 
-        Mas mas = new Mas();
-        mas.setId(soldierDto.getMasId());
-        soldier.setMas(mas);
-
-        SoldierType soldierType = new SoldierType();
-        soldierType.setId(soldierDto.getTypeOfSoldier());
-        soldier.setSoldierType(soldierType);
-
-        List<Subdivision> subdivisions = soldierDto.getSubdivisionIds().stream()
-                .map(id -> {
-                    Subdivision subdivision = new Subdivision();
-                    subdivision.setId(id);
-                    return subdivision;
-                })
-                .toList();
-        soldier.setSubdivisions(subdivisions);
-
-        return soldier;
-    }
+//    public static Soldier mapToSoldier(SoldierDto soldierDto, MasRepository masRepository, SoldierTypeRepository soldierTypeRepository, SubdivisionRepository subdivisionRepository) {
+//        Soldier soldier = new Soldier();
+//        soldier.setId(soldierDto.getId());
+//        soldier.setFirstName(soldierDto.getFirstName());
+//        soldier.setLastName(soldierDto.getLastName());
+//        soldier.setDateOfBirth(soldierDto.getDateOfBirth());
+//        soldier.setMilitaryCard(soldierDto.getMilitaryCard());
+//        soldier.setDateOfIssueMilitaryCard(soldierDto.getDateOfIssueMilitaryCard());
+//
+//        if (soldierDto.getMasId() != null) {
+//            Mas mas = masRepository.findById(soldierDto.getMasId())
+//                    .orElseThrow(() -> new ResourceNotFoundException("Mas doesn't exist with given id: " + soldierDto.getMasId()));
+//            soldier.setMasId(mas);
+//        }
+//
+//        if (soldierDto.getTypeOfSoldier() != null) {
+//            SoldierType soldierType = soldierTypeRepository.findById(soldierDto.getTypeOfSoldier())
+//                    .orElseThrow(() -> new ResourceNotFoundException("SoldierType doesn't exist with given id: " + soldierDto.getTypeOfSoldier()));
+//            soldier.setSoldierType(soldierType);
+//        }
+//
+//        if (soldierDto.getSubdivisionId() != null) {
+//            Subdivision subdivision = subdivisionRepository.findById(soldierDto.getSubdivisionId())
+//                    .orElseThrow(() -> new ResourceNotFoundException("Subdivision doesn't exist with given id: " + soldierDto.getSubdivisionId()));
+//            soldier.setSubdivision(subdivision);
+//        }
+//
+//        soldier.setIsCommander(soldierDto.getIsCommander());
+//        return soldier;
+//    }
 }

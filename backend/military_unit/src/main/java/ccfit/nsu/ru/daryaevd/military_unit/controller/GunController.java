@@ -12,6 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @RestController
 @RequestMapping("/api/guns")
+@CrossOrigin("http://localhost:3000")
 public class GunController {
     private GunService gunService;
 

@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
@@ -22,9 +24,7 @@ public class SubdivisionType {
     @Column(name = "name_of_type", unique = true, nullable = false)
     private String nameOfType;
 
-    @Column(name = "type_rank", /*unique = true,*/
-nullable = false
-            /*, columnDefinition = "INT CHECK (rank_subdiv > 0 AND rank_subdiv < 5)"*/)
+    @Column(name = "subdivision_rank", nullable = false)
     private Integer subdivisionRank;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "typeOfSubdivision", cascade = CascadeType.ALL)

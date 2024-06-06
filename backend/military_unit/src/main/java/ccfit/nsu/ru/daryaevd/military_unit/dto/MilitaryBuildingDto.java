@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import java.util.List;
 
 @Getter
 @Setter
@@ -16,5 +17,5 @@ public class MilitaryBuildingDto {
     private Integer areaOfBuilding;
     private Integer amountOfRooms;
 
-    private Long subdivisionId;
+    private List<Long> subdivisionIds;
 }

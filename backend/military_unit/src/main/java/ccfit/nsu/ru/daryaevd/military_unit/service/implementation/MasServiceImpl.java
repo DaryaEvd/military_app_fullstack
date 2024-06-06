@@ -59,9 +59,40 @@ public class MasServiceImpl implements MasService {
         }
         masRepository.deleteById(masId);
     }
+    @Override
+    public List<MasDto> getSpecialistsWithMoreThanFive() {
+        List<Mas> masList = masRepository.findMasWithMoreThanFiveSpecialists();
+        return masList.stream()
+                .map(MasMapper::mapToMasDto)
+                .collect(Collectors.toList());
+    }
 
     @Override
-    public List<String> findMasWithMoreThanFiveSoldiersOrNone() {
-        return masRepository.findMasWithMoreThanFiveSoldiersOrNone();
+    public List<MasDto> getSpecialistsWithNone() {
+        List<Mas> masList = masRepository.findMasWithNoSpecialists();
+        return masList.stream()
+                .map(MasMapper::mapToMasDto)
+                .collect(Collectors.toList());
     }
+
+    @Override
+    public List<MasDto> getSpecialistsWithMoreThanFiveBySubdivision(Long subdivisionId) {
+        List<Mas> masList = masRepository.findMasWithMoreThanFiveSpecialistsBySubdivision(subdivisionId);
+        return masList.stream()
+                .map(MasMapper::mapToMasDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<MasDto> getSpecialistsWithNoneBySubdivision(Long subdivisionId) {
+        List<Mas> masList = masRepository.findMasWithNoSpecialistsBySubdivision(subdivisionId);
+        return masList.stream()
+                .map(MasMapper::mapToMasDto)
+                .collect(Collectors.toList());
+    }
+
+//    @Override
+//    public List<String> findMasWithMoreThanFiveSoldiersOrNone() {
+//        return masRepository.findMasWithMoreThanFiveSoldiersOrNone();
+//    }
 }

@@ -9,12 +9,9 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class GunDto {
-    private Long id;
+public class GunDto extends WeaponTypeDto {
     private String nameOfGun;
     private Integer shootingSpeed;
     private Integer caliber;
     private Integer magazineCapacity;
-
-    private Long weaponTypeId;
 }

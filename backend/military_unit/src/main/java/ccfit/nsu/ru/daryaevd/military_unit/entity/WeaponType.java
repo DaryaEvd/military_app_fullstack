@@ -13,21 +13,24 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "dtype", discriminatorType = DiscriminatorType.STRING)
 @Table(name = "weapon_type_table")
-public class WeaponType {
+public abstract class WeaponType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name_of_type", nullable = false)
-    private String nameOfType;
+    @Column(name = "weapon_category", nullable = false)
+    private String weaponCategory;
 
     @Column(name = "experience_of_using", nullable = false)
     private Integer experienceOfUsing;
 
-    @Column(name = "condition_of_vehicle", nullable = false)
-    private String conditionOfVehicle;
+    @Column(name = "condition_of_weapon", nullable = false)
+    private String conditionOfWeapon;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "weaponType", cascade = CascadeType.ALL)
-    private List<Subdivision> subdivisionList;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "subdivision_id", referencedColumnName = "id" /*, nullable = false*/)
+    private Subdivision subdivision;
 }
